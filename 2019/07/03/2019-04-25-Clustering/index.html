@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        聚类 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#K-means"><span class="toc-text">K-means</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代法"><span class="toc-text">迭代法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#step-1"><span class="toc-text">step 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#step-2"><span class="toc-text">step 2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k-medoids"><span class="toc-text">k-medoids</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hierarchical-Clustering"><span class="toc-text">Hierarchical Clustering</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        聚类
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2><p>我们的问题为：</p>
+<p>$$<br>\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} W\left(C_{k}\right)<br>$$</p>
+<p>$$<br>W\left(C_{k}\right)=\frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}<br>$$</p>
+<p>将以上两个式子结合一下，可以得到最优化问题为：</p>
+<p>$$<br>\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} \frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}<br>$$</p>
+<p><strong>Centroid</strong></p>
+<p>让 \(\mu_{k}=\frac{1}{\left|C_{k}\right|} \sum_{i \in C_{k}} x_{i}\) 为 \( C_{k}\) 的 mean/centroid。</p>
+<p>$$<br>\frac{1}{\left|C_{k}\right|} \sum_{i, j \in \mathcal{C}_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}=2 \sum_{i \in C_{k}}\Vert x_{i}-\mu_{k}\Vert _{2}^{2}<br>$$ </p>
+<p>代入回之前的式子，优化问题等同于：</p>
+<p>$$<br>\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K}\left\{\sum_{i \in C_{k}}\Vert x_{i}-\mu_{k}\Vert _{2}^{2}\right\}<br>$$</p>
+<h3 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h3><p> \(\text { binary matrix } R=\left[r_{n k}\right] \in R^{N \times K}<br>\)<br> \(\text { 如果 } x_{n} \text { is assigned to cluster } k, \text { 那么 }r_{n k}=1 \text { 并且 } r_{n j}=0, j \neq k\) </p>
+<br>
+**目标：**
+
+<p>找到  \(\left\{\mu_{k}\right\}\)，并把每一个数据点分配到一类，使 objective function 最小化。</p>
+<p>$$<br>J\left(R,\left\{\mu_{k}\right\}\right)=\sum_{n=1}^{N}\left[\sum_{k=1}^{K} r_{n k}\Vert x_{n}-\mu_{k}\Vert ^{2}\right]<br>$$ </p>
+<ul>
+<li>\(\mu_{k}=\frac{1}{\left|C_{k}\right|} \sum_{i \in C_{k}} x_{i}\) 为 \( C_{k}\) 的 mean/centroid。</li>
+<li>\(R=\left[r_{n k}\right] \in R^{N \times K}\)</li>
+</ul>
+<p><strong>重复以下两步：</strong></p>
+<ol>
+<li>step 1：固定 \(\{\mu_{k}\}\)，最优化 \(R\)  </li>
+<li>step 2：固定 \(R\)，最优化 \(\{\mu_{k}\}\)</li>
+</ol>
+<p><strong>具体如下：</strong></p>
+<h4 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h4><p>对于某一个具体的 n，我们选择 \(r_{nj}\) 最小化 </p>
+<p>$$\sum_{k=1}^{K} r_{n k}\Vert x_{n}-\mu_{k}\Vert ^{2}$$ </p>
+<p><img src="/img/2019-04-25-Clustering-1.png" alt></p>
+<p><strong>也就是说，将 \(x_n\) 分配给最接近的 centroid。</strong></p>
+<h4 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h4><p>对于固定的  \(R\),   \(J\left(R,\left\{\mu_{k}\right\}\right)\) 是 convex，quadratic 的，因此，将关于  \(u_{k}\) 的梯度设为 0：</p>
+<p>$$<br>2 \sum_{n=1}^{N} r_{n k}\left(\mu_{k}-x_{n}\right)=0 \Rightarrow \mu_{k}=\frac{\sum_{n=1}^{N} r_{n k} x_{n}}{\sum_{n=1}^{N} r_{n k}}<br>$$</p>
+<p>让 \(u_{k}\) 等于属于 cluster k 的所有数据点 \(x_n\) 的均值</p>
+<p><img src="/img/2019-04-25-Clustering-2.png" alt></p>
+<blockquote>
+<p>k-means 算法对于异常值十分敏感，因为具有极大值的对象可能会产生严重扭曲的数据分布  </p>
+</blockquote>
+<h2 id="k-medoids"><a href="#k-medoids" class="headerlink" title="k-medoids"></a>k-medoids</h2><p>k-means 与 k-medoids 之间的差异就是可以理解为对于数据样本的平均值和中位数之间的差异：前者的取值范围可以是连续空间中的任意值，而后者的取值却只能是数据样本范围中的样本。这个原因就是 k-means 对于数据样本的要求太高了，要求所有数据样本处在一个欧式空间中，对于有很多噪声的数据就会造成极大的误差。同时对于非数值型数据样本，不能够计算平均值等实数型变量。</p>
+<p>与 K-means 算法类似，区别在于中心点的选取，K-means 中选取的中心点为当前类中所有点的重心，而 K-medoids 法选取的中心点为当前 cluster 中存在的一点，准则函数是当前 cluster 中所有其他点到该中心点的距离之和最小，这就在一定程度上削弱了异常值的影响，但缺点是计算较为复杂，耗费的计算机时间比 K-means 多。</p>
+<p>$$<br>\widehat{J}\left(R,\left\{\mu_{k}\right\}\right)=\sum_{n=1}^{N} \sum_{k=1}^{K} r_{n k} V\left(x_{n}, \mu_{k}\right)<br>$$</p>
+<ul>
+<li>其中 \(V\left(x_{n}, \mu_{k}\right)\) 表示 \(x_n\) 和 \(\mu_k\) 的 dissimilarity</li>
+</ul>
+<h2 id="Hierarchical-Clustering"><a href="#Hierarchical-Clustering" class="headerlink" title="Hierarchical Clustering"></a>Hierarchical Clustering</h2><p>K-means 需要提前确定 k 的值，而 Hierarchical Clustering 不需要</p>
+<p>假设有N个待聚类的样本，对于层次聚类来说，其步骤为：</p>
+<ol>
+<li>初始化：把每个样本各自归为一类（每个样本自成一类），计算每两个类之间的距离，在这里也就是样本与样本之间的相似度（本质还是计算类与类之间的距离）。</li>
+<li>寻找各个类之间最近的两个类，把它们归为一类（这样，类的总数就减少了一个）</li>
+<li>重新计算新生成的这个类与各个旧类之间的距离（相似度）</li>
+<li>重复 2、3 步，直到所有的样本都归为一类，结束。</li>
+</ol>
+<p>2、详细描述：</p>
+<p>整个聚类过程其实是建立了一棵树，在建立过程中，可以通过第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代终止。</p>
+<p>另外，关键的一步是第三步，如何判断两个类之间的相似度有不少种方法，下面介绍三种：</p>
+<ol>
+<li><p><strong>Single Linkage</strong>：又叫做 nearest-neighbor，就是取两个类中最近的两个样本之间的距离作为两个集合的距离，即：最近的两个样本之间的距离越小，</p>
+<p> 这两个类之间相似度越大，容易造成一种叫做 Chaining 的效果，两个类明明从“大局”上离的比较远，但由于其中个别点距离比较近就被合并了。</p>
+<p> 这种合并之后 Chaining 效应会进一步扩大，最后得到比较松散的聚类 cluster。</p>
+</li>
+<li><p><strong>Complete Linkage</strong>：完全是 Single Linkage 的反面极端，取两个集合距离最远的两个点的距离作为两个集合的距离，其效果也刚好相反，限制非常大。</p>
+<p> 两个聚类 cluster 即使已经很接近了，但是只要有不配合的带你存在，就顽固到底，老死不相合并，也是不太好的办法，这两种相似度定义方法共同问题就是：</p>
+<p> 只考虑了某个特有的数据，而没有考虑类数据整体的特点。</p>
+</li>
+<li><p><strong>Average Linkage</strong>：这种方法就是把两个集合中的点两两距离全部放在一起求平均值，相应的能得到一点合适的结果。</p>
+<p> Average Linkage 的一个变种就是取两两距离的中值，与取平均值相比更加能够解除个别偏离样本对结果的干扰。</p>
+</li>
+</ol>
+<p><img src="/img/2019-04-25-Clustering-5.png" alt><br><img src="/img/2019-04-25-Clustering-6.png" alt></p>
+<div align="center">
+![](/img/2019-04-25-Clustering-7.png)
+<center><small><font color="gray">  Complete Linkage   </font></small></center>
+</div>
+
+
+<p><img src="/img/2019-04-25-Clustering-4.png" alt><br><img src="/img/2019-04-25-Clustering-3.png" alt></p>
+<p>对于 Hierarchical Clustering 的实际应用，有以下问题需要考虑：</p>
+<ul>
+<li>应该使用哪一种 dissimilarity measure？</li>
+<li>应该使用哪一种 linkage？</li>
+<li>什么时候应该切断树状结构？</li>
+</ul>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Perceptual Loss 感知损失 图像超分辨重建（二） - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-text">1 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-构架"><span class="toc-text">2 构架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-网络细节"><span class="toc-text">3 网络细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-损失函数"><span class="toc-text">4 损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Feature-Reconstruction-Loss"><span class="toc-text">4.1 Feature Reconstruction Loss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Style-Reconstruction-Loss"><span class="toc-text">4.2 Style Reconstruction Loss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Simple-Loss-Function"><span class="toc-text">4.3 Simple Loss Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Pixel-Loss"><span class="toc-text">1) Pixel Loss</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2）Total-Variation-Regularization"><span class="toc-text">2）Total Variation Regularization</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-基于Per-Pixel-Loss的超分辨重建网络"><span class="toc-text">5 基于Per-Pixel Loss的超分辨重建网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考以及转载"><span class="toc-text">参考以及转载</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Perceptual Loss 感知损失 图像超分辨重建（二）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#图像超分辨重建" title="图像超分辨重建">图像超分辨重建</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h2><blockquote>
+<p>文章：<a href="https://arxiv.org/pdf/1603.08155.pdf" target="_blank" rel="noopener">Perceptual Losses for Real-Time Style-Transfer and Super-Resolution</a><br>作者： Justin Johnson, Alexandre Alahi, Li Fei-Fei</p>
+</blockquote>
+<p>相较于其他机器学习任务，如物体检测（object detection）或者实例分割（instance segmentation），超分辨重建技术中学习任务的损失函数的定义通常都相对简单粗暴，由于我们重建的目的是为了使得重建的高分辨率图片与真实高清图片之间的峰值信噪比（Peak Signal-to-Noise Ratio, PSNR）尽可能的大，因此绝大多数的基于深度学习的超分辨重建研究都直接的将损失函数设计为<strong>平均均方差（Mean Square Error, MSE）</strong>，即计算两幅图片所有对应像素位置点之间的均方差，由于MSE Loss要求像素点之间位置一一对应，因此又被称作<strong>Per-Pixel Loss</strong>。</p>
+<a id="more"></a>
+
+<p>但随着技术的发展，研究者慢慢发现Per-Pixel Loss的<strong>局限性</strong>。考虑一个极端的情况，将高清原图向任意方向偏移一个像素，事实上图片本身的分辨率与风格并未发生太大的改变，但Per-Pixel Loss却会因为这一个像素的偏移而出现显著的上升，因此Per-Pixel Loss的约束并不能反应图像高级的特征信息（high-level features）。</p>
+<p><strong>图像风格转换算法</strong>的成功，在生成图像领域，产生了一个非常重要的<strong>idea</strong>，那就是可以<strong>将卷积神经网络提取出的feature，作为目标函数的一部分</strong>，通过比较待生成的图片经过CNN的feature值与目标图片经过CNN的feature值，使得待生成的图片与目标图片在语义上更加相似(相对于Pixel级别的损失函数)。</p>
+<blockquote>
+<p>图像风格转换算法将图片生成以生成的方式进行处理，如风格转换，是从一张噪音图（相当于白板）中得到一张结果图，具有图片A的内容和图片B的风格。而Perceptual Losses则是将生成问题看做是变换问题。即生成图像是从内容图中变化得到。</p>
+</blockquote>
+<p>图像风格转换是针对待生成的图像进行求导，CNN的反向传播由于参数众多，是非常慢的，同样利用卷积神经网络的feature产生的loss，训练了一个神经网络，将内容图片输入进去，可以直接输出转换风格后的图像。而将低分辨率的图像输入进去，可以得到高分辨率的图像。<strong>因为只进行一次网络的前向计算，速度非常快</strong>，可以达到实时的效果。</p>
+<p>研究图像风格迁移的研究者们相对于Per-Pixel Loss在2016年的CVPR会议上提出了<strong>Perceptual Loss</strong>的概念。</p>
+<h2 id="2-构架"><a href="#2-构架" class="headerlink" title="2 构架"></a>2 构架</h2><p>下面这个网络图是论文的精华所在。图中将网络分为<strong>Transform网络</strong>和<strong>Loss网络</strong>两种，在使用中，Transform网络用来对图像进行转换，它的参数是变化的，而Loss网络，则保持参数不变，Transform的结果图，风格图和内容图都通过Loss Net得到每一层的feature激活值，并以之进行Loss计算。</p>
+<p><img src="/img/2018-04-28-PerceptualLosses-1.jpg" alt></p>
+<center><small><font color="gray">基于Perceptual Loss的全卷积网络结构</font></small></center>
+
+<br>
+
+<blockquote>
+<p>在风格转换上，输入 \(x=y_c\) 是内容图片。而在图片高清化上， \(x\) 是低分辨率图片，内容图片是高分辨率图片，风格图片未曾使用。</p>
+</blockquote>
+<h2 id="3-网络细节"><a href="#3-网络细节" class="headerlink" title="3 网络细节"></a>3 网络细节</h2><p>网络细节的设计大体遵循DCGAN中的<strong>设计思路</strong>：</p>
+<ul>
+<li>不使用pooling层，而是使用strided和fractionally strided卷积来做downsampling和upsampling，</li>
+<li>使用了五个residual blocks</li>
+<li>除了输出层之外的所有的非residual blocks后面都跟着spatial batch normalization和ReLU的非线性激活函数。</li>
+<li>输出层使用一个scaled tanh来保证输出值在 \([0, 255]\) 内。</li>
+<li>第一个和最后一个卷积层使用9×9的核，其他卷积层使用 \(3\times 3\) 的核。</li>
+</ul>
+<h2 id="4-损失函数"><a href="#4-损失函数" class="headerlink" title="4 损失函数"></a>4 损失函数</h2><p>同<a href="https://link.zhihu.com/?target=http%3A//blog.csdn.net/stdcoutzyx/article/details/53771471" target="_blank" rel="noopener">图像风格转换(Image style transfer)</a>算法类似，论文定义了两种损失函数。其中，损失网络都使用在ImageNet上训练好的VGG net，使用 \(φ\) 来表示损失网络。</p>
+<p><strong>损失函数由三部分组成</strong></p>
+<h3 id="4-1-Feature-Reconstruction-Loss"><a href="#4-1-Feature-Reconstruction-Loss" class="headerlink" title="4.1 Feature Reconstruction Loss"></a>4.1 Feature Reconstruction Loss</h3><p>$$l^{\phi,j}_{feat}(\hat{y},y)={\frac {1}{C_jH_jW_j}}{\Vert {\phi_{j}(\hat{y})-\phi_{j}({y})} \Vert}^{2}_{2}$$</p>
+<ul>
+<li>\(j\) 表示网络的第 \(j\) 层       </li>
+<li>\(C_jH_jW_j\) 表示第 \(j\) 层的 feature_map 的 size</li>
+</ul>
+<p><strong>使用不同层的重建效果如下：</strong></p>
+<p><img src="/img/2018-04-28-PerceptualLosses-2.jpg" alt></p>
+<center><small><font color="gray">不同深度的卷积层提取的图片特征示意图</font></small></center>
+
+<br>
+
+<h3 id="4-2-Style-Reconstruction-Loss"><a href="#4-2-Style-Reconstruction-Loss" class="headerlink" title="4.2 Style Reconstruction Loss"></a>4.2 Style Reconstruction Loss</h3><p>对于风格重建的损失函数，首先要先计算Gram矩阵，</p>
+<p>$$G^{\phi}_{j}(x)_{c,c′}={\frac {1}{C_jH_jW_j}}{\sum^{H_{j}}_{h=1}}{\sum^{W_{j}}_{w=1}}{\phi}_{j}(x)_{h,w,c}{\phi}_{j}(x)_{h,w,c′}$$</p>
+<p>产生的 feature_map 的大小为 \(C_jH_jW_j\)，可以看成是 \(C_j\) 个特征，这些特征两两之间的内积的计算方式如上。</p>
+<p>$$l^{\phi,j}_{style}(\hat{y},y)=\Vert {G_{j}^{\phi}(\hat{y})-G_{j}^{\phi}({y})} \Vert^{2}_{F}$$</p>
+<p>两张图片，在loss网络的每一层都求出Gram矩阵，然后对应层之间计算欧式距离，最后将不同层的欧氏距离相加，得到最后的风格损失。</p>
+<p>不同层的风格重建效果如下：</p>
+<p><img src="/img/2018-04-28-PerceptualLosses-3.jpg" alt></p>
+<h3 id="4-3-Simple-Loss-Function"><a href="#4-3-Simple-Loss-Function" class="headerlink" title="4.3 Simple Loss Function"></a>4.3 Simple Loss Function</h3><p>第三个部分不是必须的</p>
+<h4 id="1-Pixel-Loss"><a href="#1-Pixel-Loss" class="headerlink" title="1) Pixel Loss"></a>1) Pixel Loss</h4><p>pixel loss 是输出 \(\hat y\) 和目标 \(y\) 之间的欧几里得距离，只在网络有需要匹配的 ground-truth target  \(y\) 时才使用</p>
+<p>$$l_{pixel}(\hat{y}, y)=\Vert {\hat{y}}-y \Vert^{2}_{2}$$</p>
+<h4 id="2）Total-Variation-Regularization"><a href="#2）Total-Variation-Regularization" class="headerlink" title="2）Total Variation Regularization"></a>2）Total Variation Regularization</h4><p>Total Variation Loss，实际上是一个平滑项（一个正则化项），目的是使生成的图像在局部上尽可能平滑，而它的定义和马尔科夫随机场（MRF）中使用的平滑项非常相似。</p>
+<p>$$l_{TV}(\hat y)={\sum}_{n}{\Vert \hat{y}_{n+1}- \hat{y}_{n} \Vert}^{2}_{2}$$</p>
+<ul>
+<li>其中 \(y_{n+1}\) 是 \(y_n\) 的相邻像素</li>
+</ul>
+<h2 id="5-基于Per-Pixel-Loss的超分辨重建网络"><a href="#5-基于Per-Pixel-Loss的超分辨重建网络" class="headerlink" title="5 基于Per-Pixel Loss的超分辨重建网络"></a>5 基于Per-Pixel Loss的超分辨重建网络</h2><p>基于Per-Pixel Loss的超分辨重建网络目标在于<strong>直接最小化高清原图与超分辨重建图像之间的差异</strong>，使得超分辨重建图像逐步逼近原图的清晰效果。但Perceptual Loss最小化的是<strong>原图与重建图像的特征图之间的差异</strong>，为了提高计算效率，Perceptual Loss中的特征图由固定权重值的卷积神经网络提取，例如在ImageNet数据集上预训练得到的VGG16网络，如下图所示，不同深度的卷积层提取的特征信息不同，反映的图像的纹理也不同。</p>
+<p><img src="/img/2018-04-28-PerceptualLosses-4.jpg" alt></p>
+<center><small><font color="gray">不同深度的卷积层提取的图片特征示意图</font></small></center>
+
+<br>
+
+<p>因此研究者们在训练超分辨神经网络时，利用<strong>跨间隔的卷积层</strong>（strided convolution layer）代替池化层（pooling layer）构建全卷积神经网络（Fully Convolutional Network, FCN）进行超分辨重建，并在卷积层之间添加<strong>残差结构</strong>（residual block）以在保证网络拟合性能的前提下加深网络深度获得更佳表现。最终利用VGG16网络对原图与重建图像进行特征提取，最小化两者特征图之间的差异使得超分辨重建图像不断逼近原图的分辨率。</p>
+<h2 id="参考以及转载"><a href="#参考以及转载" class="headerlink" title="参考以及转载"></a>参考以及转载</h2><ol>
+<li><a href="https://zhuanlan.zhihu.com/p/24720434" target="_blank" rel="noopener">感知损失(Perceptual Losses)</a></li>
+</ol>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

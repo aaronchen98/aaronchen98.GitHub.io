@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        计算机视觉基础 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#高低频"><span class="toc-text">高低频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滤波"><span class="toc-text">滤波</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIFT"><span class="toc-text">SIFT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转载与参考"><span class="toc-text">转载与参考</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        计算机视觉基础
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#计算机视觉" title="计算机视觉">计算机视觉</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="高低频"><a href="#高低频" class="headerlink" title="高低频"></a>高低频</h2><blockquote>
+<p><strong>高频和低频就是信号变化的频率</strong><br><strong>图像的频率：灰度值变化剧烈程度的指标，是灰度在平面空间上的梯度</strong></p>
+</blockquote>
+<a id="more"></a>  
+
+<p>对于声音来说其变化是一维的，是时域信号即信号大小随着时间的变化而变化<br>对于图像来说其变化是二维的，是空域信号即信号随着空间坐标的变化而变化 </p>
+<p>所谓高频，是指一个信号的变化速度较快，这是一个相对概念。<br>在图像上来说，就是一片图像的亮度变化较多且明显；<br>在音频领域，是指一个震荡频率较低的声波；<br>在电学领域，是指可以被电感严重阻碍的交变电流。<br>换句话说，<strong><em>某一/某些事物将其某一可以量化的性质，按照时间或者不同事物有序列排列为横轴，该性质的数值为纵轴，这样所形成的图像看上去相对变化较大的，就是高频信号。</em></strong>低频正好相反。<br>空域的高频可以理解为细节信号，比如当一幅大图缩小n倍后，图像的细节就看不到了，我们就可以理解为高频信号被滤掉了，而剩下的图像部分就可理解为低频了。</p>
+<p>图像的高低频是对图像各个位置之间<strong>强度变化</strong>的一种度量方法.</p>
+<p><strong>低频分量：</strong>主要对整幅图像的强度的综合度量，描述大范围的信息<br><strong>高频分量：</strong>主要是对图像边缘和轮廓的度量，描述具体的细节</p>
+<ul>
+<li><p>如果一副图像的各个位置的强度大小相等，则图像只存在低频分量，从图像的频谱图上看，只有一个主峰，且位于频率为零的位置。</p>
+</li>
+<li><p>如果一副图像的各个位置的强度变化剧烈，则图像不仅存在低频分量，同时也存在多种高频分量，从图像的频谱上看，不仅有一个主峰，同时也存在多个旁峰。</p>
+</li>
+</ul>
+<blockquote>
+<p>在灰度图像中，亮度变化小的区域主要是低频成分，而亮度变化剧烈的区域（比如物体的边缘）主要是高频成分。</p>
+<p>简言之，就是图像中像素灰度值变化快的就是高频部分，变化慢的就是低频部分。</p>
+<p>另外噪声（即噪点）也是这样,在一个像素所在的位置,之所以是噪点,就是因为它与正常的点颜色不一样了，也就是说该像素点灰度值明显不一样了,,也就是灰度有快速地变化了,所以是高频部分，因此有噪声在高频这么一说</p>
+</blockquote>
+<br>
+
+
+<h2 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h2><blockquote>
+<p><strong>图像其实是一种波，可以用波的算法处理图像。</strong></p>
+</blockquote>
+<p> <img src="/img/2018-06-22-cv2-101.jpg" alt></p>
+<center><small><font color="gray"> 这是一张 400 x 400 的图片，一共包含了 16 万个像素点。   </font></small></center>
+
+<p>如果把每一行所有像素（上例是400个）的红、绿、蓝的值，依次画成三条曲线，就得到了下面的图形。</p>
+<p><img src="/img/2018-06-22-cv2-1.jpg" alt></p>
+<p>可以看到，每条曲线都在不停的上下波动。有些区域的波动比较小，有些区域突然出现了大幅波动（比如 54 和 324 这两点）。</p>
+<p>对比一下图像就能发现，曲线波动较大的地方，也是图像出现突变的地方。</p>
+<p><img src="/img/2018-06-22-cv2-2.jpg" alt></p>
+<p>这说明波动与图像是紧密关联的。<strong>图像本质上就是各种色彩波的叠加。</strong></p>
+<br>
+
+<p><font size="+1"><strong>低通滤波</strong></font></p>
+<blockquote>
+<p><strong>低通滤波器（lowpass）：减弱或阻隔高频信号，保留低频信号</strong></p>
+</blockquote>
+<p><img src="/img/2018-06-22-cv2-3.jpg" alt></p>
+<center><small><font color="gray"> 蓝线是原始的波形，绿线是低通滤波lowpass后的波形。可以看到，绿线的波动比蓝线小很多，非常平滑   </font></small></center>
+
+<br>
+
+<p><font size="+1"><strong>高通滤波</strong></font></p>
+<blockquote>
+<p><strong>高通滤波器（highpass）：减弱或阻隔低频信号，保留高频信号</strong></p>
+</blockquote>
+<p><img src="/img/2018-06-22-cv2-4.jpg" alt></p>
+<center><small><font color="gray">  黄线是原始的波形，蓝线是高通滤波highpass后的波形。可以看到，黄线的三个波峰和两个波谷（低频波动），在蓝线上都消失了，而黄线上那些密集的小幅波动（高频波动），则是全部被蓝线保留  </font></small></center>
+
+
+<p><img src="/img/2018-06-22-cv2-5.jpg" alt></p>
+<center><small><font color="gray"> 上图有三根曲线，黄线是高频波动，红线是低频波动。它们可以合成为一根曲线，就是绿线   </font></small></center>
+
+<p><img src="/img/2018-06-22-cv2-6.jpg" alt></p>
+<center><small><font color="gray"> 上图中，绿线进行低通滤波和高通滤波后，得到两根黑色的曲线，它们的波形跟原始的黄线和红线是完全一致的   </font></small></center>
+
+<br>
+
+<p><font size="+1"><strong>对图像进行滤波</strong></font></p>
+<blockquote>
+<p>lowpass 使得图像的高频区域变成低频，即色彩变化剧烈的区域变得平滑，也就是出现模糊效果</p>
+</blockquote>
+<p><img src="/img/2018-06-22-cv2-7.jpg" alt></p>
+<p><img src="/img/2018-06-22-cv2-8.jpg" alt></p>
+<center><small><font color="gray">  上图中，红线是原始的色彩曲线，蓝线是低通滤波后的曲线  </font></small></center>
+
+
+
+<blockquote>
+<p>highpass 正好相反，过滤了低频，只保留那些变化最快速最剧烈的区域，也就是图像里面的物体边缘，所以常用于边缘识别</p>
+</blockquote>
+<p><img src="/img/2018-06-22-cv2-9.jpg" alt></p>
+<p><img src="/img/2018-06-22-cv2-10.jpg" alt></p>
+<center><small><font color="gray">   红线是原始的色彩曲线，蓝线是高通滤波后的曲线 </font></small></center>
+
+<p>下面这个<a href="http://fellipe.com/demos/lena-js/" target="_blank" rel="noopener">网址</a>，可以将滤波器拖到图像上，产生过滤后的效果。</p>
+<br>
+
+<p><font size="+1"><strong>高斯滤波</strong></font></p>
+<blockquote>
+<p>高斯滤波器是一种线性平滑滤波器，能够有效的抑制噪声，平滑图像。<br>其作用原理和均值滤波器类似，都是取滤波器窗口内的像素的均值作为输出。其窗口模板的系数和均值滤波器不同，均值滤波器的模板系数都是相同的为1；而高斯滤波器的模板系数，则随着距离模板中心的增大而系数减小。所以，高斯滤波器相比于均值滤波器对图像个模糊程度较小</p>
+</blockquote>
+<p>离散化窗口滑窗卷积的时，主要利用的是高斯核，高斯核一般是一个奇数的大小的高斯模板</p>
+<p>一个二维的高斯函数如下：<br><font size="+1">$$G(x,y)={\frac{1}{2\pi\sigma^2}}e^{-{\frac {x^2+y^2}{2\sigma^2}}}$$</font></p>
+<blockquote>
+<p>其中 \((x,y)\) 为点坐标，在图像处理中可认为是整数； \(σ\) 是标准差     </p>
+<p>标准差越小，二维高斯图像越窄小，平滑效果不明显；标准差越大，而为高斯图像越矮宽，滤波效果比较明显</p>
+</blockquote>
+<p>要想得到一个高斯滤波器的模板，可以对高斯函数进行离散化，得到的高斯函数值作为模板的系数。     </p>
+<p>例如：要产生一个 \(3×3\) 的高斯滤波器模板，以模板的中心位置为坐标原点进行取样。模板在各个位置的坐标，如下所示（ \(x\) 轴水平向右， \(y\) 轴竖直向下）</p>
+<p> <img src="/img/2018-06-22-cv2-102.jpg" alt></p>
+<p>最后得到高斯模板：</p>
+<p><img src="/img/2018-06-22-cv2-11.jpg" alt></p>
+<center><small><font color="gray"> 左侧是常用的3*3的高斯模板，右侧是常用的5*5高斯模板   </font></small></center>
+
+<blockquote>
+<p><strong>归一化处理</strong></p>
+<p>为了尽可能的模拟高斯函数的相关性质，计算高斯模板的时候，计算出来的高斯模板中各个数值其和必须为1</p>
+<p>另外一种解释是：归一化之后，通过卷积计算出来的模板中心像素被限制到了0-255的灰度区间中。假若某一邻域内所有像素的灰度值为255，利用该模板进行卷积之后，求得的模板中心像素灰度值仍然为255；假若计算出来的高斯模板参数之和小于1，那么通过该模板进行卷积之后，模板中心像素的灰度值将小于255，偏离了实际的灰度值，产生了误差。</p>
+</blockquote>
+<p> <img src="/img/2018-06-22-cv2-103.jpg" alt></p>
+<p><strong>高斯滤波性质</strong></p>
+<p>　　高斯函数具有五个重要的性质，这些性质使得它在早期图像处理中特别有用．这些性质表明，高斯平滑滤波器无论在空间域还是在频率域都是十分有效的低通滤波器，且在实际图像处理中得到了工程人员的有效使用．高斯函数具有五个十分重要的性质，它们是： </p>
+<ol>
+<li>二维高斯函数具有<strong>旋转对称性</strong>，即滤波器在各个方向上的平滑程度是相同的．一般来说，一幅图像的边缘方向是事先不知道的，因此，在滤波前是无法确定一个方向上比另一方向上需要更多的平滑．旋转对称性意味着高斯平滑滤波器<strong>在后续边缘检测中不会偏向任一方向</strong>． </li>
+<li>高斯函数是<strong>单值函数</strong>．这表明，高斯滤波器用像素邻域的加权均值来代替该点的像素值，而每一邻域像素点权值是随该点与中心点的距离单调增减的．这一性质是很重要的，因为边缘是一种图像局部特征，如果平滑运算对离算子中心很远的像素点仍然有很大作用，则平滑运算会使图像失真． </li>
+<li>高斯函数本身这一事实的直接推论．图像常被不希望的高频信号所污染(噪声和细纹理)．而所希望的图像特征（如边缘），既含有低频分量，又含有高频分量．高斯函数付立叶变换的单瓣意味着平滑图像不会被不需要的<strong>高频信号所污染，同时保留了大部分所需信号</strong>． </li>
+<li>高斯滤波器宽度(决定着平滑程度)是由参数σ表征的，而且σ和平滑程度的关系是非常简单的．<strong>σ越大，高斯滤波器的频带就越宽，平滑程度就越好</strong>．通过调节平滑程度参数σ，可在图像特征过分模糊(过平滑)与平滑图像中由于噪声和细纹理所引起的过多的不希望突变量(欠平滑)之间取得折衷． </li>
+<li>由于高斯函数的<strong>可分离性</strong>，较大尺寸的高斯滤波器可以得以有效地实现．二维高斯函数卷积可以分两步来进行，首先将图像与一维高斯函数进行卷积，然后将卷积结果与方向垂直的相同一维高斯函数卷积．因此，二维高斯滤波的计算量随滤波模板宽度成<strong>线性增长</strong>而不是成平方增长．</li>
+</ol>
+<br>
+
+<h2 id="SIFT"><a href="#SIFT" class="headerlink" title="SIFT"></a>SIFT</h2><p><font size="+1"><strong>图像尺度空间 高斯卷积</strong></font></p>
+<blockquote>
+<p>尺度空间表达指的是不同高斯核所平滑后的图片的不同表达  </p>
+</blockquote>
+<p>平时生活中，用人眼去看一张照片时，随着观测距离的增加，图像会逐渐变得模糊。<br>那么计算机在“看”一张照片时，会从不同的“尺度”去观测照片，尺度越大，图像越模糊。</p>
+<p><strong>“尺度空间表达”指的是不同高斯核所平滑后的图片的不同表达，</strong><br>意思就是：原始照片的分辨率，和经过不同高斯核平滑后的照片的分辨率是一样的。但是，对于计算机来说，不同模糊程度，照片“看”上去的样子就不一样了。高斯核越大，图片“看”上去就越模糊。</p>
+<blockquote>
+<p>那么，图片的模糊与找特征点有关系吗？</p>
+</blockquote>
+<p>计算机没有主观意识去识别哪里是特征点，它能做的，只是分辨出变化率最快的点。彩色图是三通道的，不好检测突变点。需要将RGB图转换为灰度图，此时灰度图为单通道，灰度值在0~255之间分布。</p>
+<p>高斯卷积之后，图像虽然变模糊了。但是整体的像素没有变，依然可以找到灰度值突变的点。而这些点，就可以作为候选特征点了，后期再进一步减少点的数量，提高准确率即可。</p>
+<br>
+
+<p><font size="+1"> <strong>金字塔多分辨率表达——降采样</strong> </font></p>
+<blockquote>
+<p>图像金字塔化：先进行图像平滑，再进行降采样，根据降采样率不同，所得到一系列尺寸逐渐减小的图像</p>
+</blockquote>
+<p>若对一张图片进行降采样，其像素点就会减少，图片尺寸也会随之变小。那么给人的感觉就好比一个金字塔。</p>
+<p> <img src="/img/2018-06-22-cv2-104.jpg" alt></p>
+<br>
+
+<p><font size="+1">  <strong>LOG（Laplassian of Gaussian）</strong>   </font></p>
+<p>前面提出的那种表达，各有各的优势：</p>
+<ol>
+<li>“尺度空间表达”在所有尺度上具有相同分辨率，而“图像金字塔化”在每层的表达上分辨率都会减少固定比率。</li>
+<li>“图像金字塔化”处理速度快，占用存储空间小，而“尺度空间表达”刚好相反。</li>
+</ol>
+<blockquote>
+<p>那么将两者融合起来的话，就得到了LOG图像，高斯拉普拉斯变换图像</p>
+</blockquote>
+<p><strong>其步骤是：</strong>    </p>
+<ol>
+<li><p>先将照片降采样，得到了不同分辨率下的图像金字塔。    </p>
+</li>
+<li><p>再对每层图像进行高斯卷积。这样一来，原本的图像金字塔每层只有一张图像，而卷积后，每层又增加了多张不同模糊程度下的照片。</p>
+<p><img src="/img/2018-06-22-cv2-105.jpg" alt></p>
+<p><img src="/img/2018-06-22-cv2-106.jpg" alt></p>
+</li>
+</ol>
+<p>然而，LOG图像还不是我们想要的，我们做那么多就是为了更好地获取特征点，所以还需要对LOG图像再进一步地优化。所以，DOG图像横空出世！！</p>
+<br>
+
+<p><font size="+1"> <strong>DOG（Difference of Gaussian）</strong> </font></p>
+<blockquote>
+<p>DOG即高斯差分</p>
+</blockquote>
+<p><strong>构造高斯差分图像的步骤是：</strong>在获得LOG图像后，用其相邻的图像进行相减，得到所有图像重新构造的金字塔就是DOG金字塔</p>
+<p> <img src="/img/2018-06-22-cv2-107.jpg" alt></p>
+<center><small><font color="gray">  左图是LOG图像，右图是DOG图像  </font></small></center>
+
+<br>
+
+<p><strong>1) 寻找极值点</strong></p>
+<p>当得到DOG金字塔后，我们接下来要做的是寻找DOG极值点。每个像素点与其周围的像素点比较，当其大于或者小于所有相邻点时，即为极值点。</p>
+<p> <img src="/img/2018-06-22-cv2-108.jpg" alt></p>
+<center><small><font color="gray">  以黄点为检测点，那么其周围的点，除了同层所包围的8个绿点外，还有上一层的9个点与下一层的9个点  </font></small></center>
+
+<p> <img src="/img/2018-06-22-cv2-109.jpg" alt></p>
+<p><strong>2) 去除边缘影响</strong></p>
+<p>有些极值点不是我们想要的，当中就有一大部分是边缘区域产生的极值点。因为物体的边缘轮廓在灰度图中，存在着灰度值的突变，这样的点在计算中就被“误以为”是特征值</p>
+<p>边缘区域在纵向上灰度值突变很大</p>
+<p>我们想到了Hessian矩阵，海塞矩阵是用来求曲率的，可以以函数的二阶偏导为元素，构成一个2x2的矩阵H</p>
+<p> <img src="/img/2018-06-22-cv2-110.jpg" alt></p>
+<p><strong>3) 方向赋值</strong></p>
+<p>当我们精确定位关键点后，需要找到该特征点对应的尺度值 σ，根据这一尺度值，将对应的高斯图像的关键点进行有限差分，以3×1.5σ为半径的区域内图像梯度的幅角和幅值。</p>
+<p>然后利用直方图统计领域内像素对应的梯度和幅值：梯度方向角为横轴刻度，取45度为一个单位，那么横轴就有8个刻度；纵轴是对应梯度的幅值累加值。</p>
+<p><img src="/img/2018-06-22-cv2-12.jpg" alt></p>
+<p>取幅值最高的方向为主方向。有的时候，会出现第二峰值，因为有较多的关键点是多方向的。如果直接把它忽略掉不加以考虑的话，最后对匹配精度的影响还是蛮大的。</p>
+<p>所以，为了匹配的稳定性，我们将超过峰值能量的百分之80的方向，称为辅方向。</p>
+<p> <img src="/img/2018-06-22-cv2-111.jpg" alt></p>
+<p><strong>4) 关键点描述</strong></p>
+<p>到了这里，我们就已经得到赋值后的SIFT特征点了，其包含了位置，尺度，方向的信息。</p>
+<p>接下来的要做的是：关键点的描述，即用一组向量将关键点描述出来。</p>
+<ol>
+<li>确定描述子采样区域</li>
+<li>生成描述子</li>
+<li>生成特征匹配点</li>
+<li>对特征向量进行归一化处理，去除光照变化的影响</li>
+</ol>
+<br>
+
+<p><font size="+1">   <strong>图像相似性</strong>  </font></p>
+<p>当两幅图像的 SIFT 特征向量生成以后，下一步就可以采用关键点特征向量的欧式距离来作为两幅图像中关键点的相似性判定度量。</p>
+<p> <img src="/img/2018-06-22-cv2-112.jpg" alt></p>
+<br>
+
+<h2 id="转载与参考"><a href="#转载与参考" class="headerlink" title="转载与参考"></a>转载与参考</h2><ol>
+<li><a href="https://blog.csdn.net/missingu1314/article/details/8675434" target="_blank" rel="noopener">图像的高频和低频</a></li>
+<li><a href="https://blog.csdn.net/charlene_bo/article/details/70877999" target="_blank" rel="noopener">为什么说图像的低频是轮廓，高频是噪声和细节</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2017/12/image-and-wave-filters.html![](/img/2018-06-22-cv2-13.jpg)" target="_blank" rel="noopener">图像与滤波 - 阮一峰</a></li>
+<li><a href="https://www.cnblogs.com/qiqibaby/p/5289977.html" target="_blank" rel="noopener">高斯滤波简介</a></li>
+<li><a href="https://www.cnblogs.com/wangguchangqing/p/6407717.html" target="_blank" rel="noopener">图像处理基础(4)：高斯滤波器详解</a></li>
+<li><a href="https://blog.csdn.net/weixin_38404120/article/details/73740612" target="_blank" rel="noopener">SIFT特征匹配算法介绍——寻找图像特征点的原理</a></li>
+<li><a href="https://baike.baidu.com/item/SIFT/1396275?fr=aladdin" target="_blank" rel="noopener">SIFT</a></li>
+</ol>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

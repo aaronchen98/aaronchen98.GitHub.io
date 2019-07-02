@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        AlphaGO Zero 原理 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-text">1. 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-树搜索"><span class="toc-text">2.1 树搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-搜索阶段算法"><span class="toc-text">4. 搜索阶段算法</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        AlphaGO Zero 原理
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#强化学习" title="强化学习">强化学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>简单来说，AlphaGo Zero 的训练可以分为三个同时进行的阶段：</p>
+<ul>
+<li>自我对战</li>
+<li>再训练网络</li>
+<li>评估网络</li>
+</ul>
+<p>在自我对战阶段， AlphaGo Zero 创建一个训练集合，自我完成对战 25000 次。<strong>棋局每变动一次，博弈、搜索可能性和胜出者的信息将被存储。</strong></p>
+<p><strong>训练网络阶段，是神经网络权值得到优化的过程。</strong>在一次完整的训练循环中， AlphaGo Zero 将从 50 万局博弈中选取 2048 个移动位置作为样品，并对这些位置的神经网络进行训练。之后，通过损失函数，来对比神经网络预测与搜索可能性和实际胜出方的信息。每完成一千次这样的训练循环，就对神经网络进行一次评估。</p>
+<p><strong>在评估网络阶段，测试新的神经网络是否得到优化。</strong>在这个过程中，博弈双方都通过各自的神经网络评估叶节点，并使用蒙特卡洛树搜索进行下一步棋路的选择。</p>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-1.jpg)
+<center><small><font color="gray">  AlphaGo Zero结构图  </font></small></center>
+</div>
+<br>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-2.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+<p><strong>a 部分是利用初始化的神经网络和MCTS进行自博弈，收集到对弈的数据以及胜负关系</strong></p>
+<p>程序自我对弈完成一个棋局产生一个状态序列  \(s_1,…,s_T\)  ，在  \(T\)  时刻棋局结束，产生了获胜方，用  \(z\)  表示。在其中的每一个时刻  \(T\)  ，棋局状态用 \( s_t\)  表示，会在神经网络 \( f_{\theta} \) 的引导下执行一次 MCTS 搜索  \({\alpha}_{\theta}\)  ，通过 MCTS 搜索计算得到的概率  \(a_t \sim {\pi}_t\)  确定如何行为（在何处落子）</p>
+<p><strong>b 部分是利用收集到的数据训练当前棋盘的价值和每一个走子的概率 (神经网络的训练过程)</strong>      </p>
+<p>神经网络的输入是某时刻  \(t\)  的棋局状态  \(s_t\)  外加一些历史和额外信息，输出是一个行为概率向量 \( p_t\)  和一个标量  \(v_t\) </p>
+<p>Alpha Zero 算法主体思想就是在策略迭代过程中重复使用上述两个工具：神经网络的参数得以更新，这样可以使得神经网络的输出  \((p, v) = f_{\theta}(s) \) ：移动概率和获胜奖励更接近与经过改善了的搜索得到的概率以及通过自我对弈得到的棋局结果，后者用 \( (\pi, z) \) 表示。得到的新参数可以在下一次自我对弈的迭代过程中让搜索变得更加强大。</p>
+<ul>
+<li>\(p\) (move probabilities) 在当前棋局状态下采取每种可能落子方式的概率</li>
+<li>\(v\) 当前棋局状态 \(s\) 下棋手最终获胜还是落败（分别用 \(1\) 和 \(-1\) 表示）</li>
+<li>\(\pi\) 表示经过神经网络改善了的蒙特卡洛树搜索输出的选择每一个 move 的概率</li>
+<li>\(z\) 表示通过自我对弈得到的棋局结果</li>
+</ul>
+<blockquote>
+<p>The vector of move probabilities  \(p\)  represents the probability of selecting each move a (including pass),  \(p_a = Pr(a|s)\) . The value  \(v\)  is a scalar evaluation, estimating the probability of the current player winning from position  \(s\) . </p>
+<p>The MCTS search outputs probabilities π of playing each move. These search probabilities usually select much stronger moves than the raw move probabilities p of the neural network  \(f_θ(s)\) ; MCTS may therefore be viewed as a powerful policy improvement operator. Self­play with search—using the improved MCTS­based policy to select each move, then using the game winner  \(z\)  as a sample of the value—may be viewed as a powerful policy evaluation operator. </p>
+</blockquote>
+<br>
+## 2. 传统蒙特卡洛树搜索 MCTS
+
+<h3 id="2-1-树搜索"><a href="#2-1-树搜索" class="headerlink" title="2.1 树搜索"></a>2.1 树搜索</h3><p>围棋第一手有 \(361\) 种下法，第二手有 \(360\) 种，第三手有 \(359\) ，依次类推，即一共有  \(361!\)  种下法。这个一个天文数字，比目前可观测宇宙的所有原子数还要多。要进行完全树搜索，是不可能的。因此我们必须进行剪枝，并限制思考的深度。</p>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-3.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+<br>
+所谓**剪枝**，就是指没必要考虑每种下法，我们**只需考虑最有价值的几手下法**。所谓**限制思考的深度**，就是我们最多只思考5步，10步，20步。常见的算法是Alpha-beta剪枝算法。但是，剪枝算法也有它的缺陷，它很有可能**过早的剪掉了后期价值很大走法**。
+
+<br>
+### 2.2 蒙特卡洛方法
+
+<p>简而言之，蒙特卡洛方法(Monte Carlo method)，是一种“统计模拟方法”。</p>
+<p>假设我们要计算一个不规则形状的面积，我们只需在包含这个不规则形状的矩形内，随机的掷出一个点，每掷出一个点，则 \(N+1\) ，如果这个点在不规则图形内则 \(W+1\) 。落入不规则图形的概率即为 \( W/N\) 。当掷出足够多的点之后，我们可以认为： \(不规则图形面积＝矩形面积＊W/N\) 。</p>
+<p>要应用蒙特卡洛算法的问题，<strong>首先要将问题转化为概率问题</strong>，然后通过统计方法将其问题的解估计出来。</p>
+<br>
+### 2.3 蒙特卡洛树搜索 MCTS
+
+<p>这种算法简而言之是用蒙特卡洛方法估算每一种走法的胜率。如果描述的再具体一些，通过不断的模拟每一种走法，直至终局，该走法的模拟总次数 \(N\) ，与胜局次数 \(W\) ，即可推算出该走法的胜率为  \(W/N\) 。</p>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-4.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+<p>该算法的每个循环包含4个步骤：</p>
+<ul>
+<li><strong>选择：</strong> 从根节点往下走，每次都选一个“最值得看的子节点”（具体规则稍后说），直到来到一个“存在未扩展的子节点”的节点，如图中的 \( 3/3 \) 节点。什么叫做“存在未扩展的子节点”，其实就是指这个局面存在未走过的后续着法。</li>
+<li><strong>扩展：</strong> 我们给这个节点加上一个 \( 0/0 \) 子节点，对应之前所说的“未扩展的子节点”，就是还没有试过的一个着法。</li>
+<li><strong>仿真：</strong> 从上面这个没有试过的着法开始，用快速走子策略（Rollout policy）走到底，得到一个胜负结果。按照普遍的观点，快速走子策略适合选择一个棋力很弱但走子很快的策略。因为如果这个策略走得慢（比如用 AlphaGo 的策略网络走棋），虽然棋力会更强，结果会更准确，但由于耗时多了，在单位时间内的模拟次数就少了，所以不一定会棋力更强，有可能会更弱。这也是为什么我们一般只模拟一次，因为如果模拟多次，虽然更准确，但更慢。</li>
+<li><strong>回溯：</strong> 把模拟的结果加到它的所有父节点上。例如第三步模拟的结果是  \(0/1\) （代表黑棋失败），那么就把这个节点的所有父节点加上  \(0/1\) 。</li>
+</ul>
+<br>
+### 2.4 上限置信区间算法 UCT
+
+<p>怎么选择节点？和从前一样：如果轮到黑棋走，就选对于黑棋有利的；如果轮到白棋走，就选对于黑棋最不利的。但不能太贪心，不能每次都只选择“最有利的/最不利的”，因为这会意味着搜索树的广度不够，容易忽略实际更好的选择。</p>
+<p>为了在最大胜率和新节点探索上保持平衡，<strong>UCT（Upper Confidence Bound，上限置信区间算法）</strong>被引入。所谓置信区间，就是概率计算结果的可信度。打个比方，如果掷了3次硬币，都是正面朝上，我们就认为掷硬币正面朝上概率是100%，那肯定是错误的，因为我们的样本太少了。所以UCT就是用来修正这个样本太少的问题。</p>
+<p><strong>具体公式如下：</strong></p>
+<p>$$\text{score = }\ \frac{w_i}{n_i}+c\sqrt{\frac{\ln N_i}{n_i}}$$</p>
+<ul>
+<li>\(w_i\)  是 \(i\) 节点的胜利次数</li>
+<li>\(n_i\) 是i节点的模拟次数</li>
+<li>\(N_i\) 是所有模拟次数 </li>
+<li>\(c\) 是探索常数，理论值为 \(\sqrt{2}\) ，可根据经验调整，\(c\) 越大就越偏向于广度搜索，\(c\) 越小就越偏向于深度搜索</li>
+</ul>
+<p>我们看例子说明这是什么意思，就看之前的图吧。</p>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-5.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+<p>假设根节点是轮到黑棋走。那么我们首先需要在  \(7/10、5/8、0/3\)  之间选择 (即第二排)：</p>
+<ul>
+<li>其中 \( 7/10 \) 对应的分数为  \(7/10 + C \cdot \sqrt{\frac{\log(21)}{10}}  \approx 0.7 + 0.55 C\) 。</li>
+<li>其中 \( 5/8 \) 对应的分数为  \(5/8 + C \cdot \sqrt{\frac{\log(21)}{8}}  \approx 0.625 + 0.62 C\) 。</li>
+<li>其中 \( 0/3 \) 对应的分数为  \(0/3 + C \cdot \sqrt{\frac{\log(21)}{3}}  \approx 0 + 1.00 C\) 。</li>
+<li>可以注意到， \(C\) 越大，就会越照顾访问次数相对较少的子节点。</li>
+</ul>
+<p>如果  \(C\)  比较小，我们将会选择  \(7/10\) ，接着就要在  \(2/4\)  和 \( 5/6 \) 间选择。注意，由于现在是白棋走，需要把胜率估计倒过来：</p>
+<ul>
+<li>其中  \(2/4\)  对应的分数为  \((1-2/4) + C \cdot \sqrt{\frac{\log(10)}{4}}  \approx 0.5 + 0.76 C\) 。</li>
+<li>其中  \(5/6\)  对应的分数为  \((1-5/6) + C \cdot \sqrt{\frac{\log(10)}{6}}  \approx 0.17 + 0.62 C\) 。</li>
+</ul>
+<p>那么我们下一步肯定应该选 2/4。所以说这张图是错误的，因为制图的人并没有注意到要把胜率倒过来。</p>
+<br>
+## 3. 深度强化学习
+<br>
+### 3.1 神经网络与MCTS的结合
+
+
+<p>常见的MCTS分为4个步骤：选择，扩展，模拟和反向传播。</p>
+<p>神经网络用来指导MCTS进行判断，主要目的是用神经网络的输出代替四个步骤中的扩展和模拟这两步。</p>
+<p>神经网络的<strong>输出是落子概率和局面评估</strong>。从根节点开始，选择到叶节点，然后判断是否代表这结束，如果没有结束，则根据神经网络输出的评分进行更新，同时根据神经网络给出的落子策略进行扩展。如果结束，则根据玩家的胜负进行更新。</p>
+<p><strong>但是对于传统的MCTS，我们没有好的策略，所以只能大规模的搜索。</strong>在到达叶节点所代表的局面的时候，我们需要使用<strong>随机策略进行多次模拟，一直模拟到对局结束</strong>才能得到局面的评估。这需要消耗大量的计算资源和时间。所以引入神经网络来代替模拟步骤。</p>
+<p>所以总的来说，落子的选择整体是根据MCTS来的。神经网络的作用是帮助缩短MCTS所需要的时间。</p>
+<blockquote>
+<p>没有 MCTS 相当于职业棋手只凭棋感不做计算走快棋。<strong>神经网络提供几个候选的走法，MCTS 再算一算到底哪个点更好。</strong></p>
+</blockquote>
+<br>
+### 3.2 神经网络架构
+
+<p>由残差模块构成的 CNN，输入为 \(19\times 19\times 17\)</p>
+<p>17 是 17 个特征，使用了既往 8 个回合的 16 个特征以及一个当前玩家信息特征  \((8 \times 2 + 1 = 17)\) : </p>
+<p>$$s_t = [X_t , Y_t , X_{t−1}, Y_{t−1}, …, X_{t−7}, Y_{t−7} , C]$$</p>
+<p><strong>其中  \(X_t\)  内包含的是当前棋手的数据：</strong></p>
+<p>加入当前棋手执黑棋，那么此时棋盘上所有黑棋对应的位置取值1，白棋和空白位置取值0。类似的 \( Y_t \) 反映的就是白棋信息，当前棋盘上所有白棋的位置取值1，黑棋和空白处取值0。</p>
+<p><strong>\(C\) 内的所有 \(（19\times 19）\) 个数据要么都是1，要么都是0，</strong>如果此时是黑棋要落子则取1，白棋落子则取0。</p>
+<p>网络的共同部分多数是用 \(3\times 3\) 的卷积核（stride = 1)，256个特征数，后接 BatchNormalization 和 Relu 单元。每一个残差单元包括 (参见下图)：</p>
+<ul>
+<li><strong>策略端</strong>：输出特征数为 \(19\times 19+1\)，分别代表在棋盘上所有可能位置落子的可能性以及 Pass 的可能性。</li>
+<li><strong>价值端</strong>：全连接一个256个特征的隐藏层，最后以tanh的激活方式输出 \([-1,1]\) 之间的值。 </li>
+</ul>
+<blockquote>
+<p>网络的前20层左右，是常见的神经网络结构。然后跟着是两个“头”，一个头取走了前20层的输出，然后产生了下一步的落子概率，另一个头基于同样的数据，输出当前局面的获胜概率。</p>
+</blockquote>
+<br>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-101.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+<div><br></div>
+
+<p><strong>训练数据：</strong>自我对弈产生大量的  \(( s,\pi,z )\) 数据对，通过 Mini-batch 采样。</p>
+<p><strong>损失函数：</strong></p>
+<p>$$ l=(z-v)^{2}-\pi^{T}log(p)+c||\theta||^{2} $$</p>
+<ul>
+<li>第一项：通过最小二乘最小化获胜概率误差      </li>
+<li>第二项：通过交叉熵最大化先验走子概率与提升后走子概率一致性     </li>
+<li>第三项：L2范数权值衰减防止过拟合。</li>
+</ul>
+<div> </div>
+
+<br>
+### 3.3 过程细节
+
+<p>为了在 self play 每一步得到，MCTS 需要完成1600次搜索。搜索树中每一节点 \(s\) 针对合法操作保存以下数据结构 </p>
+<p>$$\{N(s,a),W(s,a),Q(s,a),P(s,a)  \}$$</p>
+<ul>
+<li>\(s\ \)  树的每一个节点代表了一种棋盘布局</li>
+<li>\(a\ \)  每一个边代表了在一种布局 \(s\) 下的一种落子方式</li>
+<li>\(N(s,a)\ \) 记录边的访问次数  </li>
+<li>\(W(s,a)\ \)  合计行动价值  </li>
+<li>\(Q(s,a)\ \) 平均行动价值 </li>
+<li>\(P(s,a)\ \)  选择该条边的先验概率</li>
+</ul>
+<p>多次模拟过程会在独立线程并行运行。搜索算法在 \(a，b，c\) 三步迭代多次后，根据搜索结果选择落子 \(d\) 。</p>
+<br>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-6.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+<ul>
+<li><strong>a</strong> 每次模拟选择的分支，有最大 \(Q+U\) , 其中 \(Q\) 是动作价值， \(U\) 是上限置信， \(U\) 依赖于一个存储在分支上的优先概率 \(P\) 和该分支的访问次数 \(N\) （每访问一次 \(N+1\)）</li>
+<li><strong>b</strong> 扩展叶节点，神经网络 \((P(s, .), V(s)) = f_θ(s)\) 评估 \(s\) ; 将向量 \(P\) 的值被存储在 \(s\) 的扩展边上</li>
+<li><strong>c</strong> 根据 \(V\) 更新动作价值（action-value) \(Q\)，反映所有该动作的子树的平均值</li>
+<li><strong>d</strong> 一旦搜索结束，搜索概率 \(\pi\) 被返回，与  \(Ν^{(1/τ)}\)  成正比， \(N\) 是每个分支的访问次数，而 \(τ\) 是一个参数控制着温度（temperature）</li>
+</ul>
+<p>这里先知晓有这样的神经网络结构  \(（p,v）=f_{\theta}（s）\)  （初始状态参数  \(\theta\)  随机赋值）</p>
+<p>在自我对弈的每一步，根据深度神经网络计算出落子概率（先验概率  \(p\)  ），如对状态  \(s_{1}\)  得到  \((p_{1},v_{1}) \) ；然后通过 MCTS（蒙特卡罗搜索树算法）进行 policy<br>improvement，MCTS 搜索的输出是当前状态  \(i\)  下不同位置落子的概率 \( \pi_{i} \) ，该落子概率会优于该状态下先验概率 \(p_{i}\)  ，然后基于 \( \pi_{i} \) 完成当前步骤落子，之后每步均如此过程直到完成当前对局得到最终结果 \(z（ z\in[-1,1] ）\) 。</p>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-7.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+
+
+<p>神经网络通过使用 MCTS 搜索的自我对弈强化学习来进行训练。一开始神经网络的参数被随机设置称  \(\theta_0 \) ，在随后的每一次迭代中 \( i\geq1 \) ,会通过自我对弈产生许多完整的棋局，在其中每一个完整棋局的一个时间步 \( T \) 时，都会利用上一个神经网络的参数来产生搜索策略 \( \pi_t = \alpha_{i-1}(s_t) \) ，并且用这个策略的采样产生实际自我对弈时的行为。</p>
+<p>发生下列任意情况之一，游戏终止于时间 \( T \) ：</p>
+<ul>
+<li>双方都 Pass</li>
+<li>搜索 value 降低至一个被 resignation（割舍？）的阈值</li>
+<li>游戏对弈达到设定的最大步数</li>
+</ul>
+<p>游戏结束后，会给出一个最终奖励  \(r_T \in \{ -1, +1 \}\) , 每一个时间步 T 的数据以 \( (s_t, \pi_t, z_t) \) 的形式保存，其中  \(z_t = \pm r_T\)  是从  \(T\)  时刻玩家的立场得到的胜利者的奖励（是不是可以理解成：  \(T \) 时刻不管是白方还是黑方，只要最终赢得棋局， \( z_t = 1 \) 即成立？）。</p>
+<blockquote>
+<p>不过需要在一个完整的对局结束后才能确定这一局中每一个 \( (s, \pi, z) \) 中的  \(z\)  ，如果最后的胜者是 \( s \) 局面下的当前 player，则 \( z=1 \) ,如果最后的败者是 \( s\)  局面下的当前 player，则  \(z=-1\)  ,如果最后打平，则  \(z=0\) </p>
+</blockquote>
+<p>自我对弈过程中的最后几次迭代过程中产生的数据 \( (s,\pi,z) \) 将会以均等的概率被选中来训练神经网络。</p>
+<p>AlphaGo Zero 里面的神经网络实际上是把 AlphaGo 里面的 Policy Network 和 Value Network 糅合在一起了，所以这个神经网络也有两个目标，神经网络的训练目标就是要尽可能的缩小两方面的差距：</p>
+<ul>
+<li>让网络输出的落子概率向量 \(p\) 和 MCTS 搜索输出  \(\pi\)  越接近越好</li>
+<li>让网络预测的当前棋手的最终结果 \(v\) 和最终游戏赢家 \(z\) 越接近越好</li>
+</ul>
+<p>神经网络的损失函数由下式确定：  </p>
+<p><font size="+1">  $$l = (z-v)^{2} - {\pi}^\top logP + c ||\theta||^2 $$<br>  </font></p>
+<ul>
+<li>\(c \) 是控制参数 L2 正则项的一个系数。</li>
+</ul>
+<p>网络训练得到的新参数会被用来知道下一轮迭代中自我对弈时的 MCTS 搜索。</p>
+<p>AlphaGo Zero 每1000步会将一个神经网络存档，并且把这个存档和历史最优版本比较，如果胜率超过历史最优的55%，这个版本将会被更新为历史最优。并且在生成数据时，只使用历史最优的神经网络的 self－play 数据作为深度网络的训练数据。这样可以增加算法的优化速度。</p>
+<br>
+
+<h2 id="4-搜索阶段算法"><a href="#4-搜索阶段算法" class="headerlink" title="4. 搜索阶段算法"></a>4. 搜索阶段算法</h2><br>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-8.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+
+<br>
+### a 选择 Select
+
+<p>每一次模拟的第一个阶段起自搜索树的根节点  \(s_0\)  ，在第 L 个时间步结束于搜索树的叶节点  \(s_L\)  。对于其中的任意时间  \(t&lt;L\)  ，根据搜索树内的统计数据来决定选择哪一个模拟行为  </p>
+<p>$$a_t = \underset{a}{argmax}(Q(s_t, a) + U(s_t, a))$$</p>
+<p>其中：<br>$$U(s,a) = c_{puct}P(s,a)\frac{\sqrt{\sum_{b}{N(s,b)}}}{1+N(s,a)}$$ </p>
+<ul>
+<li>\(c_{puct}\) 是决定探索程度的一个系数</li>
+</ul>
+<blockquote>
+<p>this search control strategy initially prefers actions with high prior probability and low visit count, but asympotically prefers actions with high action value.</p>
+</blockquote>
+<br>
+### b 扩展和评估 Expand & Evaluate
+
+
+<p>叶节点  \(s_L\)  将会等待来自神经网络的评估  \((d_i (p), v) = f_\theta (d_i (s_L )) \)，其中  \(d_i \) 是一个 dihedral reflection 或 rotation，  \(i\in[1,2,3,…,8] \) 。</p>
+<p>其中通过一个1至8的随机数来表示双方向镜面和旋转（因为围棋在棋盘旋转和镜像之后的胜率估算情况是一样的，如下图所示）</p>
+<div align="center">
+![](/img/2018-08-08-AlphaGO-Zero-9.jpg)
+<center><small><font color="gray">    </font></small></center>
+</div>
+
+<p>这些等待评估的状态会被送入一个队列，在神经网络评估队列里的状态时（使用 mini_batch_size=8），搜索将被暂时锁定。当神经网络得到结果后，该叶节点会被展开，同时每一条可能的边  \((s_L,a)\)  会以下面的数据进行初始化：  </p>
+<p>$$\{ N(s_L,a)=0,W(s_L,a)=0,Q(s_L,a)=0,P(s_L,a)=P_a \}$$ </p>
+<p> 同时来自神经网络的对该叶节点的价值估计也会影响路径中每一个节点的统计数据  \(W\)（见下），随后进行回溯过程。</p>
+<blockquote>
+<p>AlphaGo Zero 会根据前面的落子规则不断的落子，这就相当于棋手在脑海中进行推演。但是围棋的搜索空间即使对于计算机来说也是太大，AlphaGo zero 只会推演（仿真）到一定步数就停止了。假设最后的布局是 \(s’\) , 那么 AlphaGo Zero 会调用深度神经网络来预测这局推演结束时自己的胜率 \(v(s’) \) 。这样的推演过程会进行多次。</p>
+</blockquote>
+<br>
+### c 回溯 Backup
+
+<p>等一次推演结束后，AlphaGo zero 会根据推演的结果更新自己的知识，也就是值函数 \(Q(s,u)\) </p>
+<p>对于 \( t \leq L \) ,每一个边的统计结果将被更新。</p>
+<p> $$ N(s_t,a_t) = N(s_t,a_t)+1$$  </p>
+<p> $$ W(s_t,a_t) = W(s_t,a_t)+v $$      </p>
+<p> $$Q(s_t,a_t) = \frac{W(s_t,a_t)}{N(s_t,a_t)}$$</p>
+<br>
+
+<p>$$N(s,a) :\  记录边的访问次数  $$</p>
+<p>$$W(s,a) :\   合计行动价值  $$</p>
+<p>$$Q(s,a) :\ 平均行动价值 $$</p>
+<br>
+### d 产生实际行为 Play
+
+<p>路径中所有节点统计数据得到更新后（搜索结束后）， AlphaGo Zero 在根节点  \(s\)  处选择 \(a\) 操作进行落子，根据最新的统计数据来产生一个实际的行为 \(\pi_{a}\) ，与访问次数成幂指数比例：<br>$$\pi(a|s)=\frac{N(s,a)^{1/\tau}}{\sum_{b}^{}{N(s,b)^{1/\tau}}}$$  </p>
+<p>\(\pi_{a}\ (\pi(a|s))\)  是落子到位置 \(a\) 的概率</p>
+<p>\(\tau \) 为温度参数，控制探索的程度， \( \tau\)  越大，不同走法间差异变小，探索比例增大，反之，则更多选择当前最优操作。</p>
+<p>在随后的时间步 (time_steps) 中，这个搜索树将会继续使用，对应于实际所采取的行为的子节点将变成根节点，该子节点下的子树的统计数据将会被保留，而这颗树的其余部分将会丢弃 (discarded)。 </p>
+<p>另外，如果该子树的根节点和最佳价值子节点的价值低于某一个阈值 \( v_{resign}\)，AlphaZero 将放弃搜索某子树。</p>
+<br>
+## 参考
+
+<ol>
+<li><a href="https://www.zhihu.com/question/263583260" target="_blank" rel="noopener">AlphaGo Zero去掉蒙特卡洛搜索树会怎么样?</a></li>
+<li><a href="https://www.zhihu.com/question/289626696" target="_blank" rel="noopener">蒙特卡洛树搜索中神经网络是如何指导蒙特卡洛树搜索进行判断的</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/32952677" target="_blank" rel="noopener">AlphaGo Zero 简明工作原理</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/35103060" target="_blank" rel="noopener">初步认识AlphaGo Zero原理</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/30707897" target="_blank" rel="noopener">AlphaGo Zero论文笔记</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/30352003" target="_blank" rel="noopener">AlphaGo Zero解读</a></li>
+<li><a href="https://github.com/junxiaosong/AlphaZero_Gomoku" target="_blank" rel="noopener">Code:AlphaZero_Gomoku</a></li>
+</ol>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

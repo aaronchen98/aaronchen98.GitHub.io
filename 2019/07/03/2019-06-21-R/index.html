@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        R 语言入门 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vectors"><span class="toc-text">1. Vectors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-矩阵"><span class="toc-text">2. 矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-数组"><span class="toc-text">3. 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-数据框"><span class="toc-text">4. 数据框</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        R 语言入门
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#R 语言" title="R 语言">R 语言</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="1-Vectors"><a href="#1-Vectors" class="headerlink" title="1. Vectors"></a>1. Vectors</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建向量</span></span><br><span class="line">a &lt;-c(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">b &lt;-c(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>)</span><br><span class="line">c &lt;-c(<span class="literal">TRUE</span>, <span class="literal">FALSE</span>, <span class="literal">TRUE</span>, <span class="literal">TRUE</span>, <span class="literal">FALSE</span>)</span><br><span class="line"></span><br><span class="line">&gt; <span class="number">5</span>:<span class="number">1</span></span><br><span class="line">[<span class="number">1</span>] <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="number">2</span>*(<span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line">[<span class="number">1</span>]  <span class="number">2</span>  <span class="number">4</span>  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">&gt; rep(<span class="number">1</span>,<span class="number">9</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt; rep(c(<span class="number">1</span>,<span class="number">0</span>,<span class="number">4</span>), each=<span class="number">3</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">4</span> <span class="number">4</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line">&gt; seq(<span class="number">1</span>,<span class="number">3</span>, by=<span class="number">0.2</span>)</span><br><span class="line">&gt; seq(from=<span class="number">1</span>, to=<span class="number">3</span>, by=<span class="number">0.2</span>)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">1.0</span> <span class="number">1.2</span> <span class="number">1.4</span> <span class="number">1.6</span> <span class="number">1.8</span> <span class="number">2.0</span> <span class="number">2.2</span> <span class="number">2.4</span> <span class="number">2.6</span> <span class="number">2.8</span> <span class="number">3.0</span></span><br><span class="line"> </span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1</span>, by=-<span class="number">0.2</span>)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">3.0</span> <span class="number">2.8</span> <span class="number">2.6</span> <span class="number">2.4</span> <span class="number">2.2</span> <span class="number">2.0</span> <span class="number">1.8</span> <span class="number">1.6</span> <span class="number">1.4</span> <span class="number">1.2</span> <span class="number">1.0</span></span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1</span>, by=<span class="number">0.2</span>)</span><br><span class="line">Error <span class="keyword">in</span> seq.default(<span class="number">3</span>, <span class="number">1</span>, by = <span class="number">0.2</span>) : wrong sign <span class="keyword">in</span> <span class="string">'by'</span> argument</span><br><span class="line"></span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1.1</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">3</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 向量索引</span><br><span class="line">a[2]  # 第二个元素    </span><br><span class="line"># [1] 2</span><br><span class="line">a[-2] # 删除第二个元素，a 还是原来的 a</span><br><span class="line"># [1] 1 3 4 5 6</span><br><span class="line">a[c(2:4)] # 取出第二到第四个元素</span><br><span class="line"># [1] 2 3 4</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-矩阵"><a href="#2-矩阵" class="headerlink" title="2. 矩阵"></a>2. 矩阵</h2><p><strong>二维数组</strong></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建矩阵</span></span><br><span class="line">mymat &lt;- matrix(c(<span class="number">1</span>:<span class="number">10</span>), nrow=<span class="number">2</span>, ncol=<span class="number">5</span>, byrow=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">6</span>    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span>   <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#矩阵索引</span><br><span class="line">mymat[2,] #取第二行</span><br><span class="line">mymat[,2] #取第二列</span><br><span class="line">mymat[1,5] #第一行第五列的元素</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-数组"><a href="#3-数组" class="headerlink" title="3. 数组"></a>3. 数组</h2><p>维度可以大于 2</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建数组</span></span><br><span class="line">myarr &lt;- array(c(<span class="number">1</span>:<span class="number">12</span>),dim=c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>得到：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">, , <span class="number">1</span></span><br><span class="line"></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span></span><br><span class="line"></span><br><span class="line">, , <span class="number">2</span></span><br><span class="line"></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dim(myarr) <span class="comment"># 取矩阵或数组的维度</span></span><br><span class="line"><span class="comment"># [1] 2 3 2</span></span><br><span class="line">myarr[<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>] <span class="comment"># 取第一个矩阵的第一行第二列</span></span><br><span class="line"><span class="comment"># [1] 3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-数据框"><a href="#4-数据框" class="headerlink" title="4. 数据框"></a>4. 数据框</h2><p>类似矩阵，每一列可以有不同的模式</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建数据框</span></span><br><span class="line">kids &lt;- c(<span class="string">"Wang"</span>, <span class="string">"Li"</span>)</span><br><span class="line">age &lt;- c(<span class="string">"18"</span>, <span class="string">"16"</span>)</span><br><span class="line">df &lt;- data.frame(kids, age)</span><br></pre></td></tr></table></figure>
+
+<p>得到：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  kids age</span><br><span class="line"><span class="number">1</span> Wang  <span class="number">18</span></span><br><span class="line"><span class="number">2</span>   Li  <span class="number">16</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据框索引</span></span><br><span class="line">df[<span class="number">1</span>,]   <span class="comment"># 第一行</span></span><br><span class="line">df[,<span class="number">2</span>]   <span class="comment"># 第二列</span></span><br><span class="line">df[<span class="number">1</span>:<span class="number">2</span>,<span class="number">1</span>:<span class="number">2</span>]   <span class="comment"># 前两行，前两列</span></span><br><span class="line">df$age   <span class="comment"># 根据列名称</span></span><br><span class="line"></span><br><span class="line">&gt; df$age</span><br><span class="line">[<span class="number">1</span>] <span class="number">18</span> <span class="number">16</span></span><br><span class="line">Levels: <span class="number">16</span> <span class="number">18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#数据框常用函数</span></span><br><span class="line">str(df)   <span class="comment"># 数据框的结构</span></span><br><span class="line"></span><br><span class="line">&gt; str(df)</span><br><span class="line"><span class="string">'data.frame'</span>:	<span class="number">2</span> obs. of  <span class="number">2</span> variables:</span><br><span class="line"> $ kids: Factor w/ <span class="number">2</span> levels <span class="string">"Li"</span>,<span class="string">"Wang"</span>: <span class="number">2</span> <span class="number">1</span></span><br><span class="line"> $ age : Factor w/ <span class="number">2</span> levels <span class="string">"16"</span>,<span class="string">"18"</span>: <span class="number">2</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">rownames(df)   <span class="comment"># 行名称</span></span><br><span class="line">colnames(df)   <span class="comment"># 列名称</span></span><br><span class="line"></span><br><span class="line">&gt; rownames(df)</span><br><span class="line">[<span class="number">1</span>] <span class="string">"1"</span> <span class="string">"2"</span></span><br><span class="line">&gt; colnames(df)</span><br><span class="line">[<span class="number">1</span>] <span class="string">"kids"</span> <span class="string">"age"</span></span><br></pre></td></tr></table></figure>
+
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

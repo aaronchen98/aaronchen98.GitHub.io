@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        算法与数据结构（学校笔记） - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Algorithm-算法"><span class="toc-text">1 Algorithm 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Principle-of-algorithm-analysis"><span class="toc-text">1.1 Principle of algorithm analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-algorithm-analysis"><span class="toc-text">1.2 algorithm analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Comparative-analysis"><span class="toc-text">1.3 Comparative analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Recursion-递归"><span class="toc-text">1.4 Recursion 递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Binary-search-二分法"><span class="toc-text">1.5 Binary search 二分法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-Bubble-sort-冒泡排序"><span class="toc-text">1.6 Bubble sort 冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-Quick-sort-快速排序"><span class="toc-text">1.7 Quick sort 快速排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Data-structure-数据结构"><span class="toc-text">2 Data structure 数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-stack-堆栈"><span class="toc-text">2.1 stack 堆栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Queue-队列"><span class="toc-text">2.2 Queue 队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Linked-list-链表"><span class="toc-text">2.3 Linked list 链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Circularly-Linked-List-循环链表"><span class="toc-text">2.4 Circularly Linked List 循环链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Doubly-linked-list-双链表"><span class="toc-text">2.5 Doubly linked list 双链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Tree-树"><span class="toc-text">2.6 Tree 树</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        算法与数据结构（学校笔记）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="1-Algorithm-算法"><a href="#1-Algorithm-算法" class="headerlink" title="1 Algorithm 算法"></a>1 Algorithm 算法</h2><ul>
+<li>An algorithm is a step-by-step procedure for performing some task in a finite amount of time.</li>
+</ul>
+<h3 id="1-1-Principle-of-algorithm-analysis"><a href="#1-1-Principle-of-algorithm-analysis" class="headerlink" title="1.1 Principle of algorithm analysis"></a>1.1 Principle of algorithm analysis</h3><p><strong>How do we define a“good” algorithm?</strong></p>
+<ul>
+<li><strong>Running time</strong> is a natural measure of “goodness,” since time is a precious resource—computer solutions should run as fast as possible</li>
+<li><strong>Space usage</strong> is another major issue to consider when we design an algorithm, since we only have limited storage spaces</li>
+</ul>
+<a id="more"></a>
+
+<p><strong>Measuring the running time:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">startTime = time()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20000000</span>):</span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">        print(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">endTime = time()</span><br><span class="line"></span><br><span class="line">print(<span class="string">'time: %f seconds'</span> % (endTime - startTime))</span><br></pre></td></tr></table></figure>
+
+<p><strong>1) Counting primitive operations</strong></p>
+<p>To analyse the running time of an algorithm without performing experiments, we perform an analysis directly <strong>on a high-level description of the algorithm</strong></p>
+<p><strong>primitive operations:</strong>  </p>
+<ul>
+<li>Assigning an identifier to an object</li>
+<li>Determining the object associated with an identifier</li>
+<li>Performing an arithmetic operation (for example, adding two numbers) </li>
+<li>Comparing two numbers</li>
+<li>Accessing a single element of a Python list by index</li>
+<li>Calling a function (excluding operations executed within the function) </li>
+<li>Returning from a function.</li>
+</ul>
+<p><strong>2) Measuring Operations as a Function of Input Size</strong></p>
+<p>To capture the order of growth of an algorithm’s running time, we will associate, with each algorithm, a function <code>f(n)</code> that characterizes the number of primitive operations that are performed as a function of the input size n.</p>
+<p><strong>3) Focusing on the Worst-Case Input</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-1.jpg" alt></p>
+<h3 id="1-2-algorithm-analysis"><a href="#1-2-algorithm-analysis" class="headerlink" title="1.2 algorithm analysis"></a>1.2 algorithm analysis</h3><p><strong>1) The 7 functions used in algorithm analysis</strong></p>
+<p> We may use the following 7 functions to measure the time complexity of an algorithm: </p>
+<ul>
+<li>constant</li>
+<li>logarithm</li>
+<li>linear</li>
+<li>N-log-N</li>
+<li>quadratic</li>
+<li>cubic and other polynomials</li>
+<li>exponential</li>
+</ul>
+<p><img src="/img/2018-04-23-Datastructure-2.jpg" alt></p>
+<p><strong>2) Asymptotic Analysis 渐进分析</strong></p>
+<ul>
+<li>In algorithm analysis, we focus on the <strong>growth rate</strong> of the running time <strong>as a function of the input size n</strong>, taking a “big-picture” approach</li>
+<li>Vocabulary for the analysis and design of algorithms</li>
+<li>“Sweet spot” for high-level reasoning about algorithms</li>
+<li><strong>Coarse enough</strong> to <strong>supress unnecessary details</strong>, e.g. architecture/language/compiler…</li>
+<li><strong>Sharp enough</strong> to make <strong>meaningful comparisons</strong> between algorithms</li>
+</ul>
+<p><strong>3) The big Oh notation</strong></p>
+<ul>
+<li>Let <code>f(n)</code> and <code>g(n)</code> be functions mapping positive integers to positive real numbers.</li>
+<li>We say that <code>f(n)</code> is <code>O(g(n))</code> if there is a real constant <code>c &gt; 0</code> and an integer constant <code>n0 ≥ 1</code> such that<br><code>f(n) ≤ cg(n)</code>, for <code>n ≥ n0</code></li>
+<li>This definition is often referred to as the “big-Oh” notation</li>
+<li>Example: The function <code>8n+5</code> is <code>O(n)</code>, <code>g(n) = n</code> <code>c = 9</code>, <code>n0 = 10</code></li>
+</ul>
+<p><strong>4) Some Properties of the Big-Oh Notation</strong></p>
+<p>The big-Oh notation allows us to ignore constant factors and lower-order terms and focus on the main components of a function that affect its growth.</p>
+<p><img src="/img/2018-04-23-Datastructure-3.jpg" alt></p>
+<p>In general, we should use the big-Oh notation to characterize a function as closely as possible</p>
+<h3 id="1-3-Comparative-analysis"><a href="#1-3-Comparative-analysis" class="headerlink" title="1.3 Comparative analysis"></a>1.3 Comparative analysis</h3><p><strong>Q:</strong><br>An algorithm A, which has a running time of ( O(n), and an algorithm B, which has a running time of O(𝑛 ). Which algorithm is better?</p>
+<p><strong>A:</strong><br>Algorithm A is asymptotically (渐近) better than algorithm B, Constant of A may very large ,so it is not always better than b.</p>
+<p><img src="/img/2018-04-23-Datastructure-4.jpg" alt></p>
+<p><strong>1) The line of tractability</strong></p>
+<ul>
+<li>To differentiate efficient and inefficient algorithms, the general line is between polynomial time algorithms and exponential time algorithms</li>
+<li>The distinction between polynomial-time and exponential- time algorithms is considered a robust measure of tractability</li>
+</ul>
+<h3 id="1-4-Recursion-递归"><a href="#1-4-Recursion-递归" class="headerlink" title="1.4 Recursion 递归"></a>1.4 Recursion 递归</h3><p><strong>1) definition</strong></p>
+<ul>
+<li>First, a recursive definition contains one or more <strong>base cases</strong>, which are defined non-recursively in terms of fixed quantities</li>
+<li>Second, it also contains one or more <strong>recursive cases</strong>, which are defined by appealing to the definition of the function being defined</li>
+</ul>
+<p><img src="/img/2018-04-23-Datastructure-5.jpg" alt></p>
+<p><strong>2) How Python implements recursion</strong></p>
+<ul>
+<li>In Python, each time a function (recursive or otherwise) is called, a structure known as an <strong>activation record</strong> or frame is created to store information about the progress of that invocation of the function</li>
+<li>This <strong>activation record</strong> stores <u><strong>the function</strong> call’s <strong>parameters</strong> and <strong>local variables</strong> (哪个函数被call了，函数的参数parametersxg，call这个函数的位置location)</u></li>
+<li>When the execution of a function leads to a nested function call, the execution of the former call is suspended（悬挂，暂停） and its activation record <strong>stores the place in the source code</strong> at which the flow of control should continue upon return of the nested call</li>
+</ul>
+<p><strong>3) The recursive trace</strong></p>
+<p> <img src="/img/2018-04-23-Datastructure-101.jpg" alt></p>
+<p><strong>4) 递归算法的通用结构：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">	make()</span><br><span class="line">	<span class="keyword">if</span> check():</span><br><span class="line">		f()</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-Binary-search-二分法"><a href="#1-5-Binary-search-二分法" class="headerlink" title="1.5 Binary search 二分法"></a>1.5 Binary search 二分法</h3><p> A classic and very useful <strong>recursive algorithm</strong>.</p>
+<p> When the sequence is <u>unsorted</u>, the standard approach to search for a target value is to <u>use a loop to examine every element, until either finding the target or exhausting the data set</u>; This is known as the <strong>sequential search algorithm</strong></p>
+<p><strong>Code:</strong></p>
+<p> <img src="/img/2018-04-23-Datastructure-102.jpg" alt></p>
+<p><strong>Time complexity:</strong></p>
+<p> The binary search algorithm runs in <code>O(logn)</code> time for a sorted sequence with n elements.</p>
+<p><code>N *（1/2）^x = 1</code>   —-&gt;    <code>x = logn</code></p>
+<h3 id="1-6-Bubble-sort-冒泡排序"><a href="#1-6-Bubble-sort-冒泡排序" class="headerlink" title="1.6 Bubble sort 冒泡排序"></a>1.6 Bubble sort 冒泡排序</h3><p><strong>Its general procedure is:</strong></p>
+<ol>
+<li>Iterate over a list of numbers, <strong>compare</strong> every element i with the following element i+1, and s<strong>wap them if i is larger</strong></li>
+<li>Iterate over the list again and repeat the procedure in step 1, but <strong>ignore the last element in the list</strong></li>
+<li>Continuously iterate over the list, but each time ignore one more element at the tail of the list, until there is only one element left</li>
+</ol>
+<p><strong>Code</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-6.jpg" alt></p>
+<h3 id="1-7-Quick-sort-快速排序"><a href="#1-7-Quick-sort-快速排序" class="headerlink" title="1.7 Quick sort 快速排序"></a>1.7 Quick sort 快速排序</h3><p><strong>1) 分治思想</strong></p>
+<p>快速排序采用的思想是<strong>分治思想</strong></p>
+<p>分治算法的基本思想是将一个规模为N的问题分解为K个规模较小的子问题，这些子问题相互独立且与原问题性质相同。求出子问题的解，就可以得到原问题的解。下面这张图会说明分治算法是如何进行的：将cn分成了两个cn/2，转而分成了cn/4，cn/8……我们通过这样一层一层的求解规模小的子问题，将其合并之后就能求出原问题的解。</p>
+<p> <img src="/img/2018-04-23-Datastructure-103.jpg" alt></p>
+<p><strong>2) 快速排序</strong></p>
+<p>• The main procedure of quick sort algorithm is:</p>
+<ol>
+<li>Pick an element, called a <strong>pivot</strong>, from the array</li>
+<li><strong>Partitioning</strong>: reorder the array so that: </li>
+</ol>
+<ul>
+<li><p>all elements with <strong>values less than the pivot come before the pivot</strong>, </p>
+</li>
+<li><p>while all elements with <strong>values greater than the pivot come after it</strong> </p>
+</li>
+<li><p><strong>(equal values can go either way)</strong>. </p>
+<p>  After this partitioning, the pivot is in its final position. This is called the <strong>partition operation</strong></p>
+</li>
+</ul>
+<ol start="3">
+<li><strong>Recursively 递归</strong> apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values</li>
+</ol>
+<p><img src="/img/2018-04-23-Datastructure-7.jpg" alt></p>
+<p><strong>时间复杂度</strong>最理想 <code>O(nlogn)</code> 最差情况（原数列已经有序） <code>O(n^2)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">QuickSort</span><span class="params">(myList, start, end)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断low是否小于high,如果为false,直接返回</span></span><br><span class="line">    <span class="keyword">if</span> start &lt; end:</span><br><span class="line">        i,j = start,end</span><br><span class="line">        <span class="comment"># 设置基准数</span></span><br><span class="line">        <span class="comment"># i负责找比base小的数，j负责找比base大的数</span></span><br><span class="line">        base = myList[i]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="comment"># 如果列表后边的数,比基准数大或相等,则前移一位直到有比基准数小的数出现</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt; j) <span class="keyword">and</span> (myList[j] &gt;= base):</span><br><span class="line">                j = j - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如找到,则把第j个元素赋值给第个元素i,此时表中i,j个元素相等</span></span><br><span class="line">            myList[i] = myList[j]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 同样的方式比较前半区</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt; j) <span class="keyword">and</span> (myList[i] &lt;= base):</span><br><span class="line">                i = i + <span class="number">1</span></span><br><span class="line">            myList[j] = myList[i]</span><br><span class="line">        <span class="comment"># 做完第一轮比较之后,列表被分成了两个半区,并且i=j,需要将这个数设置回base</span></span><br><span class="line">        myList[i] = base</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 递归前半区</span></span><br><span class="line">        QuickSort(myList, start, i - <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 递归后半区</span></span><br><span class="line">        QuickSort(myList, j + <span class="number">1</span>, end)</span><br><span class="line">    <span class="keyword">return</span> myList</span><br><span class="line">    </span><br><span class="line">myList = [<span class="number">49</span>,<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">QuickSort(myList, <span class="number">0</span>, len(myList)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>交换类似于交叉交换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">6</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line"> ·                    ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line">          ·           ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line">          ·        ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line">             ·     ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line">             ·  ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line">                ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br><span class="line">                ·</span><br><span class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Data-structure-数据结构"><a href="#2-Data-structure-数据结构" class="headerlink" title="2 Data structure 数据结构"></a>2 Data structure 数据结构</h2><ul>
+<li>A data structure is a <u>systematic</u> way of organizing and accessing data</li>
+</ul>
+<h3 id="2-1-stack-堆栈"><a href="#2-1-stack-堆栈" class="headerlink" title="2.1 stack 堆栈"></a>2.1 stack 堆栈</h3><ul>
+<li>A stack is <strong>a collection of objects</strong> that are inserted and removed according to the <strong>last-in, first-out</strong> <strong>(LIFO)</strong> principle.</li>
+<li>A user may <strong>insert objects</strong> into a stack <strong>at any time</strong>, but may only <strong>access or remove the most recently inserted object</strong> that remains (at the so-called “<strong>top</strong>” of the stack).</li>
+</ul>
+<p><strong>1) example</strong> </p>
+<p><strong>Web Browser</strong></p>
+<ul>
+<li>Internet Web browsers store the addresses of recently visited sites in a stack. Each time a user visits a new site, that site’s address is “pushed” onto the stack of addresses. The browser then allows the user to “pop” back to previously visited sites using the “back” button.</li>
+</ul>
+<p><strong>Text editor</strong> </p>
+<ul>
+<li>Text editors usually provide an <strong>“undo”</strong> mechanism that cancels recent editing operations and reverts to former states of a document. This undo operation can be accomplished by keeping text changes in a stack.</li>
+</ul>
+<p><strong>2) The stack class</strong></p>
+<p>Generally, a stack may contain the following methods:</p>
+<p><img src="/img/2018-04-23-Datastructure-8.jpg" alt></p>
+<p> <img src="/img/2018-04-23-Datastructure-104.jpg" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListStack</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.__data = list()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.__data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.__data) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, e)</span>:</span></span><br><span class="line">        self.__data.append(e)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            print(<span class="string">'The stack is empty.'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.__data[self.__len__()<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            print(<span class="string">'The stack is empty.'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.__data.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> str(self.__data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> str(self)</span><br></pre></td></tr></table></figure>
+
+<p><strong>3) Practice</strong></p>
+<ol>
+<li><p>Reverse a list using stack</p>
+<p><img src="/img/2018-04-23-Datastructure-105.jpg" alt></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>Brackets match checking</p>
+<p><img src="/img/2018-04-23-Datastructure-106.jpg" alt></p>
+</li>
+</ol>
+<ol start="3">
+<li>Matching Tags in HTML Language</li>
+</ol>
+<p> <img src="/img/2018-04-23-Datastructure-107.jpg" alt></p>
+<h3 id="2-2-Queue-队列"><a href="#2-2-Queue-队列" class="headerlink" title="2.2 Queue 队列"></a>2.2 Queue 队列</h3><ul>
+<li>Queue is another fundamental data structure</li>
+<li>A queue is a collection of objects that are inserted and<br>removed according to the <strong>first-in, first-out (FIFO) principle</strong></li>
+<li>Elements can be inserted at any time, but only the element that has been in the queue the longest can be next removed</li>
+</ul>
+<p><strong>1) the queue class</strong></p>
+<p>The queue class may contain the following methods:</p>
+<p><img src="/img/2018-04-23-Datastructure-9.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-10.jpg" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListQueue</span>:</span></span><br><span class="line">    default_capacity = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.__data = [<span class="literal">None</span>] * ListQueue.default_capacity</span><br><span class="line">        self.__size = <span class="number">0</span></span><br><span class="line">        self.__front = <span class="number">0</span></span><br><span class="line">        self.__end = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">first</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            print(<span class="string">'Queue is empty.'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.__data[self.__front]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeue</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            print(<span class="string">'Queue is empty.'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            answer = self.__data[self.__front]</span><br><span class="line">            self.__data[self.__front] = <span class="literal">None</span></span><br><span class="line">            self.__front = (self.__front + <span class="number">1</span>) % ListQueue.default_capacity</span><br><span class="line">            self.__size -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self,e)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.__size == ListQueue.default_capacity:</span><br><span class="line">            print(<span class="string">'The queue is full.'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.__data[self.__end] = e</span><br><span class="line">            self.__end = (self.__end + <span class="number">1</span>) % ListQueue.default_capacity</span><br><span class="line">            self.__size += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> str(self.__data)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> str(self)</span><br></pre></td></tr></table></figure>
+
+<p><strong>2) Practice: Simulating a web service</strong></p>
+<p>An online video website handles service requests in the following way:</p>
+<ol>
+<li>It maintains a service queue which stores all the unprocessed <strong>service requests</strong>.</li>
+<li>When a new service request arrives, it will <strong>be saved at the end of the service queue</strong>.</li>
+<li>The server of the website will process each service request <strong>on a “first-come-first-serve” basis</strong>.</li>
+</ol>
+<h3 id="2-3-Linked-list-链表"><a href="#2-3-Linked-list-链表" class="headerlink" title="2.3 Linked list 链表"></a>2.3 Linked list 链表</h3><p><strong>1) list in python</strong></p>
+<ul>
+<li>Python’s list class is highly optimized, and often a great choice for storage</li>
+<li>However, many programming languages do not support this kind of optimized list data type</li>
+</ul>
+<p>同一个值可以被不同的list分享</p>
+<p>同一个list的相同值也可以在同一个id地址</p>
+<p><img src="/img/2018-04-23-Datastructure-11.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-12.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-13.jpg" alt></p>
+<p><strong>2) Compact array</strong></p>
+<ul>
+<li>A collection of numbers are usually stored as a compact array in languages such as C/C++ and Java</li>
+<li>A compact array is storing the bits that represent the primary data (<strong>not reference</strong>)</li>
+<li>The overall memory usage will be much lower for a compact structure because there is no overhead devoted to the explicit storage of the sequence of memory references (in addition to the primary data)</li>
+</ul>
+<p><strong>3) Linked List</strong> </p>
+<p>链表是一个基础的数据结构，可以使用链表去实现其他各种数据结构</p>
+<ul>
+<li>A singly linked list, in its simplest form, is a collection of nodes that collectively form a linear sequence</li>
+<li>Each node stores a reference to an object that is an element of the sequence, as well as a reference to the next node of the list</li>
+</ul>
+<p>内存地址不一定是连续的</p>
+<ul>
+<li>The first and last nodes of a linked list are known as the <strong>head</strong> and <strong>tail</strong> of the list, respectively</li>
+<li>By starting at the head, and moving from one node to another by following each node’s next reference, we can reach the tail of the list</li>
+<li>We can identify the tail as the node having None as its next reference. This process is commonly known as traversing the linked list.</li>
+<li>Because the next reference of a node can be viewed as a link or pointer to another node, the process of traversing a list is also known as <strong>link hopping</strong> or <strong>pointer hopping</strong></li>
+</ul>
+<p><img src="/img/2018-04-23-Datastructure-14.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-15.jpg" alt></p>
+<p><strong>4) Inserting an Element at the Head</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-16.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-17.jpg" alt></p>
+<p><strong>5) Inserting an Element at the Tail</strong></p>
+<p>不论首尾首先先新建一个Node</p>
+<p><img src="/img/2018-04-23-Datastructure-18.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-19.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-20.jpg" alt></p>
+<p><strong>6) Removing an Element from the head</strong></p>
+<p>被移去的node仍旧存在在内存中，但已经不在链表中，python会自动删除这些数据</p>
+<p><img src="/img/2018-04-23-Datastructure-21.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-22.jpg" alt></p>
+<p><img src="/img/2018-04-23-Datastructure-23.jpg" alt></p>
+<p><strong>7) code</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,element,pointer)</span>:</span></span><br><span class="line">        self.element = element</span><br><span class="line">        self.pointer = pointer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.head = <span class="literal">None</span></span><br><span class="line">        self.tail = <span class="literal">None</span></span><br><span class="line">        self.size = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_first</span><span class="params">(self,e)</span>:</span></span><br><span class="line">        newest = Node(e,<span class="literal">None</span>)</span><br><span class="line">        newest.pointer = self.head</span><br><span class="line">        self.head = newest</span><br><span class="line">        self.size = self.size+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.size == <span class="number">1</span>:</span><br><span class="line">            self.tail = newest</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_last</span><span class="params">(self,e)</span>:</span></span><br><span class="line">        newest = Node(e,<span class="literal">None</span>)</span><br><span class="line">        self.tail.pointer = newest</span><br><span class="line">        self.tail = newest</span><br><span class="line">        self.size = self.size+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove_first</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.size == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">'The linked list is empty'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.head = self.head.pointer</span><br><span class="line">            self.size = self.size - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>8) Practice</strong></p>
+<ol>
+<li>Implement stack with a singly linked list</li>
+</ol>
+<p>之前的stack是用python的list实现，现在用链表实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedStack</span>:</span></span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">       self.head = <span class="literal">None</span></span><br><span class="line">       self.size = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> self.size</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> self.size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,e)</span>:</span></span><br><span class="line">       self.head = Node(e,self.head)</span><br><span class="line">       self.size+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">if</span> self.is_empty():</span><br><span class="line">           print(<span class="string">'Stack is empty'</span>)</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="keyword">return</span> self.head.element</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">if</span> self.is_empty():</span><br><span class="line">           print(<span class="string">'Stack is empty'</span>)</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           answer = self.head.element</span><br><span class="line">           self.head = self.head.pointer</span><br><span class="line">           self.size-=<span class="number">1</span></span><br><span class="line">           <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Implement queue with a singly linked list</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedQueue</span>:</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">       self.head = <span class="literal">None</span></span><br><span class="line">       self.tail = <span class="literal">None</span></span><br><span class="line">       self.size = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> self.size</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> self.size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">first</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">if</span> self.is_empty():</span><br><span class="line">           print(<span class="string">'Queue is empty'</span>)</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="keyword">return</span> self.head.element</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">dequeue</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">if</span> self.is_empty():</span><br><span class="line">           print(<span class="string">'Queue is empty'</span>)</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           answer = self.head.element</span><br><span class="line">           self.head = self.head.pointer</span><br><span class="line">           self.size-=<span class="number">1</span></span><br><span class="line">           <span class="keyword">if</span> self.is_empty():</span><br><span class="line">               self.tail = <span class="literal">None</span></span><br><span class="line">           <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self,e)</span>:</span></span><br><span class="line">       newest = Node(e,<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> self.is_empty():</span><br><span class="line">           self.head = newest</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           self.tail.pointer = newest</span><br><span class="line">       self.tail = newest</span><br><span class="line">       self.size+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-Circularly-Linked-List-循环链表"><a href="#2-4-Circularly-Linked-List-循环链表" class="headerlink" title="2.4 Circularly Linked List 循环链表"></a>2.4 Circularly Linked List 循环链表</h3><ul>
+<li>The tail of a linked list can use its next reference to point back to the head of the list</li>
+<li>Such a structure is usually called a circularly linked list</li>
+</ul>
+<p>无需储存head，因为head=tail.pointer</p>
+<p><img src="/img/2018-04-23-Datastructure-24.jpg" alt></p>
+<p><strong>1) Example: Round-robin scheduler 循环调度</strong></p>
+<p>multi-tasking    </p>
+<blockquote>
+<p>一个处理器在某一时刻只会给一件任务提供服务，把时间分成很小的无数份，在不同的很小的时间内循环执行不同的程序</p>
+</blockquote>
+<ul>
+<li>A round-robin scheduler iterates through a collection of elements in a circular fashion and “serves” each element by performing a given action on it</li>
+<li>Such a scheduler is used, for example, to fairly allocate a resource that must be shared by a collection of clients</li>
+<li>For instance, round-robin scheduling is often used to allocate slices of CPU time to various applications running concurrently on a computer</li>
+</ul>
+<p><strong>2) Implementing round-robin scheduler using standard queue</strong></p>
+<p>• A round-robin scheduler could be implemented with the <strong>standard queue</strong>, by repeatedly performing the following steps on queue Q:</p>
+<ol>
+<li>e = Q.dequeue()</li>
+<li>Service element e</li>
+<li>Q.enqueue(e)</li>
+</ol>
+<p><img src="/img/2018-04-23-Datastructure-25.jpg" alt></p>
+<p><strong>3) Implement a Queue with a Circularly Linked List</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-26.jpg" alt></p>
+<h3 id="2-5-Doubly-linked-list-双链表"><a href="#2-5-Doubly-linked-list-双链表" class="headerlink" title="2.5 Doubly linked list 双链表"></a>2.5 Doubly linked list 双链表</h3><ul>
+<li>For a singly linked list, we can efficiently insert a node at either end of a singly linked list, and can delete a node at the head of a list</li>
+<li>But we cannot efficiently delete a node at the tail of the list      </li>
+</ul>
+<blockquote>
+<p>普通的链表删除尾部的 node 的时间复杂度为 o(n)，因为要把倒数第二个的指针指向空，而只有往后的指针，没有往前的指针，所以要从头开始才能找到倒数第二个 node。</p>
+</blockquote>
+<ul>
+<li>We can define a linked list in which each node keeps an explicit<br>reference to the node before it and a reference to the node after it</li>
+</ul>
+<p>从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点</p>
+<ul>
+<li>In order to avoid some special cases when operating near the boundaries of a doubly linked list, it helps to add special nodes at<br>both ends of the list: <strong>a header node at the beginning of the list, and a trailer node at the end of the list</strong></li>
+<li>These <strong>“dummy” nodes</strong> are known as sentinels (or guards), and they <strong>do not store elements of the primary sequence</strong></li>
+</ul>
+<p><img src="/img/2018-04-23-Datastructure-27.jpg" alt></p>
+<p><strong>Code</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-28.jpg" alt></p>
+<p><strong>1) Inserting in the middle of a doubly linked list</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-29.jpg" alt></p>
+<p><strong>2) Deleting from the doubly linked list</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-30.jpg" alt></p>
+<h3 id="2-6-Tree-树"><a href="#2-6-Tree-树" class="headerlink" title="2.6 Tree 树"></a>2.6 Tree 树</h3><ul>
+<li>A tree is a data structure that stores elements <strong>hierarchically（分层的）</strong></li>
+<li>With the exception of the top element, each element in a tree has a <strong>parent element</strong> and zero or more <strong>children elements</strong></li>
+<li>We typically call the top element <strong>the root of the tree（根节点）</strong>, but it is drawn as the highest element</li>
+</ul>
+<p><img src="/img/2018-04-23-Datastructure-31.jpg" alt></p>
+<p><strong>1) Edge 边 and path 路径</strong></p>
+<ul>
+<li>An <strong>edge 边</strong> of tree T is a pair of nodes (u,v) such that u is the parent of v, or vice versa</li>
+<li>A <strong>path 路径</strong> of T is a sequence of nodes such that any two consecutive nodes in the sequence form an edge</li>
+<li>The <strong>depth 深度</strong> of a node v is the length of the path connecting root node and v（不包括自己）</li>
+<li><strong>leaf node 叶节点</strong></li>
+<li><strong>internal node 内部节点</strong></li>
+</ul>
+<p><strong>2) Ordered tree</strong></p>
+<p>A tree is <strong>ordered</strong> if there is a <strong>meaningful linear order among the children of each node</strong>（树中每个结点的各子树看成是从左到右有次序的）; such an order is usually visualized by arranging siblings <strong>from left to right, according to their order</strong> （之前公司的结构就是 Unordered Tree）</p>
+<p><img src="/img/2018-04-23-Datastructure-32.jpg" alt></p>
+<p><strong>3) Binary tree</strong></p>
+<p>A binary tree is <strong>an ordered tree</strong> with the following properties:</p>
+<ol>
+<li>Every node has <strong>at most two children</strong></li>
+<li>Each child node is labeled as being either a <strong>left child</strong> or a <strong>right child</strong> </li>
+<li>A <strong>left child precedes a right child</strong> in the order of children of a node</li>
+</ol>
+<p>The subtree rooted at a left or right child of an internal node v is called a left subtree or right subtree, respectively, of v</p>
+<p>A binary tree is <strong>proper</strong> if each node <strong>has either zero or two children</strong>（要不没有，要不2个）. Some people also refer to such trees as being <strong>full binary trees</strong></p>
+<p><strong>4) Example: Represent an expression with binary tree</strong></p>
+<p>An arithmetic expression（算术表达式）can be represented by a binary tree whose leaves are associated with variables or constants, and whose internal nodes are associated with one of the operators +, −, ×, and /</p>
+<p><img src="/img/2018-04-23-Datastructure-33.jpg" alt></p>
+<p><strong>5) Binary tree class</strong></p>
+<ul>
+<li><p>We define a tree class based on a class called Node; an element is stored as a node</p>
+</li>
+<li><p>Each node contains <strong>3 references</strong>（像是四个格子，第一个是数据）</p>
+<ol>
+<li>one pointing to the parent node, </li>
+<li>two pointing to the child nodes</li>
+</ol>
+</li>
+</ul>
+<p><strong>6) Implementing the binary tree</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-34.jpg" alt></p>
+<p> <img src="/img/2018-04-23-Datastructure-108.jpg" alt></p>
+<p><strong>7) Depth first search (DFS) 深度优先搜索算法</strong></p>
+<p> <img src="/img/2018-04-23-Datastructure-109.jpg" alt></p>
+<p>  <img src="/img/2018-04-23-Datastructure-110.jpg" alt></p>
+<p><strong>8) Breadth first search 广度优先搜索</strong></p>
+<p>Starts at the root and we visit all the positions at depth d before we visit the positions at depth d +1</p>
+<p> <img src="/img/2018-04-23-Datastructure-111.jpg" alt></p>
+<p><strong>Example: finding the best strategy in a game</strong></p>
+<p><img src="/img/2018-04-23-Datastructure-35.jpg" alt></p>
+<p><strong>Code</strong></p>
+<p> <img src="/img/2018-04-23-Datastructure-112.jpg" alt></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

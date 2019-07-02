@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        计算机编码：base64 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>haoyu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-计算机开始之初，二进制与Hex"><span class="toc-text">1. 计算机开始之初，二进制与Hex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-要让可读性更强：ASCII码"><span class="toc-text">2. 要让可读性更强：ASCII码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-别的语言怎么办？UTF-8等其他编码方法"><span class="toc-text">3. 别的语言怎么办？UTF-8等其他编码方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-用一种编码形式打开另一种编码形式-会怎样？"><span class="toc-text">4. 用一种编码形式打开另一种编码形式 会怎样？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-误区：Base64不是加密算法"><span class="toc-text">5. 误区：Base64不是加密算法</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        计算机编码：base64
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-03 01:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#编码" title="编码">编码</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="1-计算机开始之初，二进制与Hex"><a href="#1-计算机开始之初，二进制与Hex" class="headerlink" title="1. 计算机开始之初，二进制与Hex"></a>1. 计算机开始之初，二进制与Hex</h2><p>计算机这个东西，最初是美国人发明的。作为一个可以计算、存储、通信的复杂玩意，最最基本的功能，应该是能读懂人类让它干的事情。所以呢，我们得构造一个计算机能用的语言，这个语言计算机能看懂，人也能看懂，这样才能交流嘛。</p>
+<p>计算机所用的语言是什么呢？这个语言非常简单，只有0和1两种表示。0代表否，1代表是。通过0和1的各种组合，以及0和1之间的各种运算（位运算），计算机就能进行理解、分析这个世界，并帮助人类完成工作了。</p>
+<p>但是0和1太简单了，简单到任何一个简单的数字都可能用一长串0和1来表示。举了例子，如果让计算机记住1000这个数，计算机就要记住11,1110,1000这么长一串数字。计算机倒是好记，但是人类记不住啊… 有没有一种方法，能够让计算机表示的数据短一点，好记一点呢？</p>
+<p>Hex就是最简单的方法了。人类习惯于使用十进制，毕竟人类有是个手指，十个一进位，挺好的！计算机本质上是二进制，就0和1两种数字的表示方法，所有其他可以直接转换的表示方法中，进制只能有2这个数，不能有其他的数字。比如4,8,16就没问题。其他的数字，不管怎么折腾，转换后也得是2^n形式。</p>
+<a id="more"></a>
+
+<p>想让人类和计算机都能接受表示形式，8进制和16进制都是可以接受的。8进制的话，只使用0-7折8个数字就好了。16进制，光用数字是不够了，还得用用其他的字符。然而，计算机毕竟是美国人发明的，他们觉得，干脆，就16进制：用0-9表示前10个数，后面的用A、B、C、D、E、F表示，不区分大小写。这就是最简单的Hex编码了。</p>
+<p>Hex的编码原理是：把一长串二进制数每4个分一组，如果位数不够就在高位补0。4位数字一共只有16种情况，分别用0-9，A-F表示这16种情况。编码表类似这样：</p>
+<p><img src="/img/2018-04-05-base64-1.jpg" alt></p>
+<h2 id="2-要让可读性更强：ASCII码"><a href="#2-要让可读性更强：ASCII码" class="headerlink" title="2. 要让可读性更强：ASCII码"></a>2. 要让可读性更强：ASCII码</h2><p>Hex编码虽然好，但有个问题：从计算机上打开个文件，满眼的十六进制数，很头大啊… 十六进制还是不太好表示文本。能不能创建一种方法，能表示键盘打出来的全部英文字符、符号呢？键盘打不出来的字符，比如什么回车啦，占位啦，用特殊的符号表示。这样一来，打开一个文件，满眼英文，岂不是很爽快…</p>
+<p>美国作为计算机的始祖国家，自然要推出一个这样的标准代码表。这就是美国信息交换标准代码，简称ASCII码表。这个码表包括了数字、英文大小写、符号、以及各种各样的转义字符，可以包含英文所用的全部功能。很快地，ASCII码称为了国际标准，现在大家知道的编码形式，都是与ASCII码兼容的。（图片来自：<a href="https://link.zhihu.com/?target=http%3A//baike.baidu.com/view/492542.htm" target="_blank" rel="noopener">美国信息交换标准代码</a>)</p>
+<p><img src="/img/2018-04-05-base64-2.jpg" alt></p>
+<h2 id="3-别的语言怎么办？UTF-8等其他编码方法"><a href="#3-别的语言怎么办？UTF-8等其他编码方法" class="headerlink" title="3. 别的语言怎么办？UTF-8等其他编码方法"></a>3. 别的语言怎么办？UTF-8等其他编码方法</h2><p>这个码表一出来，英语国家开心了…其他国家的脑袋疼了… 带注音的符号怎么办？日语韩语怎么办？最为博大精深的中文怎么办… 于是，各个国家也推出了本国语言的编码表。但是，为了能在计算机系统中通用，这些编码表基本都与ASCII码兼容。</p>
+<p>最为知名的就是UTF-8了。这个编码又称为万国码，顾名思义，就是支持包括中文简体、中文繁体、日语、韩语等各种语言的编码。</p>
+<h2 id="4-用一种编码形式打开另一种编码形式-会怎样？"><a href="#4-用一种编码形式打开另一种编码形式-会怎样？" class="headerlink" title="4. 用一种编码形式打开另一种编码形式 会怎样？"></a>4. 用一种编码形式打开另一种编码形式 会怎样？</h2><p>既然每个国家都有自己的编码表了，问题也就来了。现在都国际化了，我要用一个支持本国语言的编码系统，打开另一个编码系统编码的文本，会出现什么情况呢？这就是乱码了… 更为严重的是，随着互联网的出现，各个国家的电脑都需要通信，而通信的一种方式就是使用URL地址。每个国家都希望把这个地址写成自己国家的语言。但这会导致其他国家根本没法访问地址，因为打不出这个字符嘛。所以，人类迫切需要一种中间编码形式，既能够兼容ASCII码，又能够把任意一种编码形式转换成只使用可读字符就能表示的编码。其中一种编码形式，就是Base64编码。</p>
+<p>Base64编码，顾名思义，用64个可读字符进行编码。与Hex的16个字符相比多了很多，但是比ASCII码又少了一倍，去除了不可读字符。标准Base64编码中，这些字符是：  </p>
+<ul>
+<li>数字：0,1,2,3,4,5,6,7,8,9，共10个</li>
+<li>小写字母：a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z，共26个</li>
+<li>大写字母：A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z，共26个</li>
+<li>加好+以及斜杠/</li>
+</ul>
+<p>有的时候，根据不同的需要，Base64还有很多变种。比如，如果浏览器地址中用“+”和“/”的话，浏览器会将其转换为%XX的形式，又多了一步。因此可以将“+”和“/”换成“-”和“_”。</p>
+<p>这种编码形式长度也短，效率也高。这样一来，数据通信的时候，不管来的是什么语言，都转化成Base64后再发送和接收。要是别国地址什么的打不出来，就直接打Base64编码形式就好了。如果细心的话，会发现百度云盘共享的时候，用的就是Base64。举个例子，前几天有个朋友给我发送一个视频，给的链接是这样的（后面四位略去）：  </p>
+<pre><code>http://pan.baidu.com/s/1gdH**** </code></pre><p>前面都是标准的网页形式，最后那个子文件，就是用Base64编码的，而且可以在任何通信工具中传递，方便快捷啊。</p>
+<h2 id="5-误区：Base64不是加密算法"><a href="#5-误区：Base64不是加密算法" class="headerlink" title="5. 误区：Base64不是加密算法"></a>5. 误区：Base64不是加密算法</h2><p>很多博客什么的都把Base64当做加密算法，这是不对的。Base64不具有可读性，但不代表这个编码是加密的。加密需要保证，没有密钥的人无法解密信息，无法从密文中获得任何明文信息。Base64编码显然没有密钥什么事</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作者：刘巍然-学酥</span><br><span class="line">链接：https://www.zhihu.com/question/38036594/answer/74917716</span><br><span class="line">来源：知乎</span><br></pre></td></tr></table></figure>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
