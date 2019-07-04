@@ -1,186 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        c++ 指针与引用 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-</div>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
 
 
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-    </div>
-</div>
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
 
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+  <meta name="description" content="c++ 指针与引用">
 
 
 
 
-</body>
+  <meta name="keywords" content=",">
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = false
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/准备/2019-03-17-pointer.html">
+
+
+<meta name="description" content="1. 指针基础int* pN = &amp;amp;N; pN 和 &amp;amp;N 是 int * 类型 *pN 是 int 类型 数组的指针数组名实际上就是数组数据所在内存区域的首地址，表示数组在内存中的起始位置。 12int nArray[3] = &amp;#123;1, 2, 3&amp;#125;; // 定义一个数组cout &amp;lt;&amp;lt; nArray;  输出为：0x7ffeeeb00ffc 可以通过把首">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="website">
+<meta property="og:title" content="c++ 指针与引用">
+<meta property="og:url" content="http://hhyz.me/准备/2019-03-17-pointer.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="1. 指针基础int* pN = &amp;amp;N; pN 和 &amp;amp;N 是 int * 类型 *pN 是 int 类型 数组的指针数组名实际上就是数组数据所在内存区域的首地址，表示数组在内存中的起始位置。 12int nArray[3] = &amp;#123;1, 2, 3&amp;#125;; // 定义一个数组cout &amp;lt;&amp;lt; nArray;  输出为：0x7ffeeeb00ffc 可以通过把首">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-17-pointer-1.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:09:45.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++ 指针与引用">
+<meta name="twitter:description" content="1. 指针基础int* pN = &amp;amp;N; pN 和 &amp;amp;N 是 int * 类型 *pN 是 int 类型 数组的指针数组名实际上就是数组数据所在内存区域的首地址，表示数组在内存中的起始位置。 12int nArray[3] = &amp;#123;1, 2, 3&amp;#125;; // 定义一个数组cout &amp;lt;&amp;lt; nArray;  输出为：0x7ffeeeb00ffc 可以通过把首">
+<meta name="twitter:image" content="http://hhyz.me/img/2019-03-17-pointer-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
+  
+
+
+
+
+
+  
+
+
+    <title> c++ 指针与引用 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        <article class="post">
+            <header class="post-header">
+                <h1 class="post-title">
+                    c++ 指针与引用
+                </h1>
+            </header>
+            <div class="post-content">
+                <h1 id="1-指针"><a href="#1-指针" class="headerlink" title="1. 指针"></a>1. 指针</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p><code>int* pN = &amp;N;</code></p>
+<p><code>pN</code> 和 <code>&amp;N</code> 是 <code>int *</code> 类型</p>
+<p><code>*pN</code> 是 <code>int</code> 类型</p>
+<h2 id="数组的指针"><a href="#数组的指针" class="headerlink" title="数组的指针"></a>数组的指针</h2><p><strong>数组名实际上就是数组数据所在内存区域的首地址</strong>，表示数组在内存中的起始位置。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nArray[<span class="number">3</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;; <span class="comment">// 定义一个数组</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; nArray;</span><br></pre></td></tr></table></figure>
+
+<p>输出为：<code>0x7ffeeeb00ffc</code></p>
+<p>可以通过把首地址赋值给指针，然后对该指针进行加减运算，使指针发生偏转指向数组中的其他元素，从而遍历整个数组。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nArray[<span class="number">3</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;   <span class="comment">// 定义一个数组</span></span><br><span class="line"><span class="keyword">int</span>* pIndex = nArray;          <span class="comment">// 将数组的起始地址赋值给指针pIndex</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"指针指向的地址是："</span>&lt;&lt;pIndex&lt;&lt;<span class="built_in">endl</span>;       <span class="comment">// 输出指针指向的地址</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"指针所指向的数据的值是："</span>&lt;&lt;*pIndex&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 输出这个位置上的数据</span></span><br><span class="line"></span><br><span class="line">pIndex++;   <span class="comment">// 对指针进行加运算，使其指向数组中的下一个值</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"指针指向的地址是："</span>&lt;&lt;pIndex&lt;&lt;<span class="built_in">endl</span>;        <span class="comment">// 输出指针指向的地址</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"指针所指向的数据的值是："</span>&lt;&lt;*pIndex&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">// 输出数据</span></span><br></pre></td></tr></table></figure>
+
+<p>输出为 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">指针指向的地址是：<span class="number">0016F</span>A38</span><br><span class="line"></span><br><span class="line">指针所指向的数据的值是：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">指针指向的地址是：<span class="number">0016F</span>A3C</span><br><span class="line"></span><br><span class="line">指针所指向的数据的值是：<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>从输出结果中可以看到，pIndex 指针初始指向的地址是 <code>0016FA38</code>，也就是 nArray 这个数组的首地址。换句话说，也就是 pIndex 指向的是数组中的第一个数据，所以输出 <code>*pIndex</code> 的值是 1。    </p>
+<p>而在对指针进行加 1 运算后，指针指向的地址变为 <code>0016FA3C</code>，它向地址增大的方向偏移了 <strong>4</strong> 个字节，指向了数组中的第二个数据，输出 <code>*pIndex</code>的值自然也就变成了 2。</p>
+<p><img src="/img/2019-03-17-pointer-1.jpg" alt></p>
+<p>除了指针的加减算术运算之外，常用到的还有指针的关系运算。指针的关系运算通常用 <code>==</code> 或 <code>!=</code> 来判断两个相同类型的指针是否相等，也就是判断它们是否指向同一地址上的同一数据，以此作为条件或循环结构中的条件判断语句。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nArray[<span class="number">3</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;    <span class="comment">// 定义一个数组</span></span><br><span class="line"><span class="keyword">int</span>* pIndex = nArray;           <span class="comment">// 将数组的起始地址赋值给指针pIndex</span></span><br><span class="line"><span class="keyword">int</span>* pEnd = nArray + <span class="number">3</span>;         <span class="comment">// 计算数组的结束地址并赋值给pEnd</span></span><br><span class="line"><span class="keyword">while</span>( pIndex != pEnd )         <span class="comment">// 在while的条件语句中判断两个指针是否相等，</span></span><br><span class="line">                               <span class="comment">// 也就是判断当前指针是否已经偏转到结束地址</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*pIndex&lt;&lt;<span class="built_in">endl</span>;        <span class="comment">// 输出当前指针指向的数据</span></span><br><span class="line">    <span class="comment">// 对指针进行加1 运算，</span></span><br><span class="line">   <span class="comment">// 使其偏移到下一个内存位置，指向数组中的下一个数据</span></span><br><span class="line">    ++pIndex;                  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="gt"><a href="#gt" class="headerlink" title="-&gt;"></a>-&gt;</h2><p>c++ 中当定义类对象是指针对象时候，就需要用到 <code>-&gt;</code> 指向类中的成员；当定义一般对象时候时就需要用到 <code>.</code> 指向类中的成员。</p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">　　<span class="keyword">public</span></span><br><span class="line">　　play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果定义如下：</p>
+<p><code>A *p</code> 则使用：<code>p-&gt;play();</code> 左边是结构指针。</p>
+<p><code>A p</code> 则使用：<code>p.paly();</code> 左边是结构变量。</p>
+<p>总结：</p>
+<p>箭头（<code>-&gt;</code>）：左边必须为指针；</p>
+<p>点号（<code>.</code>）：左边必须为实体。</p>
+<h2 id="this-指针"><a href="#this-指针" class="headerlink" title="this 指针"></a>this 指针</h2><p>在 C++ 中，每一个对象都能通过 this 指针来访问自己的<strong>地址</strong>。this 指针是所有成员函数的隐含参数。因此，在成员函数内部，它可以用来指向调用对象。</p>
+<blockquote>
+<p>友元函数没有 this 指针，因为友元不是类的成员。只有成员函数才有 this 指针。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="comment">// 构造函数定义</span></span><br><span class="line">      Box(<span class="keyword">double</span> l=<span class="number">2.0</span>, <span class="keyword">double</span> b=<span class="number">2.0</span>, <span class="keyword">double</span> h=<span class="number">2.0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt;<span class="string">"Constructor called."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">         length = l;</span><br><span class="line">         breadth = b;</span><br><span class="line">         height = h;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">Volume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> length * breadth * height;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(Box box)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>-&gt;Volume() &gt; box.Volume();</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;     <span class="comment">// Length of a box</span></span><br><span class="line">      <span class="keyword">double</span> breadth;    <span class="comment">// Breadth of a box</span></span><br><span class="line">      <span class="keyword">double</span> height;     <span class="comment">// Height of a box</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Box <span class="title">Box1</span><span class="params">(<span class="number">3.3</span>, <span class="number">1.2</span>, <span class="number">1.5</span>)</span></span>;    <span class="comment">// Declare box1</span></span><br><span class="line">   <span class="function">Box <span class="title">Box2</span><span class="params">(<span class="number">8.5</span>, <span class="number">6.0</span>, <span class="number">2.0</span>)</span></span>;    <span class="comment">// Declare box2</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">if</span>(Box1.compare(Box2))</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"Box2 is smaller than Box1"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"Box2 is equal to or larger than Box1"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-引用"><a href="#2-引用" class="headerlink" title="2. 引用"></a>2. 引用</h1><p>引用变量是一个别名，也就是说，<strong>它是某个已存在变量的另一个名字</strong>。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。</p>
+<blockquote>
+<p>C++ 引用 vs 指针<br>引用很容易与指针混淆，它们之间有以下不同：  </p>
+<ul>
+<li>不存在空引用。引用必须连接到一块合法的内存。</li>
+<li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。</li>
+<li>指针可以在任何时候指向到另一个对象。</li>
+<li>引用必须在创建时被初始化。指针可以在任何时间被初始化。</li>
+</ul>
+</blockquote>
+
+            </div>
+        </article>
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-指针"><span class="nav-text">1. 指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的指针"><span class="nav-text">数组的指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt"><span class="nav-text">-&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this-指针"><span class="nav-text">this 指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-引用"><span class="nav-text">2. 引用</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
 </html>

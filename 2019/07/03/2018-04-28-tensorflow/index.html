@@ -1,144 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        TensorFlow 函数总结 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="TensorFlow 函数总结">
+
+
+
+
+  <meta name="keywords" content="TensorFlow,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2018-04-28-tensorflow/">
+
+
+<meta name="description" content="tf 函数tf.splittf.split()：axis的意思就是输入张量的哪一个维度，如果是0就表示对第0维度进行切割。num_or_size_splits就是切割的数量，如果是2就表示输入张量被切成2份，每一份是一个列表。 1234567tf.split(    value,    num_or_size_splits,    axis=0,    num=None,    name=&apos;spl">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow 函数总结">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2018-04-28-tensorflow/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="tf 函数tf.splittf.split()：axis的意思就是输入张量的哪一个维度，如果是0就表示对第0维度进行切割。num_or_size_splits就是切割的数量，如果是2就表示输入张量被切成2份，每一份是一个列表。 1234567tf.split(    value,    num_or_size_splits,    axis=0,    num=None,    name=&apos;spl">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow 函数总结">
+<meta name="twitter:description" content="tf 函数tf.splittf.split()：axis的意思就是输入张量的哪一个维度，如果是0就表示对第0维度进行切割。num_or_size_splits就是切割的数量，如果是2就表示输入张量被切成2份，每一份是一个列表。 1234567tf.split(    value,    num_or_size_splits,    axis=0,    num=None,    name=&apos;spl">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> TensorFlow 函数总结 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-函数"><span class="toc-text">tf 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-split"><span class="toc-text">tf.split</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-concat"><span class="toc-text">tf.concat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-cond"><span class="toc-text">tf.cond</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-tile"><span class="toc-text">tf.tile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-contrib-layers-flatten"><span class="toc-text">tf.contrib.layers.flatten</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-contrib-layers-fully-connection"><span class="toc-text">tf.contrib.layers.fully_connection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-Variable与tf-get-variable"><span class="toc-text">tf.Variable与tf.get_variable()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-name-scope-tf-variable-scope"><span class="toc-text">tf.name_scope() / tf.variable_scope()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-control-dependencies"><span class="toc-text">tf.control_dependencies()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-placeholder-with-default"><span class="toc-text">tf.placeholder_with_default()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-device"><span class="toc-text">tf.device()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-Graph"><span class="toc-text">tf.Graph()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本-CNN-函数"><span class="toc-text">基本 CNN 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-one-hot"><span class="toc-text">tf.one_hot()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-梯度"><span class="toc-text">tf 梯度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apply-gradients"><span class="toc-text">apply_gradients()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-gradients"><span class="toc-text">tf.gradients()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-stop-gradients"><span class="toc-text">tf.stop_gradients()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理梯度"><span class="toc-text">处理梯度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-contrib-slim"><span class="toc-text">tf.contrib.slim</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-contrib-slim-conv2d"><span class="toc-text">tf.contrib.slim.conv2d</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1"><span class="toc-text">1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2"><span class="toc-text">2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#待记录"><span class="toc-text">待记录</span></a></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          TensorFlow 函数总结
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        TensorFlow 函数总结
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#TensorFlow" title="TensorFlow">TensorFlow</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="tf-函数"><a href="#tf-函数" class="headerlink" title="tf 函数"></a>tf 函数</h2><h3 id="tf-split"><a href="#tf-split" class="headerlink" title="tf.split"></a>tf.split</h3><p>tf.split()：axis的意思就是输入张量的哪一个维度，如果是0就表示对第0维度进行切割。num_or_size_splits就是切割的数量，如果是2就表示输入张量被切成2份，每一份是一个列表。</p>
+            <div class="post-content">
+            <h2 id="tf-函数"><a href="#tf-函数" class="headerlink" title="tf 函数"></a>tf 函数</h2><h3 id="tf-split"><a href="#tf-split" class="headerlink" title="tf.split"></a>tf.split</h3><p>tf.split()：axis的意思就是输入张量的哪一个维度，如果是0就表示对第0维度进行切割。num_or_size_splits就是切割的数量，如果是2就表示输入张量被切成2份，每一份是一个列表。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tf.split(</span><br><span class="line">    value,</span><br><span class="line">    num_or_size_splits,</span><br><span class="line">    axis=<span class="number">0</span>,</span><br><span class="line">    num=<span class="literal">None</span>,</span><br><span class="line">    name=<span class="string">'split'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <p>如果 num_or_size_splits 传入的是一个整数，这个整数代表这个张量最后会被切成几个小张量。此时，传入 axis 的数值就代表切割哪个维度（从0开始计数）。调用 tf.split(my_tensor, 2，0) 返回两个 10 * 30 * 40 的小张量。</p>
@@ -173,10 +170,10 @@
 <h3 id="tf-contrib-layers-flatten"><a href="#tf-contrib-layers-flatten" class="headerlink" title="tf.contrib.layers.flatten"></a>tf.contrib.layers.flatten</h3><p><code>tf.contrib.layers.flatten(P)</code> 这个函数就是把P保留第一个维度，把第一个维度包含的每一子张量展开成一个行向量，返回张量是一个二维的，<code>shape = (batch_size, ...)</code>, 一般用于卷积神经网络全链接层前的预处理。</p>
 <p>例如 CNN 的 conv 层输出的 tensor 的 shape 为  \(\text{[batch_size, height, width, channel]}\), 刚展开会就是  \(\text{[batch_size, height × width × channel]}\)。 </p>
 <h3 id="tf-contrib-layers-fully-connection"><a href="#tf-contrib-layers-fully-connection" class="headerlink" title="tf.contrib.layers.fully_connection"></a>tf.contrib.layers.fully_connection</h3><p><code>tf.contrib.layers.fully_connection(F，num_output,activation_fn)</code> 这个函数就是全链接成层, <code>F</code> 是输入，<code>num_output</code> 是下一层单元的个数，<code>activation_fn</code> 是激活函数，默认是 <code>relu</code></p>
-<h2 id="tf-Variable与tf-get-variable"><a href="#tf-Variable与tf-get-variable" class="headerlink" title="tf.Variable与tf.get_variable()"></a>tf.Variable与tf.get_variable()</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tf.Variable(initial_value=None, trainable=True, \</span><br><span class="line">	collections=None, validate_shape=True, \</span><br><span class="line">	caching_device=None, name=None, \</span><br><span class="line">	variable_def=None, dtype=None, \</span><br><span class="line">	expected_shape=None, import_scope=None)</span><br></pre></td></tr></table></figure>
+<h2 id="tf-Variable与tf-get-variable"><a href="#tf-Variable与tf-get-variable" class="headerlink" title="tf.Variable与tf.get_variable()"></a>tf.Variable与tf.get_variable()</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tf.Variable(<span class="attribute">initial_value</span>=None, <span class="attribute">trainable</span>=<span class="literal">True</span>, \</span><br><span class="line">	<span class="attribute">collections</span>=None, <span class="attribute">validate_shape</span>=<span class="literal">True</span>, \</span><br><span class="line">	<span class="attribute">caching_device</span>=None, <span class="attribute">name</span>=None, \</span><br><span class="line">	<span class="attribute">variable_def</span>=None, <span class="attribute">dtype</span>=None, \</span><br><span class="line">	<span class="attribute">expected_shape</span>=None, <span class="attribute">import_scope</span>=None)</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tf.get_variable(name, shape=None, dtype=None, \</span><br><span class="line">	initializer=None, regularizer=None, trainable=True, \</span><br><span class="line">	collections=None, caching_device=None, \</span><br><span class="line">	partitioner=None, validate_shape=True, custom_getter=None)</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tf.get_variable(name, <span class="attribute">shape</span>=None, <span class="attribute">dtype</span>=None, \</span><br><span class="line">	<span class="attribute">initializer</span>=None, <span class="attribute">regularizer</span>=None, <span class="attribute">trainable</span>=<span class="literal">True</span>, \</span><br><span class="line">	<span class="attribute">collections</span>=None, <span class="attribute">caching_device</span>=None, \</span><br><span class="line">	<span class="attribute">partitioner</span>=None, <span class="attribute">validate_shape</span>=<span class="literal">True</span>, <span class="attribute">custom_getter</span>=None)</span><br></pre></td></tr></table></figure>
 
 <p><strong>区别</strong></p>
 <ol>
@@ -208,7 +205,7 @@
 <p>通过以上的解释，我们可以知道，该函数接受的参数control_inputs，是Operation或者Tensor构成的list。返回的是一个上下文管理器，该上下文管理器用来控制在该上下文中的操作的依赖。也就是说，上下文管理器下定义的操作是依赖control_inputs中的操作的，control_dependencies用来控制control_inputs中操作执行后，才执行上下文管理器中定义的操作。</p>
 <p><strong>例子</strong></p>
 <p>如果我们想要确保获取更新后的参数，name我们可以这样组织我们的代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opt = tf.train.Optimizer().minize(loss)</span><br><span class="line"></span><br><span class="line">with tf.control_dependencies([opt]): #先执行opt</span><br><span class="line">  updated_weight = tf.identity(weight)  #再执行该操作</span><br><span class="line"></span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">  tf.global_variables_initializer().run()</span><br><span class="line">  sess.run(updated_weight, feed_dict=&#123;...&#125;) # 这样每次得到的都是更新后的weight</span><br></pre></td></tr></table></figure>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opt = tf.train.<span class="type">Optimizer</span>().minize(loss)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.control_dependencies([opt]): <span class="comment">#先执行opt</span></span><br><span class="line">  updated_weight = tf.identity(weight)  <span class="comment">#再执行该操作</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.<span class="type">Session</span>() <span class="keyword">as</span> sess:</span><br><span class="line">  tf.global_variables_initializer().run()</span><br><span class="line">  sess.run(updated_weight, feed_dict=<span class="meta">&#123;...&#125;</span>) <span class="comment"># 这样每次得到的都是更新后的weight</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="tf-placeholder-with-default"><a href="#tf-placeholder-with-default" class="headerlink" title="tf.placeholder_with_default()"></a>tf.placeholder_with_default()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">placeholder_with_default(</span><br><span class="line">    input,</span><br><span class="line">    shape,</span><br><span class="line">    name=<span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
@@ -308,87 +305,99 @@
 <h2 id="待记录"><a href="#待记录" class="headerlink" title="待记录"></a>待记录</h2><p><a href="https://github.com/balancap/SSD-Tensorflow/blob/master/datasets/pascalvoc_to_tfrecords.py" target="_blank" rel="noopener">https://github.com/balancap/SSD-Tensorflow/blob/master/datasets/pascalvoc_to_tfrecords.py</a></p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/">TensorFlow</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2018-05-28-IoUmAP/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">目标检测中的 IoU 与 mAP</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2018-04-28-PerceptualLosses/">
+        <span class="next-text nav-default">Perceptual Loss 感知损失 图像超分辨重建（二）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-函数"><span class="nav-text">tf 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-split"><span class="nav-text">tf.split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-concat"><span class="nav-text">tf.concat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-cond"><span class="nav-text">tf.cond</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-tile"><span class="nav-text">tf.tile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-contrib-layers-flatten"><span class="nav-text">tf.contrib.layers.flatten</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-contrib-layers-fully-connection"><span class="nav-text">tf.contrib.layers.fully_connection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-Variable与tf-get-variable"><span class="nav-text">tf.Variable与tf.get_variable()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-name-scope-tf-variable-scope"><span class="nav-text">tf.name_scope() / tf.variable_scope()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-control-dependencies"><span class="nav-text">tf.control_dependencies()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-placeholder-with-default"><span class="nav-text">tf.placeholder_with_default()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-device"><span class="nav-text">tf.device()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-Graph"><span class="nav-text">tf.Graph()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本-CNN-函数"><span class="nav-text">基本 CNN 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-one-hot"><span class="nav-text">tf.one_hot()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-梯度"><span class="nav-text">tf 梯度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-gradients"><span class="nav-text">apply_gradients()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-gradients"><span class="nav-text">tf.gradients()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-stop-gradients"><span class="nav-text">tf.stop_gradients()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理梯度"><span class="nav-text">处理梯度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-contrib-slim"><span class="nav-text">tf.contrib.slim</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-contrib-slim-conv2d"><span class="nav-text">tf.contrib.slim.conv2d</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-text">2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待记录"><span class="nav-text">待记录</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

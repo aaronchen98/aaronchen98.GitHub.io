@@ -1,147 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        YOLO 目标检测（五） - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="YOLO 目标检测（五）">
+
+
+
+
+  <meta name="keywords" content="深度学习,目标检测,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2018-04-21-YOLOv1/">
+
+
+<meta name="description" content="1 前言近几年来，目标检测算法取得了很大的突破。比较流行的算法可以分为两类，一类是基于Region Proposal的R-CNN系算法（R-CNN，Fast R-CNN, Faster R-CNN），它们是two-stage的，需要先使用启发式方法（selective search）或者CNN网络（RPN）产生Region Proposal，然后再在Region Proposal上做分类与回归。而">
+<meta name="keywords" content="深度学习,目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLO 目标检测（五）">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2018-04-21-YOLOv1/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="1 前言近几年来，目标检测算法取得了很大的突破。比较流行的算法可以分为两类，一类是基于Region Proposal的R-CNN系算法（R-CNN，Fast R-CNN, Faster R-CNN），它们是two-stage的，需要先使用启发式方法（selective search）或者CNN网络（RPN）产生Region Proposal，然后再在Region Proposal上做分类与回归。而">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-4.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-5.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-6.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-7.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-8.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-9.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-10.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-11.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-12.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YOLO 目标检测（五）">
+<meta name="twitter:description" content="1 前言近几年来，目标检测算法取得了很大的突破。比较流行的算法可以分为两类，一类是基于Region Proposal的R-CNN系算法（R-CNN，Fast R-CNN, Faster R-CNN），它们是two-stage的，需要先使用启发式方法（selective search）或者CNN网络（RPN）产生Region Proposal，然后再在Region Proposal上做分类与回归。而">
+<meta name="twitter:image" content="http://hhyz.me/img/2018-04-21-YOLOv1-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> YOLO 目标检测（五） - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-前言"><span class="toc-text">1 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-YOLOv1"><span class="toc-text">2 YOLOv1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-滑动窗口与CNN"><span class="toc-text">2.1 滑动窗口与CNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-设计理念"><span class="toc-text">2.2 设计理念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-网络设计"><span class="toc-text">2.3 网络设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-网络训练"><span class="toc-text">2.4 网络训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-网络预测"><span class="toc-text">2.5 网络预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-算法性能分析"><span class="toc-text">2.6 算法性能分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          YOLO 目标检测（五）
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        YOLO 目标检测（五）
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#深度学习" title="深度学习">深度学习</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#目标检测" title="目标检测">目标检测</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>近几年来，目标检测算法取得了很大的突破。比较流行的算法可以分为两类，一类是基于Region Proposal的R-CNN系算法（R-CNN，Fast R-CNN, Faster R-CNN），它们是two-stage的，需要先使用启发式方法（selective search）或者CNN网络（RPN）产生Region Proposal，然后再在Region Proposal上做分类与回归。而另一类是Yolo，SSD这类one-stage算法，其仅仅使用一个CNN网络直接预测不同目标的类别与位置。第一类方法是准确度高一些，但是速度慢，但是第二类算法是速度快，但是准确性要低一些。这可以在图2中看到。本文介绍的是Yolo算法，其全称是You Only Look Once: Unified, Real-Time Object Detection，其实个人觉得这个题目取得非常好，基本上把Yolo算法的特点概括全了：You Only Look Once说的是只需要一次CNN运算，Unified指的是这是一个统一的框架，提供end-to-end的预测，而Real-Time体现是Yolo算法速度快。这里我们谈的是Yolo-v1版本算法，其性能是差于后来的SSD算法的，但是Yolo后来也继续进行改进，产生了Yolo9000算法。本文主要讲述Yolo-v1算法的原理，特别是算法的训练与预测中详细细节，最后将给出如何使用TensorFlow实现Yolo算法。</p>
+            <div class="post-content">
+            <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>近几年来，目标检测算法取得了很大的突破。比较流行的算法可以分为两类，一类是基于Region Proposal的R-CNN系算法（R-CNN，Fast R-CNN, Faster R-CNN），它们是two-stage的，需要先使用启发式方法（selective search）或者CNN网络（RPN）产生Region Proposal，然后再在Region Proposal上做分类与回归。而另一类是Yolo，SSD这类one-stage算法，其仅仅使用一个CNN网络直接预测不同目标的类别与位置。第一类方法是准确度高一些，但是速度慢，但是第二类算法是速度快，但是准确性要低一些。这可以在图2中看到。本文介绍的是Yolo算法，其全称是You Only Look Once: Unified, Real-Time Object Detection，其实个人觉得这个题目取得非常好，基本上把Yolo算法的特点概括全了：You Only Look Once说的是只需要一次CNN运算，Unified指的是这是一个统一的框架，提供end-to-end的预测，而Real-Time体现是Yolo算法速度快。这里我们谈的是Yolo-v1版本算法，其性能是差于后来的SSD算法的，但是Yolo后来也继续进行改进，产生了Yolo9000算法。本文主要讲述Yolo-v1算法的原理，特别是算法的训练与预测中详细细节，最后将给出如何使用TensorFlow实现Yolo算法。</p>
 <a id="more"></a>
 
 <h2 id="2-YOLOv1"><a href="#2-YOLOv1" class="headerlink" title="2 YOLOv1"></a>2 YOLOv1</h2><h3 id="2-1-滑动窗口与CNN"><a href="#2-1-滑动窗口与CNN" class="headerlink" title="2.1 滑动窗口与CNN"></a>2.1 滑动窗口与CNN</h3><p>采用滑动窗口的目标检测算法思路非常简单，它将检测问题转化为了图像分类问题。其基本原理就是采用<strong>不同大小和比例</strong>（宽高比）的窗口在整张图片上以一定的步长进行滑动，然后对这些<strong>窗口对应的区域做图像分类</strong>，这样就可以实现对整张图片的检测了。</p>
@@ -266,87 +273,101 @@
 <li><a href="https://github.com/xiaohu2015/DeepLearning_tutorials/blob/master/ObjectDetections/yolo/yolo_tf.py" target="_blank" rel="noopener">源码地址：xiaohu2015/DeepLearning_tutorials</a></li>
 </ol>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+            <a href="/tags/目标检测/">目标检测</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2018-04-22-YOLOv2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">YOLOv2 目标检测（六）</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2018-04-16-FasterRCNN/">
+        <span class="next-text nav-default">Faster R-CNN 目标检测（四）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-YOLOv1"><span class="nav-text">2 YOLOv1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-滑动窗口与CNN"><span class="nav-text">2.1 滑动窗口与CNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-设计理念"><span class="nav-text">2.2 设计理念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-网络设计"><span class="nav-text">2.3 网络设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-网络训练"><span class="nav-text">2.4 网络训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-网络预测"><span class="nav-text">2.5 网络预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-算法性能分析"><span class="nav-text">2.6 算法性能分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

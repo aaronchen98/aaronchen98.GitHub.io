@@ -1,147 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        SPP-Net 目标检测（二） - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="SPP-Net 目标检测（二）">
+
+
+
+
+  <meta name="keywords" content="深度学习,目标检测,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2018-04-11-SPPNet/">
+
+
+<meta name="description" content="SPP-Net简介在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，超长的训练时间（84h）和测试时间（47s），造成这个问题的主要原因就是重复性的卷积计算，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，这也就意味着卷积计算要重复1000-2000次，但是由于ss算法提取到的区域本身就有很多重叠">
+<meta name="keywords" content="深度学习,目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPP-Net 目标检测（二）">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2018-04-11-SPPNet/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="SPP-Net简介在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，超长的训练时间（84h）和测试时间（47s），造成这个问题的主要原因就是重复性的卷积计算，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，这也就意味着卷积计算要重复1000-2000次，但是由于ss算法提取到的区域本身就有很多重叠">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-4.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPP-Net 目标检测（二）">
+<meta name="twitter:description" content="SPP-Net简介在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，超长的训练时间（84h）和测试时间（47s），造成这个问题的主要原因就是重复性的卷积计算，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，这也就意味着卷积计算要重复1000-2000次，但是由于ss算法提取到的区域本身就有很多重叠">
+<meta name="twitter:image" content="http://hhyz.me/img/2018-04-11-SPPNet-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> SPP-Net 目标检测（二） - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SPP-Net简介"><span class="toc-text">SPP-Net简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何共享卷积计算"><span class="toc-text">如何共享卷积计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坐标变换"><span class="toc-text">坐标变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空间金字塔池化"><span class="toc-text">空间金字塔池化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPP-Net训练与测试"><span class="toc-text">SPP-Net训练与测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPP-Net性能评价"><span class="toc-text">SPP-Net性能评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPP-Net的问题"><span class="toc-text">SPP-Net的问题</span></a></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          SPP-Net 目标检测（二）
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        SPP-Net 目标检测（二）
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#深度学习" title="深度学习">深度学习</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#目标检测" title="目标检测">目标检测</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="SPP-Net简介"><a href="#SPP-Net简介" class="headerlink" title="SPP-Net简介"></a>SPP-Net简介</h2><p>在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，<strong>超长的训练时间</strong>（84h）和<strong>测试时间</strong>（47s），造成这个问题的主要原因就是<strong>重复性的卷积计算</strong>，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，<strong>这也就意味着卷积计算要重复1000-2000次</strong>，但是<strong>由于ss算法提取到的区域本身就有很多重叠，所以这种重复计算是非常没有必要的</strong>。 </p>
+            <div class="post-content">
+            <h2 id="SPP-Net简介"><a href="#SPP-Net简介" class="headerlink" title="SPP-Net简介"></a>SPP-Net简介</h2><p>在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，<strong>超长的训练时间</strong>（84h）和<strong>测试时间</strong>（47s），造成这个问题的主要原因就是<strong>重复性的卷积计算</strong>，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，<strong>这也就意味着卷积计算要重复1000-2000次</strong>，但是<strong>由于ss算法提取到的区域本身就有很多重叠，所以这种重复计算是非常没有必要的</strong>。 </p>
 <p>那么能不能只通过一次卷积计算就完成整张图像的特征提取工作呢？这就是SPP-Net的主要贡献，也是在R-CNN之后的很多网络结构的统一目标——<strong>如何共享卷积计算</strong>。</p>
 <p>SPP-Net主要改进有下面两个： </p>
 <ol>
@@ -182,90 +181,104 @@
 <br>
 <br>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">转载自：</span><br><span class="line">http://mp.weixin.qq.com/s?__biz=MzUyMjE2MTE0Mw==&amp;mid=2247484830&amp;idx=1&amp;sn=6f916032c629f980a0ea9230853a6a45&amp;chksm=f9d15b06cea6d2100f395c2cc6cc56c0401792968d810f38fdd52e00cff1abe8a6cf3cbc27ad&amp;scene=21#wechat_redirect</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">转载自：</span><br><span class="line">http://mp.weixin.qq.com/s?__biz=MzUyMjE<span class="number">2</span>MTE<span class="number">0</span>Mw==&amp;mid=<span class="number">2247484830</span>&amp;idx=<span class="number">1</span>&amp;sn=<span class="number">6</span>f<span class="number">916032</span><span class="keyword">c</span><span class="number">629</span>f<span class="number">980</span>a<span class="number">0</span>ea<span class="number">9230853</span>a<span class="number">6</span>a<span class="number">45</span>&amp;chksm=f<span class="number">9</span>d<span class="number">15</span>b<span class="number">06</span>cea<span class="number">6</span>d<span class="number">2100</span>f<span class="number">395</span><span class="keyword">c</span><span class="number">2</span><span class="keyword">cc</span><span class="number">6</span><span class="keyword">cc</span><span class="number">56</span><span class="keyword">c</span><span class="number">0401792968</span>d<span class="number">810</span>f<span class="number">38</span>fdd<span class="number">52e00</span>cff<span class="number">1</span>abe<span class="number">8</span>a<span class="number">6</span>cf<span class="number">3</span>cbc<span class="number">27</span>ad&amp;scene=<span class="number">21</span>#wechat_redirect</span><br></pre></td></tr></table></figure>
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+            <a href="/tags/目标检测/">目标检测</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2018-04-12-FastRCNN/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Fast R-CNN 目标检测（三）</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2018-04-11-RCNN/">
+        <span class="next-text nav-default">R-CNN 目标检测（一）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net简介"><span class="nav-text">SPP-Net简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何共享卷积计算"><span class="nav-text">如何共享卷积计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坐标变换"><span class="nav-text">坐标变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化"><span class="nav-text">空间金字塔池化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net训练与测试"><span class="nav-text">SPP-Net训练与测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net性能评价"><span class="nav-text">SPP-Net性能评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net的问题"><span class="nav-text">SPP-Net的问题</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

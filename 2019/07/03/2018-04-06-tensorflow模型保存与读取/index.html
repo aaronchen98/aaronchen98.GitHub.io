@@ -1,149 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        TesnsorFlow 模型的保存于读取 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="TesnsorFlow 模型的保存于读取">
+
+
+
+
+  <meta name="keywords" content="python,深度学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2018-04-06-tensorflow模型保存与读取/">
+
+
+<meta name="description" content="模型的保存于读取保存12345678910111213141516import tensorflow as tf# 声明两个变量v1 = tf.Variable(tf.random_normal([1, 2]), name=&quot;v1&quot;)v2 = tf.Variable(tf.random_normal([2, 3]), name=&quot;v2&quot;)init_op = tf.global_variables_">
+<meta name="keywords" content="python,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TesnsorFlow 模型的保存于读取">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2018-04-06-tensorflow模型保存与读取/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="模型的保存于读取保存12345678910111213141516import tensorflow as tf# 声明两个变量v1 = tf.Variable(tf.random_normal([1, 2]), name=&quot;v1&quot;)v2 = tf.Variable(tf.random_normal([2, 3]), name=&quot;v2&quot;)init_op = tf.global_variables_">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.594Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TesnsorFlow 模型的保存于读取">
+<meta name="twitter:description" content="模型的保存于读取保存12345678910111213141516import tensorflow as tf# 声明两个变量v1 = tf.Variable(tf.random_normal([1, 2]), name=&quot;v1&quot;)v2 = tf.Variable(tf.random_normal([2, 3]), name=&quot;v2&quot;)init_op = tf.global_variables_">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> TesnsorFlow 模型的保存于读取 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模型的保存于读取"><span class="toc-text">模型的保存于读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#保存"><span class="toc-text">保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取"><span class="toc-text">读取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据增强"><span class="toc-text">数据增强</span></a></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          TesnsorFlow 模型的保存于读取
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
+            <div class="post-content">
+            <h2 id="模型的保存于读取"><a href="#模型的保存于读取" class="headerlink" title="模型的保存于读取"></a>模型的保存于读取</h2><h3 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明两个变量</span></span><br><span class="line">v1 = tf.Variable(tf.random_normal([<span class="number">1</span>, <span class="number">2</span>]), name=<span class="string">"v1"</span>)</span><br><span class="line">v2 = tf.Variable(tf.random_normal([<span class="number">2</span>, <span class="number">3</span>]), name=<span class="string">"v2"</span>)</span><br><span class="line">init_op = tf.global_variables_initializer() <span class="comment"># 初始化全部变量</span></span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver() <span class="comment"># 声明tf.train.Saver类用于保存模型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    print(<span class="string">"v1:"</span>, sess.run(v1)) <span class="comment"># 打印v1、v2的值一会读取之后对比</span></span><br><span class="line">    print(<span class="string">"v2:"</span>, sess.run(v2))</span><br><span class="line">    </span><br><span class="line">    saver_path = saver.save(sess, <span class="string">"save/model.ckpt"</span>)  <span class="comment"># 将模型保存到save/model.ckpt文件</span></span><br><span class="line">    print(<span class="string">"Model saved in file:"</span>, saver_path)</span><br></pre></td></tr></table></figure>
 
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        TesnsorFlow 模型的保存于读取
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#python" title="python">python</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#深度学习" title="深度学习">深度学习</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="模型的保存于读取"><a href="#模型的保存于读取" class="headerlink" title="模型的保存于读取"></a>模型的保存于读取</h2><h3 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明两个变量</span></span><br><span class="line">v1 = tf.Variable(tf.random_normal([<span class="number">1</span>, <span class="number">2</span>]), name=<span class="string">"v1"</span>)</span><br><span class="line">v2 = tf.Variable(tf.random_normal([<span class="number">2</span>, <span class="number">3</span>]), name=<span class="string">"v2"</span>)</span><br><span class="line">init_op = tf.global_variables_initializer() <span class="comment"># 初始化全部变量</span></span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver() <span class="comment"># 声明tf.train.Saver类用于保存模型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    print(<span class="string">"v1:"</span>, sess.run(v1)) <span class="comment"># 打印v1、v2的值一会读取之后对比</span></span><br><span class="line">    print(<span class="string">"v2:"</span>, sess.run(v2))</span><br><span class="line">    </span><br><span class="line">    saver_path = saver.save(sess, <span class="string">"save/model.ckpt"</span>)  <span class="comment"># 将模型保存到save/model.ckpt文件</span></span><br><span class="line">    print(<span class="string">"Model saved in file:"</span>, saver_path)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v1: [[-0.33648431 -0.46078524]]</span><br><span class="line">v2: [[-0.73017526 -0.42726403  1.74622989]</span><br><span class="line"> [-1.50939059 -0.87901741  0.94227242]]</span><br><span class="line">Model saved in file: save/model.ckpt</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v1: <span class="string">[[-0.33648431 -0.46078524]]</span></span><br><span class="line">v2: <span class="string">[[-0.73017526 -0.42726403  1.74622989]</span></span><br><span class="line"><span class="string"> [-1.50939059 -0.87901741  0.94227242]]</span></span><br><span class="line">Model saved <span class="keyword">in</span> file: save/model.ckpt</span><br></pre></td></tr></table></figure>
 
 <p>这段代码中，通过saver.save函数将TensorFlow模型保存到了save/model.ckpt文件中，这里代码中指定路径为”save/model.ckpt”，也就是保存到了当前程序所在文件夹里面的save文件夹中。</p>
 <a id="more"></a>
@@ -157,14 +151,14 @@
 <h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p><strong>方法1</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用和保存模型代码中一样的方式来声明变量</span></span><br><span class="line">v1 = tf.Variable(tf.random_normal([<span class="number">1</span>, <span class="number">2</span>]), name=<span class="string">"v1"</span>)</span><br><span class="line">v2 = tf.Variable(tf.random_normal([<span class="number">2</span>, <span class="number">3</span>]), name=<span class="string">"v2"</span>)</span><br><span class="line">saver = tf.train.Saver() <span class="comment"># 声明tf.train.Saver类用于保存模型</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    saver.restore(sess, <span class="string">"save/model.ckpt"</span>) <span class="comment"># 即将固化到硬盘中的Session从保存路径再读取出来</span></span><br><span class="line">    print(<span class="string">"v1:"</span>, sess.run(v1)) <span class="comment"># 打印v1、v2的值和之前的进行对比</span></span><br><span class="line">    print(<span class="string">"v2:"</span>, sess.run(v2))</span><br><span class="line">    print(<span class="string">"Model Restored"</span>)</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v1: [[ 0.22189325  0.81017244]]</span><br><span class="line">v2: [[-0.99802715 -0.54230249  1.92878962]</span><br><span class="line"> [ 1.04581845  0.25543991 -0.6358065 ]]</span><br><span class="line">Model Restored</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v1: <span class="string">[[ 0.22189325  0.81017244]]</span></span><br><span class="line">v2: <span class="string">[[-0.99802715 -0.54230249  1.92878962]</span></span><br><span class="line"><span class="string"> [ 1.04581845  0.25543991 -0.6358065 ]]</span></span><br><span class="line">Model Restored</span><br></pre></td></tr></table></figure>
 
 <p>这段加载模型的代码基本上和保存模型的代码是一样的。也是先定义了TensorFlow计算图上所有的运算，并声明了一个tf.train.Saver类。两段唯一的不同是，在加载模型的代码中没有运行变量的初始化过程，而是将变量的值通过已经保存的模型加载进来。 </p>
 <p><strong>方法2</strong></p>
 <p>如果不希望重复定义图上的运算，也可以直接加载已经持久化的图：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="comment"># 在下面的代码中，默认加载了TensorFlow计算图上定义的全部变量</span></span><br><span class="line"><span class="comment"># 直接加载持久化的图</span></span><br><span class="line">saver = tf.train.import_meta_graph(<span class="string">"save/model.ckpt.meta"</span>)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    saver.restore(sess, <span class="string">"save/model.ckpt"</span>)</span><br><span class="line">    <span class="comment"># 通过张量的名称来获取张量</span></span><br><span class="line">    print(sess.run(tf.get_default_graph().get_tensor_by_name(<span class="string">"v1:0"</span>)))</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[ 0.22189325  0.81017244]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[[ 0.22189325  0.81017244]]</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>恢复操作和其它元数据</strong></p>
 <p>我想分享的最后一个信息是，<strong>Saver</strong>将保存与图有关联的任何元数据。这就意味着，当我们恢复一个模型的时候，我们还同时恢复了所有与图相关的变量、操作和集合。</p>
@@ -193,88 +187,102 @@
 <h2 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 随机裁剪图片</span></span><br><span class="line"><span class="comment"># Randomly crop a [height, width] section of the image.</span></span><br><span class="line">distorted_image = tf.random_crop(reshaped_image, [height, width, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机翻转图片，每张图片有50%的概率被水平左右翻转，另有50%的概率保持不变</span></span><br><span class="line"><span class="comment"># Randomly flip the image horizontally.</span></span><br><span class="line">distorted_image = tf.image.random_flip_left_right(distorted_image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机改变亮度和对比度</span></span><br><span class="line"><span class="comment"># Because these operations are not commutative, consider randomizing</span></span><br><span class="line"><span class="comment"># the order their operation.</span></span><br><span class="line">distorted_image = tf.image.random_brightness(distorted_image,</span><br><span class="line">                                             max_delta=<span class="number">63</span>)</span><br><span class="line">distorted_image = tf.image.random_contrast(distorted_image,</span><br><span class="line">                                           lower=<span class="number">0.2</span>, upper=<span class="number">1.8</span>)</span><br></pre></td></tr></table></figure>
 
 <p>原始的训练图片是 <code>reshaped_image</code>，最后会得到一个数据增强后的训练样本 <code>distorted_image</code>。 训练时，直接使用 <code>distorted_image</code> 进行训练即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">转载与参考：</span><br><span class="line">http://www.cnblogs.com/seaspring/  </span><br><span class="line">https://www.jianshu.com/p/8487db911d9a</span><br></pre></td></tr></table></figure>
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">转载与参考：</span><br><span class="line">http:<span class="regexp">//</span>www.cnblogs.com<span class="regexp">/seaspring/</span>  </span><br><span class="line">https:<span class="regexp">//</span>www.jianshu.com<span class="regexp">/p/</span><span class="number">8487</span>db911d9a</span><br></pre></td></tr></table></figure>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/python/">python</a>
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2018-04-11-MathJax/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">MathJax 使用指南</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2018-04-05-matplotlib/">
+        <span class="next-text nav-default">matplotlib 绘图与显示图像</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的保存于读取"><span class="nav-text">模型的保存于读取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#保存"><span class="nav-text">保存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取"><span class="nav-text">读取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据增强"><span class="nav-text">数据增强</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

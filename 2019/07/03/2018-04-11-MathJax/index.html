@@ -1,150 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        MathJax 使用指南 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="MathJax 使用指南">
+
+
+
+
+  <meta name="keywords" content="mathjax,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2018-04-11-MathJax/">
+
+
+<meta name="description" content="1 使用Google Chart的服务器&amp;lt;img src=&amp;quot;http://chart.googleapis.com/chart?cht=tx&amp;amp;chl= 在此插入Latex公式&amp;quot; style=&amp;quot;border:none;&amp;quot;&amp;gt;例子：&amp;lt;img src=&amp;quot;http://chart.googleapis.com/chart?cht=t">
+<meta name="keywords" content="mathjax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathJax 使用指南">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2018-04-11-MathJax/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="1 使用Google Chart的服务器&amp;lt;img src=&amp;quot;http://chart.googleapis.com/chart?cht=tx&amp;amp;chl= 在此插入Latex公式&amp;quot; style=&amp;quot;border:none;&amp;quot;&amp;gt;例子：&amp;lt;img src=&amp;quot;http://chart.googleapis.com/chart?cht=t">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MathJax 使用指南">
+<meta name="twitter:description" content="1 使用Google Chart的服务器&amp;lt;img src=&amp;quot;http://chart.googleapis.com/chart?cht=tx&amp;amp;chl= 在此插入Latex公式&amp;quot; style=&amp;quot;border:none;&amp;quot;&amp;gt;例子：&amp;lt;img src=&amp;quot;http://chart.googleapis.com/chart?cht=t">
+<meta name="twitter:image" content="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> MathJax 使用指南 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-使用Google-Chart的服务器"><span class="toc-text">1 使用Google Chart的服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用MathJax引擎"><span class="toc-text">2 使用MathJax引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-mathjax-常用符号"><span class="toc-text">3 mathjax 常用符号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#绝对值符号"><span class="toc-text">绝对值符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方程组"><span class="toc-text">方程组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特殊符号"><span class="toc-text">特殊符号</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-参考："><span class="toc-text">4 参考：</span></a></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          MathJax 使用指南
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        MathJax 使用指南
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#mathjax" title="mathjax">mathjax</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="1-使用Google-Chart的服务器"><a href="#1-使用Google-Chart的服务器" class="headerlink" title="1 使用Google Chart的服务器"></a>1 使用Google Chart的服务器</h2><p><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code><br>例子：<br><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot; style=&quot;border:none;&quot;&gt;</code><br>显示结果:</p>
+            <div class="post-content">
+            <h2 id="1-使用Google-Chart的服务器"><a href="#1-使用Google-Chart的服务器" class="headerlink" title="1 使用Google Chart的服务器"></a>1 使用Google Chart的服务器</h2><p><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code><br>例子：<br><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot; style=&quot;border:none;&quot;&gt;</code><br>显示结果:</p>
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;">
 
 <a id="more"></a>
 
 <h2 id="2-使用MathJax引擎"><a href="#2-使用MathJax引擎" class="headerlink" title="2 使用MathJax引擎"></a>2 使用MathJax引擎</h2><p>在Markdown中添加MathJax引擎也很简单，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>然后，再使用Tex写公式。 </p>
 <ul>
@@ -152,13 +151,13 @@
 <li>本来Tex中使用 <code>\(公式\)</code> 表示行内公式，但因为Markdown中 <code>\</code> 是转义字符，所以在Markdown中输入行内公式使用 <code>\\(公式\\)</code></li>
 </ul>
 <p>如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$x=\frac&#123;-b\pm\sqrt&#123;b^2-4ac&#125;&#125;&#123;2a&#125;$$      # 行间公式</span><br><span class="line"></span><br><span class="line">\\(x=\frac&#123;-b\pm\sqrt&#123;b^2-4ac&#125;&#125;&#123;2a&#125;\\)    # 行内公式</span><br><span class="line">$h(x) = \theta_0 + \theta_1 x$            # 行内公式</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>x=\<span class="built-in">frac</span>&#123;-b\pm\<span class="built-in">sqrt</span>&#123;b^<span class="number">2</span><span class="number">-4</span>ac&#125;&#125;&#123;<span class="number">2</span>a&#125;<span class="symbol">$</span><span class="symbol">$</span>      # 行间公式</span><br><span class="line"></span><br><span class="line">\\(x=\<span class="built-in">frac</span>&#123;-b\pm\<span class="built-in">sqrt</span>&#123;b^<span class="number">2</span><span class="number">-4</span>ac&#125;&#125;&#123;<span class="number">2</span>a&#125;\\)    # 行内公式</span><br><span class="line"><span class="meta"><span class="meta-keyword">$h</span>(x) = \theta_0 + \theta_1 x$            # 行内公式</span></span><br></pre></td></tr></table></figure>
 
 <p>分别显示结果（行间公式）：</p>
 <p>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$ </p>
 <p>行内公式：<br>\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)</p>
 <h2 id="3-mathjax-常用符号"><a href="#3-mathjax-常用符号" class="headerlink" title="3 mathjax 常用符号"></a>3 mathjax 常用符号</h2><h4 id="绝对值符号"><a href="#绝对值符号" class="headerlink" title="绝对值符号"></a>绝对值符号</h4><p><code>\vert x \vert</code>: \(\vert x \vert\) </p>
-<h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;cases&#125;</span><br><span class="line">a_1x+b_1y+c_1z=d_1\\</span><br><span class="line">a_2x+b_2y+c_2z=d_2\\</span><br><span class="line">a_3x+b_3y+c_3z=d_3\\</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="formula">$$<span class="tag">\<span class="name">begin</span><span class="string">&#123;cases&#125;</span></span></span></span><br><span class="line"><span class="formula">a_1x+b_1y+c_1z=d_1<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula">a_2x+b_2y+c_2z=d_2<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula">a_3x+b_3y+c_3z=d_3<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">end</span><span class="string">&#123;cases&#125;</span></span></span></span><br><span class="line"><span class="formula">$$</span></span><br></pre></td></tr></table></figure>
 
 <p>$$\begin{cases}<br>a_1x+b_1y+c_1z=d_1\\<br>a_2x+b_2y+c_2z=d_2\\<br>a_3x+b_3y+c_3z=d_3\\<br>\end{cases}<br>$$</p>
 <h4 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h4><table>
@@ -214,87 +213,99 @@
 </ol>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/mathjax/">mathjax</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2018-04-11-ObjectDetection/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">综述|基于深度学习的目标检测</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2018-04-06-tensorflow模型保存与读取/">
+        <span class="next-text nav-default">TesnsorFlow 模型的保存于读取</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用Google-Chart的服务器"><span class="nav-text">1 使用Google Chart的服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用MathJax引擎"><span class="nav-text">2 使用MathJax引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-mathjax-常用符号"><span class="nav-text">3 mathjax 常用符号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对值符号"><span class="nav-text">绝对值符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方程组"><span class="nav-text">方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊符号"><span class="nav-text">特殊符号</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#4-参考："><span class="nav-text">4 参考：</span></a></li></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

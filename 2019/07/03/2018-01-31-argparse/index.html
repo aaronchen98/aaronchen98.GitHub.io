@@ -1,144 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        argparse 模块总结 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="argparse 模块总结">
+
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2018-01-31-argparse/">
+
+
+<meta name="description" content="使用步骤： import argparse parser = argparse.ArgumentParser() parser.add_argument() parser.parse_args()   首先导入该模块 然后创建一个解析对象 然后向该对象中添加你要关注的命令行参数和选项，每一个add_argument方法对应一个你要关注的参数或选项 最后调用parse_args()方法进行解析；解析">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="argparse 模块总结">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2018-01-31-argparse/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="使用步骤： import argparse parser = argparse.ArgumentParser() parser.add_argument() parser.parse_args()   首先导入该模块 然后创建一个解析对象 然后向该对象中添加你要关注的命令行参数和选项，每一个add_argument方法对应一个你要关注的参数或选项 最后调用parse_args()方法进行解析；解析">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.571Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="argparse 模块总结">
+<meta name="twitter:description" content="使用步骤： import argparse parser = argparse.ArgumentParser() parser.add_argument() parser.parse_args()   首先导入该模块 然后创建一个解析对象 然后向该对象中添加你要关注的命令行参数和选项，每一个add_argument方法对应一个你要关注的参数或选项 最后调用parse_args()方法进行解析；解析">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> argparse 模块总结 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用步骤："><span class="toc-text">使用步骤：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add-argument-常用的参数"><span class="toc-text">add_argument() 常用的参数</span></a></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          argparse 模块总结
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
-
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        argparse 模块总结
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#python" title="python">python</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h2 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h2><ol>
+            <div class="post-content">
+            <h2 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h2><ol>
 <li><code>import argparse</code></li>
 <li><code>parser = argparse.ArgumentParser()</code></li>
 <li><code>parser.add_argument()</code></li>
@@ -151,94 +148,106 @@
 <li>最后调用parse_args()方法进行解析；解析成功之后即可使用</li>
 </ul>
 <a id="more"></a>
-<h2 id="add-argument-常用的参数"><a href="#add-argument-常用的参数" class="headerlink" title="add_argument() 常用的参数"></a>add_argument() 常用的参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">方法add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])</span><br><span class="line">```    </span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">`name or flags`：命令行参数名或者选项，如上面的address或者-p,--port.其中命令行参数如果没给定，且没有设置defualt，则出错。但是如果是选项的话，则设置为None</span><br><span class="line"></span><br><span class="line">`nargs`：命令行参数的个数，一般使用通配符表示，其中，`?`表示只用一个，`*`表示0到多个，`+`表示至少一个</span><br><span class="line"></span><br><span class="line">`dest`：如果提供dest，例如dest=&quot;a&quot;，那么可以通过args.a访问该参数</span><br><span class="line"></span><br><span class="line">`default`：设置参数的默认值</span><br><span class="line"></span><br><span class="line">`version`：打印程序版本信息</span><br><span class="line"></span><br><span class="line">`type`：把从命令行输入的结果转成设置的类型</span><br><span class="line"></span><br><span class="line">`help`：参数命令的介绍</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 示例</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">import argparse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def build_arg_parser():</span><br><span class="line">    parser = argparse.ArgumentParser(description=&apos;Compress the input image \</span><br><span class="line">            using clustering&apos;)</span><br><span class="line">    parser.add_argument(&quot;--input-file&quot;, dest=&quot;input_file&quot;, required=True,</span><br><span class="line">            help=&quot;Input image&quot;)</span><br><span class="line">    parser.add_argument(&quot;--num-bits&quot;, dest=&quot;num_bits&quot;, required=False,</span><br><span class="line">            type=int, help=&quot;Number of bits used to represent each pixel&quot;)</span><br><span class="line">    return parser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__==&apos;__main__&apos;:</span><br><span class="line">    args = build_arg_parser().parse_args()</span><br><span class="line">    input_file = args.input_file</span><br><span class="line">    num_bits = args.num_bits</span><br><span class="line">    </span><br><span class="line">    print(input_file)</span><br><span class="line">    print(num_bits)</span><br></pre></td></tr></table></figure>
+<h2 id="add-argument-常用的参数"><a href="#add-argument-常用的参数" class="headerlink" title="add_argument() 常用的参数"></a>add_argument() 常用的参数</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">方法add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, <span class="keyword">help</span>][, metavar][, dest])</span><br><span class="line"><span class="string">``</span><span class="string">`    </span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">`</span><span class="keyword">name</span> <span class="keyword">or</span> flags<span class="string">`：命令行参数名或者选项，如上面的address或者-p,--port.其中命令行参数如果没给定，且没有设置defualt，则出错。但是如果是选项的话，则设置为None</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span>nargs<span class="string">`：命令行参数的个数，一般使用通配符表示，其中，`</span>?<span class="string">`表示只用一个，`</span>*<span class="string">`表示0到多个，`</span>+<span class="string">`表示至少一个</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span>dest<span class="string">`：如果提供dest，例如dest="a"，那么可以通过args.a访问该参数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="keyword">default</span><span class="string">`：设置参数的默认值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="keyword">version</span><span class="string">`：打印程序版本信息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="keyword">type</span><span class="string">`：把从命令行输入的结果转成设置的类型</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="keyword">help</span><span class="string">`：参数命令的介绍</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 示例</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>python</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> build_arg_parser():</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">'Compress the input image \</span></span><br><span class="line"><span class="string">            using clustering'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">"--input-file"</span>, dest=<span class="string">"input_file"</span>, <span class="keyword">required</span>=<span class="literal">True</span>,</span><br><span class="line">            <span class="keyword">help</span>=<span class="string">"Input image"</span>)</span><br><span class="line">    parser.add_argument(<span class="string">"--num-bits"</span>, dest=<span class="string">"num_bits"</span>, <span class="keyword">required</span>=<span class="literal">False</span>,</span><br><span class="line">            <span class="keyword">type</span>=<span class="built_in">int</span>, <span class="keyword">help</span>=<span class="string">"Number of bits used to represent each pixel"</span>)</span><br><span class="line">    <span class="keyword">return</span> parser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    args = build_arg_parser().parse_args()</span><br><span class="line">    input_file = args.input_file</span><br><span class="line">    num_bits = args.num_bits</span><br><span class="line">    </span><br><span class="line">    print(input_file)</span><br><span class="line">    print(num_bits)</span><br></pre></td></tr></table></figure>
 
 <p>在命令行中输入:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~  python /Users/aaron/code/argparse1.py --input-file /Users/aaron/Desktop/1.png --num-bits 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~  python <span class="regexp">/Users/</span>aaron<span class="regexp">/code/</span>argparse1.py --input-<span class="keyword">file</span> <span class="regexp">/Users/</span>aaron<span class="regexp">/Desktop/</span><span class="number">1</span>.png --num-bits <span class="number">8</span></span><br></pre></td></tr></table></figure>
 
 <p>得到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/Users/aaron/Desktop/p/下载.png</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/Users<span class="meta-keyword">/aaron/</span>Desktop<span class="meta-keyword">/p/</span>下载.png</span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/python/">python</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2018-02-21-CNN/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">卷积神经网络基础知识点</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2018-01-24-sklearn/">
+        <span class="next-text nav-default">sklearn 使用总结</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用步骤："><span class="nav-text">使用步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-argument-常用的参数"><span class="nav-text">add_argument() 常用的参数</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

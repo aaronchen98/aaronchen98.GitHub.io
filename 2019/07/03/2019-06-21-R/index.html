@@ -1,146 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        R 语言入门 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="R 语言入门">
+
+
+
+
+  <meta name="keywords" content="R 语言,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/07/03/2019-06-21-R/">
+
+
+<meta name="description" content="数据结构1. Vectors12345678910111213141516171819202122232425262728# 创建向量a &amp;lt;-c(1, 2, 3, 4, 5, 6)b &amp;lt;-c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;)c &amp;lt;-c(TRUE, FALSE, TRUE, TRUE, FALSE)&amp;gt; 5:1[1] 5 4 3 2 1&amp;gt; 2*(1:5)[1]">
+<meta name="keywords" content="R 语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R 语言入门">
+<meta property="og:url" content="http://hhyz.me/2019/07/03/2019-06-21-R/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="数据结构1. Vectors12345678910111213141516171819202122232425262728# 创建向量a &amp;lt;-c(1, 2, 3, 4, 5, 6)b &amp;lt;-c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;)c &amp;lt;-c(TRUE, FALSE, TRUE, TRUE, FALSE)&amp;gt; 5:1[1] 5 4 3 2 1&amp;gt; 2*(1:5)[1]">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2019-06-21-R-1.jpg">
+<meta property="og:updated_time" content="2019-07-03T20:33:42.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R 语言入门">
+<meta name="twitter:description" content="数据结构1. Vectors12345678910111213141516171819202122232425262728# 创建向量a &amp;lt;-c(1, 2, 3, 4, 5, 6)b &amp;lt;-c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;)c &amp;lt;-c(TRUE, FALSE, TRUE, TRUE, FALSE)&amp;gt; 5:1[1] 5 4 3 2 1&amp;gt; 2*(1:5)[1]">
+<meta name="twitter:image" content="http://hhyz.me/img/2019-06-21-R-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> R 语言入门 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vectors"><span class="toc-text">1. Vectors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-矩阵"><span class="toc-text">2. 矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-数组"><span class="toc-text">3. 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Data-Frame"><span class="toc-text">4. Data Frame</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#合并"><span class="toc-text">合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型转换"><span class="toc-text">类型转换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实践"><span class="toc-text">实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#读取-CSV"><span class="toc-text">读取 CSV</span></a></li></ol></li></ol>
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
 </div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          R 语言入门
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 3 2019
+      </time>
+    </header>
+
+
+
     
-</div>
+            <div class="post-content">
+            <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-Vectors"><a href="#1-Vectors" class="headerlink" title="1. Vectors"></a>1. Vectors</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建向量</span></span><br><span class="line">a &lt;-c(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">b &lt;-c(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>)</span><br><span class="line">c &lt;-c(<span class="literal">TRUE</span>, <span class="literal">FALSE</span>, <span class="literal">TRUE</span>, <span class="literal">TRUE</span>, <span class="literal">FALSE</span>)</span><br><span class="line"></span><br><span class="line">&gt; <span class="number">5</span>:<span class="number">1</span></span><br><span class="line">[<span class="number">1</span>] <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="number">2</span>*(<span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line">[<span class="number">1</span>]  <span class="number">2</span>  <span class="number">4</span>  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">&gt; rep(<span class="number">1</span>,<span class="number">9</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt; rep(c(<span class="number">1</span>,<span class="number">0</span>,<span class="number">4</span>), each=<span class="number">3</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">4</span> <span class="number">4</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line">&gt; seq(<span class="number">1</span>,<span class="number">3</span>, by=<span class="number">0.2</span>)</span><br><span class="line">&gt; seq(from=<span class="number">1</span>, to=<span class="number">3</span>, by=<span class="number">0.2</span>)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">1.0</span> <span class="number">1.2</span> <span class="number">1.4</span> <span class="number">1.6</span> <span class="number">1.8</span> <span class="number">2.0</span> <span class="number">2.2</span> <span class="number">2.4</span> <span class="number">2.6</span> <span class="number">2.8</span> <span class="number">3.0</span></span><br><span class="line"> </span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1</span>, by=-<span class="number">0.2</span>)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">3.0</span> <span class="number">2.8</span> <span class="number">2.6</span> <span class="number">2.4</span> <span class="number">2.2</span> <span class="number">2.0</span> <span class="number">1.8</span> <span class="number">1.6</span> <span class="number">1.4</span> <span class="number">1.2</span> <span class="number">1.0</span></span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1</span>, by=<span class="number">0.2</span>)</span><br><span class="line">Error <span class="keyword">in</span> seq.default(<span class="number">3</span>, <span class="number">1</span>, by = <span class="number">0.2</span>) : wrong sign <span class="keyword">in</span> <span class="string">'by'</span> argument</span><br><span class="line"></span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1.1</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">3</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        R 语言入门
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-03 01:05:20</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#R 语言" title="R 语言">R 语言</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-Vectors"><a href="#1-Vectors" class="headerlink" title="1. Vectors"></a>1. Vectors</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建向量</span></span><br><span class="line">a &lt;-c(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">b &lt;-c(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>)</span><br><span class="line">c &lt;-c(<span class="literal">TRUE</span>, <span class="literal">FALSE</span>, <span class="literal">TRUE</span>, <span class="literal">TRUE</span>, <span class="literal">FALSE</span>)</span><br><span class="line"></span><br><span class="line">&gt; <span class="number">5</span>:<span class="number">1</span></span><br><span class="line">[<span class="number">1</span>] <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="number">2</span>*(<span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line">[<span class="number">1</span>]  <span class="number">2</span>  <span class="number">4</span>  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">&gt; rep(<span class="number">1</span>,<span class="number">9</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt; rep(c(<span class="number">1</span>,<span class="number">0</span>,<span class="number">4</span>), each=<span class="number">3</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">4</span> <span class="number">4</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line">&gt; seq(<span class="number">1</span>,<span class="number">3</span>, by=<span class="number">0.2</span>)</span><br><span class="line">&gt; seq(from=<span class="number">1</span>, to=<span class="number">3</span>, by=<span class="number">0.2</span>)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">1.0</span> <span class="number">1.2</span> <span class="number">1.4</span> <span class="number">1.6</span> <span class="number">1.8</span> <span class="number">2.0</span> <span class="number">2.2</span> <span class="number">2.4</span> <span class="number">2.6</span> <span class="number">2.8</span> <span class="number">3.0</span></span><br><span class="line"> </span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1</span>, by=-<span class="number">0.2</span>)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">3.0</span> <span class="number">2.8</span> <span class="number">2.6</span> <span class="number">2.4</span> <span class="number">2.2</span> <span class="number">2.0</span> <span class="number">1.8</span> <span class="number">1.6</span> <span class="number">1.4</span> <span class="number">1.2</span> <span class="number">1.0</span></span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1</span>, by=<span class="number">0.2</span>)</span><br><span class="line">Error <span class="keyword">in</span> seq.default(<span class="number">3</span>, <span class="number">1</span>, by = <span class="number">0.2</span>) : wrong sign <span class="keyword">in</span> <span class="string">'by'</span> argument</span><br><span class="line"></span><br><span class="line">&gt; seq(<span class="number">3</span>,<span class="number">1.1</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="number">3</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 向量索引</span><br><span class="line">a[2]  # 第二个元素    </span><br><span class="line"># [1] 2</span><br><span class="line">a[-2] # 删除第二个元素，a 还是原来的 a</span><br><span class="line"># [1] 1 3 4 5 6</span><br><span class="line">a[c(2:4)] # 取出第二到第四个元素</span><br><span class="line"># [1] 2 3 4</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 向量索引</span></span><br><span class="line"><span class="keyword">a</span>[<span class="number">2</span>]  <span class="comment"># 第二个元素    </span></span><br><span class="line"><span class="comment"># [1] 2</span></span><br><span class="line"><span class="keyword">a</span>[<span class="number">-2</span>] <span class="comment"># 删除第二个元素，a 还是原来的 a</span></span><br><span class="line"><span class="comment"># [1] 1 3 4 5 6</span></span><br><span class="line"><span class="keyword">a</span>[c(<span class="number">2</span>:<span class="number">4</span>)] <span class="comment"># 取出第二到第四个元素</span></span><br><span class="line"><span class="comment"># [1] 2 3 4</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="2-矩阵"><a href="#2-矩阵" class="headerlink" title="2. 矩阵"></a>2. 矩阵</h2><p><strong>二维数组</strong></p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建矩阵</span></span><br><span class="line">mymat &lt;- matrix(c(<span class="number">1</span>:<span class="number">10</span>), nrow=<span class="number">2</span>, ncol=<span class="number">5</span>, byrow=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
@@ -148,7 +147,7 @@
 <p>得到：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">6</span>    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span>   <span class="number">10</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#矩阵索引</span><br><span class="line">mymat[2,]   # 取第二行</span><br><span class="line">mymat[,2]   # 取第二列</span><br><span class="line">mymat[1,5]  # 第一行第五列的元素</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#矩阵索引</span></span><br><span class="line">mymat[<span class="number">2</span>,]   <span class="comment"># 取第二行</span></span><br><span class="line">mymat[,<span class="number">2</span>]   <span class="comment"># 取第二列</span></span><br><span class="line">mymat[<span class="number">1</span>,<span class="number">5</span>]  <span class="comment"># 第一行第五列的元素</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nrow(mymat)  <span class="comment"># 获取行数</span></span><br><span class="line">ncol(mymat)  <span class="comment"># 获取列数</span></span><br></pre></td></tr></table></figure>
 
@@ -189,87 +188,99 @@
 </ul>
 <p>如果分割符号为逗号，那么也可以用 <code>read.csv</code>，并且不用写 <code>seq</code> 参数：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataset &lt;- read.csv(<span class="string">"C:\\Datasets\\haberman.csv"</span>, header=<span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
+            </div>
+          
 
-        <div id="lv-container">
-        </div>
-
-    </div>
-</div>
-
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/R-语言/">R 语言</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/03/2019-06-24-norm/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Normalization</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/03/2019-04-25-Clustering/">
+        <span class="next-text nav-default">聚类</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Vectors"><span class="nav-text">1. Vectors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-矩阵"><span class="nav-text">2. 矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数组"><span class="nav-text">3. 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Data-Frame"><span class="nav-text">4. Data Frame</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合并"><span class="nav-text">合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-text">类型转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实践"><span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读取-CSV"><span class="nav-text">读取 CSV</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
 
 
 
 
-</body>
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-
-
+  </body>
 </html>

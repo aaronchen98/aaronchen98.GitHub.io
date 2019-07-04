@@ -1,186 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-
-    <title>
-        
-        c++ 动态内存管理 - 浩瀚宇宙的博客 | AaronChen&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-</head>
-
-<body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i>  </i>
-</div>
-
-<div class="index-container">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
     
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/header.jpg" />
-        </div>
-        <div class="name">
-            <i>haoyu</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    
-</div>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
 
 
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
-    
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-    </div>
-</div>
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-        <li>
-            <a target="_blank" href="https://www.zhihu.com/people/haoyuachen">
-                            <span class="fa-stack fa-lg">
-                                 <i class="iconfont icon-zhihu"></i>
-                            </span>
-            </a>
-        </li>
-        
 
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/aaronchen98">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://www.linkedin.com/in/浩宇-陈-97b3a9151">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-linkedin"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-    </ul>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+  <meta name="description" content="c++ 动态内存管理">
 
 
 
 
-</body>
+  <meta name="keywords" content=",">
 
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = false
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/准备/2019-04-02-12-DynamicMemoryManagement.html">
+
+
+<meta name="description" content="基础C++ 程序中的内存分为两个部分：  栈：在函数内部声明的所有变量都将占用栈内存。 堆：这是程序中未使用的内存，在程序运行时可用于动态分配内存。  很多时候，您无法提前预知需要多少内存来存储某个定义变量中的特定信息，所需内存的大小需要在运行时才能确定。 例如，当需要的内存取决于用户输入。 在这些情况下，程序需要动态分配内存。 在 C++ 中，可以使用 new 运算符为给定类型的变量在运行时分配">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="website">
+<meta property="og:title" content="c++ 动态内存管理">
+<meta property="og:url" content="http://hhyz.me/准备/2019-04-02-12-DynamicMemoryManagement.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="基础C++ 程序中的内存分为两个部分：  栈：在函数内部声明的所有变量都将占用栈内存。 堆：这是程序中未使用的内存，在程序运行时可用于动态分配内存。  很多时候，您无法提前预知需要多少内存来存储某个定义变量中的特定信息，所需内存的大小需要在运行时才能确定。 例如，当需要的内存取决于用户输入。 在这些情况下，程序需要动态分配内存。 在 C++ 中，可以使用 new 运算符为给定类型的变量在运行时分配">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-02-12-DynamicMemoryManagement-2.png">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-02-12-DynamicMemoryManagement-1.png">
+<meta property="og:updated_time" content="2019-07-02T17:09:45.498Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++ 动态内存管理">
+<meta name="twitter:description" content="基础C++ 程序中的内存分为两个部分：  栈：在函数内部声明的所有变量都将占用栈内存。 堆：这是程序中未使用的内存，在程序运行时可用于动态分配内存。  很多时候，您无法提前预知需要多少内存来存储某个定义变量中的特定信息，所需内存的大小需要在运行时才能确定。 例如，当需要的内存取决于用户输入。 在这些情况下，程序需要动态分配内存。 在 C++ 中，可以使用 new 运算符为给定类型的变量在运行时分配">
+<meta name="twitter:image" content="http://hhyz.me/img/2019-04-02-12-DynamicMemoryManagement-2.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
+  
+
+
+
+
+
+  
+
+
+    <title> c++ 动态内存管理 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        <article class="post">
+            <header class="post-header">
+                <h1 class="post-title">
+                    c++ 动态内存管理
+                </h1>
+            </header>
+            <div class="post-content">
+                <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>C++ 程序中的内存分为两个部分：</p>
+<ul>
+<li>栈：在函数内部声明的所有变量都将占用栈内存。</li>
+<li>堆：这是程序中未使用的内存，在程序运行时可用于动态分配内存。</li>
+</ul>
+<p><strong>很多时候，您无法提前预知需要多少内存来存储某个定义变量中的特定信息，所需内存的大小需要在运行时才能确定。 例如，当需要的内存取决于用户输入。 在这些情况下，程序需要动态分配内存。</strong></p>
+<p>在 C++ 中，可以使用 new 运算符为给定类型的变量在运行时分配堆内的内存，这会返回所分配的<strong>空间地址</strong>。</p>
+<p>如果不再需要动态分配的内存空间，可以使用 delete 运算符，删除之前由 new 运算符分配的内存。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> data-type;</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>* pvalue  = <span class="literal">NULL</span>; <span class="comment">// 初始化为 null 的指针</span></span><br><span class="line">pvalue  = <span class="keyword">new</span> <span class="keyword">double</span>;   <span class="comment">// 为变量请求内存</span></span><br></pre></td></tr></table></figure>
+
+<p>如果自由存储区已被用完，可能无法成功分配内存。所以建议检查 new 运算符是否返回 NULL 指针，并采取以下适当的操作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>* pvalue  = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">if</span>( !(pvalue  = <span class="keyword">new</span> <span class="keyword">double</span> ))</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Error: out of memory."</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>malloc() 函数在 C 语言中就出现了，在 C++ 中仍然存在，但建议尽量不要使用 malloc() 函数。new 与 malloc() 函数相比，其主要的优点是，new 不只是分配了内存，它还创建了对象。</p>
+</blockquote>
+<p><img src="/img/2019-04-02-12-DynamicMemoryManagement-2.png" alt></p>
+<p>使用 delete 操作符释放它所占用的内存：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> pvalue;        <span class="comment">// 释放 pvalue 所指向的内存</span></span><br></pre></td></tr></table></figure>
+
+<p>完整实例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">double</span>* pvalue  = <span class="literal">NULL</span>; <span class="comment">// 初始化为 null 的指针</span></span><br><span class="line">   pvalue  = <span class="keyword">new</span> <span class="keyword">double</span>;   <span class="comment">// 为变量请求内存</span></span><br><span class="line"> </span><br><span class="line">   *pvalue = <span class="number">29494.99</span>;     <span class="comment">// 在分配的地址存储值</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Value of pvalue : "</span> &lt;&lt; *pvalue &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">delete</span> pvalue;         <span class="comment">// 释放内存</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组的动态内存分配"><a href="#数组的动态内存分配" class="headerlink" title="数组的动态内存分配"></a>数组的动态内存分配</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * foo;</span><br><span class="line">foo = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2019-04-02-12-DynamicMemoryManagement-1.png" alt></p>
+<p><code>foo</code> 是一个指针</p>
+<p>因此，<code>foo</code> 指向的第一个元素可以使用表达式 <code>foo [0]</code> 或表达式 <code>* foo</code>（两者都是等价的）来访问</p>
+<p>可以使用 <code>foo [1]</code> 或 <code>* (foo + 1)</code>访问第二个元素</p>
+
+            </div>
+        </article>
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的动态内存分配"><span class="nav-text">数组的动态内存分配</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
 </html>
