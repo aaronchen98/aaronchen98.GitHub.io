@@ -57,7 +57,7 @@ a.nav-link:hover {
   padding-top: 8px; }
 
 code {
-  font-family: monospace, monospace; }
+  font-family: monospace, monospace, Courier, "Monaco" !important; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
