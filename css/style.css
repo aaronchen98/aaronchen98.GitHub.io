@@ -45,11 +45,16 @@ body {
   margin-top: 1.8em !important; }
 
 ol.nav-child {
-  padding-inline-start: 32px; }
+  padding-inline-start: 30px; }
 
 a.nav-link:hover {
-  color: #1950ad;
+  color: #0795e0;
   font-weight: 600; }
+
+.back-to-top {
+  position: static !important;
+  text-align: center;
+  padding-top: 8px; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
