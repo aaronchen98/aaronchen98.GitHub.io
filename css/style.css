@@ -56,6 +56,9 @@ a.nav-link:hover {
   text-align: center;
   padding-top: 8px; }
 
+code {
+  font-family: monospace, monospace; }
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
