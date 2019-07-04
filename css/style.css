@@ -3,7 +3,7 @@
   font-size: 0.9em;
   font-size: 13px;
   margin-left: 740px;
-  padding-right: 20px; }
+  padding-right: 25px; }
 
 #primary {
   float: left;
@@ -43,6 +43,13 @@ body {
 .post .post-content h3 {
   font-size: 1.5em !important;
   margin-top: 1.8em !important; }
+
+ol.nav-child {
+  padding-inline-start: 32px; }
+
+a.nav-link:hover {
+  color: #1950ad;
+  font-weight: 600; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
