@@ -163,7 +163,7 @@
 <h3 id="颜色空间转换"><a href="#颜色空间转换" class="headerlink" title="颜色空间转换"></a>颜色空间转换</h3><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.cvtColor(input_image ，<span class="built_in">flag</span>)  <span class="meta"># flag是转换类型</span></span><br></pre></td></tr></table></figure>
 
 <p>BGR和灰度图的转换使用 <code>cv2.COLOR_BGR2GRAY</code><br>BGR和HSV的转换使用 <code>cv2.COLOR_BGR2HSV</code></p>
-<h3 id="图像缩放"><a href="#图像缩放" class="headerlink" title="图像缩放"></a>图像缩放</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.resize(src,dsize,dst=<span class="keyword">None</span>,fx=<span class="keyword">None</span>,fy=<span class="keyword">None</span>,interpolation=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="图像缩放"><a href="#图像缩放" class="headerlink" title="图像缩放"></a>图像缩放</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.resize(src,dsize,dst=<span class="literal">None</span>,fx=<span class="literal">None</span>,fy=<span class="literal">None</span>,interpolation=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res=cv2.resize(image,(<span class="number">2</span>*width,<span class="number">2</span>*height),interpolation=cv2.INTER_CUBIC) </span><br><span class="line"><span class="comment"># 或者 </span></span><br><span class="line">res=cv2.resize(image,<span class="literal">None</span>,fx=<span class="number">2</span>,fy=<span class="number">2</span>,interpolation=cv2.INTER_CUBIC) </span><br><span class="line"><span class="comment"># 此处None本应该是输出图像的尺寸，因为后边设置了缩放因子</span></span><br></pre></td></tr></table></figure>
 
@@ -224,9 +224,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/05/28/IoUmAP/">
+      <a class="prev" href="/2018/04/28/PerceptualLosses/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">目标检测中的 IoU 与 mAP</span>
+        <span class="prev-text nav-default">Perceptual Loss 感知损失 图像超分辨重建（二）</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
