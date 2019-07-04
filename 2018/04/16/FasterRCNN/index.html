@@ -32,48 +32,48 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/04/16/FasterRCNN/">
+<link rel="canonical" href="https://hhyz.me/2018/04/16/FasterRCNN/">
 
 
 <meta name="description" content="1 Faster R-CNN 简介经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较">
 <meta name="keywords" content="深度学习,目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Faster R-CNN 目标检测（四）">
-<meta property="og:url" content="http://hhyz.me/2018/04/16/FasterRCNN/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/04/16/FasterRCNN/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="1 Faster R-CNN 简介经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-1.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-2.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-3.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-4.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-5.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-6.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-7.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-8.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-9.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-10.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-11.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-12.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-13.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-14.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-15.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-16.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-17.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-18.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-19.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-20.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-21.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-22.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-23.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-24.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-25.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-26.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-4.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-5.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-6.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-7.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-8.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-9.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-10.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-11.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-12.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-13.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-14.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-15.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-16.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-17.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-18.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-19.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-20.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-21.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-22.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-23.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-24.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-25.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-26.jpg">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Faster R-CNN 目标检测（四）">
 <meta name="twitter:description" content="1 Faster R-CNN 简介经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较">
-<meta name="twitter:image" content="http://hhyz.me/img/2018-04-16-FasterRCNN-1.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-04-16-FasterRCNN-1.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">

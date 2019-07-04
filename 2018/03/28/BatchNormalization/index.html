@@ -32,29 +32,29 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/03/28/BatchNormalization/">
+<link rel="canonical" href="https://hhyz.me/2018/03/28/BatchNormalization/">
 
 
 <meta name="description" content="一、背景意义本篇博文主要讲解2015年深度学习领域，非常值得学习的一篇文献：《Batch Normalization: Accelerating Deep Network Training by  Reducing Internal Covariate Shift》，这个算法目前已经被大量的应用，最新的文献算法很多都会引用这个算法，进行网络训练，可见其强大之处非同一般啊。 近年来深度学习捷报连连、">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Batch Normalization 学习笔记（转载）">
-<meta property="og:url" content="http://hhyz.me/2018/03/28/BatchNormalization/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/03/28/BatchNormalization/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="一、背景意义本篇博文主要讲解2015年深度学习领域，非常值得学习的一篇文献：《Batch Normalization: Accelerating Deep Network Training by  Reducing Internal Covariate Shift》，这个算法目前已经被大量的应用，最新的文献算法很多都会引用这个算法，进行网络训练，可见其强大之处非同一般啊。 近年来深度学习捷报连连、">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-1.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-2.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-3.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-4.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-5.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-6.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-7.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-4.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-5.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-6.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-7.jpg">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Batch Normalization 学习笔记（转载）">
 <meta name="twitter:description" content="一、背景意义本篇博文主要讲解2015年深度学习领域，非常值得学习的一篇文献：《Batch Normalization: Accelerating Deep Network Training by  Reducing Internal Covariate Shift》，这个算法目前已经被大量的应用，最新的文献算法很多都会引用这个算法，进行网络训练，可见其强大之处非同一般啊。 近年来深度学习捷报连连、">
-<meta name="twitter:image" content="http://hhyz.me/img/2018-03-28-BatchNormalization-1.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-03-28-BatchNormalization-1.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">

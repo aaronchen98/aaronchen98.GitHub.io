@@ -32,28 +32,28 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/01/19/wordcloud/">
+<link rel="canonical" href="https://hhyz.me/2018/01/19/wordcloud/">
 
 
 <meta name="description" content="前言最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用python对我和女票的聊天记录生成心形词云">
-<meta property="og:url" content="http://hhyz.me/2018/01/19/wordcloud/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/01/19/wordcloud/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="前言最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-01-19-wordcloud-1.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fnm9fsfrwvj302i05v749.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-2.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-3.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-4.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-5.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-01-19-wordcloud-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-01-19-wordcloud-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-01-19-wordcloud-4.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-01-19-wordcloud-5.jpg">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用python对我和女票的聊天记录生成心形词云">
 <meta name="twitter:description" content="前言最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。">
-<meta name="twitter:image" content="http://hhyz.me/img/2018-01-19-wordcloud-1.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-01-19-wordcloud-1.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -177,7 +177,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
 
 <p>两种杂质，一种是以 <code>/</code> 开头，一种是 <code>[xx]</code> 形式，我们用两种正则表达式找出并转换为集合去掉重复元素 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = re.findall(<span class="string">r'/.&#123;2,3&#125;'</span>, strf)</span><br><span class="line">list2 = re.findall(<span class="string">r'\[.+?\]'</span>, strf)</span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = re.findall(<span class="string">r'/.&#123;2,3&#125;'</span>, strf)</span><br><span class="line">list2 = re.findall(<span class="string">r'\[.+?\]'</span>, strf)</span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br></pre></td></tr></table></figure>
 
 <p>我们可以看到：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnm9fsfrwvj302i05v749.jpg" alt="image"></p>

@@ -32,14 +32,14 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/08/07/tensorflow-MultiGPU/">
+<link rel="canonical" href="https://hhyz.me/2018/08/07/tensorflow-MultiGPU/">
 
 
 <meta name="description" content="多 GPU简述如果有两块卡，但是代码里不设置的话，默认把变量都放到 device(&amp;#39;/gpu:0&amp;#39;)，所以只有 gpu 0 在计算。 tensorflow 默认是占满显存的，然后等到程序需要用的时候直接拿来用，这个是 tensorflow 设计的一个机制，对于这一机制大家褒贬不一 限制 GPU 资源动态申请显存123config = tf.ConfigProto()config.g">
 <meta name="keywords" content="TensorFlow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow 并行计算">
-<meta property="og:url" content="http://hhyz.me/2018/08/07/tensorflow-MultiGPU/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/08/07/tensorflow-MultiGPU/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="多 GPU简述如果有两块卡，但是代码里不设置的话，默认把变量都放到 device(&amp;#39;/gpu:0&amp;#39;)，所以只有 gpu 0 在计算。 tensorflow 默认是占满显存的，然后等到程序需要用的时候直接拿来用，这个是 tensorflow 设计的一个机制，对于这一机制大家褒贬不一 限制 GPU 资源动态申请显存123config = tf.ConfigProto()config.g">
 <meta property="og:locale" content="zh">

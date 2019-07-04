@@ -32,43 +32,43 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/06/24/youhua/">
+<link rel="canonical" href="https://hhyz.me/2018/06/24/youhua/">
 
 
 <meta name="description" content="新技术深度可分离卷积 将标准卷积分解成一个深度卷积和一个点卷积（1 × 1卷积核）               直观上来看，这种分解在效果上确实是等价的。    比如，把上图的代号化为实际的数字，输入图片维度是 \(11 × 11 × 3\) ，标准卷积为 \(3 × 3 × 3 ×16\) （假设stride为 2，padding为 1），那么可以得到输出为 \(6 × 6 × 16\) 的输出">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CNN 优化网络总结">
-<meta property="og:url" content="http://hhyz.me/2018/06/24/youhua/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/06/24/youhua/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="新技术深度可分离卷积 将标准卷积分解成一个深度卷积和一个点卷积（1 × 1卷积核）               直观上来看，这种分解在效果上确实是等价的。    比如，把上图的代号化为实际的数字，输入图片维度是 \(11 × 11 × 3\) ，标准卷积为 \(3 × 3 × 3 ×16\) （假设stride为 2，padding为 1），那么可以得到输出为 \(6 × 6 × 16\) 的输出">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-101.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-1.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-2.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-3.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-102.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-103.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-4.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-5.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-6.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-7.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-8.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-9.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-10.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-11.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-104.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-12.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-13.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-14.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-15.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-16.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-06-24-youhua-17.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-101.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-102.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-103.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-4.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-5.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-6.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-7.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-8.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-9.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-10.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-11.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-104.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-12.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-13.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-14.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-15.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-16.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-06-24-youhua-17.jpg">
 <meta property="og:updated_time" content="2019-07-04T17:26:39.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN 优化网络总结">
 <meta name="twitter:description" content="新技术深度可分离卷积 将标准卷积分解成一个深度卷积和一个点卷积（1 × 1卷积核）               直观上来看，这种分解在效果上确实是等价的。    比如，把上图的代号化为实际的数字，输入图片维度是 \(11 × 11 × 3\) ，标准卷积为 \(3 × 3 × 3 ×16\) （假设stride为 2，padding为 1），那么可以得到输出为 \(6 × 6 × 16\) 的输出">
-<meta name="twitter:image" content="http://hhyz.me/img/2018-06-24-youhua-101.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-06-24-youhua-101.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">

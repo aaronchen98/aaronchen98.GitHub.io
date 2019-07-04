@@ -32,6 +32,18 @@
 body {
   line-height: 1.7 !important; }
 
+.post .post-content h1 {
+  font-size: 2.2em !important;
+  margin-top: 2.5em !important; }
+
+.post .post-content h2 {
+  font-size: 1.8em !important;
+  margin-top: 2.2em !important; }
+
+.post .post-content h3 {
+  font-size: 1.5em !important;
+  margin-top: 1.8em !important; }
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.

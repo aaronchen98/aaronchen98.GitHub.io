@@ -32,42 +32,42 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/04/22/YOLOv2/">
+<link rel="canonical" href="https://hhyz.me/2018/04/22/YOLOv2/">
 
 
 <meta name="description" content="1 回顾YOLOv1  给个一个输入图像，首先将图像划分成 \(7\times 7\) 的网格。  对于每个网格，每个网格预测2个bouding box（每个box包含5个预测量）以及20个类别概率，总共输出 \(7\times 7\times （2\times 5+20）=1470\) 个tensor  根据上一步可以预测出 \(7 \times  7 \times  2 = 98\) 个目标窗">
 <meta name="keywords" content="深度学习,目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YOLOv2 目标检测（六）">
-<meta property="og:url" content="http://hhyz.me/2018/04/22/YOLOv2/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/04/22/YOLOv2/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="1 回顾YOLOv1  给个一个输入图像，首先将图像划分成 \(7\times 7\) 的网格。  对于每个网格，每个网格预测2个bouding box（每个box包含5个预测量）以及20个类别概率，总共输出 \(7\times 7\times （2\times 5+20）=1470\) 个tensor  根据上一步可以预测出 \(7 \times  7 \times  2 = 98\) 个目标窗">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-1.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-2.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-3.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-4.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-5.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-6.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-7.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-8.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-9.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-10.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-11.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-12.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-13.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-14.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-15.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-16.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-17.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-18.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-19.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-20.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-4.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-5.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-6.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-7.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-8.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-9.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-10.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-11.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-12.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-13.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-14.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-15.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-16.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-17.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-18.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-19.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-20.jpg">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLOv2 目标检测（六）">
 <meta name="twitter:description" content="1 回顾YOLOv1  给个一个输入图像，首先将图像划分成 \(7\times 7\) 的网格。  对于每个网格，每个网格预测2个bouding box（每个box包含5个预测量）以及20个类别概率，总共输出 \(7\times 7\times （2\times 5+20）=1470\) 个tensor  根据上一步可以预测出 \(7 \times  7 \times  2 = 98\) 个目标窗">
-<meta name="twitter:image" content="http://hhyz.me/img/2018-04-22-YOLOv2-1.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-04-22-YOLOv2-1.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">

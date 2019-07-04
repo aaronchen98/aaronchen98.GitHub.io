@@ -32,25 +32,25 @@
 
 
 
-<link rel="canonical" href="http://hhyz.me/2018/04/11/RCNN/">
+<link rel="canonical" href="https://hhyz.me/2018/04/11/RCNN/">
 
 
 <meta name="description" content="R-CNN 结构对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。     R-CNN由4个部分构成:           区域建议算法（ss）">
 <meta name="keywords" content="深度学习,目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R-CNN 目标检测（一）">
-<meta property="og:url" content="http://hhyz.me/2018/04/11/RCNN/index.html">
+<meta property="og:url" content="https://hhyz.me/2018/04/11/RCNN/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="R-CNN 结构对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。     R-CNN由4个部分构成:           区域建议算法（ss）">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-11-RCNN-1.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-11-RCNN-2.jpg">
-<meta property="og:image" content="http://hhyz.me/img/2018-04-11-RCNN-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-11-RCNN-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-11-RCNN-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-04-11-RCNN-3.jpg">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN 目标检测（一）">
 <meta name="twitter:description" content="R-CNN 结构对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。     R-CNN由4个部分构成:           区域建议算法（ss）">
-<meta name="twitter:image" content="http://hhyz.me/img/2018-04-11-RCNN-1.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-04-11-RCNN-1.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -228,15 +228,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/04/11/MathJax/">
+      <a class="prev" href="/2018/04/11/ObjectDetection/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">MathJax 使用指南</span>
+        <span class="prev-text nav-default">综述|基于深度学习的目标检测</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2018/04/11/ObjectDetection/">
-        <span class="next-text nav-default">综述|基于深度学习的目标检测</span>
+      <a class="next" href="/2018/04/06/tensorflow模型保存与读取/">
+        <span class="next-text nav-default">TesnsorFlow 模型的保存于读取</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
