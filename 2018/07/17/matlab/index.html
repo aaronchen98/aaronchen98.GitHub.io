@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="MATLAB 入门">
+
+
+
+
+  <meta name="keywords" content="MATLAB,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2018/07/17/matlab/">
+
+
+<meta name="description" content="1 基础注释%我是注释 帮助help 函数名或命令名 清理窗口信息的命令 clc：清除命令窗口内的内容，即只清扫屏幕，但不清除内存中已存在的变量 clf：擦除 Matlab 的当前图形窗口中的图形 clear：清除内存中的指定变量或函数 clear all：清除内存中所有的变量和函数  已预定义的常量 eps ：计算机的最小整数 pi ：圆周率 \(pi\)  inf  或 Inf：无穷大 \(∞">
+<meta name="keywords" content="MATLAB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB 入门">
+<meta property="og:url" content="http://hhyz.me/2018/07/17/matlab/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="1 基础注释%我是注释 帮助help 函数名或命令名 清理窗口信息的命令 clc：清除命令窗口内的内容，即只清扫屏幕，但不清除内存中已存在的变量 clf：擦除 Matlab 的当前图形窗口中的图形 clear：清除内存中的指定变量或函数 clear all：清除内存中所有的变量和函数  已预定义的常量 eps ：计算机的最小整数 pi ：圆周率 \(pi\)  inf  或 Inf：无穷大 \(∞">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.702Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MATLAB 入门">
+<meta name="twitter:description" content="1 基础注释%我是注释 帮助help 函数名或命令名 清理窗口信息的命令 clc：清除命令窗口内的内容，即只清扫屏幕，但不清除内存中已存在的变量 clf：擦除 Matlab 的当前图形窗口中的图形 clear：清除内存中的指定变量或函数 clear all：清除内存中所有的变量和函数  已预定义的常量 eps ：计算机的最小整数 pi ：圆周率 \(pi\)  inf  或 Inf：无穷大 \(∞">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> MATLAB 入门 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          MATLAB 入门
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 17 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="1-基础"><a href="#1-基础" class="headerlink" title="1 基础"></a>1 基础</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p><code>%我是注释</code></p>
+<h3 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h3><p><code>help 函数名或命令名</code></p>
+<h3 id="清理窗口信息的命令"><a href="#清理窗口信息的命令" class="headerlink" title="清理窗口信息的命令"></a>清理窗口信息的命令</h3><ul>
+<li><code>clc</code>：清除命令窗口内的内容，即只清扫屏幕，但不清除内存中已存在的变量</li>
+<li><code>clf</code>：擦除 Matlab 的当前图形窗口中的图形</li>
+<li><code>clear</code>：清除内存中的指定变量或函数</li>
+<li><code>clear all</code>：清除内存中所有的变量和函数</li>
+</ul>
+<h3 id="已预定义的常量"><a href="#已预定义的常量" class="headerlink" title="已预定义的常量"></a>已预定义的常量</h3><ul>
+<li><code>eps</code> ：计算机的最小整数</li>
+<li><code>pi</code> ：圆周率 \(pi\) </li>
+<li><code>inf</code>  或 <code>Inf</code>：无穷大 \(∞\) </li>
+<li><code>NaN</code> ：不定量</li>
+<li><code>i</code>  或  <code>j</code> ：虚数单位，但可以重新被定义为别的变量(如果没有赋值就直接使用，则默认为是虚数单位)</li>
+</ul>
+<br>
+## 2 数组
+
+<h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><ul>
+<li><code>X = A ：step ：B</code></li>
+</ul>
+<p>当没有指定step时，系统默认 <code>step=1</code>。</p>
+<ul>
+<li>生成4个数，起始为1，末尾为2的等差数列</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; linspace(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.0000</span>    <span class="number">1.3333</span>    <span class="number">1.6667</span>    <span class="number">2.0000</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>x=logspace(a, b, n)</code></li>
+</ul>
+<p>功能：logspace(a, b, n)生成一个(1xn)数组，数据的第一个元素值为a，最后一个元素为b，n是总采样点数。需要注意的是，此时产生的数组元素在10^a 到10^b上并不是均匀分布的，而形成一个对数曲线。</p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>; <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span></span><br><span class="line">     <span class="number">7</span>     <span class="number">8</span>     <span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h3><p>xx</p>
+<h3 id="多维数组操作"><a href="#多维数组操作" class="headerlink" title="多维数组操作"></a>多维数组操作</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a = [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>];</span><br><span class="line">&gt;&gt; b = [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>];</span><br><span class="line"></span><br><span class="line">&gt;&gt; [a,b]</span><br><span class="line">&gt;&gt; </span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span>     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; [a;b]</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A = [<span class="number">1</span> <span class="number">2</span>; <span class="number">3</span> <span class="number">4</span>];</span><br><span class="line">&gt;&gt; B = [<span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span>];</span><br><span class="line">&gt;&gt; [A, B]</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">5</span>     <span class="number">6</span></span><br><span class="line">     <span class="number">3</span>     <span class="number">4</span>     <span class="number">7</span>     <span class="number">8</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; [A;B]</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span></span><br><span class="line">     <span class="number">3</span>     <span class="number">4</span></span><br><span class="line">     <span class="number">5</span>     <span class="number">6</span></span><br><span class="line">     <span class="number">7</span>     <span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="cat"><a href="#cat" class="headerlink" title="cat()"></a>cat()</h4><p>用来联结数组</p>
+<p><code>C = cat(dim, A, B)</code>       按dim来联结A和B两个数组。</p>
+<p><code>C = cat(dim, A1, A2, A3, ...)</code>    按dim联结所有输入的数组。</p>
+<p><code>a=cat(3,A,B)</code> 左括号后的3表示构造出的矩阵维数；在新的矩阵中第1、2维就是A和B这两个矩阵的行数和列数，第3维是A和B这两个矩阵的矩阵个数，即为2</p>
+<p><code>cat(2, A, B)</code> 相当于 [A, B];</p>
+<p><code>at(1, A, B)</code> 相当于 [A; B].</p>
+<h4 id="size"><a href="#size" class="headerlink" title="size()"></a>size()</h4><p>按照行-列-页的顺序，返回数组A每一维上的大小</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a</span><br><span class="line"></span><br><span class="line">a =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     </span><br><span class="line">&gt;&gt; size(a)</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="ndims"><a href="#ndims" class="headerlink" title="ndims()"></a>ndims()</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span> a</span><br><span class="line"></span><br><span class="line">a =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;</span> ndims(a)</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">     <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>返回数组A具有的维度值</p>
+<h4 id="whos"><a href="#whos" class="headerlink" title="whos"></a>whos</h4><p>返回当前工作区的各个变量的详细信息</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; whos</span><br><span class="line">  Name      Size            Bytes  Class     Attributes</span><br><span class="line"></span><br><span class="line">  A         <span class="number">2</span><span class="keyword">x</span><span class="number">2</span>                <span class="number">32</span>  <span class="keyword">double</span>              </span><br><span class="line">  B         <span class="number">2</span><span class="keyword">x</span><span class="number">2</span>                <span class="number">32</span>  <span class="keyword">double</span>              </span><br><span class="line">  a         <span class="number">1</span><span class="keyword">x</span><span class="number">3</span>                <span class="number">24</span>  <span class="keyword">double</span>              </span><br><span class="line">  ans       <span class="number">1</span><span class="keyword">x</span><span class="number">1</span>                 <span class="number">8</span>  <span class="keyword">double</span>              </span><br><span class="line">  b         <span class="number">1</span><span class="keyword">x</span><span class="number">3</span>                <span class="number">24</span>  <span class="keyword">double</span></span><br></pre></td></tr></table></figure>
+
+<br>
+## 3 线性代数
+
+<h3 id="常量矩阵命令"><a href="#常量矩阵命令" class="headerlink" title="常量矩阵命令"></a>常量矩阵命令</h3><p><code>zeros(m,n)</code>：产生一个  \(m\times n\)  零矩阵<br><code>zeros(n)</code>：产生一个  \(n\)  阶零方阵<br><code>ones(m,n)</code>：产生一个所有元素为  \(1\)  的  \(m\times n\)  矩阵<br><code>ones(n)</code>：产生一个所有元素为  \(1\)  的  \(n\)  阶方阵<br><code>eye(n)</code>：产生一个  \(n\)  阶单位阵</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>Matlab 最擅长于线性代数中关于矩阵的各种运算，常用的运算符有：</p>
+<ol>
+<li><code>+</code> ：两矩阵和的运算</li>
+<li><code>-</code> ：两矩阵减的运算</li>
+<li><code>*</code> ：两矩阵乘积的运算</li>
+<li><code>.*</code> ：两矩阵各相应位置元素乘积的运算</li>
+<li><code>./</code> ：两矩阵各相应位置元素相除的运算</li>
+<li><code>A&#39;</code> ：矩阵 A 的转置</li>
+<li><code>inv(A)</code> ：矩阵 A 的逆阵</li>
+<li><code>eig(A)</code> ：矩阵 A 的特征值</li>
+<li><code>[V,D]=eig(A)</code>：给出由矩阵 A 的特征向量组成的矩阵 V(以列向量排列)和由对应的特征值组成的对角阵 D(特征值为对角线元素)</li>
+<li><code>sum(A,1)</code>：对矩阵 A 的每列元素求和，给出求和值的行向量</li>
+<li><code>sum(A,2)</code>：对矩阵 A 的每行元素求和，给出求和值的列向量</li>
+<li><code>sum(X)</code>：对向量 X=(x1,x2,…….,xn)的分量求和</li>
+<li><code>cumsum(X)</code>：给出向量 X 的累加和</li>
+<li><code>length(X)</code>：给出向量 X 的维数，即其分量的个数</li>
+<li><code>norm(X)</code>：给出向量 X 的范数，即向量的长度</li>
+</ol>
+<br>
+## 4 结构
+
+<h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">格式<span class="number">1</span>：</span><br><span class="line">    <span class="keyword">if</span> 条件</span><br><span class="line">        语句组</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">格式<span class="number">2</span>：</span><br><span class="line">    <span class="keyword">if</span> 条件</span><br><span class="line">        语句组<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        语句组<span class="number">2</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">格式<span class="number">3</span>：</span><br><span class="line">    <span class="keyword">if</span> 条件<span class="number">1</span></span><br><span class="line">        语句组<span class="number">1</span></span><br><span class="line">    <span class="keyword">elseif</span> 条件<span class="number">2</span></span><br><span class="line">        语句组<span class="number">2</span></span><br><span class="line">    .....</span><br><span class="line">    <span class="keyword">elseif</span> 条件m</span><br><span class="line">        语句组m</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        语句组m+<span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> 表达式</span><br><span class="line">    <span class="keyword">case</span> 值<span class="number">1</span></span><br><span class="line">        语句组<span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> 值<span class="number">2</span></span><br><span class="line">        语句组<span class="number">2</span></span><br><span class="line">    ....</span><br><span class="line">    <span class="keyword">case</span> 值m</span><br><span class="line">        语句组m</span><br><span class="line">    <span class="keyword">otherwise</span> <span class="comment">%其他值</span></span><br><span class="line">        语句组m+<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>表达式1 的值是循环变量的初值，表达式2 的值是循环变量的增量，表达式3 的值为循环变量的终值。如果增量为1 时，表达式2 可以省略不写</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 循环变量=表达式<span class="number">1</span>：表达式<span class="number">2</span>：表达式<span class="number">3</span></span><br><span class="line">    循环体语句</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> 条件</span><br><span class="line">    循环体语句</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<br>
+## 5 画图
+
+<h3 id="二维"><a href="#二维" class="headerlink" title="二维"></a>二维</h3><p><code>plot(x, y)</code></p>
+<p><strong>例：在区间 [0,2π] 内绘制正弦曲线 y=sinx 的语句</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">0</span>:<span class="built_in">pi</span>/<span class="number">100</span>:<span class="number">2</span>*<span class="built_in">pi</span>;</span><br><span class="line">y=<span class="built_in">sin</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(x,y)</span><br></pre></td></tr></table></figure>
+
+<p>指定线型与颜色</p>
+<p><code>plot(x,y1,&#39;cs1&#39;,x,y2,&#39;cs2&#39;,....)</code></p>
+<p>它以公共向量 x 为 X 轴，分别以 y1,y2，… 为 Y 轴在同一幅图内绘制出多条曲线，同时可以指定它们的不同颜色与不同线性。</p>
+<p>每条曲线的颜色和线型用字符串 ‘cs’ 来指定，其中 c 表示颜色，而 s 表示线型，线型可以是线或者标记，线和标记可同时使用。它们的位置次序可随意，如缺省的话，则默认颜色为蓝色、线型为实型。它们的符号如下所示。</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/MATLAB/">MATLAB</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/05/RL/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">强化学习（一）Deep Q-Network</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/07/07/SSD/">
+        <span class="next-text nav-default">SSD 目标检测（七）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基础"><span class="nav-text">1 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助"><span class="nav-text">帮助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清理窗口信息的命令"><span class="nav-text">清理窗口信息的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已预定义的常量"><span class="nav-text">已预定义的常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组"><span class="nav-text">一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组"><span class="nav-text">二维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三维数组"><span class="nav-text">三维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多维数组操作"><span class="nav-text">多维数组操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cat"><span class="nav-text">cat()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#size"><span class="nav-text">size()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ndims"><span class="nav-text">ndims()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#whos"><span class="nav-text">whos</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量矩阵命令"><span class="nav-text">常量矩阵命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符"><span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-text">if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch"><span class="nav-text">switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for"><span class="nav-text">for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while"><span class="nav-text">while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维"><span class="nav-text">二维</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

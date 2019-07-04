@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="用python对我和女票的聊天记录生成心形词云">
+
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2018/01/19/wordcloud/">
+
+
+<meta name="description" content="前言最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用python对我和女票的聊天记录生成心形词云">
+<meta property="og:url" content="http://hhyz.me/2018/01/19/wordcloud/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="前言最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-1.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fnm9fsfrwvj302i05v749.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-4.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-01-19-wordcloud-5.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用python对我和女票的聊天记录生成心形词云">
+<meta name="twitter:description" content="前言最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。">
+<meta name="twitter:image" content="http://hhyz.me/img/2018-01-19-wordcloud-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> 用python对我和女票的聊天记录生成心形词云 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用python对我和女票的聊天记录生成心形词云
+        
+      </h1>
+
+      <time class="post-time">
+          Jan 19 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近看到一些利用python制作词云的教程，突然想到用自己和女友的聊天记录做一个词云，看看平时我俩最常说的都是啥，然后用爱心的形状展示出来，以下是成品:<br><img src="/img/2018-01-19-wordcloud-1.jpg" alt><br>由于导出的记录只有最近两个星期的，再加上这两个星期我女票她都在备考，因此聊天内容并不是特别多，数据可能不是特别有代表性，但至少也能看看了。</p>
+<a id="more"></a>
+
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><p>首先我们从QQ中导出txt格式的聊天记录，并在python中打开</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f = open(<span class="string">'/Users/aaron/文档/My one and only.txt'</span>)</span><br><span class="line">fl = f.readlines()</span><br></pre></td></tr></table></figure>
+
+<p>我们来查看一下数据：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">['\ufeff消息记录（此消息记录为文本格式，不支持重新导入）\n',</span><br><span class="line"> '\n',</span><br><span class="line"> <span class="symbol">'================================================================</span>\n',</span><br><span class="line"> <span class="symbol">'消息分组:My</span> one and only\n',</span><br><span class="line"> <span class="symbol">'================================================================</span>\n',</span><br><span class="line"> <span class="symbol">'消息对象:xxx</span>\n',</span><br><span class="line"> <span class="symbol">'================================================================</span>\n',</span><br><span class="line"> '\n',</span><br><span class="line"> <span class="symbol">'2018-01-12</span> 下午4:00:40 xxx\n',</span><br><span class="line"> <span class="symbol">'好丑操</span>\n',</span><br><span class="line"> '\n',</span><br><span class="line"> <span class="symbol">'2018-01-12</span> 下午4:00:49 xxx\n',</span><br><span class="line"> <span class="symbol">'好臭</span>\n',</span><br><span class="line"> '\n',</span><br><span class="line"> <span class="symbol">'2018-01-12</span> 下午4:00:50 xxx\n',</span><br><span class="line"> <span class="symbol">'好臭</span>\n',</span><br><span class="line"> '\n',</span><br><span class="line"> <span class="symbol">'2018-01-12</span> 下午4:01:27 xxx\n',</span><br><span class="line"> <span class="symbol">'我吃牛肉干</span>\n',</span><br><span class="line"> '\n',</span><br></pre></td></tr></table></figure>
+
+
+<p> 可以看出前7行是头信息，下边的数据按照：</p>
+<ul>
+<li><p>时间，</p>
+</li>
+<li><p>单句聊天记录，</p>
+</li>
+<li><p>‘\n’</p>
+<p>每三行为一组，于是我们首先删去头信息</p>
+</li>
+</ul>
+<p><code>del fl[:8]</code></p>
+<p>接下来我们只需要从下标为1开始，步长为3的聊天记录的数据：</p>
+<p><code>fl = fl[1::3]</code></p>
+<p>其中 <code>[1::3]</code> 的意思为下标为1开始，步长为3的切片，比如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">1</span>::<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[::<span class="number">3</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">5</span>:<span class="number">2</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<p>之后的数据变为一个全部由聊天记录组成的列表：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">'好丑操</span>\n',</span><br><span class="line"> <span class="symbol">'好臭</span>\n',</span><br><span class="line"> <span class="symbol">'好臭</span>\n',</span><br><span class="line"> <span class="symbol">'我吃牛肉干</span>\n',</span><br><span class="line"> <span class="symbol">'去去味</span>\n',</span><br><span class="line"> <span class="symbol">'。。。。</span>\n',</span><br><span class="line"> ...</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+
+<p>我们将其组成一个字符串，使用 <code>&#39; &#39;.join(list)</code> 可以将一个列表组合成一个以空格为间隔的字符串：</p>
+<p><code>strf = &#39; &#39;.join(fl)</code></p>
+<p>观察数据，发现记录中有非常多的杂质，例如 <code>/扯一扯</code>，<code>/糊脸</code>, <code>[放大招]</code>, <code>[表情]</code> 等，我们需要将这些杂质都去掉，于是导入re正则表达式模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
+
+<p>两种杂质，一种是以 <code>/</code> 开头，一种是 <code>[xx]</code> 形式，我们用两种正则表达式找出并转换为集合去掉重复元素 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = re.findall(<span class="string">r'/.&#123;2,3&#125;'</span>, strf)</span><br><span class="line">list2 = re.findall(<span class="string">r'\[.+?\]'</span>, strf)</span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnm9fsfrwvj302i05v749.jpg" alt="image"></p>
+<p>以及</p>
+<p><img src="/img/2018-01-19-wordcloud-2.jpg" alt></p>
+<p>然后去掉这些杂质，因为有些出现频率太高会影响最后结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> set1:</span><br><span class="line">    strf = strf.replace(item, <span class="string">''</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> set2:</span><br><span class="line">    strf = strf.replace(item, <span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p>还有要自己手动去掉两条：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">strf</span> = strf.replace(<span class="string">'请使用最新版本手机QQ查看'</span>, <span class="string">''</span>)</span><br><span class="line"><span class="attr">strf</span> = strf.replace(<span class="string">'请使用最新版手机QQ体验新功能'</span>, <span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p>数据干净之后就可以制作词云了。</p>
+<h2 id="jieba库"><a href="#jieba库" class="headerlink" title="jieba库"></a>jieba库</h2><p>我们利用 <code>jieba</code> 库对记录进行分词操作，能将一个句子分为单个词语。我们对jieba做一个简单的了解，以下为官方文档中的一部分：</p>
+<p><code>jieba.cut</code> 方法接受三个输入参数: 需要分词的字符串；cut_all 参数用来控制是否采用全模式；HMM 参数用来控制是否使用 HMM 模型</p>
+<p>代码示例:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="string">"我来到北京清华大学"</span>, cut_all=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">"Full Mode: "</span> + <span class="string">"/ "</span>.join(seg_list))  <span class="comment"># 全模式</span></span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="string">"我来到北京清华大学"</span>, cut_all=<span class="literal">False</span>)</span><br><span class="line">print(<span class="string">"Default Mode: "</span> + <span class="string">"/ "</span>.join(seg_list))  <span class="comment"># 精确模式</span></span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="string">"他来到了网易杭研大厦"</span>)  <span class="comment"># 默认是精确模式</span></span><br><span class="line">print(<span class="string">", "</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(<span class="string">"小明硕士毕业于中国科学院计算所，后在日本京都大学深造"</span>)  <span class="comment"># 搜索引擎模式</span></span><br><span class="line">print(<span class="string">", "</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">【全模式】: 我<span class="regexp">/ 来到/</span> 北京<span class="regexp">/ 清华/</span> 清华大学<span class="regexp">/ 华大/</span> 大学</span><br><span class="line"></span><br><span class="line">【精确模式】: 我<span class="regexp">/ 来到/</span> 北京/ 清华大学</span><br><span class="line"></span><br><span class="line">【新词识别】：他, 来到, 了, 网易, 杭研, 大厦    (此处，“杭研”并没有在词典中，但是也被Viterbi算法识别出来了)</span><br><span class="line"></span><br><span class="line">【搜索引擎模式】： 小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造</span><br></pre></td></tr></table></figure>
+
+<p>若相对jieba进行更深的了解，可以 <a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">点击此处</a></p>
+<h2 id="wordcloud库"><a href="#wordcloud库" class="headerlink" title="wordcloud库"></a>wordcloud库</h2><p>我们使用wordcloud包生成词云图，首先了解一下其用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">wordcloud</span>.<span class="title">WordCloud</span><span class="params">(font_path=None, width=<span class="number">400</span>, height=<span class="number">200</span>, margin=<span class="number">2</span>, ranks_only=None, prefer_horizontal=<span class="number">0.9</span>,mask=None, scale=<span class="number">1</span>, color_func=None, max_words=<span class="number">200</span>, min_font_size=<span class="number">4</span>, stopwords=None, random_state=None,background_color=<span class="string">'black'</span>, max_font_size=None, font_step=<span class="number">1</span>, mode=<span class="string">'RGB'</span>, relative_scaling=<span class="number">0.5</span>, regexp=None, collocations=True,colormap=None, normalize_plurals=True)</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">font_path :</span> string <span class="comment">//字体路径，需要展现什么字体就把该字体路径+后缀名写上，如：font_path = '黑体.ttf'</span></span><br><span class="line"></span><br><span class="line"><span class="string">width :</span> <span class="keyword">int</span> (<span class="keyword">default</span>=<span class="number">400</span>) <span class="comment">//输出的画布宽度，默认为400像素</span></span><br><span class="line"></span><br><span class="line"><span class="string">height :</span> <span class="keyword">int</span> (<span class="keyword">default</span>=<span class="number">200</span>) <span class="comment">//输出的画布高度，默认为200像素</span></span><br><span class="line"></span><br><span class="line"><span class="string">prefer_horizontal :</span> <span class="keyword">float</span> (<span class="keyword">default</span>=<span class="number">0.90</span>) <span class="comment">//词语水平方向排版出现的频率，默认 0.9 （所以词语垂直方向排版出现频率为 0.1 ）</span></span><br><span class="line"></span><br><span class="line"><span class="string">mask :</span> nd-array or None (<span class="keyword">default</span>=None) <span class="comment">//如果参数为空，则使用二维遮罩绘制词云。如果 mask 非空，设置的宽高值将被忽略，遮罩形状被 mask 取代。除全白（#FFFFFF）的部分将不会绘制，其余部分会用于绘制词云。如：bg_pic = imread('读取一张图片.png')，背景图片的画布一定要设置为白色（#FFFFFF），然后显示的形状为不是白色的其他颜色。可以用ps工具将自己要显示的形状复制到一个纯白色的画布上再保存，就ok了。</span></span><br><span class="line"></span><br><span class="line"><span class="string">scale :</span> <span class="keyword">float</span> (<span class="keyword">default</span>=<span class="number">1</span>) <span class="comment">//按照比例进行放大画布，如设置为1.5，则长和宽都是原来画布的1.5倍。</span></span><br><span class="line"></span><br><span class="line"><span class="string">min_font_size :</span> <span class="keyword">int</span> (<span class="keyword">default</span>=<span class="number">4</span>) <span class="comment">//显示的最小的字体大小</span></span><br><span class="line"></span><br><span class="line"><span class="string">font_step :</span> <span class="keyword">int</span> (<span class="keyword">default</span>=<span class="number">1</span>) <span class="comment">//字体步长，如果步长大于1，会加快运算但是可能导致结果出现较大的误差。</span></span><br><span class="line"></span><br><span class="line"><span class="string">max_words :</span> number (<span class="keyword">default</span>=<span class="number">200</span>) <span class="comment">//要显示的词的最大个数</span></span><br><span class="line"></span><br><span class="line"><span class="string">stopwords :</span> set of strings or None <span class="comment">//设置需要屏蔽的词，如果为空，则使用内置的STOPWORDS</span></span><br><span class="line"></span><br><span class="line"><span class="string">background_color :</span> color value (<span class="keyword">default</span>=”black”) <span class="comment">//背景颜色，如background_color='white',背景颜色为白色。</span></span><br><span class="line"></span><br><span class="line"><span class="string">max_font_size :</span> <span class="keyword">int</span> or None (<span class="keyword">default</span>=None) <span class="comment">//显示的最大的字体大小</span></span><br><span class="line"></span><br><span class="line"><span class="string">mode :</span> string (<span class="keyword">default</span>=”RGB”) <span class="comment">//当参数为“RGBA”并且background_color不为空时，背景为透明。</span></span><br><span class="line"></span><br><span class="line"><span class="string">relative_scaling :</span> <span class="keyword">float</span> (<span class="keyword">default</span>=<span class="number">.5</span>) <span class="comment">//词频和字体大小的关联性</span></span><br><span class="line"></span><br><span class="line"><span class="string">color_func :</span> callable, <span class="keyword">default</span>=None <span class="comment">//生成新颜色的函数，如果为空，则使用 self.color_func</span></span><br><span class="line"></span><br><span class="line"><span class="string">regexp :</span> string or None (optional) <span class="comment">//使用正则表达式分隔输入的文本</span></span><br><span class="line"></span><br><span class="line"><span class="string">collocations :</span> bool, <span class="keyword">default</span>=True <span class="comment">//是否包括两个词的搭配</span></span><br><span class="line"></span><br><span class="line"><span class="string">colormap :</span> string or matplotlib colormap, <span class="keyword">default</span>=”viridis” <span class="comment">//给每个单词随机分配颜色，若指定color_func，则忽略该方法。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fit_words(frequencies)  <span class="comment">//根据词频生成词云</span></span><br><span class="line">generate(text)  <span class="comment">//根据文本生成词云</span></span><br><span class="line">generate_from_frequencies(frequencies[, ...])   <span class="comment">//根据词频生成词云</span></span><br><span class="line">generate_from_text(text)    <span class="comment">//根据文本生成词云</span></span><br><span class="line">process_text(text)  <span class="comment">//将长文本分词并去除屏蔽词（此处指英语，中文分词还是需要自己用别的库先行实现，使用上面的 fit_words(frequencies) ）</span></span><br><span class="line">recolor([random_state, color_func, colormap])   <span class="comment">//对现有输出重新着色。重新上色会比重新生成整个词云快很多。</span></span><br><span class="line">to_array()  <span class="comment">//转化为 numpy array</span></span><br><span class="line">to_file(filename)   <span class="comment">//输出到文件</span></span><br></pre></td></tr></table></figure>
+
+<p>了解了这两个包之后，我们开始正式制作词云。</p>
+<h2 id="制作词云图"><a href="#制作词云图" class="headerlink" title="制作词云图"></a>制作词云图</h2><p>首先导入所需要的库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br></pre></td></tr></table></figure>
+
+<p>然后利用词云进行分词操作，并将生成的列表合并成字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word_list = jieba.cut(strf, cut_all=<span class="literal">True</span>)</span><br><span class="line">word = <span class="string">' '</span>.join(word_list)</span><br></pre></td></tr></table></figure>
+
+<p>之后利用wordcloud包，注意一定要加上中文字体的路径，因为wordcloud默认是英文字体，并不支持中文，我们只需自己指定字体即可，我这里使用的是宋体，并且指定背景颜色是白色。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc = wordcloud.WordCloud(font_path=<span class="string">'/Library/Fonts/Songti.ttc'</span>, background_color=<span class="string">'white'</span>).generate(word)</span><br></pre></td></tr></table></figure>
+
+<p>最后使用matplotlib进行绘制：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.imshow(wc)</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>词云图就生成好了：<br><img src="/img/2018-01-19-wordcloud-3.jpg" alt></p>
+<h2 id="心形词云"><a href="#心形词云" class="headerlink" title="心形词云"></a>心形词云</h2><p>为了生成心形的词云，我们首先找一张心形的图片：</p>
+<p><img src="/img/2018-01-19-wordcloud-4.jpg" alt></p>
+<p>然后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread</span><br></pre></td></tr></table></figure>
+
+<p>加上mask参数后再次制作词云：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pic = imread(<span class="string">'/Users/aaron/Pictures/aixin.png'</span>)</span><br><span class="line">wc = wordcloud.WordCloud(mask=pic, font_path=<span class="string">'/Library/Fonts/Songti.ttc'</span>, width=<span class="number">1000</span>, height=<span class="number">500</span>, background_color=<span class="string">'white'</span>).generate(word)</span><br><span class="line"></span><br><span class="line">plt.imshow(wc)</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>心形词云图诞生！<br><img src="/img/2018-01-19-wordcloud-5.jpg" alt></p>
+<p>赶紧学一招然后发给自己的女朋友吧！</p>
+<p>或许不是最优方法，欢迎指导。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>最后附上全部代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据处理</span></span><br><span class="line">f = open(<span class="string">'/Users/aaron/文档/My one and only.txt'</span>)   <span class="comment"># 改成自己的聊天记录文件</span></span><br><span class="line">fl = f.readlines()</span><br><span class="line"><span class="keyword">del</span> fl[:<span class="number">8</span>]</span><br><span class="line">fl = fl[<span class="number">1</span>::<span class="number">3</span>]</span><br><span class="line">strf = <span class="string">' '</span>.join(fl)</span><br><span class="line">list1 = re.findall(<span class="string">r'/.&#123;2,3&#125;'</span>, strf)</span><br><span class="line">list2 = re.findall(<span class="string">r'\[.+?\]'</span>, strf)</span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br><span class="line">strf = strf.replace(<span class="string">'请使用最新版本手机QQ查看'</span>, <span class="string">''</span>)</span><br><span class="line">strf = strf.replace(<span class="string">'请使用最新版手机QQ体验新功能'</span>, <span class="string">''</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> set1:</span><br><span class="line">    strf = strf.replace(item, <span class="string">''</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> set2:</span><br><span class="line">    strf = strf.replace(item, <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 制作词云</span></span><br><span class="line">word_list = jieba.cut(strf, cut_all=<span class="literal">True</span>)</span><br><span class="line">word = <span class="string">' '</span>.join(word_list)</span><br><span class="line">pic = imread(<span class="string">'/Users/aaron/Downloads/aixin.png'</span>)    </span><br><span class="line">wc = wordcloud.WordCloud(mask=pic, font_path=<span class="string">'/Library/Fonts/Songti.ttc'</span>, width=<span class="number">1000</span>, height=<span class="number">500</span>, background_color=<span class="string">'white'</span>).generate(word)</span><br><span class="line"></span><br><span class="line">plt.imshow(wc)</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/python/">python</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/24/sklearn/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">sklearn 使用总结</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/16/python-易错及易遗忘点总结/">
+        <span class="next-text nav-default">python 易错及易遗忘点总结（持续更新）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据处理"><span class="nav-text">数据处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jieba库"><span class="nav-text">jieba库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wordcloud库"><span class="nav-text">wordcloud库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作词云图"><span class="nav-text">制作词云图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心形词云"><span class="nav-text">心形词云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

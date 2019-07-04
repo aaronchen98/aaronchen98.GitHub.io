@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="SPP-Net 目标检测（二）">
+
+
+
+
+  <meta name="keywords" content="深度学习,目标检测,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2018/04/11/SPPNet/">
+
+
+<meta name="description" content="SPP-Net简介在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，超长的训练时间（84h）和测试时间（47s），造成这个问题的主要原因就是重复性的卷积计算，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，这也就意味着卷积计算要重复1000-2000次，但是由于ss算法提取到的区域本身就有很多重叠">
+<meta name="keywords" content="深度学习,目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPP-Net 目标检测（二）">
+<meta property="og:url" content="http://hhyz.me/2018/04/11/SPPNet/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="SPP-Net简介在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，超长的训练时间（84h）和测试时间（47s），造成这个问题的主要原因就是重复性的卷积计算，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，这也就意味着卷积计算要重复1000-2000次，但是由于ss算法提取到的区域本身就有很多重叠">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-SPPNet-4.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPP-Net 目标检测（二）">
+<meta name="twitter:description" content="SPP-Net简介在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，超长的训练时间（84h）和测试时间（47s），造成这个问题的主要原因就是重复性的卷积计算，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，这也就意味着卷积计算要重复1000-2000次，但是由于ss算法提取到的区域本身就有很多重叠">
+<meta name="twitter:image" content="http://hhyz.me/img/2018-04-11-SPPNet-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> SPP-Net 目标检测（二） - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          SPP-Net 目标检测（二）
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 11 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="SPP-Net简介"><a href="#SPP-Net简介" class="headerlink" title="SPP-Net简介"></a>SPP-Net简介</h2><p>在上一篇R-CNN的文章中，详细介绍了R-CNN算法，同时也说明了R-CNN的致命缺陷，<strong>超长的训练时间</strong>（84h）和<strong>测试时间</strong>（47s），造成这个问题的主要原因就是<strong>重复性的卷积计算</strong>，在R-CNN中，输入到CNN网络中的图片是ss算法提取到的区域，每一张待检测图都会产生1000-2000个区域，<strong>这也就意味着卷积计算要重复1000-2000次</strong>，但是<strong>由于ss算法提取到的区域本身就有很多重叠，所以这种重复计算是非常没有必要的</strong>。 </p>
+<p>那么能不能只通过一次卷积计算就完成整张图像的特征提取工作呢？这就是SPP-Net的主要贡献，也是在R-CNN之后的很多网络结构的统一目标——<strong>如何共享卷积计算</strong>。</p>
+<p>SPP-Net主要改进有下面两个： </p>
+<ol>
+<li>共享卷积计算     </li>
+<li>空间金字塔池化</li>
+</ol>
+<p>在SPP-Net中同样由这几个部分组成： </p>
+<ol>
+<li>ss算法           </li>
+<li>CNN网络       </li>
+<li>SVM分类器   </li>
+<li>bounding box</li>
+</ol>
+<a id="more"></a>
+
+<p>ss算法的区域建议框同样<strong>在原图上生成</strong>，<strong>但是却在Conv5上提取</strong>，当然由于尺寸的变化，在Conv5层上提取时要经过尺度变换，这是它R-CNN最大的不同，也是SPP-Net能够大幅缩短时长的原因。因为它充分利用了卷积计算，也就是<strong>每张图片只卷积一次</strong>，但是这种改进带来了一个新的问题，由于ss算法生成的推荐框尺度是不一致的，所以在cov5上提取到的特征尺度也是不一致的，这样是没有办法做全尺寸卷积的（Alexnet）。 </p>
+<p>所以SPP-Net需要一种算法，这种算法能够<strong>把不一致的输入产生统一的输出</strong>，这就<strong>SPP</strong>，即<strong>空间金字塔池化</strong>，由它替换R-CNN中的pooling层，除此之外，它和R-CNN就一样了。</p>
+<h2 id="如何共享卷积计算"><a href="#如何共享卷积计算" class="headerlink" title="如何共享卷积计算"></a>如何共享卷积计算</h2><p><img src="/img/2018-04-11-SPPNet-1.jpg" alt></p>
+<p>在上面这个图中，说明了R-CNN与SPP-Net的区别，R-CNN的卷积神经网络的输入是<strong>ss生成的建议区域（经过尺寸的归一化）</strong>，而SPP-Net的中的卷积神经网络的<strong>输入是整幅图</strong>，经过卷积特征提取后，在<strong>Conv5上做建议区域的提取</strong>。这里有一个问题是一张图经过卷积之后图像的尺寸会发生变化，那么<strong>在原图上生成的ss区域，没有办法直接扣在Conv5层上</strong>，所以需要<strong>做一下坐标变换，使之适应Conv5层的宽高尺寸</strong>。</p>
+<h2 id="坐标变换"><a href="#坐标变换" class="headerlink" title="坐标变换"></a>坐标变换</h2><p>在CNN中特征的宽和高发生变化是因为步长的选取，当步长选择为2时，图像的宽高尺寸会变为原来的一半，那么对于在建议区域内的一个点(x,y)，对应的Conv5层上的位置(x’,y’)，应该满足如下关系： </p>
+<p>$$(x,y) = (S * x’,S*y’)$$</p>
+<center>其中S为所有层的步长的乘积</center>     
+而又由于卷积过程中的padding问题，Conv5上的特征会更靠近图像的中心，个人认为这也是为什么左上角的点要做像素加1，右下角的点做像素减1：      
+
+<p>左上：\(x’ = \frac {x}{S} + 1\)<br>右下：\(x’ = \frac {x}{S} - 1\)</p>
+<h2 id="空间金字塔池化"><a href="#空间金字塔池化" class="headerlink" title="空间金字塔池化"></a>空间金字塔池化</h2><p>经过坐标变化之后，在原图上生成的区域建议框就可以映射在Conv5上，但是这样一来就有出现了新的问题，提取到的特征由于尺寸不一致，没办法送到全连接层，解决方法在上面就提到了——SPP：</p>
+<p><img src="/img/2018-04-11-SPPNet-2.jpg" alt></p>
+<p>上面这张图解释了SPP的原理，那么对于任意尺寸的输入，SPP可以将输入特征平均分为16份，4份和1份，并在每一份（Bin）上做Max pooling，同时特征的厚度保持不变，最后将这些特征串接作为全连接层的输入，如上图所示，假设特征的厚度为 \(256\)，那么SPP后的特征长度（一维特征）就是 \((16+4+1)*256\)，于是维度就统一了。</p>
+<h2 id="SPP-Net训练与测试"><a href="#SPP-Net训练与测试" class="headerlink" title="SPP-Net训练与测试"></a>SPP-Net训练与测试</h2><p><img src="/img/2018-04-11-SPPNet-3.jpg" alt></p>
+<p><strong>SPP-Net的训练过程：</strong></p>
+<p>首先拿到在ImageNet预训练的AlexNet模型，用AlexNet计算Conv5层特征，根据ss生成的区域建议，从Conv5上提取到对应的SPP特征，用提取到的特征finetune全连接层（把AlexNet当做分类模型来训练）。<br>AlexNet训练好之后，用fc7层的特征训练SVM分类器，用SPP特征训练bounding box（这里和R-CNN一样了）。 </p>
+<p><strong>SPP-Net的测试过程：</strong></p>
+<p>首先在一张图片上用训练好的AlexNet网络提取整张图片的Conv5和fc7层特征，同时在图片上用ss算法生成1000-2000个区域建议，将区域建议框坐标变换之后在Conv5上提取SPP特征，fc7层特征送入SVM做类别的预测，SPP特征送入bounding box做边界框的修正。</p>
+<h2 id="SPP-Net性能评价"><a href="#SPP-Net性能评价" class="headerlink" title="SPP-Net性能评价"></a>SPP-Net性能评价</h2><p><img src="/img/2018-04-11-SPPNet-4.jpg" alt></p>
+<p>上面这张图说明了下SPP-Net与R-CNN的性能对比，其中训练时间SPP-Net需要25个小时，而R-CNN需要84小时；单张图片的测试时间SPP-Net只需要2.3s，而R-NN需要47s，这就是共享卷积计算带来的速度上的提升，也是SPP-Net最重要的贡献；最后一个指标，SPP-Net的mAP相比R-CNN反而更低了，这是因为SPP-Net的结构无法fintune卷积层。</p>
+<h2 id="SPP-Net的问题"><a href="#SPP-Net的问题" class="headerlink" title="SPP-Net的问题"></a>SPP-Net的问题</h2><p>最后，通过上面的性能评价可以看到，SPP-Net在速度上有大幅的提升，其所提出的共享卷积计算的思想在后续的Fast R-CNN与Faster R-CNN中都在沿用，但是从SPP-Net的训练过程可以看出，它是无法finetune卷积层的，这个问题在Fast RCNN中通过多任务损失函数与Roi Pooling提出得以解决。 </p>
+<p>SPP-Net的训练过程依然是一个多阶段的训练，这一点和R-CNN一样，并没有改进。<br>由于是多阶段训练，过程中需要存储大量特征。</p>
+<br>
+<br>
+
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">转载自：</span><br><span class="line">http://mp.weixin.qq.com/s?__biz=MzUyMjE<span class="number">2</span>MTE<span class="number">0</span>Mw==&amp;mid=<span class="number">2247484830</span>&amp;idx=<span class="number">1</span>&amp;sn=<span class="number">6</span>f<span class="number">916032</span><span class="keyword">c</span><span class="number">629</span>f<span class="number">980</span>a<span class="number">0</span>ea<span class="number">9230853</span>a<span class="number">6</span>a<span class="number">45</span>&amp;chksm=f<span class="number">9</span>d<span class="number">15</span>b<span class="number">06</span>cea<span class="number">6</span>d<span class="number">2100</span>f<span class="number">395</span><span class="keyword">c</span><span class="number">2</span><span class="keyword">cc</span><span class="number">6</span><span class="keyword">cc</span><span class="number">56</span><span class="keyword">c</span><span class="number">0401792968</span>d<span class="number">810</span>f<span class="number">38</span>fdd<span class="number">52e00</span>cff<span class="number">1</span>abe<span class="number">8</span>a<span class="number">6</span>cf<span class="number">3</span>cbc<span class="number">27</span>ad&amp;scene=<span class="number">21</span>#wechat_redirect</span><br></pre></td></tr></table></figure>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+            <a href="/tags/目标检测/">目标检测</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/11/ObjectDetection/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">综述|基于深度学习的目标检测</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/04/06/tensorflow模型保存与读取/">
+        <span class="next-text nav-default">TesnsorFlow 模型的保存于读取</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net简介"><span class="nav-text">SPP-Net简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何共享卷积计算"><span class="nav-text">如何共享卷积计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坐标变换"><span class="nav-text">坐标变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间金字塔池化"><span class="nav-text">空间金字塔池化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net训练与测试"><span class="nav-text">SPP-Net训练与测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net性能评价"><span class="nav-text">SPP-Net性能评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net的问题"><span class="nav-text">SPP-Net的问题</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

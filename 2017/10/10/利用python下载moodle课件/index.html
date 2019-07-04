@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="用python爬虫爬取moodle课件">
+
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2017/10/10/利用python下载moodle课件/">
+
+
+<meta name="description" content="1) 介绍moodle(Modular Object-Oriented Dynamic Learning Environment) 是一个开源的课程管理系统, 笔者作为一名香港中文大学(深圳)的学生, 教授们会把课件以及作业等都发布在 moodle 上, 因此学生需要时常登录 moodle 下载课件以及完成作业. 本篇文章将简短地介绍使用 python 爬取 moodle 上的全部课件并下载到本地">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用python爬虫爬取moodle课件">
+<meta property="og:url" content="http://hhyz.me/2017/10/10/利用python下载moodle课件/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="1) 介绍moodle(Modular Object-Oriented Dynamic Learning Environment) 是一个开源的课程管理系统, 笔者作为一名香港中文大学(深圳)的学生, 教授们会把课件以及作业等都发布在 moodle 上, 因此学生需要时常登录 moodle 下载课件以及完成作业. 本篇文章将简短地介绍使用 python 爬取 moodle 上的全部课件并下载到本地">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkcfvfe6nuj30l20a0abv.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkcfwsoovij30i0062q3y.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkcg8njqr3j30ia0katcs.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用python爬虫爬取moodle课件">
+<meta name="twitter:description" content="1) 介绍moodle(Modular Object-Oriented Dynamic Learning Environment) 是一个开源的课程管理系统, 笔者作为一名香港中文大学(深圳)的学生, 教授们会把课件以及作业等都发布在 moodle 上, 因此学生需要时常登录 moodle 下载课件以及完成作业. 本篇文章将简短地介绍使用 python 爬取 moodle 上的全部课件并下载到本地">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkcfvfe6nuj30l20a0abv.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> 用python爬虫爬取moodle课件 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用python爬虫爬取moodle课件
+        
+      </h1>
+
+      <time class="post-time">
+          Oct 10 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1) 介绍"></a>1) 介绍</h1><p><code>moodle(Modular Object-Oriented Dynamic Learning Environment)</code> 是一个开源的课程管理系统, 笔者作为一名香港中文大学(深圳)的学生, 教授们会把课件以及作业等都发布在 <code>moodle</code> 上, 因此学生需要时常登录 <code>moodle</code> 下载课件以及完成作业. 本篇文章将简短地介绍使用 <code>python</code> 爬取 <code>moodle</code> 上的全部课件并下载到本地, 分类保存, 省去学生登录, 选择, 下载的时间, 也能更方便的在本地管理.</p>
+<a id="more"></a>
+<h1 id="2-code"><a href="#2-code" class="headerlink" title="2) code"></a>2) code</h1><h2 id="1-引入模块"><a href="#1-引入模块" class="headerlink" title="1. 引入模块"></a>1. 引入模块</h2><p>本篇文章将使用 <code>requests</code> 模块来进行爬虫的实现, 正则表达式模块<code>re</code> 以及对本地文件进行操作 <code>os</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-登录moodle"><a href="#2-登录moodle" class="headerlink" title="2. 登录moodle"></a>2. 登录moodle</h2><p><code>requests.Session</code> 能够跨请求地保持某些参数，自动帮助我们处理cookies，很方便的就能够处理登录问题.    </p>
+<p>moodle没有设置反爬机制, 因此无需设置代理ip以及浏览器头部信息, 这给我们省去了不少麻烦.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line">url_post_first_page = <span class="string">'https://elearning.cuhk.edu.cn/login/index.php'</span>  <span class="comment">#香港中文大学(深圳)moodle登录url</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#由于我校moodle并没有对爬虫进行任何反爬的设置, 因此header内容可不要</span></span><br><span class="line"><span class="comment">#header = &#123;</span></span><br><span class="line"><span class="comment">#    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',</span></span><br><span class="line"><span class="comment">#    'Referer': 'http://i.cuhk.edu.cn/cloud/pcs/moodleLogin'</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">username = str(input(<span class="string">'请输入用户名: '</span>))</span><br><span class="line">password = str(input(<span class="string">'请输入密码: '</span>))</span><br><span class="line">postdata = &#123;</span><br><span class="line">    <span class="string">'username'</span>: username,</span><br><span class="line">    <span class="string">'password'</span>: password</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">html_post = session.post(url_post_first_page, postdata)   <span class="comment">#提交表单</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-正则表达式提取"><a href="#3-正则表达式提取" class="headerlink" title="3. 正则表达式提取"></a>3. 正则表达式提取</h2><h3 id="a-科目的提取"><a href="#a-科目的提取" class="headerlink" title="a)  科目的提取"></a>a)  科目的提取</h3><p> 观察网页内容   </p>
+<p> <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkcfvfe6nuj30l20a0abv.jpg" alt="1">   </p>
+<p> <img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkcfwsoovij30i0062q3y.jpg" alt="2">    </p>
+<p>  我们使用如下表达式:<code>&quot;https://elearning\.cuhk\.edu\.cn/course/view\.php\?id=(.+?)&quot;</code>    </p>
+<p>  将爬取到的url储存到一个列表中, 再次单独一个一个访问来读取每一门科目下的内容.     </p>
+<pre><code class="python">data = list(set(data))    <span class="comment">#删除掉重复地址</span></code></pre>
+<h3 id="b-文件夹的提取"><a href="#b-文件夹的提取" class="headerlink" title="b) 文件夹的提取"></a>b) 文件夹的提取</h3><p>先单独访问每个科目对应的网站  (在外层套循环)</p>
+<pre><code class="python">url_page = <span class="string">'https://elearning.cuhk.edu.cn/course/view.php?id='</span> + str(num)  <span class="comment">#num为科目对应id</span>
+page = session.get(url_page)</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkcg8njqr3j30ia0katcs.jpg" alt="3">   </p>
+<p> 采用以下表达式   </p>
+<pre><code class="python"><span class="string">"(https://elearning\.cuhk\.edu\.cn/mod/folder/view\.php\?id=.+?)"</span></code></pre>
+<h3 id="c-文件的提取"><a href="#c-文件的提取" class="headerlink" title="c) 文件的提取"></a>c) 文件的提取</h3><pre><code class="python"><span class="string">"(https://elearning\.cuhk\.edu\.cn/mod/resource/view\.php\?id=.+?)"</span></code></pre>
+<p>或许大家已经发现规律了, 文件是 <code>resource</code>  文件夹是<code>folder</code>  科目是 <code>course</code>   </p>
+<h2 id="4-下载"><a href="#4-下载" class="headerlink" title="4. 下载"></a>4. 下载</h2><p>我们定义一个函数来下载文件</p>
+<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">downloader</span><span class="params">(session, url, path)</span>:</span>     <span class="comment">#session作为参数传入, url是下载文件的地址, path是要保存的地址</span>
+    file1 = session.get(url)
+    print(<span class="string">'访问成功!开始下载'</span>)
+    file = open(path, <span class="string">'wb'</span>)
+    file.write(file1.content)
+    name = path.split(<span class="string">'/'</span>)[<span class="number">-1</span>]        <span class="comment">#对path进行切片来提取最后的文件名, 并提示已下载成功</span>
+    print(<span class="string">'下载成功: '</span>+ name)
+    file.close()
+</code></pre>
+<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><ul>
+<li>创建多个字典, 来保存url对应文件或者科目等</li>
+<li>由于存在多层文件夹的嵌套, 因此要注意保存路径的编写</li>
+<li>由于存在多种格式文件, 因此要在网页源码中自己判断好文件格式并下载</li>
+</ul>
+<h1 id="3-最后"><a href="#3-最后" class="headerlink" title="3) 最后"></a>3) 最后</h1><p>由于笔者水平有限, 上述代码必然有许多不优秀的地方, 为了观看方便, 省略很多杂七杂八的代码, 本篇文章只能起到一个大致的思路作用, 希望能带给一些刚刚接触爬虫的小伙伴们一点思路 ( 当然笔者也是刚刚接触爬虫的小菜鸟 )      </p>
+<p>因为自己的代码写的很乱, 还存在着一些小bug, 因此笔者就不贴上代码献丑了.<br>当然还可以通过其他多种思路去编写爬虫, 笔者也在和大家一起进步着.</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/python/">python</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/16/python-易错及易遗忘点总结/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">python 易错及易遗忘点总结（持续更新）</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-介绍"><span class="nav-text">1) 介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-code"><span class="nav-text">2) code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引入模块"><span class="nav-text">1. 引入模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-登录moodle"><span class="nav-text">2. 登录moodle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-正则表达式提取"><span class="nav-text">3. 正则表达式提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-科目的提取"><span class="nav-text">a)  科目的提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-文件夹的提取"><span class="nav-text">b) 文件夹的提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-文件的提取"><span class="nav-text">c) 文件的提取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-下载"><span class="nav-text">4. 下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-其他"><span class="nav-text">5. 其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-最后"><span class="nav-text">3) 最后</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

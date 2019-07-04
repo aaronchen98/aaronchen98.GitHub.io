@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="R-CNN 目标检测（一）">
+
+
+
+
+  <meta name="keywords" content="深度学习,目标检测,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2018/04/11/RCNN/">
+
+
+<meta name="description" content="R-CNN 结构对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。     R-CNN由4个部分构成:           区域建议算法（ss）">
+<meta name="keywords" content="深度学习,目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R-CNN 目标检测（一）">
+<meta property="og:url" content="http://hhyz.me/2018/04/11/RCNN/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="R-CNN 结构对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。     R-CNN由4个部分构成:           区域建议算法（ss）">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-RCNN-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-RCNN-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-11-RCNN-3.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.601Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R-CNN 目标检测（一）">
+<meta name="twitter:description" content="R-CNN 结构对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。     R-CNN由4个部分构成:           区域建议算法（ss）">
+<meta name="twitter:image" content="http://hhyz.me/img/2018-04-11-RCNN-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> R-CNN 目标检测（一） - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          R-CNN 目标检测（一）
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 11 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="R-CNN-结构"><a href="#R-CNN-结构" class="headerlink" title="R-CNN 结构"></a>R-CNN 结构</h2><p>对于R-CNN模型，个人是这样理解，它其实是将4个应用于不同任务的已有的算法很好的结合了起来，最终在目标检测任务中取得了不错的效果，这种结合更像是偏向于工程的方法，而不是在算法上的一种突破，当然在后续的Fast-RCNN与Faster-RCNN中模型逐步完善并整合成为一个模型，但是在R-CNN中是没有的。    </p>
+<p>R-CNN由4个部分构成:         </p>
+<ol>
+<li>区域建议算法（ss） </li>
+<li>特征提取算法（AlexNet） </li>
+<li>线性分类器（线性SVM） </li>
+<li>边界框修正回归模型（Bounding box）</li>
+</ol>
+<a id="more"></a>
+
+<p>简单来说，RCNN使用以下四步实现目标检测： </p>
+<ol>
+<li>在图像中确定约1000-2000个候选框 </li>
+<li>对于每个候选框内图像块，使用深度网络提取特征 </li>
+<li>对候选框中提取出的特征，使用分类器判别是否属于一个特定类 </li>
+<li>对于属于某一特征的候选框，用回归器进一步调整其位置 </li>
+</ol>
+<p><img src="/img/2018-04-11-RCNN-1.jpg" alt></p>
+<h3 id="区域建议算法-Region-Proposal"><a href="#区域建议算法-Region-Proposal" class="headerlink" title="区域建议算法 Region Proposal"></a>区域建议算法 Region Proposal</h3><p>区域建议（Region Proposal）算法在CNN之前就已经有了，而且算法不止一种，<code>ss (selective search)</code> 算法是比较著名的一个，此外还有EdgeBox，MSER，MCG等等算法，CS231n中对这几种算法做了一个简单的介绍，感兴趣的话可以移步到CS231n第16课时。</p>
+<p>那么ss算法在R-CNN中有什么用呢？这要从目标检测任务开始谈起，在一副图像中要实现目标检测任务，一种最简单的思路是如果建立滑动窗，对每次滑动窗提取出来的图像做分类，如果分类结果恰好是目标的话，就实现了检测啦，目标的属性由分类器给，目标的位置由滑动窗给。但是考虑到一次滑动遍历产生的子图像数量就不小了，同时还有不同步长和窗口尺寸的情况，此时产生的待分类图像是非常多的，这种方式显然没什么实用价值，于是就有了ss算法，<strong>一种根据图像自身信息产生推荐区域的算法，它大概会产生1000-2000个潜在目标区域</strong>，照比滑动遍历的方式，这个数量已经减少了很多了。</p>
+<p>使用了Selective Search1方法从一张图像生成约2000-3000个候选区域。基本思路如下： </p>
+<ul>
+<li>使用一种过分割手段，将图像分割成小区域 </li>
+<li>查看现有小区域，合并可能性最高的两个区域。重复直到整张图像合并成一个区域位置 </li>
+<li>输出所有曾经存在过的区域，所谓候选区域</li>
+</ul>
+<p>候选区域生成和后续步骤相对独立，实际可以使用任意算法进行。</p>
+<h4 id="合并规则"><a href="#合并规则" class="headerlink" title="合并规则"></a>合并规则</h4><p>优先合并以下四种区域：   </p>
+<ul>
+<li>颜色（颜色直方图）相近的   </li>
+<li>纹理（梯度直方图）相近的   </li>
+<li>合并后总面积小的   </li>
+<li>合并后，总面积在其BBOX中所占比例大的</li>
+</ul>
+<p>第三条，保证合并操作的尺度较为均匀，避免一个大区域陆续“吃掉”其他小区域。</p>
+<blockquote>
+<p>例：设有区域 a-b-c-d-e-f-g-h。较好的合并方式是：ab-cd-ef-gh -&gt; abcd-efgh -&gt; abcdefgh。<br>不好的合并方法是：ab-c-d-e-f-g-h -&gt; abcd-e-f-g-h -&gt; abcdef-gh -&gt; abcdefgh。</p>
+</blockquote>
+<p>第四条，保证合并后形状规则。</p>
+<blockquote>
+<p>例：左图适于合并，右图不适于合并。<br><img src="/img/2018-04-11-RCNN-2.jpg" alt></p>
+</blockquote>
+<p>上述四条规则只涉及区域的颜色直方图、纹理直方图、面积和位置。合并后的区域特征可以直接由子区域特征计算而来，速度较快。</p>
+<h4 id="多样化与后处理"><a href="#多样化与后处理" class="headerlink" title="多样化与后处理"></a>多样化与后处理</h4><p>为尽可能不遗漏候选区域，上述操作在多个颜色空间中同时进行（RGB,HSV,Lab等）。在一个颜色空间中，使用上述四条规则的不同组合进行合并。所有颜色空间与所有规则的全部结果，在去除重复后，都作为候选区域输出。</p>
+<h3 id="特征提取算法"><a href="#特征提取算法" class="headerlink" title="特征提取算法"></a>特征提取算法</h3><p>这里的特征提取算法其实就是卷积神经网络，R-CNN中使用的是AlexNet，但是作者（Ross）并没有把AlexNet当做分类器来使用，而是只用了网络的特征层做ss算法输出的图像的特征提取工作，然后第7层特征给了SVM分类器，第五次特征给了Bounding Box回归模型。</p>
+<h3 id="线性分类器"><a href="#线性分类器" class="headerlink" title="线性分类器"></a>线性分类器</h3><p>R-CNN使用了线性SVM分类器，需要说明的是，目标检测任务是有分类的功能的，比如一个任务是检测猫和狗，那么除了要框出猫和狗的位置之外，也需要判断是猫还是狗，这也是SVM在R-CNN中的作用。<strong>所以待检测物体有几类，那么就应该有几个二分类的SVM分类器</strong>，在上面的例子中，就需要两个二分类分类器了，分别是“猫-非猫”模型和“狗-非狗”模型，在R-CNN中，分类器有20个，它的输入特征是AlexNet提取到的fc7层特征。</p>
+<p>由于负样本很多，使用 <code>hard negative mining</code> 方法。<br>正样本: 本类的真值标定框。<br>负样本: 考察每一个候选框，如果和本类所有标定框的重叠都小于0.3，认定其为负样本</p>
+<h3 id="边界框修正回归模型"><a href="#边界框修正回归模型" class="headerlink" title="边界框修正回归模型"></a>边界框修正回归模型</h3><p>Bounding box也是个古老的话题了，计算机视觉常见任务中，在分类与检测之间还有一个定位任务，在一副图像中只有一个目标，然后把这个目标框出来，用到的就是Bounding box回归模型。在R-CNN中，Bounding box的作用是<strong>修正ss推荐的区域的边界，输入的特征是AlexNet的第五层特征</strong>，与SVM分类器一样，它也是<strong>每一个类别都有一个模型</strong>，一共20个。</p>
+<h2 id="R-CNN-的训练"><a href="#R-CNN-的训练" class="headerlink" title="R-CNN 的训练"></a>R-CNN 的训练</h2><p>R-CNN训练了CNN，SVM与Bounding box三个模型，因为ss不用训练。ss在生成了1000-2000个推荐区域之后，就和训练任务没关系了，训练样本是由ss区域生成出来的子图构建起来的。 而且三个部分的训练时独立的，并没有整合在一起。</p>
+<h3 id="1-训练CNN"><a href="#1-训练CNN" class="headerlink" title="1. 训练CNN"></a>1. 训练CNN</h3><p>CNN是在ImageNet上pre-train的AlexNet模型，在R-CNN中进行<strong>fine-tune</strong>，fine-tune的过程是将AlexNet的<strong>Softmax改为任务需要的类别数</strong>，然后还是当做一个分类模型来训练，训练样本的构建使用ss生成的子图，当这些图与实际样本的框（Ground-truth）的IoU大于等于0.5时，认为是某一个类的<strong>正样本</strong>，这样的类一共有20个；IoU小于0.5时，认为是<strong>负样本</strong>。然后就可以AlexNet做pre-train了，pre-train之后AlexNet的Softmax层就被扔掉了，只剩下训练后的参数，这套参数就用来做特征提取。</p>
+<h3 id="2-训练SVM"><a href="#2-训练SVM" class="headerlink" title="2. 训练SVM"></a>2. 训练SVM</h3><p>之前提到了，SVM的输入特征是AlexNet fc7的输出，然后SVM做二分类，一个有20个SVM模型。那么对于其中某一个分类器来说，它的正样本是所有Ground-truth区域经过AlexNet后输出的特征，负样本是与Ground-truth区域重合IoU小于0.3的区域经过AlexNet后输出的特征，特征和标签确定了，就可以训练SVM了。</p>
+<h3 id="3-训练Bounding-box回归模型"><a href="#3-训练Bounding-box回归模型" class="headerlink" title="3. 训练Bounding box回归模型"></a>3. 训练Bounding box回归模型</h3><p>Bounding box回归模型也是20个，还是拿其中一个来说，它的输入是AlexNet conv5的特征，注意这里的20指的是类的个数，但是对一个Bounding box来说，它有4套参数，因为一个Bounding box回归模型分别对4个数做回归，这4个数是表征边界框的四个值，模型的损失函数如下：<br><img src="/img/2018-04-11-RCNN-3.jpg" alt></p>
+<p>其中i是样本个数，*就是4个数，他们分别是x，y，w，h，其中（x，y）是中心位置，（w，h）是宽和高；P是ss给出来的区域，它由Px，Py，Pw，Ph四个数决定，这个区域经过AlexNet后再第五层输出特征，然后在特征每一个维度前都训练一个参数w，一组特征就有一组w，随4组做回归就有4组w；最后一个数就是t，它同样有4个数tx，ty，tw，th，是这样计算出来的： </p>
+<p>$$t_{x} = (G_{x} - P_x) / P_w$$   </p>
+<p>$$t_y = (G_y - P_y) / P_h$$</p>
+<p>$$t_w = \log(\frac{G_w}{P_w})$$</p>
+<p>$$t_h = \log(\frac{G_h}{P_h})$$</p>
+<p>而G就是经过修正后的边界框，它还是4个数Gx，Gy，Gw，Gh。通过上面的公式可以看到，t是边界框的偏差。 最后就是到底什么样的ss区域能够作为输入，在这里是IoU大于0.6的。 用一句话总结Bounding box回归模型就是：对于某一个类的回归模型而言，用IoU&gt;0.6的ss区域经过卷积后作为输入特征，用同一组特征分别训练4组权值与之对应，对边界框四个属性值分别做回归。</p>
+<p>经过上面三个独立的部分，R-CNN的训练就完成了，可以看到，确实是非常麻烦，这不仅仅体现在速度慢上，过程也及其繁琐，因为每一步都需要重新构建样本。</p>
+<h3 id="R-CNN的测试"><a href="#R-CNN的测试" class="headerlink" title="R-CNN的测试"></a>R-CNN的测试</h3><ol>
+<li>ss算法提取1000-2000个区域； </li>
+<li>对所有的区域做尺寸统一，为了CNN网络能接受； </li>
+<li>用AlexNet网络提出两套特征，一个是fc7层的，一个是con5层的； </li>
+<li>对于一个fc7区域的特征，分别过20个分类器，看看哪个分类器给的分数最高，以确定区域的类别，并把所有的区域一次操作； </li>
+<li>对上述所有打好label的区域使用非极大值抑制操作，以获取没有冗余（重叠）的区域子集，经过非极大值抑制之后，就认为剩下的所有的区域都是最后要框出来的； </li>
+<li>重新拿回第5步剩下的区域con5层的特征，送入Bounding box模型，根据模型的输出做出一次修正； </li>
+<li>根据SVM的结果打标签，根据修正的结果画框； </li>
+<li>结束</li>
+</ol>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">转载自：    </span><br><span class="line"><span class="symbol">http:</span><span class="comment">//mp.weixin.qq.com/s?__biz=MzUyMjE2MTE0Mw==&amp;mid=2247484206&amp;idx=1&amp;sn=f9084165a4673affd8e23ac97f707eb8&amp;chksm=f9d15db6cea6d4a04a777d45ae3e3f1a3ef6f657352c98db9664084fe4b4f802273dde7ac943&amp;scene=21#wechat_redirect   </span></span><br><span class="line">参考</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//blog.csdn.net/shenxiaolu1984/article/details/51066975</span></span><br></pre></td></tr></table></figure>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+            <a href="/tags/目标检测/">目标检测</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/11/MathJax/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">MathJax 使用指南</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/04/11/ObjectDetection/">
+        <span class="next-text nav-default">综述|基于深度学习的目标检测</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN-结构"><span class="nav-text">R-CNN 结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区域建议算法-Region-Proposal"><span class="nav-text">区域建议算法 Region Proposal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并规则"><span class="nav-text">合并规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多样化与后处理"><span class="nav-text">多样化与后处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取算法"><span class="nav-text">特征提取算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性分类器"><span class="nav-text">线性分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边界框修正回归模型"><span class="nav-text">边界框修正回归模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN-的训练"><span class="nav-text">R-CNN 的训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-训练CNN"><span class="nav-text">1. 训练CNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-训练SVM"><span class="nav-text">2. 训练SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-训练Bounding-box回归模型"><span class="nav-text">3. 训练Bounding box回归模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R-CNN的测试"><span class="nav-text">R-CNN的测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

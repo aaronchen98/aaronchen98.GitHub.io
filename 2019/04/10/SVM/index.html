@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="支持向量机">
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/04/10/SVM/">
+
+
+<meta name="description" content="从零推导支持向量机(SVM)Github PDF  地址  1. 线性二分类模型 2. 线性支持向量机 2.1 间隔 2.2 线性支持向量机基本型 3. 核函数 3.1 非线性可分问题  4.  软间隔">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支持向量机">
+<meta property="og:url" content="http://hhyz.me/2019/04/10/SVM/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="从零推导支持向量机(SVM)Github PDF  地址  1. 线性二分类模型 2. 线性支持向量机 2.1 间隔 2.2 线性支持向量机基本型 3. 核函数 3.1 非线性可分问题  4.  软间隔">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-4.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-5.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-6.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-7.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-8.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-9.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-10.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-04-10-SVM-11.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支持向量机">
+<meta name="twitter:description" content="从零推导支持向量机(SVM)Github PDF  地址  1. 线性二分类模型 2. 线性支持向量机 2.1 间隔 2.2 线性支持向量机基本型 3. 核函数 3.1 非线性可分问题  4.  软间隔">
+<meta name="twitter:image" content="http://hhyz.me/img/2019-04-10-SVM-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> 支持向量机 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          支持向量机
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 10 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/31652569" target="_blank" rel="noopener">从零推导支持向量机(SVM)</a><br><a href="https://github.com/HaoMood/File/blob/master/%E4%BB%8E%E9%9B%B6%E6%8E%A8%E5%AF%BC%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA(SVM).pdf" target="_blank" rel="noopener">Github PDF  地址</a></p>
+</blockquote>
+<h2 id="1-线性二分类模型"><a href="#1-线性二分类模型" class="headerlink" title="1. 线性二分类模型"></a>1. 线性二分类模型</h2><p><img src="/img/2019-04-10-SVM-1.jpg" alt></p>
+<h2 id="2-线性支持向量机"><a href="#2-线性支持向量机" class="headerlink" title="2. 线性支持向量机"></a>2. 线性支持向量机</h2><p><img src="/img/2019-04-10-SVM-2.jpg" alt></p>
+<h3 id="2-1-间隔"><a href="#2-1-间隔" class="headerlink" title="2.1 间隔"></a>2.1 间隔</h3><p><img src="/img/2019-04-10-SVM-3.jpg" alt></p>
+<h3 id="2-2-线性支持向量机基本型"><a href="#2-2-线性支持向量机基本型" class="headerlink" title="2.2 线性支持向量机基本型"></a>2.2 线性支持向量机基本型</h3><p><img src="/img/2019-04-10-SVM-4.jpg" alt><br><img src="/img/2019-04-10-SVM-5.jpg" alt><br><img src="/img/2019-04-10-SVM-6.jpg" alt></p>
+<h2 id="3-核函数"><a href="#3-核函数" class="headerlink" title="3. 核函数"></a>3. 核函数</h2><p><img src="/img/2019-04-10-SVM-7.jpg" alt></p>
+<h3 id="3-1-非线性可分问题"><a href="#3-1-非线性可分问题" class="headerlink" title="3.1 非线性可分问题"></a>3.1 非线性可分问题</h3><p><img src="/img/2019-04-10-SVM-8.jpg" alt></p>
+<p><img src="/img/2019-04-10-SVM-9.jpg" alt></p>
+<h2 id="4-软间隔"><a href="#4-软间隔" class="headerlink" title="4.  软间隔"></a>4.  软间隔</h2><p><img src="/img/2019-04-10-SVM-10.jpg" alt><br><img src="/img/2019-04-10-SVM-11.jpg" alt></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/">机器学习</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/04/22/PCA/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">主成分分析</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/03/30/CART/">
+        <span class="next-text nav-default">CART (Classification And Regression Tree)</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-线性二分类模型"><span class="nav-text">1. 线性二分类模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-线性支持向量机"><span class="nav-text">2. 线性支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-间隔"><span class="nav-text">2.1 间隔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-线性支持向量机基本型"><span class="nav-text">2.2 线性支持向量机基本型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-核函数"><span class="nav-text">3. 核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-非线性可分问题"><span class="nav-text">3.1 非线性可分问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-软间隔"><span class="nav-text">4.  软间隔</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

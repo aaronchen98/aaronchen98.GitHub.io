@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="CART (Classification And Regression Tree)">
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2019/03/30/CART/">
+
+
+<meta name="description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法      split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CART (Classification And Regression Tree)">
+<meta property="og:url" content="http://hhyz.me/2019/03/30/CART/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法      split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-4.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-5.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-6.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-7.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-8.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-9.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-10.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-11.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2019-03-30-CART-12.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CART (Classification And Regression Tree)">
+<meta name="twitter:description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法      split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
+<meta name="twitter:image" content="http://hhyz.me/img/2019-03-30-CART-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> CART (Classification And Regression Tree) - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          CART (Classification And Regression Tree)
+        
+      </h1>
+
+      <time class="post-time">
+          Mar 30 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>求  \(R_m\)： </p>
+<ol>
+<li><p>扩张树：用贪心，上至下递归分区方法    </p>
+</li>
+<li><p>split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\) </p>
+<p> <img src="/img/2019-03-30-CART-1.jpg" alt></p>
+</li>
+</ol>
+<p>Split s divide the current node into two children.<br>比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\ \times ext{Right-Child }= {(y_i, x_i) : x_{ij} &gt; t}\) </p>
+<p><strong>2D 的例子</strong></p>
+<p><img src="/img/2019-03-30-CART-2.jpg" alt></p>
+<h2 id="Splitting-规则"><a href="#Splitting-规则" class="headerlink" title="Splitting 规则"></a>Splitting 规则</h2><h3 id="1-Regression"><a href="#1-Regression" class="headerlink" title="1. Regression"></a>1. Regression</h3><p><img src="/img/2019-03-30-CART-3.jpg" alt></p>
+<h3 id="2-Classification"><a href="#2-Classification" class="headerlink" title="2. Classification"></a>2. Classification</h3><p><img src="/img/2019-03-30-CART-4.jpg" alt></p>
+<p><strong>不纯度函数(impurity function)</strong></p>
+<ol>
+<li><p>当所有样本都属于同一类时候  \(I\)  取最小值. 即 \(I\) 在点  \((1,0,…,0),(0,1,…,0),…,(0,..,0,1)\)  取最小值.</p>
+</li>
+<li><p>当样本中每个类目下样本个数相同时I取最大值. 即 \(I\) 在点 \((1/k,..,1/k)\) 取最大值.</p>
+</li>
+</ol>
+<h2 id="Prunning-剪枝"><a href="#Prunning-剪枝" class="headerlink" title="Prunning 剪枝"></a>Prunning 剪枝</h2><p>代价复杂性剪枝 (cost complexity pruning)</p>
+<p>$$min \ \ \frac {1}{N} \sum^{\vert T \vert}_{m=1} \sum_{x_i \in {R_m}} L(y_i, w_m) + \alpha \vert T\vert$$</p>
+<p> \(\vert T \vert\) 是 termainal nodes 的总数</p>
+<p>  \(L(·, ·)\) 是 loss function, 例如 \(L(yi, f (x_i)) = L(x_i,w_m) = (y_i − w_m)^2\) </p>
+<p>  \(w_m\) 是与 \(R_m\) 对应的预测值  \(\rightarrow\)  也就是 \(R_m\) 中训练集的平均值</p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><img src="/img/2019-03-30-CART-5.jpg" alt></p>
+<p><img src="/img/2019-03-30-CART-6.jpg" alt></p>
+<p><img src="/img/2019-03-30-CART-7.jpg" alt></p>
+<p>Multiple trees: </p>
+<ul>
+<li>bagging 袋装法</li>
+<li>random forests 随机森林</li>
+<li>boosting 提升法</li>
+</ul>
+<h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><blockquote>
+<p><strong>基本思想</strong>：<br>在分类问题中，通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类器的性能。</p>
+</blockquote>
+<p><strong>历史</strong>：</p>
+<ul>
+<li>PAC learning framework (1990)</li>
+<li>AdaBoost methods (1996)</li>
+<li>gradient boosting (2000)</li>
+</ul>
+<p><strong>weak learner</strong>:<br>classifiers whose error rate is slightly better than random guessing</p>
+<p>Boosting 改变训练样本的权重，产生一系列的分类器：<br><img src="/img/2019-03-30-CART-8.jpg" alt></p>
+<p>最终的分类器可以表示为：<br><img src="/img/2019-03-30-CART-9.jpg" alt></p>
+<p> \(\alpha_m\)：分类系数（由 boosting 算法计算得出）</p>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p><img src="/img/2019-03-30-CART-10.jpg" alt></p>
+<p><img src="/img/2019-03-30-CART-11.jpg" alt></p>
+<p><img src="/img/2019-03-30-CART-12.jpg" alt></p>
+<h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><p>你可能会问为什么不直接使用一个决策树？这种分类器堪称完美，因为根本不会犯任何错误！但要记住一个重点：决策树只是不会在训练数据上犯错。</p>
+<p>随机森林是由许多决策树构成的模型。这不仅仅是森林，而且是随机的，这涉及到两个概念：</p>
+<ol>
+<li><p>随机采样数据点</p>
+</li>
+<li><p>基于特征的子集分割节点</p>
+</li>
+</ol>
+<p>随机森林由LeoBreiman（2001）提出，它通过自助法（bootstrap）重采样技术，从原始训练样本集N中有放回地重复随机抽取k个样本生成新的训练样本集合，然后根据自助样本集生成k个分类树组成随机森林，新数据的分类结果按分类树投票多少形成的分数而定。其实质是对决策树算法的一种改进，将多个决策树合并在一起，每棵树的建立依赖于一个独立抽取的样品，森林中的每棵树具有相同的分布，分类误差取决于每一棵树的分类能力和它们之间的相关性。特征选择采用随机的方法去分裂每一个节点，然后比较不同情况下产生的误差。能够检测到的内在估计误差、分类能力和相关性决定选择特征的数目。单棵树的分类能力可能很小，但在随机产生大量的决策树后，一个测试样品可以通过每一棵树的分类结果经统计后选择最可能的分类。</p>
+<p><strong>随机森林的构建过程</strong></p>
+<p>决策树相当于一个大师，通过自己在数据集中学到的知识对于新的数据进行分类。但是俗话说得好，一个诸葛亮，玩不过三个臭皮匠。随机森林就是希望构建多个臭皮匠，希望最终的分类效果能够超过单个大师的一种算法。</p>
+<p>那随机森林具体如何构建呢？有两个方面：数据的随机性选取，以及待选特征的随机选取。</p>
+<p><strong>数据的随机选取</strong></p>
+<p>首先，从原始的数据集中采取有放回的抽样，构造子数据集，子数据集的数据量是和原始数据集相同的。不同子数据集的元素可以重复，同一个子数据集中的元素也可以重复。第二，利用子数据集来构建子决策树，将这个数据放到每个子决策树中，每个子决策树输出一个结果。最后，如果有了新的数据需要通过随机森林得到分类结果，就可以通过对子决策树的判断结果的投票，得到随机森林的输出结果了。</p>
+<p>随机森林采用的是bagging的思想，bagging又称为bootstrap aggreagation，通过在训练样本集中进行有放回的采样得到多个采样集，基于每个采样集训练出一个基学习器，再将基学习器结合。随机森林在对决策树进行bagging的基础上，在决策树的训练过程中引入了随机属性选择。传统决策树在选择划分属性的时候是在当前节点属性集合中选择最优属性，而随机森林则是对结点先随机选择包含k个属性的子集，再选择最有属性，k作为一个参数控制了随机性的引入程度。</p>
+<p>另外，GBDT训练是基于Boosting思想，每一迭代中根据错误更新样本权重，因此是串行生成的序列化方法，而随机森林是bagging的思想，因此是并行化方法。</p>
+<p>尽管有剪枝等等方法，一棵树的生成肯定还是不如多棵树，因此就有了随机森林，解决决策树泛化能力弱的缺点。（可以理解成三个臭皮匠顶过诸葛亮）</p>
+<p>而同一批数据，用同样的算法只能产生一棵树，这时Bagging策略可以帮助我们产生不同的数据集。Bagging策略来源于bootstrap aggregation：从样本集（假设样本集N个数据点）中重采样选出Nb个样本（有放回的采样，样本数据点个数仍然不变为N），在所有样本上，对这n个样本建立分类器（ID3\C4.5\CART\SVM\LOGISTIC），重复以上两步m次，获得m个分类器，最后根据这m个分类器的投票结果，决定数据属于哪一类。</p>
+<p>随机森林在bagging的基础上更进一步：</p>
+<ol>
+<li><p>样本的随机：从样本集中用Bootstrap随机选取n个样本</p>
+</li>
+<li><p>特征的随机：从所有属性中随机选取K个属性，选择最佳分割属性作为节点建立CART决策树（泛化的理解，这里面也可以是其他类型的分类器，比如SVM、Logistics）</p>
+</li>
+<li><p>重复以上两步m次，即建立了m棵CART决策树</p>
+</li>
+<li><p>这m个CART形成随机森林，通过投票表决结果，决定数据属于哪一类（投票机制有一票否决制、少数服从多数、加权多数）</p>
+</li>
+</ol>
+<p>假设随机森林中有3棵子决策树，2棵子树的分类结果是A类，1棵子树的分类结果是B类，那么随机森林的分类结果就是A类。</p>
+<p>关于调参：</p>
+<ol>
+<li>如何选取K，可以考虑有N个属性，取K=根号N</li>
+<li>最大深度（不超过8层）</li>
+<li>棵数</li>
+<li>最小分裂样本树</li>
+<li>类别比例</li>
+</ol>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/">机器学习</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/04/10/SVM/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">支持向量机</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/03/25/ml/">
+        <span class="next-text nav-default">机器学习汇总</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Splitting-规则"><span class="nav-text">Splitting 规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Regression"><span class="nav-text">1. Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Classification"><span class="nav-text">2. Classification</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prunning-剪枝"><span class="nav-text">Prunning 剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boosting"><span class="nav-text">boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost"><span class="nav-text">AdaBoost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机森林"><span class="nav-text">随机森林</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

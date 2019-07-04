@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="python 进度条包 tqdm 的使用">
+
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2018/06/25/tqdm/">
+
+
+<meta name="description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01)  方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char  方式 312for i in trange(100">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 进度条包 tqdm 的使用">
+<meta property="og:url" content="http://hhyz.me/2018/06/25/tqdm/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01)  方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char  方式 312for i in trange(100">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.649Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 进度条包 tqdm 的使用">
+<meta name="twitter:description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01)  方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char  方式 312for i in trange(100">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> python 进度条包 tqdm 的使用 - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          python 进度条包 tqdm 的使用
+        
+      </h1>
+
+      <time class="post-time">
+          Jun 25 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="方式-1"><a href="#方式-1" class="headerlink" title="方式 1"></a>方式 1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(range(<span class="number">1000</span>)):</span><br><span class="line">    sleep(<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式-2"><a href="#方式-2" class="headerlink" title="方式 2"></a>方式 2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> tqdm([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]):</span><br><span class="line">    text = text + char</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式-3"><a href="#方式-3" class="headerlink" title="方式 3"></a>方式 3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> trange(<span class="number">100</span>): </span><br><span class="line">   print(i)</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式-4"><a href="#方式-4" class="headerlink" title="方式 4"></a>方式 4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pbar = tqdm([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>])</span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> pbar:</span><br><span class="line">    pbar.set_description(<span class="string">"Processing %s"</span> % char)</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'epoch'</span>, epoch)</span><br><span class="line">training_steps = tqdm(</span><br><span class="line">    range(<span class="number">1</span>, FLAGS.steps_per_epoch),</span><br><span class="line">    initial=<span class="number">1</span>, total=FLAGS.steps_per_epoch</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># main training loop</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> training_steps:</span><br><span class="line"></span><br><span class="line">    _, batch_loss, batch_accuracy = sess.run([</span><br><span class="line">        ops[<span class="string">'optimize'</span>], ops[<span class="string">'log_loss'</span>], ops[<span class="string">'accuracy'</span>]</span><br><span class="line">    ])</span><br><span class="line">    running_loss += batch_loss</span><br><span class="line">    running_accuracy += batch_accuracy</span><br></pre></td></tr></table></figure>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/python/">python</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/06/26/ModelCompression/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">深度学习模型压缩 Model Compression</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/06/24/youhua/">
+        <span class="next-text nav-default">CNN 优化网络总结</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-1"><span class="nav-text">方式 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-2"><span class="nav-text">方式 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-3"><span class="nav-text">方式 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-4"><span class="nav-text">方式 4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-text">应用</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

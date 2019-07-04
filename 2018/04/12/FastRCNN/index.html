@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="Fast R-CNN 目标检测（三）">
+
+
+
+
+  <meta name="keywords" content="深度学习,目标检测,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="http://hhyz.me/2018/04/12/FastRCNN/">
+
+
+<meta name="description" content="Fast R-CNN简介在之前的两个文章中，我们分别介绍了R-CNN与SPP-Net，于是在2015年RBG（Ross B. Girshick）等结合了SPP-Net的共享卷积计算思想，对R-CNN做出改进，于是就有了Fast R-CNN。首先简单介绍下Fast R-CNN。    它由以下几个部分组成：                                 ss算法">
+<meta name="keywords" content="深度学习,目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fast R-CNN 目标检测（三）">
+<meta property="og:url" content="http://hhyz.me/2018/04/12/FastRCNN/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="Fast R-CNN简介在之前的两个文章中，我们分别介绍了R-CNN与SPP-Net，于是在2015年RBG（Ross B. Girshick）等结合了SPP-Net的共享卷积计算思想，对R-CNN做出改进，于是就有了Fast R-CNN。首先简单介绍下Fast R-CNN。    它由以下几个部分组成：                                 ss算法">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-1.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-2.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-3.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-4.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-5.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-6.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-7.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-8.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-9.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-10.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-11.jpg">
+<meta property="og:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-12.jpg">
+<meta property="og:updated_time" content="2019-07-02T17:05:20.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fast R-CNN 目标检测（三）">
+<meta name="twitter:description" content="Fast R-CNN简介在之前的两个文章中，我们分别介绍了R-CNN与SPP-Net，于是在2015年RBG（Ross B. Girshick）等结合了SPP-Net的共享卷积计算思想，对R-CNN做出改进，于是就有了Fast R-CNN。首先简单介绍下Fast R-CNN。    它由以下几个部分组成：                                 ss算法">
+<meta name="twitter:image" content="http://hhyz.me/img/2018-04-12-FastRCNN-1.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> Fast R-CNN 目标检测（三） - 浩瀚宇宙·AaronChen </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="http://huangyijiegallery.lofter.com/">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Fast R-CNN 目标检测（三）
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 12 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="Fast-R-CNN简介"><a href="#Fast-R-CNN简介" class="headerlink" title="Fast R-CNN简介"></a>Fast R-CNN简介</h2><p>在之前的两个文章中，我们分别介绍了<a href="http://mp.weixin.qq.com/s?__biz=MzUyMjE2MTE0Mw==&mid=2247484206&idx=1&sn=f9084165a4673affd8e23ac97f707eb8&chksm=f9d15db6cea6d4a04a777d45ae3e3f1a3ef6f657352c98db9664084fe4b4f802273dde7ac943&scene=21#wechat_redirect" target="_blank" rel="noopener">R-CNN</a>与SPP-Net，于是在2015年RBG（Ross B. Girshick）等结合了SPP-Net的共享卷积计算思想，对R-CNN做出改进，于是就有了Fast R-CNN。首先简单介绍下Fast R-CNN。   </p>
+<p>它由以下几个部分组成：                               </p>
+<ol>
+<li>ss算法                                                 </li>
+<li>CNN网络                                           </li>
+<li>SoftMax                                              </li>
+<li>bounding box</li>
+</ol>
+<a id="more"></a>
+
+<p>训练过程如下：</p>
+<ol>
+<li>用selective search在一张图片中生成约2000个object proposal，即感兴趣区域RoI。</li>
+<li>把它们整体输入到全卷积的网络中，用几个卷积层（conv）和最大池化层处理整个图像以产生conv特征图，在最后一个卷积层上对每个ROI求映射关系，并用一个RoI pooling layer来统一到相同的大小，得到特征向量 feature vector。</li>
+<li>每个特征向量被输送到分支成两个同级输出层的全连接（fc）层序列中：其中一层进行分类，对目标关于K个对象类（包括全部背景background类）产生softmax概率估计，即输出每一个RoI的概率分布；另一层进行bbox regression，输出K个对象类中每一个类的四个实数值。每4个值编码K个类中的每个类的精确边界盒（bounding-box）位置，即输出每一个种类的的边界盒回归偏差。整个结构是使用多任务损失的端到端训练（trained end-to-end with a multi-task loss）。</li>
+</ol>
+<p><img src="/img/2018-04-12-FastRCNN-1.jpg" alt></p>
+<center>Fast R-CNN结构</center>
+
+<br>
+
+
+<p>图像归一化为224×224直接送入网络。<br>前五阶段是基础的conv+relu+pooling形式，在第五阶段结尾，输入P个候选区域（图像序号×1+几何位置×4，序号用于训练）。</p>
+<p><img src="/img/2018-04-12-FastRCNN-2.jpg" alt></p>
+<br>
+
+<p>相比于之前两种算法，Fast R-CNN提出了： </p>
+<ul>
+<li>多任务损失函数（Multi-task loss）     </li>
+<li>感兴趣区域池化（RoI pooling layer）</li>
+</ul>
+<p>首先在SPP-Net与R-CCN一直使用的SVM分类器被换成了<strong>SoftMax</strong>，SPP-Net中的SPP换成了<strong>RoI pooling (Region of Interest)</strong>，多任务损失函数的引入整合了分类网络的损失函数与bounding box回归模型的损失函数，使任务不需要分阶段训练，区域建议依然使用ss算法生成，并在卷积后的特征图上提取（充分共享卷积计算），初始模型从AlexNet换成了<strong>VGG16</strong>。 </p>
+<h2 id="兴趣区域池化-RoI"><a href="#兴趣区域池化-RoI" class="headerlink" title="兴趣区域池化 RoI"></a>兴趣区域池化 RoI</h2><p>roi_pool层将每个候选区域均匀分成M×N块，对每块进行max pooling。将特征图上大小不一的候选区域转变为大小统一的数据，送入下一层。</p>
+<p><img src="/img/2018-04-12-FastRCNN-3.jpg" alt></p>
+<br>
+
+<p><img src="/img/2018-04-12-FastRCNN-4.jpg" alt></p>
+<p>上面这张图说明了SPP与RoI pooling的区别，其实RoI pooling是SPP的一种简化，原本SPP是一种多尺度的池化操作，最后将三个尺度的特征做串接作为全连接层的输入，而RoI pooling只选择了其中一种尺度，将ss算法的建议框做坐标变化后的尺寸的长和宽，平均分为w份和h份，在每一份中使用最大池化，最后产生 \(w \times h\) 个bin，这样做有下面几个好处： </p>
+<ol>
+<li>统一输出维度，这个是必须的。 </li>
+<li>相比于SPP-Net，RoI pooling的维度更少，假设RoI pooling选择了 \(4\times4\) 的话，那么维度就可以从21个bin降低为16个，虽然这样看来降低的并不多，但是不要忘了特征还有厚度，如果厚度是256的话，那么降维就比较可观了。 </li>
+<li>RoI pooling不再是多尺度的池化，这样一来梯度回传就会更方便，有利于Fast R-CNN实现end-to-end的训练。</li>
+</ol>
+<h2 id="兴趣区域池化的梯度回传"><a href="#兴趣区域池化的梯度回传" class="headerlink" title="兴趣区域池化的梯度回传"></a>兴趣区域池化的梯度回传</h2><p>在上说提到了，RoI pooling是单层的SPP，也就是只用一层金字塔并在区域内做Max pooling，所以如何说在卷积层上提取特征的时候，特征的位置没有出现重叠，RoI pooling就是一个Max pooling，梯度回传也是一样的，而出现位置重叠的时候，梯度回传才会发生变化。 </p>
+<p>那么先解释一下什么是重叠：<br>我们知道Fast R-CNN的区域建议同样是ss算法生成的，那么一幅图片在生成多个建议框时（假设是2个）可能会出现一些像素重叠的情况，就像下面这样：</p>
+<p><img src="/img/2018-04-12-FastRCNN-5.jpg" alt></p>
+<p>而这种情况就没有重叠：</p>
+<p><img src="/img/2018-04-12-FastRCNN-6.jpg" alt></p>
+<p>显然，重叠的区域经过相同的坐标变换之后在卷积特征图上同样是有重叠的，那么这部分重叠的像素梯度应该如何让计算呢？<br>是多个区域的偏导之和： </p>
+<p><img src="/img/2018-04-12-FastRCNN-7.jpg" alt></p>
+<p>上图中有\(r_{0}\)与\(r_1\)两个区域，每个区域都通过RoI pooling之后生成4个bin，x23的意思是第23个像素，那么计算x23位置的梯度就可以根据上图中左侧的公式，其中r是包含有这一点的区域，j是某个区域内的所有位置。<br>但是x23的梯度计算显然不需要r0，r1内的所有位置的梯度信息，它只需要包含x23这一点的，或者说是x23这一点有贡献的点的梯度，所以这里需要一个阈值函数 \(i*(r,j)\)，它的作用就是如果需要RoI pooling后的这一点的梯度，那么 \(i*(r,j)=1\)，否则 \(i*(r,j)=0\)。</p>
+<p>这样一来，RoI pooling层的梯度回传只需要在Max pooling上简单修改即可。</p>
+<h2 id="多任务损失函数"><a href="#多任务损失函数" class="headerlink" title="多任务损失函数"></a>多任务损失函数</h2><p>Multi-task loss是Fast R-CNN最重要的改进了，它将分类模型的损失函数与bounding box模型的损失函数加到了一起，这样一来就不再需要分阶段的训练了，而是实现了end-to-end。</p>
+<p><strong>分类模型的loss：</strong></p>
+<p>$$L_{cls}(p,u) = -\log{p_{u}}$$</p>
+<p>其中p是每个RoI的概率分布：\(p = (p_{0},{…},p_{K})\)</p>
+<p>而\(u\)是Ground truth的类别，显然u的范围为\((0,…,k)\)<br>显然，这就是损失函数一个交叉熵，只是它简写了，或者说换了一种形式。</p>
+<p><strong>Bounding box回归模型的loss：</strong>    </p>
+<p>这个loss和R-CNN中的Bounding box的loss没啥区别，都是在用实际的边界框信息与ss算法给出的边界框信息构建一个L1距离。如下： </p>
+<p>$$L_{loc}(t^{u},v)=\sum_{i\in {x,y,w,h}} smooth_{L_{1}}(t_i^u - v_i)$$</p>
+<p>其中平滑方程的具体形式如下：</p>
+<p>$$<br>smooth_{L_{1}}(x) =<br>\begin{cases}<br>0.5x^2, &amp; \text{if |x| &lt; 1}  \<br>|x|-0.5, &amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<p>而平滑方程里面的东西，就和R-CNN一样了。最后，组合的多任务损失函数为：</p>
+<p>$$L(p,u,t^u,v) = L_{cls}(p,u) + \lambda [u \ge 1]L_{loc}(t^u,v)$$</p>
+<p>其中 \([u \ge 1]\) 是一个指示函数，作用就是背景类不需要bounding box修正，也就没有回归loss。相当于：</p>
+<p>$$L=<br>\begin{cases}<br>L_{cls}+\lambda L_{loc}, &amp; \text{u 为前景}  \\<br>L_{cls}, &amp; \text{u 为背景}<br>\end{cases}<br>$$</p>
+<p>第五阶段的特征输入到两个并行的全连层中（称为multi-task）。</p>
+<p><img src="/img/2018-04-12-FastRCNN-8.jpg" alt></p>
+<p><strong>cls_score层</strong>用于分类，输出 \(K+1\) 维数组\(p\)，表示属于K类和背景的概率。 </p>
+<p><strong>bbox_prdict层</strong>用于调整候选区域位置，输出 \(4\times K\)维数组\(t\)，表示分别属于K类时，应该平移缩放的参数。</p>
+<h2 id="Fast-R-CNN训练与测试"><a href="#Fast-R-CNN训练与测试" class="headerlink" title="Fast R-CNN训练与测试"></a>Fast R-CNN训练与测试</h2><h3 id="参数初始化"><a href="#参数初始化" class="headerlink" title="参数初始化"></a>参数初始化</h3><p>网络除去末尾部分如下图，在ImageNet上训练1000类分类器。结果参数作为相应层的初始化参数。 </p>
+<p><img src="/img/2018-04-12-FastRCNN-9.jpg" alt></p>
+<p>其余参数随机初始化。</p>
+<h3 id="分层数据"><a href="#分层数据" class="headerlink" title="分层数据"></a>分层数据</h3><p>在调优训练时，每一个mini-batch中首先加入N张完整图片，而后加入从N张图片中选取的R个候选框。这R个候选框可以复用N张图片前5个阶段的网络特征。<br>实际选择N=2， R=128。</p>
+<h3 id="训练数据构成"><a href="#训练数据构成" class="headerlink" title="训练数据构成"></a>训练数据构成</h3><p>N张完整图片以50%概率水平翻转。<br>R个候选框的构成方式如下：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th align="right">比例</th>
+<th align="center">方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前景</td>
+<td align="right">25%</td>
+<td align="center">与某个真值重叠在[0.5,1]的候选框</td>
+</tr>
+<tr>
+<td>背景</td>
+<td align="right">75%</td>
+<td align="center">与真值重叠的最大值在[0.1,0.5)的候选框</td>
+</tr>
+</tbody></table>
+<h3 id="训练与测试"><a href="#训练与测试" class="headerlink" title="训练与测试"></a>训练与测试</h3><p><img src="/img/2018-04-12-FastRCNN-10.jpg" alt></p>
+<p>上面这张图解释了Fast R-CNN的训练与测试过程，前面两部分说明了RoI pooling层的梯度回传与多任务损失函数的构建，所以Fast R-CNN的梯度可以一直传到卷积层，实现end-to-end的训练。<br>此外，为了在训练事得到更好的效果，作者提出了一种分级抽样法，如果batch-size为128的话，那么这128个RoI由2张图片，各生产64个区域。 </p>
+<p><img src="/img/2018-04-12-FastRCNN-11.jpg" alt></p>
+<p>而Fast R-CNN的测试过程和之前没什么区别。</p>
+<h2 id="Fast-R-CNN性能评价"><a href="#Fast-R-CNN性能评价" class="headerlink" title="Fast R-CNN性能评价"></a>Fast R-CNN性能评价</h2><p><img src="/img/2018-04-12-FastRCNN-12.jpg" alt></p>
+<p>上面这张图对比了R-CNN，SPP-Net与Fast R-CNN的训练时间，单张图片的测试时间与mAP，可以看到由于Fast R-CNN可以end-to-end的训练，它的mAP比R-CNN还要高一些，这样就不会出现像SPP-Net那样mAP降低的情况，而在训练时间与测试时间上，又一次有了较大进步。<br>那么为什么Fast R-CNN比SPP-Net更快呢，最重要的原因就是end-to-end的训练，这样训练不再是分阶段的。</p>
+<h2 id="Fast-R-CNN的问题"><a href="#Fast-R-CNN的问题" class="headerlink" title="Fast R-CNN的问题"></a>Fast R-CNN的问题</h2><p>虽然上面那张图上写的，Fast R-CNN的单图测试时间为0.32s，但是其实这样说并不准确，0.32为了和R-CNN的47.0s做对比。是的Fast R-CNN依然没有脱离ss算法，但是ss算法跑一张图的时间，大概是2s，所以讲道理的话，Fast R-CNN依然是达不到实时检测的要求的，好在ss算法在Faster R-CNN中被换成RPN（区域建议网络），这个我们后面再说。</p>
+<br>
+
+
+<h2 id="转载及参考"><a href="#转载及参考" class="headerlink" title="转载及参考"></a>转载及参考</h2><ol>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzUyMjE2MTE0Mw==&mid=2247485064&idx=2&sn=5a99a25c8f3b6c70d440df1225923948&chksm=f9d15810cea6d106afb9efef986e9ced94e7729e3e82840b87d8bcef248a83873f89fc34f478&scene=21#wechat_redirect" target="_blank" rel="noopener">Object Detection系列（三） Fast R-CNN</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/shenxiaolu1984/article/details/51036677" target="_blank" rel="noopener">【目标检测】Fast RCNN算法详解</a></p>
+</li>
+</ol>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+            <a href="/tags/目标检测/">目标检测</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/13/entropy/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">机器学习中的熵、条件熵、相对熵和交叉熵</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/04/11/MathJax/">
+        <span class="next-text nav-default">MathJax 使用指南</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+        
+      <!--noindex-->
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast-R-CNN简介"><span class="nav-text">Fast R-CNN简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兴趣区域池化-RoI"><span class="nav-text">兴趣区域池化 RoI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兴趣区域池化的梯度回传"><span class="nav-text">兴趣区域池化的梯度回传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多任务损失函数"><span class="nav-text">多任务损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast-R-CNN训练与测试"><span class="nav-text">Fast R-CNN训练与测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数初始化"><span class="nav-text">参数初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分层数据"><span class="nav-text">分层数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练数据构成"><span class="nav-text">训练数据构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练与测试"><span class="nav-text">训练与测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast-R-CNN性能评价"><span class="nav-text">Fast R-CNN性能评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast-R-CNN的问题"><span class="nav-text">Fast R-CNN的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转载及参考"><span class="nav-text">转载及参考</span></a></li></ol></div>
+            
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
