@@ -1,3 +1,36 @@
+.post-toc {
+  position: fixed;
+  font-size: 0.9em;
+  font-size: 13px;
+  margin-left: 740px; }
+
+#primary {
+  float: left;
+  display: inline-block;
+  font-size: 14px;
+  max-width: 720px !important; }
+
+@media screen and (max-width: 1000px) {
+  .post-toc {
+    display: none; } }
+
+#content {
+  overflow: hidden; }
+
+.post .post-content img {
+  max-width: 70%  !important;
+  display: table-cell !important;
+  margin: auto !important;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+#primary.home {
+  float: none !important;
+  padding-left: 7%  !important; }
+
+body {
+  line-height: 1.7 !important; }
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
