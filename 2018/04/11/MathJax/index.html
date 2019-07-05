@@ -154,76 +154,77 @@
     
             <div class="post-content">
             <h2 id="1-使用Google-Chart的服务器"><a href="#1-使用Google-Chart的服务器" class="headerlink" title="1 使用Google Chart的服务器"></a>1 使用Google Chart的服务器</h2><p><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code><br>例子：<br><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot; style=&quot;border:none;&quot;&gt;</code><br>显示结果:</p>
-<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;">
-
+<p><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;"></p>
 <a id="more"></a>
-
 <h2 id="2-使用MathJax引擎"><a href="#2-使用MathJax引擎" class="headerlink" title="2 使用MathJax引擎"></a>2 使用MathJax引擎</h2><p>在Markdown中添加MathJax引擎也很简单，</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>然后，再使用Tex写公式。 </p>
 <ul>
-<li><code>$$公式$$</code> 表示行间公式     </li>
+<li>$$$公式$$$ 表示行间公式     </li>
 <li>本来Tex中使用 <code>\(公式\)</code> 表示行内公式，但因为Markdown中 <code>\</code> 是转义字符，所以在Markdown中输入行内公式使用 <code>\\(公式\\)</code></li>
 </ul>
 <p>如下代码：</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>x=\<span class="built-in">frac</span>&#123;-b\pm\<span class="built-in">sqrt</span>&#123;b^<span class="number">2</span><span class="number">-4</span>ac&#125;&#125;&#123;<span class="number">2</span>a&#125;<span class="symbol">$</span><span class="symbol">$</span>      # 行间公式</span><br><span class="line"></span><br><span class="line">\\(x=\<span class="built-in">frac</span>&#123;-b\pm\<span class="built-in">sqrt</span>&#123;b^<span class="number">2</span><span class="number">-4</span>ac&#125;&#125;&#123;<span class="number">2</span>a&#125;\\)    # 行内公式</span><br><span class="line"><span class="meta"><span class="meta-keyword">$h</span>(x) = \theta_0 + \theta_1 x$            # 行内公式</span></span><br></pre></td></tr></table></figure>
-
 <p>分别显示结果（行间公式）：</p>
-<p>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$ </p>
-<p>行内公式：<br>\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)</p>
+<script type="math/tex; mode=display">x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</script><p>行内公式：<br>\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)</p>
 <h2 id="3-mathjax-常用符号"><a href="#3-mathjax-常用符号" class="headerlink" title="3 mathjax 常用符号"></a>3 mathjax 常用符号</h2><h4 id="绝对值符号"><a href="#绝对值符号" class="headerlink" title="绝对值符号"></a>绝对值符号</h4><p><code>\vert x \vert</code>: \(\vert x \vert\) </p>
 <h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="formula">$$<span class="tag">\<span class="name">begin</span><span class="string">&#123;cases&#125;</span></span></span></span><br><span class="line"><span class="formula">a_1x+b_1y+c_1z=d_1<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula">a_2x+b_2y+c_2z=d_2<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula">a_3x+b_3y+c_3z=d_3<span class="tag">\<span class="name">\</span></span></span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">end</span><span class="string">&#123;cases&#125;</span></span></span></span><br><span class="line"><span class="formula">$$</span></span><br></pre></td></tr></table></figure>
-
-<p>$$\begin{cases}<br>a_1x+b_1y+c_1z=d_1\\<br>a_2x+b_2y+c_2z=d_2\\<br>a_3x+b_3y+c_3z=d_3\\<br>\end{cases}<br>$$</p>
-<h4 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h4><table>
+<script type="math/tex; mode=display">\\begin{cases}
+a\_1x+b\_1y+c\_1z=d\_1\\\\
+a\_2x+b\_2y+c\_2z=d\_2\\\\
+a\_3x+b\_3y+c\_3z=d\_3\\\\
+\\end{cases}</script><h4 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">id</th>
-<th align="left">name</th>
+<th style="text-align:left">id</th>
+<th style="text-align:left">name</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">\(\infty\)</td>
-<td align="left">\infty</td>
+<tbody>
+<tr>
+<td style="text-align:left">\(\infty\)</td>
+<td style="text-align:left">\infty</td>
 </tr>
 <tr>
-<td align="left">\(\cup\)</td>
-<td align="left">\cup</td>
+<td style="text-align:left">\(\cup\)</td>
+<td style="text-align:left">\cup</td>
 </tr>
 <tr>
-<td align="left">\(\cap\)</td>
-<td align="left">\cap</td>
+<td style="text-align:left">\(\cap\)</td>
+<td style="text-align:left">\cap</td>
 </tr>
 <tr>
-<td align="left">\(\subset\)</td>
-<td align="left">\subset</td>
+<td style="text-align:left">\(\subset\)</td>
+<td style="text-align:left">\subset</td>
 </tr>
 <tr>
-<td align="left">\(    \subseteq\)</td>
-<td align="left">\subseteq</td>
+<td style="text-align:left">\(    \subseteq\)</td>
+<td style="text-align:left">\subseteq</td>
 </tr>
 <tr>
-<td align="left">\(\in\)</td>
-<td align="left">\in</td>
+<td style="text-align:left">\(\in\)</td>
+<td style="text-align:left">\in</td>
 </tr>
 <tr>
-<td align="left">\(\varnothing\)</td>
-<td align="left">\varnothing</td>
+<td style="text-align:left">\(\varnothing\)</td>
+<td style="text-align:left">\varnothing</td>
 </tr>
 <tr>
-<td align="left">3</td>
-<td align="left">A3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">A3</td>
 </tr>
 <tr>
-<td align="left">3</td>
-<td align="left">A3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">A3</td>
 </tr>
 <tr>
-<td align="left">3</td>
-<td align="left">A3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">A3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="4-参考："><a href="#4-参考：" class="headerlink" title="4 参考："></a>4 参考：</h2><ol>
 <li><a href="https://blog.csdn.net/xiahouzuoxin/article/details/26478179" target="_blank" rel="noopener">Markdown中插入数学公式的方法</a></li>
 </ol>

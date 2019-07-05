@@ -35,13 +35,13 @@
 <link rel="canonical" href="https://hhyz.me/2019/04/25/Clustering/">
 
 
-<meta name="description" content="K-means我们的问题为： $$\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} W\left(C_{k}\right)$$ $$W\left(C_{k}\right)=\frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}$$ 将以上两个式子结合一下">
+<meta name="description" content="K-means我们的问题为：  \min \_{C_{1}, \ldots, C\_{K}} \sum\_{k=1}^{K} W\left(C\_{k}\right) W\left(C\_{k}\right)=\frac{1}{\left|C\_{k}\right|} \sum\_{i, j \in C\_{k}}\Vert x\_{i}-x\_{j}\Vert \_{2}^{2}将以上两个式子结">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聚类">
 <meta property="og:url" content="https://hhyz.me/2019/04/25/Clustering/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="K-means我们的问题为： $$\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} W\left(C_{k}\right)$$ $$W\left(C_{k}\right)=\frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}$$ 将以上两个式子结合一下">
+<meta property="og:description" content="K-means我们的问题为：  \min \_{C_{1}, \ldots, C\_{K}} \sum\_{k=1}^{K} W\left(C\_{k}\right) W\left(C\_{k}\right)=\frac{1}{\left|C\_{k}\right|} \sum\_{i, j \in C\_{k}}\Vert x\_{i}-x\_{j}\Vert \_{2}^{2}将以上两个式子结">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://hhyz.me/img/2019-04-25-Clustering-1.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-04-25-Clustering-2.png">
@@ -52,7 +52,7 @@
 <meta property="og:updated_time" content="2019-07-02T17:05:20.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聚类">
-<meta name="twitter:description" content="K-means我们的问题为： $$\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} W\left(C_{k}\right)$$ $$W\left(C_{k}\right)=\frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}$$ 将以上两个式子结合一下">
+<meta name="twitter:description" content="K-means我们的问题为：  \min \_{C_{1}, \ldots, C\_{K}} \sum\_{k=1}^{K} W\left(C\_{k}\right) W\left(C\_{k}\right)=\frac{1}{\left|C\_{k}\right|} \sum\_{i, j \in C\_{k}}\Vert x\_{i}-x\_{j}\Vert \_{2}^{2}将以上两个式子结">
 <meta name="twitter:image" content="https://hhyz.me/img/2019-04-25-Clustering-1.png">
 
 
@@ -159,22 +159,20 @@
     
             <div class="post-content">
             <h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2><p>我们的问题为：</p>
-<p>$$<br>\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} W\left(C_{k}\right)<br>$$</p>
-<p>$$<br>W\left(C_{k}\right)=\frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}<br>$$</p>
-<p>将以上两个式子结合一下，可以得到最优化问题为：</p>
-<p>$$<br>\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K} \frac{1}{\left|C_{k}\right|} \sum_{i, j \in C_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}<br>$$</p>
-<p><strong>Centroid</strong></p>
+<script type="math/tex; mode=display">
+\min \_{C_{1}, \ldots, C\_{K}} \sum\_{k=1}^{K} W\left(C\_{k}\right)</script><script type="math/tex; mode=display">
+W\left(C\_{k}\right)=\frac{1}{\left|C\_{k}\right|} \sum\_{i, j \in C\_{k}}\Vert x\_{i}-x\_{j}\Vert \_{2}^{2}</script><p>将以上两个式子结合一下，可以得到最优化问题为：</p>
+<script type="math/tex; mode=display">
+\min \_{C\_{1}, \ldots, C\_{K}} \sum\_{k=1}^{K} \frac{1}{\left|C\_{k}\right|} \sum\_{i, j \in C\_{k}}\Vert x\_{i}-x\_{j}\Vert \_{2}^{2}</script><p><strong>Centroid</strong></p>
 <p>让 \(\mu_{k}=\frac{1}{\left|C_{k}\right|} \sum_{i \in C_{k}} x_{i}\) 为 \( C_{k}\) 的 mean/centroid。</p>
-<p>$$<br>\frac{1}{\left|C_{k}\right|} \sum_{i, j \in \mathcal{C}_{k}}\Vert x_{i}-x_{j}\Vert _{2}^{2}=2 \sum_{i \in C_{k}}\Vert x_{i}-\mu_{k}\Vert _{2}^{2}<br>$$ </p>
-<p>代入回之前的式子，优化问题等同于：</p>
-<p>$$<br>\min _{C_{1}, \ldots, C_{K}} \sum_{k=1}^{K}\left\{\sum_{i \in C_{k}}\Vert x_{i}-\mu_{k}\Vert _{2}^{2}\right\}<br>$$</p>
-<h3 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h3><p> \(\text { binary matrix } R=\left[r_{n k}\right] \in R^{N \times K}<br>\)<br> \(\text { 如果 } x_{n} \text { is assigned to cluster } k, \text { 那么 }r_{n k}=1 \text { 并且 } r_{n j}=0, j \neq k\) </p>
-<br>
-**目标：**
-
+<script type="math/tex; mode=display">
+\frac{1}{\left|C\_{k}\right|} \sum\_{i, j \in \mathcal{C}\_{k}}\Vert x\_{i}-x\_{j}\Vert \_{2}^{2}=2 \sum\_{i \in C\_{k}}\Vert x\_{i}-\mu\_{k}\\Vert \_{2}^{2}</script><p>代入回之前的式子，优化问题等同于：</p>
+<script type="math/tex; mode=display">
+\min \_{C_{1}, \ldots, C\_{K}} \sum\_{k=1}^{K}\left\\{\sum\_{i \in C\_{k}}\Vert x\_{i}-\mu\_{k}\Vert \_{2}^{2}\right\\}</script><h3 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h3><p> \(\text { binary matrix } R=\left[r_{n k}\right] \in R^{N \times K}<br>\)<br> \(\text { 如果 } x_{n} \text { is assigned to cluster } k, \text { 那么 }r_{n k}=1 \text { 并且 } r_{n j}=0, j \neq k\) </p>
+<p>&lt;/br&gt;<br><strong>目标：</strong></p>
 <p>找到  \(\left\{\mu_{k}\right\}\)，并把每一个数据点分配到一类，使 objective function 最小化。</p>
-<p>$$<br>J\left(R,\left\{\mu_{k}\right\}\right)=\sum_{n=1}^{N}\left[\sum_{k=1}^{K} r_{n k}\Vert x_{n}-\mu_{k}\Vert ^{2}\right]<br>$$ </p>
-<ul>
+<script type="math/tex; mode=display">
+J\left(R,\left\\{\mu\_{k}\right\\}\right)=\sum\_{n=1}^{N}\left[\sum\_{k=1}^{K} r\_{n k}\Vert x\_{n}-\mu\_{k}\Vert ^{2}\right]</script><ul>
 <li>\(\mu_{k}=\frac{1}{\left|C_{k}\right|} \sum_{i \in C_{k}} x_{i}\) 为 \( C_{k}\) 的 mean/centroid。</li>
 <li>\(R=\left[r_{n k}\right] \in R^{N \times K}\)</li>
 </ul>
@@ -185,20 +183,19 @@
 </ol>
 <p><strong>具体如下：</strong></p>
 <h4 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h4><p>对于某一个具体的 n，我们选择 \(r_{nj}\) 最小化 </p>
-<p>$$\sum_{k=1}^{K} r_{n k}\Vert x_{n}-\mu_{k}\Vert ^{2}$$ </p>
-<p><img src="/img/2019-04-25-Clustering-1.png" alt></p>
+<script type="math/tex; mode=display">\sum\_{k=1}^{K} r\_{n k}\Vert x\_{n}-\mu\_{k}\Vert ^{2}</script><p><img src="/img/2019-04-25-Clustering-1.png" alt></p>
 <p><strong>也就是说，将 \(x_n\) 分配给最接近的 centroid。</strong></p>
 <h4 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h4><p>对于固定的  \(R\),   \(J\left(R,\left\{\mu_{k}\right\}\right)\) 是 convex，quadratic 的，因此，将关于  \(u_{k}\) 的梯度设为 0：</p>
-<p>$$<br>2 \sum_{n=1}^{N} r_{n k}\left(\mu_{k}-x_{n}\right)=0 \Rightarrow \mu_{k}=\frac{\sum_{n=1}^{N} r_{n k} x_{n}}{\sum_{n=1}^{N} r_{n k}}<br>$$</p>
-<p>让 \(u_{k}\) 等于属于 cluster k 的所有数据点 \(x_n\) 的均值</p>
+<script type="math/tex; mode=display">
+2 \sum\_{n=1}^{N} r\_{n k}\left(\mu\_{k}-x\_{n}\right)=0 \Rightarrow \mu_{k}=\frac{\sum\_{n=1}^{N} r\_{n k} x\_{n}}{\sum\_{n=1}^{N} r\_{n k}}</script><p>让 \(u_{k}\) 等于属于 cluster k 的所有数据点 \(x_n\) 的均值</p>
 <p><img src="/img/2019-04-25-Clustering-2.png" alt></p>
 <blockquote>
 <p>k-means 算法对于异常值十分敏感，因为具有极大值的对象可能会产生严重扭曲的数据分布  </p>
 </blockquote>
 <h2 id="k-medoids"><a href="#k-medoids" class="headerlink" title="k-medoids"></a>k-medoids</h2><p>k-means 与 k-medoids 之间的差异就是可以理解为对于数据样本的平均值和中位数之间的差异：前者的取值范围可以是连续空间中的任意值，而后者的取值却只能是数据样本范围中的样本。这个原因就是 k-means 对于数据样本的要求太高了，要求所有数据样本处在一个欧式空间中，对于有很多噪声的数据就会造成极大的误差。同时对于非数值型数据样本，不能够计算平均值等实数型变量。</p>
 <p>与 K-means 算法类似，区别在于中心点的选取，K-means 中选取的中心点为当前类中所有点的重心，而 K-medoids 法选取的中心点为当前 cluster 中存在的一点，准则函数是当前 cluster 中所有其他点到该中心点的距离之和最小，这就在一定程度上削弱了异常值的影响，但缺点是计算较为复杂，耗费的计算机时间比 K-means 多。</p>
-<p>$$<br>\widehat{J}\left(R,\left\{\mu_{k}\right\}\right)=\sum_{n=1}^{N} \sum_{k=1}^{K} r_{n k} V\left(x_{n}, \mu_{k}\right)<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+\widehat{J}\left(R,\left\\{\mu\_{k}\right\\}\right)=\sum_{n=1}^{N} \sum\_{k=1}^{K} r\_{n k} V\left(x\_{n}, \mu\_{k}\right)</script><ul>
 <li>其中 \(V\left(x_{n}, \mu_{k}\right)\) 表示 \(x_n\) 和 \(\mu_k\) 的 dissimilarity</li>
 </ul>
 <h2 id="Hierarchical-Clustering"><a href="#Hierarchical-Clustering" class="headerlink" title="Hierarchical Clustering"></a>Hierarchical Clustering</h2><p>K-means 需要提前确定 k 的值，而 Hierarchical Clustering 不需要</p>

@@ -188,28 +188,19 @@
 <p>现在输入图片不变，先通过一个维度是 \(3 × 3 × 1 × 3\) 的深度卷积（输入是3通道，这里有3个卷积核，对应着进行计算，理解成for循环），得到 \(6 × 6 × 3\) 的中间输出，然后再通过一个维度是 \(1 × 1 × 3 ×16\) 的 \(1 ×1\) 卷积，同样得到输出为 \(6 × 6 × 16\) 。</p>
 <p><strong>运算量：</strong></p>
 <p>标准卷积：</p>
-<p>$$D_K · D_K · M · N · D_F · D_F$$</p>
-<p>深度卷积：</p>
-<p>$$D_K·D_K·M·D_F·D_F$$</p>
-<p>点卷积：</p>
-<p>$$M·N·D_F·D_F$$</p>
-<p>深度可分离卷积：</p>
-<p>$$D_K·D_K·M·D_F·D_F+M·N·D_F·D_F$$</p>
-<p>深度可分离卷积与标准卷积之比：</p>
-<p>$$\frac{D_K·D_K·M·D_F·D_F+M·N·D_F·D_F}{D_K · D_K · M · N · D_F · D_F} = {\frac{1}{N}}+{\frac{1}{D_K^2}}$$</p>
-<p>使用大量的 \(3 × 3\) 的卷积核，极大地减少了计算量（原来的 1/ 8到 1/9 之间）</p>
+<script type="math/tex; mode=display">D\_K · D\_K · M · N · D\_F · D\_F</script><p>深度卷积：</p>
+<script type="math/tex; mode=display">D\_K·D\_K·M·D\_F·D\_F</script><p>点卷积：</p>
+<script type="math/tex; mode=display">M·N·D\_F·D\_F</script><p>深度可分离卷积：</p>
+<script type="math/tex; mode=display">D\_K·D\_K·M·D\_F·D\_F+M·N·D\_F·D\_F</script><p>深度可分离卷积与标准卷积之比：</p>
+<script type="math/tex; mode=display">\frac{D\_K·D\_K·M·D\_F·D\_F+M·N·D\_F·D\_F}{D\_K · D\_K · M · N · D\_F · D\_F} = {\frac{1}{N}}+{\frac{1}{D\_K^2}}</script><p>使用大量的 \(3 × 3\) 的卷积核，极大地减少了计算量（原来的 1/ 8到 1/9 之间）</p>
 <p><strong>举例：</strong></p>
 <p>给定输入图像的为3通道的 \(224×224\) 的图像，VGG16网络的第3个卷积层conv2_1输入的是尺寸为112的特征图，通道数为64，卷积核尺寸为3，卷积核个数为128</p>
 <p>传统卷积运算量就是：</p>
-<p>$$3×3×128×64×112×112=924844032$$</p>
-<p>deep-wise 结合  \(1×1\)  方式的卷积的运算量：</p>
-<p>$$112×112×3×3×64 + 128×64×112×112 = 109985792$$</p>
-<p>两者比例为：</p>
-<p>$$\frac{109985792}{924844032} = 0.1189$$</p>
-<p><strong>优点：</strong></p>
+<script type="math/tex; mode=display">3×3×128×64×112×112=924844032</script><p>deep-wise 结合  \(1×1\)  方式的卷积的运算量：</p>
+<script type="math/tex; mode=display">112×112×3×3×64 + 128×64×112×112 = 109985792</script><p>两者比例为：</p>
+<script type="math/tex; mode=display">\frac{109985792}{924844032} = 0.1189</script><p><strong>优点：</strong></p>
 <p>可以看出运用深度可分离卷积比普通卷积减少了所需要的参数。重要的是深度可分离卷积将以往普通卷积操作同时考虑通道和区域改变成，<em><strong>卷积先只考虑区域，然后再考虑通道。实现了通道和区域的分离。</strong></em></p>
-<br>
-
+<p><br></p>
 <h3 id="群卷积"><a href="#群卷积" class="headerlink" title="群卷积"></a>群卷积</h3><p>我们假设上一层的输出 feature map 有 \(N\) 个，即通道数 \(channel=N\) ，也就是说上一层有 \(N\) 个卷积核。再假设群卷积的群数目 \(M\) 。那么该群卷积层的操作就是，先将 channel 分成 \(M\) 份。每一个 group 对应 \(N/M\) 个 channel，与之独立连接。然后各个 group 卷积完成后将输出叠在一起（concatenate），作为这一层的输出 channel。</p>
 <p><img src="/img/2018-06-24-youhua-1.jpg" alt></p>
 <div align="center">
@@ -230,8 +221,7 @@
 <p>可以看到，图中将输入数据分成了 2 组（组数为 \(g\) ），需要注意的是，<strong>这种分组只是在深度上进行划分，即某几个通道编为一组，</strong>这个具体的数量由 \(C_1/g\) 决定。 </p>
 <p>因为输出数据的改变，相应的，卷积核也需要做出同样的改变。即每组中卷积核的深度也就变成了 \(C_1/g\) ，而卷积核的大小是不需要改变的，此时每组的卷积核的个数就变成了 \(C_2/g\) 个，而不是原来的 \(C_2\) 了。然后用每组的卷积核同它们对应组内的输入数据卷积，得到了输出数据以后，再用 concatenate 的方式组合起来，最终的输出数据的通道仍旧是 \(C_2\) 。     </p>
 <p>也就是说，分组数 \(g\) 决定以后，那么我们将并行的运算 \(g\) 个相同的卷积过程，每个过程里（每组），输入数据为 \(H_1×W_1×C_1/g\) ，卷积核大小为 \(h_1×w_1×C_1/g\) ，一共有 \(C_2/g\) 个，输出数据为 \(H_2×W_2×C_2/g\) </p>
-<br>
-
+<p><br></p>
 <h2 id="1-MobileNet"><a href="#1-MobileNet" class="headerlink" title="1. MobileNet"></a>1. MobileNet</h2><blockquote>
 <p><strong>论文地址：</strong><a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</a><br><strong>发布时间</strong>：2017 年 4 月<br><strong>官方代码：</strong><a href="https://github.com/tensorflow/models/tree/5bb9e6f349e22270420dd637f3fa89260ab5b441/research/slim/nets/mobilenet" target="_blank" rel="noopener">tensorflow/model/sresearch/slim/nets/mobilenet/</a><br><strong>民间实现：</strong><a href="https://github.com/shicai/MobileNet-Caffe" target="_blank" rel="noopener">caffe</a> | <a href="https://github.com/Zehaos/MobileNet" target="_blank" rel="noopener">Tensorflow</a> </p>
 </blockquote>
@@ -261,37 +251,28 @@
 
 
 
-<br>
-### 训练细节
-
-<p>作者基于 TensorFlow 训练 MobileNet，使用 RMSprop 算法优化网络参数。考虑到较小的网络不会有严重的过拟合问题，因此没有做大量的数据增强工作。在训练过程中也没有采用训练大网络时的一些常用手段，例如：辅助损失函数，随机图像裁剪输入等。</p>
+<p><br></p>
+<h3 id="训练细节"><a href="#训练细节" class="headerlink" title="训练细节"></a>训练细节</h3><p>作者基于 TensorFlow 训练 MobileNet，使用 RMSprop 算法优化网络参数。考虑到较小的网络不会有严重的过拟合问题，因此没有做大量的数据增强工作。在训练过程中也没有采用训练大网络时的一些常用手段，例如：辅助损失函数，随机图像裁剪输入等。</p>
 <p>deep-wise 卷积核含有的参数较少，作者发现这部分最好使用较小的 weight decay或者不使用 weightdecay。</p>
-<br>
-### 宽度因子和分辨率因子
-
-<blockquote>
+<p><br></p>
+<h3 id="宽度因子和分辨率因子"><a href="#宽度因子和分辨率因子" class="headerlink" title="宽度因子和分辨率因子"></a>宽度因子和分辨率因子</h3><blockquote>
 <p>尽管标准的MobileNet在计算量和模型尺寸方面具备了很明显的优势，但是，在一些对运行速度或内存有极端要求的场合，还需要更小更快的模型，如何能够在不重新设计模型的情况下，以最小的改动就可以获得更小更快的模型呢？</p>
-</blockquote>
-<blockquote>
 <p>本文中提出的<strong>宽度因子（width multiplier）</strong>和<strong>分辨率因子（resolution multiplier）</strong>就是解决这些问题的配置参数。</p>
 </blockquote>
 <p><strong>宽度因子</strong>  \(\alpha \) 是一个属于 \((0,1]\) 之间的数，附加于网络的通道数。简单来说就是新网络中每一个模块要使用的卷积核数量相较于标准的 MobileNet 比例。</p>
 <p>输入通道数  \(M\)  变为  \(\alpha M\) ;<br>输出通道数 \(N\) 变为  \(\alpha N\) </p>
 <p>对于 deep-wise 结合  \(1x1\)  方式的卷积核，计算量为：</p>
-<p>$$D_K·D_K·\alpha M·D_F·D_F+\alpha M·\alpha N·D_F·D_F$$</p>
-<p> \(\alpha \) 常用的配置为 \(1, 0.75, 0.5, 0.25\) 。当 \(\alpha \) 等于1时就是标准的 MobileNet。通过参数 \(\alpha \) 可以非常有效的将计算量和参数数量约减到 \(\alpha \) 的平方倍。</p>
+<script type="math/tex; mode=display">D\_K·D\_K·\alpha M·D\_F·D\_F+\alpha M·\alpha N·D\_F·D\_F</script><p> \(\alpha \) 常用的配置为 \(1, 0.75, 0.5, 0.25\) 。当 \(\alpha \) 等于1时就是标准的 MobileNet。通过参数 \(\alpha \) 可以非常有效的将计算量和参数数量约减到 \(\alpha \) 的平方倍。</p>
 <p>通过下图可以看出使用 \(\alpha \) 系数进行网络参数的约减时，在ImageNet上的准确率，为准确率，参数数量和计算量之间的权衡提供了参考（每一个项中最前面的数字表示 \(\alpha \) 的取值）</p>
 <p><img src="/img/2018-06-24-youhua-4.jpg" alt></p>
 <div align="center">
 <center><small><font color="gray">    </font></small></center>
 </div>
 
-<br>
-
+<p><br></p>
 <p><strong>分辨率因子</strong> \(\beta\) 的取值范围在 \((0,1]\) 之间，是作用于每一个模块输入尺寸的约减因子，简单来说就是将输入数据以及由此在每一个模块产生的特征图都变小了，</p>
 <p>结合宽度因子 \(\alpha \) ，deep-wise 结合 \(1x1\) 方式的卷积核计算量为：</p>
-<p>$$D_K·D_K·\alpha M·\beta D_F·\beta D_F+\alpha M·\alpha N·\beta D_F·\beta D_F$$</p>
-<p>下图为使用不同的 \(\beta\) 系数作用于标准 MobileNet 时，对精度和计算量以的影响（224，192，160，128指的是输入分辨率）:</p>
+<script type="math/tex; mode=display">D\_K·D\_K·\alpha M·\beta D\_F·\beta D\_F+\alpha M·\alpha N·\beta D\_F·\beta D\_F</script><p>下图为使用不同的 \(\beta\) 系数作用于标准 MobileNet 时，对精度和计算量以的影响（224，192，160，128指的是输入分辨率）:</p>
 <p><img src="/img/2018-06-24-youhua-5.jpg" alt></p>
 <div align="center">
 <center><small><font color="gray">    </font></small></center>
@@ -301,10 +282,8 @@
 <blockquote>
 <p>要注意再使用宽度和分辨率参数调整网络结构之后，都要从随机初始化重新训练才能得到新网络</p>
 </blockquote>
-<br>
-### 实验结果
-
-<p><strong>1) 基础网络</strong></p>
+<p><br></p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><strong>1) 基础网络</strong></p>
 <p>MobileNet极大地降低了网络参数数量和计算量，但是相比起经典的基础网络，其精度并未明显的降低</p>
 <p><img src="/img/2018-06-24-youhua-6.jpg" alt></p>
 <div align="center">
@@ -351,10 +330,8 @@
 
 
 
-<br>
-### 总结
-
-<p>MobileNet在计算量，存储空间和准确率方面取得了非常不错的平衡。与VGG16相比，在很小的精度损失情况下，将运算量减小了30倍。通过实验结果，我们认为MobileNet的设计思想会在自动驾驶汽车，机器人和无人机等对实时性、存储空间、能耗有严格要求的终端智能应用中发挥显著作用。</p>
+<p><br></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MobileNet在计算量，存储空间和准确率方面取得了非常不错的平衡。与VGG16相比，在很小的精度损失情况下，将运算量减小了30倍。通过实验结果，我们认为MobileNet的设计思想会在自动驾驶汽车，机器人和无人机等对实时性、存储空间、能耗有严格要求的终端智能应用中发挥显著作用。</p>
 <h2 id="2-Xception"><a href="#2-Xception" class="headerlink" title="2. Xception"></a>2. Xception</h2><blockquote>
 <p>论文地址：<a href="https://arxiv.org/abs/1610.02357" target="_blank" rel="noopener">Xception: Deep Learning with Depthwise Separable Convolutions</a><br>发布时间：2016 年 10 月</p>
 </blockquote>
@@ -370,9 +347,9 @@
 
 
 <p>计算一下便可得：由 Figure1 得知， </p>
-<p>resnet 的参数量为：<br>$$256×64+3×3×64×64+64×256=70k $$<br>ResNeXt 的参数量为： </p>
-<p>$$C×(256×d+3×3×d×d+d×256)$$</p>
-<p>当 C 取 \(32\) ， \(d=4\) 时，上式也等于 \(70k\) 。 </p>
+<p>resnet 的参数量为： </p>
+<script type="math/tex; mode=display">256×64+3×3×64×64+64×256=70k</script><p>ResNeXt 的参数量为： </p>
+<script type="math/tex; mode=display">C×(256×d+3×3×d×d+d×256)</script><p>当 C 取 \(32\) ， \(d=4\) 时，上式也等于 \(70k\) 。 </p>
 <p><img src="/img/2018-06-24-youhua-104.jpg" alt></p>
 <div align="center">
 
@@ -468,12 +445,12 @@
 <li>“num x”表示 feature map 的 channels 数量与原始结构的比例</li>
 <li>arch2: 将 stage3 中的两个单元移除，同时增加整体的网络宽度。对于小网络，feture map的宽度至关重要</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>ShuffleNet 的核心就是用 pointwise group convolution，channel shuffle 和 depthwise separable convolution 代替 ResNet block 的相 应层构成了 ShuffleNet uint，达到了减少计算量和提高准确率的目的。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>ShuffleNet 的核心就是用 pointwise group convolution，channel shuffle 和 depthwise separable convolution 代替 ResNet block 的相 应层构成了 ShuffleNet uint，达到了减少计算量和提高准确率的目的。</p>
 <p>channel shuffle 解决了多个 group convolution 叠加出现的边界效应，pointwise group convolution 和 depthwise separable convolution 主要减少了计算量。</p>
 <h2 id="转载与参考"><a href="#转载与参考" class="headerlink" title="转载与参考"></a>转载与参考</h2><ol>
 <li><a href="https://blog.csdn.net/t800ghb/article/details/78879612" target="_blank" rel="noopener">深度解读谷歌MobileNet</a></li>
 <li><a href="https://blog.csdn.net/wfei101/article/details/78310226" target="_blank" rel="noopener">mobilenet网络的理解</a></li>
-<li><a href="https://blog.csdn.net/u011974639/article/details/79200559" target="_blank" rel="noopener">轻量级网络–ShuffleNet论文解读</a></li>
+<li><a href="https://blog.csdn.net/u011974639/article/details/79200559" target="_blank" rel="noopener">轻量级网络—ShuffleNet论文解读</a></li>
 </ol>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
             </div>
@@ -529,7 +506,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新技术"><span class="nav-text">新技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度可分离卷积"><span class="nav-text">深度可分离卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#群卷积"><span class="nav-text">群卷积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MobileNet"><span class="nav-text">1. MobileNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Xception"><span class="nav-text">2. Xception</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ResNeXt"><span class="nav-text">3. ResNeXt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ShuffleNet"><span class="nav-text">4. ShuffleNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shuffle-unit"><span class="nav-text">Shuffle unit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构"><span class="nav-text">整体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验性能"><span class="nav-text">实验性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转载与参考"><span class="nav-text">转载与参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新技术"><span class="nav-text">新技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度可分离卷积"><span class="nav-text">深度可分离卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#群卷积"><span class="nav-text">群卷积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MobileNet"><span class="nav-text">1. MobileNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练细节"><span class="nav-text">训练细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宽度因子和分辨率因子"><span class="nav-text">宽度因子和分辨率因子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验结果"><span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Xception"><span class="nav-text">2. Xception</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ResNeXt"><span class="nav-text">3. ResNeXt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ShuffleNet"><span class="nav-text">4. ShuffleNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shuffle-unit"><span class="nav-text">Shuffle unit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构"><span class="nav-text">整体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验性能"><span class="nav-text">实验性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转载与参考"><span class="nav-text">转载与参考</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">

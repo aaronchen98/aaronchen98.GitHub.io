@@ -163,7 +163,7 @@
 <blockquote>
 <p>一个很有意思例子：生成器G可以被比作假币制造者团队，试图生产出无法检测出真伪的假币；判别器D可以被比作警察，试图区分出真币和假币。在比拼竞争的过程中，双方都不断提升自己的方法，最终导致假币与真品无法区分。说明我们得到了一个效果非常好的生成器G</p>
 </blockquote>
-<br>
+<p><br></p>
 <div align="center">
 ![](https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg)
 ![](https://ws4.sinaimg.cn/large/006tNbRwgy1fvf33sz4l9j30hs0by74y.jpg)
@@ -181,13 +181,14 @@
 <li>因此，随着 \(p_g(x)\) 趋近于 \(p_{data}(x),D^*_g(x)\) 会趋近于 \(0.5\) ，也就是到图d。而我们的目标就是希望绿色的线能够趋近于黑色的线，也就是让生成的数据分布与实际分布相同。图d符合我们最终想要的训练结果。到这里，G网络和D网络就处于纳什均衡状态，无法再进一步更新了。</li>
 </ul>
 <p><strong>GAN 模型的目标函数：</strong></p>
-<p>$$\min_{G} \max_D V(G,D)=E_{x\sim P_{data}}[logD(x)] + E_{x\sim P_G}[log(1-D(x))]$$</p>
-<p>或者我们可以直接理解：<br>G网络的loss是 \(log(1-D(G(z))\) ，<br>而D的loss是 \(-(log(D(x)) + log(1-D(G(z)))\) </p>
+<script type="math/tex; mode=display">\min\_{G} \max_D V(G,D)=E\_{x\sim P\_{data}}[logD(x)] + E\_{x\sim P\_G}[log(1-D(x))]</script><p>或者我们可以直接理解：<br>G网络的loss是 \(log(1-D(G(z))\) ，<br>而D的loss是 \(-(log(D(x)) + log(1-D(G(z)))\) </p>
 <h3 id="怎么训练"><a href="#怎么训练" class="headerlink" title="怎么训练"></a>怎么训练</h3><h4 id="交替训练。"><a href="#交替训练。" class="headerlink" title="交替训练。"></a>交替训练。</h4><ol>
-<li>固定G时，训练D；<br>$$\max {E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } $$（公式1）<br>转化成最小形式：<br>$$\min -[{E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } ]$$       </li>
-<li>固定D时，训练G。<br>可以设置超参数k, 表示训练k次D，再训练一次G.<br>$$min Loss_G =E_{x\sim P_G}[log(1-D(x))] $$（公式2）</li>
+<li>固定G时，训练D；<script type="math/tex; mode=display">\max {E\_{x\sim p(r)} log(D(x)) + E\_{x\sim p(g)} log(1-D(x)) } $$（公式1）   
+转化成最小形式：
+$$\min -[{E\_{x\sim p(r)} log(D(x)) + E\_{x\sim p(g)} log(1-D(x)) } ]</script></li>
+<li>固定D时，训练G。<br>可以设置超参数k, 表示训练k次D，再训练一次G.<br><script type="math/tex">min Loss_G =E\_{x\sim P\_G}[log(1-D(x))]</script>（公式2）</li>
 </ol>
-<br>
+<p><br></p>
 <div align="center">
 ![](https://ws1.sinaimg.cn/large/006tNbRwgy1fvf3xw32xtj31f20xuah2.jpg)<center><small><font color="gray">    </font></small></center>
 </div>

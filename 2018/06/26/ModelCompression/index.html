@@ -192,15 +192,13 @@
 
 <h4 id="全连接层剪枝"><a href="#全连接层剪枝" class="headerlink" title="全连接层剪枝"></a><strong>全连接层剪枝</strong></h4><p>对于如全连接和局部连接这些没有权值共享的层，我们可以很简单的计算神经元之间的相关性：</p>
 <p>假设  \(a_i\)  是当前层的一个神经元， 上一层有  \(K\)  个神经元，则此时 \(a_i\) 与上一层之间应该有 \(K\) 个连接，即 \(K\) 个权重参数：  \(b_{i1},b_{i2} … b_{iK}\)  。 于是我们可以用下式计算 \(a_i\) 与每一个  \(b_{ik}\)  的相关系数 ：</p>
-<p>$$r_{ik} = \frac{E[a_i-\mu_{ai}][_i-\mu_{bik}]}{\sigma_{ai}\sigma_{bik}}$$</p>
-<p>其中  \(μ\)  和  \(\sigma\) 分别是在验证集上计算得到的均值与方差。</p>
+<script type="math/tex; mode=display">r\_{ik} = \frac{E[a\_i-\mu\_{ai}][\_i-\mu\_{bik}]}{\sigma\_{ai}\sigma\_{bik}}</script><p>其中  \(μ\)  和  \(\sigma\) 分别是在验证集上计算得到的均值与方差。</p>
 <p><strong>正相关和负相关同样重要，而且实验发现保留一些相关性较小的权重也会提高实验效果。</strong></p>
 <p>于是，作者首先将所有正相关的  \(r_{ik}\)  降序排列，然后均分为两部分，在前一部分随机采样  \(λSK+\)  个，在后面一部分随机采样  \((1−λ)SK+\)  个, 其中  \(S\)  为事先确定的稀疏度，  \(λ\) 文中设定为 \(0.75\)  。对负相关采取同样操作。据此，我们可以创建出表示剪枝的掩膜矩阵。</p>
 <h4 id="卷积层剪枝"><a href="#卷积层剪枝" class="headerlink" title="卷积层剪枝"></a><strong>卷积层剪枝</strong></h4><p>卷积层剪枝稍微复杂一点，因为存在权值共享。</p>
 <p>设  \(a_{im}\)  是当前层第  \(i\)  个 feature map 中的第  \(m\)  神经元，该 feature map 中的共有  \(M\)  个神经元（ \(m=1,2,…,M\) ）。显然，根据卷积规则，这  \(M\)  个神经元都只与一个卷积核有关，即  \(K\)  个权值有关 (  \(K\)  为 filter size，例如  \(3 × 3\)，再乘以输入 channel 的数量)。\(b_{mk}\)  应该是上一层 feature map 中卷积的部分，该部分的位置与  \(m\)  有关，且包含  \(K\)  个元素（ \(k=1,2,…,K\) ）。</p>
 <p>最后，相关系数通过平均的方式计算：</p>
-<p>$$r_{ik}=\sum_{m=1}^M \left\vert \frac{E[a_{im}−μ_{aim}][b_{mk}−μ-{bmk}]}{σ_{aim}σ_{bmk}} \right\vert$$</p>
-<h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h4><p>下面是在LFW人脸验证的实验（整个实验都没有去碰卷积层，因为对于作者所用的VGG来说，全连接占据了90%的参数量）：</p>
+<script type="math/tex; mode=display">r\_{ik}=\sum\_{m=1}^M \left\vert \frac{E[a\_{im}−μ\_{aim}][b\_{mk}−μ\-{bmk}]}{σ\_{aim}σ\_{bmk}} \right\vert</script><h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h4><p>下面是在LFW人脸验证的实验（整个实验都没有去碰卷积层，因为对于作者所用的VGG来说，全连接占据了90%的参数量）：</p>
 <div align="center">
 ![](/img/2018-06-26-ModelCompression-2.jpg)
 <center><small><font color="gray">    </font></small></center>
@@ -268,10 +266,8 @@
 <li><a href="https://github.com/ex4sperans/pruning_with_tensorflow" target="_blank" rel="noopener">pruning_with_tensorflow</a></li>
 <li><a href="https://github.com/garion9013/impl-pruning-TF" target="_blank" rel="noopener">impl-pruning-TF</a></li>
 </ol>
-<br>
-## 3 模型蒸馏
-
-<blockquote>
+<p><br></p>
+<h2 id="3-模型蒸馏"><a href="#3-模型蒸馏" class="headerlink" title="3 模型蒸馏"></a>3 模型蒸馏</h2><blockquote>
 <p>论文地址：<a href="https://arxiv.org/abs/1503.02531" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a></p>
 </blockquote>
 <p>模型蒸馏直接设计了一个简单结构的小网络，那小网络的准确率怎么和大网络比呢？    </p>
@@ -286,15 +282,13 @@
 </div>
 
 <p>整个网络的损失函数包括原本任务的损失函数，和大网络对小网络的指导损失函数，其中指导损失函数为每个网络块输出特征图的均方误差，如下式所示：</p>
-<p>$$L_{TS}={\frac{1}{2}}\Vert{u_{Teacher}-r_{student}}\Vert ^2$$</p>
-<ul>
+<script type="math/tex; mode=display">L\_{TS}={\frac{1}{2}}\Vert{u\_{Teacher}-r\_{student}}\Vert ^2</script><ul>
 <li>\(L_{TS}(Block)\) 表示指导损失函数</li>
 <li>\(u_{Teacher}\) 表示大网络输出特征图</li>
 <li>\(r_{student}\) 表示小网络的输出特征图</li>
 </ul>
 <p><strong>整体网络的损失函数如下式所示：</strong></p>
-<p>$$L_{total} =\lambda L_{orig}+（1-\lambda） L_{TS}$$</p>
-<ul>
+<script type="math/tex; mode=display">L\_{total} =\lambda L\_{orig}+（1-\lambda） L\_{TS}</script><ul>
 <li>\(L_{orig}\) 为直接训练网络的损失函数</li>
 <li>\(\lambda\) 为提前设定的超参数，表示大网络对小网络指导损失函数的重要性</li>
 </ul>
@@ -314,8 +308,7 @@
 
 
 <p><strong>细节部分</strong>， \(softmax\) 层的公式如下：</p>
-<p> $$q_{i}=\frac{exp(\frac {z_i}{T})}{\sum_j exp(\frac{z_j}{T})}$$</p>
-<ul>
+<script type="math/tex; mode=display">q\_{i}=\frac{exp(\frac {z\_i}{T})}{\sum\_j exp(\frac{z\_j}{T})}</script><ul>
 <li>\(z_i : \mathrm {the\ logit,\ i.e.\ the\ input\ to\ the\ softmax\ layer}\)</li>
 <li>\(q_i : \mathrm {the\ class\ probability\ computed\ by\ the\ softmax}\) </li>
 <li>\(T : \mathrm {a\ temperture\ that\ is\ normally\ set\ to\ 1}\) </li>
@@ -324,14 +317,12 @@
 <p><strong>“蒸馏”最简单的形式就是：</strong>以从复杂模型得到的“软目标”为目标（这时T比较大），用“转化”训练集训练小模型。训练小模型时T不变仍然较大，训练完之后T改为1。    </p>
 <p><strong><a href="https://github.com/chengshengchan/model_compression/blob/master/teacher-student.py" target="_blank" rel="noopener">代码实现</a></strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">teacher=nin()</span><br><span class="line">student=lenet()</span><br><span class="line"></span><br><span class="line">one_hot = tf.one_hot(y, n_classes,<span class="number">1.0</span>,<span class="number">0.0</span>)</span><br><span class="line">teacher_tau = tf.scalar_mul(<span class="number">1.0</span>/args.tau, teacher)</span><br><span class="line">student_tau = tf.scalar_mul(<span class="number">1.0</span>/args.tau, student)</span><br><span class="line">objective1 = tf.nn.sigmoid_cross_entropy_with_logits(student_tau, one_hot)</span><br><span class="line">objective2 = tf.scalar_mul(<span class="number">0.5</span>, tf.square(student_tau-teacher_tau))</span><br><span class="line">tf_loss = (args.lamda*tf.reduce_sum(objective1) + (<span class="number">1</span>-args.lamda)*tf.reduce_sum(objective2))/batch_size</span><br></pre></td></tr></table></figure>
-
 <p><strong>项目地址：</strong></p>
 <ol>
 <li><a href="https://github.com/a7b23/Distilling-the-knowledge-in-neural-network" target="_blank" rel="noopener">Distilling-the-knowledge-in-neural-network</a></li>
 <li><a href="https://github.com/chengshengchan/model_compression" target="_blank" rel="noopener">model_compression</a></li>
 </ol>
-<br>
-
+<p><br></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://arxiv.org/pdf/1510.00149.pdf" target="_blank" rel="noopener">DEEP COMPRESSION</a></li>
 </ul>
@@ -391,7 +382,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-网络剪枝"><span class="nav-text">2 网络剪枝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-一"><span class="nav-text">方式 一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法流程"><span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层剪枝"><span class="nav-text">全连接层剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积层剪枝"><span class="nav-text">卷积层剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验结果"><span class="nav-text">实验结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-二"><span class="nav-text">方式 二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#剪枝的敏感度（Sensitivity）"><span class="nav-text">剪枝的敏感度（Sensitivity）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层剪枝的策略"><span class="nav-text">多层剪枝的策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-三"><span class="nav-text">方式 三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-网络剪枝"><span class="nav-text">2 网络剪枝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-一"><span class="nav-text">方式 一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法流程"><span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层剪枝"><span class="nav-text">全连接层剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积层剪枝"><span class="nav-text">卷积层剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验结果"><span class="nav-text">实验结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-二"><span class="nav-text">方式 二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#剪枝的敏感度（Sensitivity）"><span class="nav-text">剪枝的敏感度（Sensitivity）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层剪枝的策略"><span class="nav-text">多层剪枝的策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式-三"><span class="nav-text">方式 三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-模型蒸馏"><span class="nav-text">3 模型蒸馏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">

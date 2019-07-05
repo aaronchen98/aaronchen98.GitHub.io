@@ -185,28 +185,20 @@
 <p>The vector of move probabilities  \(p\)  represents the probability of selecting each move a (including pass),  \(p_a = Pr(a|s)\) . The value  \(v\)  is a scalar evaluation, estimating the probability of the current player winning from position  \(s\) . </p>
 <p>The MCTS search outputs probabilities π of playing each move. These search probabilities usually select much stronger moves than the raw move probabilities p of the neural network  \(f_θ(s)\) ; MCTS may therefore be viewed as a powerful policy improvement operator. Self­play with search—using the improved MCTS­based policy to select each move, then using the game winner  \(z\)  as a sample of the value—may be viewed as a powerful policy evaluation operator. </p>
 </blockquote>
-<br>
-## 2. 传统蒙特卡洛树搜索 MCTS
-
-<h3 id="2-1-树搜索"><a href="#2-1-树搜索" class="headerlink" title="2.1 树搜索"></a>2.1 树搜索</h3><p>围棋第一手有 \(361\) 种下法，第二手有 \(360\) 种，第三手有 \(359\) ，依次类推，即一共有  \(361!\)  种下法。这个一个天文数字，比目前可观测宇宙的所有原子数还要多。要进行完全树搜索，是不可能的。因此我们必须进行剪枝，并限制思考的深度。</p>
+<p><br></p>
+<h2 id="2-传统蒙特卡洛树搜索-MCTS"><a href="#2-传统蒙特卡洛树搜索-MCTS" class="headerlink" title="2. 传统蒙特卡洛树搜索 MCTS"></a>2. 传统蒙特卡洛树搜索 MCTS</h2><h3 id="2-1-树搜索"><a href="#2-1-树搜索" class="headerlink" title="2.1 树搜索"></a>2.1 树搜索</h3><p>围棋第一手有 \(361\) 种下法，第二手有 \(360\) 种，第三手有 \(359\) ，依次类推，即一共有  \(361!\)  种下法。这个一个天文数字，比目前可观测宇宙的所有原子数还要多。要进行完全树搜索，是不可能的。因此我们必须进行剪枝，并限制思考的深度。</p>
 <div align="center">
 ![](/img/2018-08-08-AlphaGO-Zero-3.jpg)
 <center><small><font color="gray">    </font></small></center>
 </div>
 
-<br>
-所谓**剪枝**，就是指没必要考虑每种下法，我们**只需考虑最有价值的几手下法**。所谓**限制思考的深度**，就是我们最多只思考5步，10步，20步。常见的算法是Alpha-beta剪枝算法。但是，剪枝算法也有它的缺陷，它很有可能**过早的剪掉了后期价值很大走法**。
-
-<br>
-### 2.2 蒙特卡洛方法
-
-<p>简而言之，蒙特卡洛方法(Monte Carlo method)，是一种“统计模拟方法”。</p>
+<p><br><br>所谓<strong>剪枝</strong>，就是指没必要考虑每种下法，我们<strong>只需考虑最有价值的几手下法</strong>。所谓<strong>限制思考的深度</strong>，就是我们最多只思考5步，10步，20步。常见的算法是Alpha-beta剪枝算法。但是，剪枝算法也有它的缺陷，它很有可能<strong>过早的剪掉了后期价值很大走法</strong>。</p>
+<p><br></p>
+<h3 id="2-2-蒙特卡洛方法"><a href="#2-2-蒙特卡洛方法" class="headerlink" title="2.2 蒙特卡洛方法"></a>2.2 蒙特卡洛方法</h3><p>简而言之，蒙特卡洛方法(Monte Carlo method)，是一种“统计模拟方法”。</p>
 <p>假设我们要计算一个不规则形状的面积，我们只需在包含这个不规则形状的矩形内，随机的掷出一个点，每掷出一个点，则 \(N+1\) ，如果这个点在不规则图形内则 \(W+1\) 。落入不规则图形的概率即为 \( W/N\) 。当掷出足够多的点之后，我们可以认为： \(不规则图形面积＝矩形面积＊W/N\) 。</p>
 <p>要应用蒙特卡洛算法的问题，<strong>首先要将问题转化为概率问题</strong>，然后通过统计方法将其问题的解估计出来。</p>
-<br>
-### 2.3 蒙特卡洛树搜索 MCTS
-
-<p>这种算法简而言之是用蒙特卡洛方法估算每一种走法的胜率。如果描述的再具体一些，通过不断的模拟每一种走法，直至终局，该走法的模拟总次数 \(N\) ，与胜局次数 \(W\) ，即可推算出该走法的胜率为  \(W/N\) 。</p>
+<p><br></p>
+<h3 id="2-3-蒙特卡洛树搜索-MCTS"><a href="#2-3-蒙特卡洛树搜索-MCTS" class="headerlink" title="2.3 蒙特卡洛树搜索 MCTS"></a>2.3 蒙特卡洛树搜索 MCTS</h3><p>这种算法简而言之是用蒙特卡洛方法估算每一种走法的胜率。如果描述的再具体一些，通过不断的模拟每一种走法，直至终局，该走法的模拟总次数 \(N\) ，与胜局次数 \(W\) ，即可推算出该走法的胜率为  \(W/N\) 。</p>
 <div align="center">
 ![](/img/2018-08-08-AlphaGO-Zero-4.jpg)
 <center><small><font color="gray">    </font></small></center>
@@ -219,14 +211,11 @@
 <li><strong>仿真：</strong> 从上面这个没有试过的着法开始，用快速走子策略（Rollout policy）走到底，得到一个胜负结果。按照普遍的观点，快速走子策略适合选择一个棋力很弱但走子很快的策略。因为如果这个策略走得慢（比如用 AlphaGo 的策略网络走棋），虽然棋力会更强，结果会更准确，但由于耗时多了，在单位时间内的模拟次数就少了，所以不一定会棋力更强，有可能会更弱。这也是为什么我们一般只模拟一次，因为如果模拟多次，虽然更准确，但更慢。</li>
 <li><strong>回溯：</strong> 把模拟的结果加到它的所有父节点上。例如第三步模拟的结果是  \(0/1\) （代表黑棋失败），那么就把这个节点的所有父节点加上  \(0/1\) 。</li>
 </ul>
-<br>
-### 2.4 上限置信区间算法 UCT
-
-<p>怎么选择节点？和从前一样：如果轮到黑棋走，就选对于黑棋有利的；如果轮到白棋走，就选对于黑棋最不利的。但不能太贪心，不能每次都只选择“最有利的/最不利的”，因为这会意味着搜索树的广度不够，容易忽略实际更好的选择。</p>
+<p><br></p>
+<h3 id="2-4-上限置信区间算法-UCT"><a href="#2-4-上限置信区间算法-UCT" class="headerlink" title="2.4 上限置信区间算法 UCT"></a>2.4 上限置信区间算法 UCT</h3><p>怎么选择节点？和从前一样：如果轮到黑棋走，就选对于黑棋有利的；如果轮到白棋走，就选对于黑棋最不利的。但不能太贪心，不能每次都只选择“最有利的/最不利的”，因为这会意味着搜索树的广度不够，容易忽略实际更好的选择。</p>
 <p>为了在最大胜率和新节点探索上保持平衡，<strong>UCT（Upper Confidence Bound，上限置信区间算法）</strong>被引入。所谓置信区间，就是概率计算结果的可信度。打个比方，如果掷了3次硬币，都是正面朝上，我们就认为掷硬币正面朝上概率是100%，那肯定是错误的，因为我们的样本太少了。所以UCT就是用来修正这个样本太少的问题。</p>
 <p><strong>具体公式如下：</strong></p>
-<p>$$\text{score = }\ \frac{w_i}{n_i}+c\sqrt{\frac{\ln N_i}{n_i}}$$</p>
-<ul>
+<script type="math/tex; mode=display">\text{score = }\ \frac{w\_i}{n\_i}+c\sqrt{\frac{\ln N\_i}{n\_i}}</script><ul>
 <li>\(w_i\)  是 \(i\) 节点的胜利次数</li>
 <li>\(n_i\) 是i节点的模拟次数</li>
 <li>\(N_i\) 是所有模拟次数 </li>
@@ -251,13 +240,9 @@
 <li>其中  \(5/6\)  对应的分数为  \((1-5/6) + C \cdot \sqrt{\frac{\log(10)}{6}}  \approx 0.17 + 0.62 C\) 。</li>
 </ul>
 <p>那么我们下一步肯定应该选 2/4。所以说这张图是错误的，因为制图的人并没有注意到要把胜率倒过来。</p>
-<br>
-## 3. 深度强化学习
-<br>
-### 3.1 神经网络与MCTS的结合
-
-
-<p>常见的MCTS分为4个步骤：选择，扩展，模拟和反向传播。</p>
+<p><br></p>
+<h2 id="3-深度强化学习"><a href="#3-深度强化学习" class="headerlink" title="3. 深度强化学习"></a>3. 深度强化学习</h2><p><br></p>
+<h3 id="3-1-神经网络与MCTS的结合"><a href="#3-1-神经网络与MCTS的结合" class="headerlink" title="3.1 神经网络与MCTS的结合"></a>3.1 神经网络与MCTS的结合</h3><p>常见的MCTS分为4个步骤：选择，扩展，模拟和反向传播。</p>
 <p>神经网络用来指导MCTS进行判断，主要目的是用神经网络的输出代替四个步骤中的扩展和模拟这两步。</p>
 <p>神经网络的<strong>输出是落子概率和局面评估</strong>。从根节点开始，选择到叶节点，然后判断是否代表这结束，如果没有结束，则根据神经网络输出的评分进行更新，同时根据神经网络给出的落子策略进行扩展。如果结束，则根据玩家的胜负进行更新。</p>
 <p><strong>但是对于传统的MCTS，我们没有好的策略，所以只能大规模的搜索。</strong>在到达叶节点所代表的局面的时候，我们需要使用<strong>随机策略进行多次模拟，一直模拟到对局结束</strong>才能得到局面的评估。这需要消耗大量的计算资源和时间。所以引入神经网络来代替模拟步骤。</p>
@@ -265,13 +250,10 @@
 <blockquote>
 <p>没有 MCTS 相当于职业棋手只凭棋感不做计算走快棋。<strong>神经网络提供几个候选的走法，MCTS 再算一算到底哪个点更好。</strong></p>
 </blockquote>
-<br>
-### 3.2 神经网络架构
-
-<p>由残差模块构成的 CNN，输入为 \(19\times 19\times 17\)</p>
+<p><br></p>
+<h3 id="3-2-神经网络架构"><a href="#3-2-神经网络架构" class="headerlink" title="3.2 神经网络架构"></a>3.2 神经网络架构</h3><p>由残差模块构成的 CNN，输入为 \(19\times 19\times 17\)</p>
 <p>17 是 17 个特征，使用了既往 8 个回合的 16 个特征以及一个当前玩家信息特征  \((8 \times 2 + 1 = 17)\) : </p>
-<p>$$s_t = [X_t , Y_t , X_{t−1}, Y_{t−1}, …, X_{t−7}, Y_{t−7} , C]$$</p>
-<p><strong>其中  \(X_t\)  内包含的是当前棋手的数据：</strong></p>
+<script type="math/tex; mode=display">s\_t = [X\_t , Y\_t , X\_{t−1}, Y\_{t−1}, ..., X\_{t−7}, Y\_{t−7} , C]</script><p><strong>其中  \(X_t\)  内包含的是当前棋手的数据：</strong></p>
 <p>加入当前棋手执黑棋，那么此时棋盘上所有黑棋对应的位置取值1，白棋和空白位置取值0。类似的 \( Y_t \) 反映的就是白棋信息，当前棋盘上所有白棋的位置取值1，黑棋和空白处取值0。</p>
 <p><strong>\(C\) 内的所有 \(（19\times 19）\) 个数据要么都是1，要么都是0，</strong>如果此时是黑棋要落子则取1，白棋落子则取0。</p>
 <p>网络的共同部分多数是用 \(3\times 3\) 的卷积核（stride = 1)，256个特征数，后接 BatchNormalization 和 Relu 单元。每一个残差单元包括 (参见下图)：</p>
@@ -282,7 +264,7 @@
 <blockquote>
 <p>网络的前20层左右，是常见的神经网络结构。然后跟着是两个“头”，一个头取走了前20层的输出，然后产生了下一步的落子概率，另一个头基于同样的数据，输出当前局面的获胜概率。</p>
 </blockquote>
-<br>
+<p><br></p>
 <div align="center">
 ![](/img/2018-08-08-AlphaGO-Zero-101.jpg)
 <center><small><font color="gray">    </font></small></center>
@@ -291,20 +273,16 @@
 
 <p><strong>训练数据：</strong>自我对弈产生大量的  \(( s,\pi,z )\) 数据对，通过 Mini-batch 采样。</p>
 <p><strong>损失函数：</strong></p>
-<p>$$ l=(z-v)^{2}-\pi^{T}log(p)+c||\theta||^{2} $$</p>
-<ul>
+<script type="math/tex; mode=display">l=(z-v)^{2}-\pi^{T}log(p)+c||\theta||^{2}</script><ul>
 <li>第一项：通过最小二乘最小化获胜概率误差      </li>
 <li>第二项：通过交叉熵最大化先验走子概率与提升后走子概率一致性     </li>
 <li>第三项：L2范数权值衰减防止过拟合。</li>
 </ul>
 <div> </div>
 
-<br>
-### 3.3 过程细节
-
-<p>为了在 self play 每一步得到，MCTS 需要完成1600次搜索。搜索树中每一节点 \(s\) 针对合法操作保存以下数据结构 </p>
-<p>$$\{N(s,a),W(s,a),Q(s,a),P(s,a)  \}$$</p>
-<ul>
+<p><br></p>
+<h3 id="3-3-过程细节"><a href="#3-3-过程细节" class="headerlink" title="3.3 过程细节"></a>3.3 过程细节</h3><p>为了在 self play 每一步得到，MCTS 需要完成1600次搜索。搜索树中每一节点 \(s\) 针对合法操作保存以下数据结构 </p>
+<script type="math/tex; mode=display">\\{N(s,a),W(s,a),Q(s,a),P(s,a)  \\}</script><ul>
 <li>\(s\ \)  树的每一个节点代表了一种棋盘布局</li>
 <li>\(a\ \)  每一个边代表了在一种布局 \(s\) 下的一种落子方式</li>
 <li>\(N(s,a)\ \) 记录边的访问次数  </li>
@@ -313,7 +291,7 @@
 <li>\(P(s,a)\ \)  选择该条边的先验概率</li>
 </ul>
 <p>多次模拟过程会在独立线程并行运行。搜索算法在 \(a，b，c\) 三步迭代多次后，根据搜索结果选择落子 \(d\) 。</p>
-<br>
+<p><br></p>
 <div align="center">
 ![](/img/2018-08-08-AlphaGO-Zero-6.jpg)
 <center><small><font color="gray">    </font></small></center>
@@ -352,38 +330,33 @@
 <li>让网络预测的当前棋手的最终结果 \(v\) 和最终游戏赢家 \(z\) 越接近越好</li>
 </ul>
 <p>神经网络的损失函数由下式确定：  </p>
-<p><font size="+1">  $$l = (z-v)^{2} - {\pi}^\top logP + c ||\theta||^2 $$<br>  </font></p>
+<font size="+1">  $$l = (z-v)^{2} - {\pi}^\top logP + c ||\theta||^2 $$
+  </font>
+
 <ul>
 <li>\(c \) 是控制参数 L2 正则项的一个系数。</li>
 </ul>
 <p>网络训练得到的新参数会被用来知道下一轮迭代中自我对弈时的 MCTS 搜索。</p>
 <p>AlphaGo Zero 每1000步会将一个神经网络存档，并且把这个存档和历史最优版本比较，如果胜率超过历史最优的55%，这个版本将会被更新为历史最优。并且在生成数据时，只使用历史最优的神经网络的 self－play 数据作为深度网络的训练数据。这样可以增加算法的优化速度。</p>
-<br>
-
-<h2 id="4-搜索阶段算法"><a href="#4-搜索阶段算法" class="headerlink" title="4. 搜索阶段算法"></a>4. 搜索阶段算法</h2><br>
+<p><br></p>
+<h2 id="4-搜索阶段算法"><a href="#4-搜索阶段算法" class="headerlink" title="4. 搜索阶段算法"></a>4. 搜索阶段算法</h2><p><br></p>
 <div align="center">
 ![](/img/2018-08-08-AlphaGO-Zero-8.jpg)
 <center><small><font color="gray">    </font></small></center>
 </div>
 
 
-<br>
-### a 选择 Select
-
-<p>每一次模拟的第一个阶段起自搜索树的根节点  \(s_0\)  ，在第 L 个时间步结束于搜索树的叶节点  \(s_L\)  。对于其中的任意时间  \(t&lt;L\)  ，根据搜索树内的统计数据来决定选择哪一个模拟行为  </p>
-<p>$$a_t = \underset{a}{argmax}(Q(s_t, a) + U(s_t, a))$$</p>
-<p>其中：<br>$$U(s,a) = c_{puct}P(s,a)\frac{\sqrt{\sum_{b}{N(s,b)}}}{1+N(s,a)}$$ </p>
-<ul>
+<p><br></p>
+<h3 id="a-选择-Select"><a href="#a-选择-Select" class="headerlink" title="a 选择 Select"></a>a 选择 Select</h3><p>每一次模拟的第一个阶段起自搜索树的根节点  \(s_0\)  ，在第 L 个时间步结束于搜索树的叶节点  \(s_L\)  。对于其中的任意时间  \(t&lt;L\)  ，根据搜索树内的统计数据来决定选择哪一个模拟行为  </p>
+<script type="math/tex; mode=display">a\_t = \underset{a}{argmax}(Q(s\_t, a) + U(s\_t, a))</script><p>其中： </p>
+<script type="math/tex; mode=display">U(s,a) = c\_{puct}P(s,a)\frac{\sqrt{\sum\_{b}{N(s,b)}}}{1+N(s,a)}</script><ul>
 <li>\(c_{puct}\) 是决定探索程度的一个系数</li>
 </ul>
 <blockquote>
 <p>this search control strategy initially prefers actions with high prior probability and low visit count, but asympotically prefers actions with high action value.</p>
 </blockquote>
-<br>
-### b 扩展和评估 Expand & Evaluate
-
-
-<p>叶节点  \(s_L\)  将会等待来自神经网络的评估  \((d_i (p), v) = f_\theta (d_i (s_L )) \)，其中  \(d_i \) 是一个 dihedral reflection 或 rotation，  \(i\in[1,2,3,…,8] \) 。</p>
+<p><br></p>
+<h3 id="b-扩展和评估-Expand-amp-Evaluate"><a href="#b-扩展和评估-Expand-amp-Evaluate" class="headerlink" title="b 扩展和评估 Expand &amp; Evaluate"></a>b 扩展和评估 Expand &amp; Evaluate</h3><p>叶节点  \(s_L\)  将会等待来自神经网络的评估  \((d_i (p), v) = f_\theta (d_i (s_L )) \)，其中  \(d_i \) 是一个 dihedral reflection 或 rotation，  \(i\in[1,2,3,…,8] \) 。</p>
 <p>其中通过一个1至8的随机数来表示双方向镜面和旋转（因为围棋在棋盘旋转和镜像之后的胜率估算情况是一样的，如下图所示）</p>
 <div align="center">
 ![](/img/2018-08-08-AlphaGO-Zero-9.jpg)
@@ -391,36 +364,22 @@
 </div>
 
 <p>这些等待评估的状态会被送入一个队列，在神经网络评估队列里的状态时（使用 mini_batch_size=8），搜索将被暂时锁定。当神经网络得到结果后，该叶节点会被展开，同时每一条可能的边  \((s_L,a)\)  会以下面的数据进行初始化：  </p>
-<p>$$\{ N(s_L,a)=0,W(s_L,a)=0,Q(s_L,a)=0,P(s_L,a)=P_a \}$$ </p>
-<p> 同时来自神经网络的对该叶节点的价值估计也会影响路径中每一个节点的统计数据  \(W\)（见下），随后进行回溯过程。</p>
+<script type="math/tex; mode=display">\\{ N(s\_L,a)=0,W(s\_L,a)=0,Q(s\_L,a)=0,P(s\_L,a)=P\_a \\}</script><p> 同时来自神经网络的对该叶节点的价值估计也会影响路径中每一个节点的统计数据  \(W\)（见下），随后进行回溯过程。</p>
 <blockquote>
 <p>AlphaGo Zero 会根据前面的落子规则不断的落子，这就相当于棋手在脑海中进行推演。但是围棋的搜索空间即使对于计算机来说也是太大，AlphaGo zero 只会推演（仿真）到一定步数就停止了。假设最后的布局是 \(s’\) , 那么 AlphaGo Zero 会调用深度神经网络来预测这局推演结束时自己的胜率 \(v(s’) \) 。这样的推演过程会进行多次。</p>
 </blockquote>
-<br>
-### c 回溯 Backup
-
-<p>等一次推演结束后，AlphaGo zero 会根据推演的结果更新自己的知识，也就是值函数 \(Q(s,u)\) </p>
+<p><br></p>
+<h3 id="c-回溯-Backup"><a href="#c-回溯-Backup" class="headerlink" title="c 回溯 Backup"></a>c 回溯 Backup</h3><p>等一次推演结束后，AlphaGo zero 会根据推演的结果更新自己的知识，也就是值函数 \(Q(s,u)\) </p>
 <p>对于 \( t \leq L \) ,每一个边的统计结果将被更新。</p>
-<p> $$ N(s_t,a_t) = N(s_t,a_t)+1$$  </p>
-<p> $$ W(s_t,a_t) = W(s_t,a_t)+v $$      </p>
-<p> $$Q(s_t,a_t) = \frac{W(s_t,a_t)}{N(s_t,a_t)}$$</p>
-<br>
-
-<p>$$N(s,a) :\  记录边的访问次数  $$</p>
-<p>$$W(s,a) :\   合计行动价值  $$</p>
-<p>$$Q(s,a) :\ 平均行动价值 $$</p>
-<br>
-### d 产生实际行为 Play
-
-<p>路径中所有节点统计数据得到更新后（搜索结束后）， AlphaGo Zero 在根节点  \(s\)  处选择 \(a\) 操作进行落子，根据最新的统计数据来产生一个实际的行为 \(\pi_{a}\) ，与访问次数成幂指数比例：<br>$$\pi(a|s)=\frac{N(s,a)^{1/\tau}}{\sum_{b}^{}{N(s,b)^{1/\tau}}}$$  </p>
-<p>\(\pi_{a}\ (\pi(a|s))\)  是落子到位置 \(a\) 的概率</p>
+<script type="math/tex; mode=display">N(s\_t,a\_t) = N(s\_t,a\_t)+1</script><script type="math/tex; mode=display">W(s\_t,a\_t) = W(s\_t,a\_t)+v</script><script type="math/tex; mode=display">Q(s\_t,a\_t) = \frac{W(s\_t,a\_t)}{N(s\_t,a\_t)}</script><p><br></p>
+<script type="math/tex; mode=display">N(s,a) :\  记录边的访问次数</script><script type="math/tex; mode=display">W(s,a) :\   合计行动价值</script><script type="math/tex; mode=display">Q(s,a) :\ 平均行动价值</script><p><br></p>
+<h3 id="d-产生实际行为-Play"><a href="#d-产生实际行为-Play" class="headerlink" title="d 产生实际行为 Play"></a>d 产生实际行为 Play</h3><p>路径中所有节点统计数据得到更新后（搜索结束后）， AlphaGo Zero 在根节点  \(s\)  处选择 \(a\) 操作进行落子，根据最新的统计数据来产生一个实际的行为 \(\pi_{a}\) ，与访问次数成幂指数比例：  </p>
+<script type="math/tex; mode=display">\pi(a|s)=\frac{N(s,a)^{1/\tau}}{\sum\_{b}^{}{N(s,b)^{1/\tau}}}</script><p>\(\pi_{a}\ (\pi(a|s))\)  是落子到位置 \(a\) 的概率</p>
 <p>\(\tau \) 为温度参数，控制探索的程度， \( \tau\)  越大，不同走法间差异变小，探索比例增大，反之，则更多选择当前最优操作。</p>
 <p>在随后的时间步 (time_steps) 中，这个搜索树将会继续使用，对应于实际所采取的行为的子节点将变成根节点，该子节点下的子树的统计数据将会被保留，而这颗树的其余部分将会丢弃 (discarded)。 </p>
 <p>另外，如果该子树的根节点和最佳价值子节点的价值低于某一个阈值 \( v_{resign}\)，AlphaZero 将放弃搜索某子树。</p>
-<br>
-## 参考
-
-<ol>
+<p><br></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://www.zhihu.com/question/263583260" target="_blank" rel="noopener">AlphaGo Zero去掉蒙特卡洛搜索树会怎么样?</a></li>
 <li><a href="https://www.zhihu.com/question/289626696" target="_blank" rel="noopener">蒙特卡洛树搜索中神经网络是如何指导蒙特卡洛树搜索进行判断的</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/32952677" target="_blank" rel="noopener">AlphaGo Zero 简明工作原理</a></li>
@@ -485,7 +444,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-树搜索"><span class="nav-text">2.1 树搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-搜索阶段算法"><span class="nav-text">4. 搜索阶段算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-传统蒙特卡洛树搜索-MCTS"><span class="nav-text">2. 传统蒙特卡洛树搜索 MCTS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-树搜索"><span class="nav-text">2.1 树搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-蒙特卡洛方法"><span class="nav-text">2.2 蒙特卡洛方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-蒙特卡洛树搜索-MCTS"><span class="nav-text">2.3 蒙特卡洛树搜索 MCTS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-上限置信区间算法-UCT"><span class="nav-text">2.4 上限置信区间算法 UCT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-深度强化学习"><span class="nav-text">3. 深度强化学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-神经网络与MCTS的结合"><span class="nav-text">3.1 神经网络与MCTS的结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-神经网络架构"><span class="nav-text">3.2 神经网络架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-过程细节"><span class="nav-text">3.3 过程细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-搜索阶段算法"><span class="nav-text">4. 搜索阶段算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-选择-Select"><span class="nav-text">a 选择 Select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-扩展和评估-Expand-amp-Evaluate"><span class="nav-text">b 扩展和评估 Expand &amp; Evaluate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-回溯-Backup"><span class="nav-text">c 回溯 Backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-产生实际行为-Play"><span class="nav-text">d 产生实际行为 Play</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">

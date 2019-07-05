@@ -35,13 +35,13 @@
 <link rel="canonical" href="https://hhyz.me/2019/03/30/CART/">
 
 
-<meta name="description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法      split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
+<meta name="description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法     split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CART (Classification And Regression Tree)">
 <meta property="og:url" content="https://hhyz.me/2019/03/30/CART/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法      split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
+<meta property="og:description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法     split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://hhyz.me/img/2019-03-30-CART-1.jpg">
 <meta property="og:image" content="https://hhyz.me/img/2019-03-30-CART-2.jpg">
@@ -58,7 +58,7 @@
 <meta property="og:updated_time" content="2019-07-02T17:05:20.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CART (Classification And Regression Tree)">
-<meta name="twitter:description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法      split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
+<meta name="twitter:description" content="概述求  \(R_m\)：   扩张树：用贪心，上至下递归分区方法     split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\)      Split s divide the current node into two children.比如，对于 t，\(\text{Left-Child }= {(y_i, x_i) : x_{ij} ≤ t}\ 而\">
 <meta name="twitter:image" content="https://hhyz.me/img/2019-03-30-CART-1.jpg">
 
 
@@ -166,8 +166,7 @@
             <div class="post-content">
             <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>求  \(R_m\)： </p>
 <ol>
-<li><p>扩张树：用贪心，上至下递归分区方法    </p>
-</li>
+<li>扩张树：用贪心，上至下递归分区方法    </li>
 <li><p>split function 选择最好的特征  \(j*\) 和该特征最好的值 \(t*\) </p>
 <p> <img src="/img/2019-03-30-CART-1.jpg" alt></p>
 </li>
@@ -185,8 +184,7 @@
 </li>
 </ol>
 <h2 id="Prunning-剪枝"><a href="#Prunning-剪枝" class="headerlink" title="Prunning 剪枝"></a>Prunning 剪枝</h2><p>代价复杂性剪枝 (cost complexity pruning)</p>
-<p>$$min \ \ \frac {1}{N} \sum^{\vert T \vert}_{m=1} \sum_{x_i \in {R_m}} L(y_i, w_m) + \alpha \vert T\vert$$</p>
-<p> \(\vert T \vert\) 是 termainal nodes 的总数</p>
+<script type="math/tex; mode=display">min \ \ \frac {1}{N} \sum^{\vert T \vert}\_{m=1} \sum\_{x_i \in {R\_m}} L(y\_i, w\_m) + \alpha \vert T\vert</script><p> \(\vert T \vert\) 是 termainal nodes 的总数</p>
 <p>  \(L(·, ·)\) 是 loss function, 例如 \(L(yi, f (x_i)) = L(x_i,w_m) = (y_i − w_m)^2\) </p>
 <p>  \(w_m\) 是与 \(R_m\) 对应的预测值  \(\rightarrow\)  也就是 \(R_m\) 中训练集的平均值</p>
 <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><img src="/img/2019-03-30-CART-5.jpg" alt></p>

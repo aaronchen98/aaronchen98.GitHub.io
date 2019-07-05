@@ -160,35 +160,28 @@
 <li>我们的算法得出的结果范围。</li>
 </ol>
 <a id="more"></a>
-
 <p><img src="/img/2018-05-28-IoUmAP-101.jpg" alt></p>
 <p><img src="/img/2018-05-28-IoUmAP-102.jpg" alt></p>
-<p>$$IoU=\frac {Area\ of\ Overlap}{Area\ of\ Union}$$</p>
-<blockquote>
+<script type="math/tex; mode=display">IoU=\frac {Area\ of\ Overlap}{Area\ of\ Union}</script><blockquote>
 <p>一般来说，这个 score ＞ 0.5 可以被认为一个不错的结果</p>
 </blockquote>
 <p><strong>python 实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bb_intersection_over_union</span><span class="params">(boxA, boxB)</span>:</span></span><br><span class="line">    <span class="comment"># determine the (x, y)-coordinates of the intersection rectangle</span></span><br><span class="line">    xA = max(boxA[<span class="number">0</span>], boxB[<span class="number">0</span>])</span><br><span class="line">    yA = max(boxA[<span class="number">1</span>], boxB[<span class="number">1</span>])</span><br><span class="line">    xB = min(boxA[<span class="number">2</span>], boxB[<span class="number">2</span>])</span><br><span class="line">    yB = min(boxA[<span class="number">3</span>], boxB[<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute the area of intersection rectangle</span></span><br><span class="line">    interArea = (xB - xA + <span class="number">1</span>) * (yB - yA + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute the area of both the prediction and ground-truth</span></span><br><span class="line">    <span class="comment"># rectangles</span></span><br><span class="line">    boxAArea = (boxA[<span class="number">2</span>] - boxA[<span class="number">0</span>] + <span class="number">1</span>) * (boxA[<span class="number">3</span>] - boxA[<span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">    boxBArea = (boxB[<span class="number">2</span>] - boxB[<span class="number">0</span>] + <span class="number">1</span>) * (boxB[<span class="number">3</span>] - boxB[<span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute the intersection over union by taking the intersection</span></span><br><span class="line">    <span class="comment"># area and dividing it by the sum of prediction + ground-truth</span></span><br><span class="line">    <span class="comment"># areas - the interesection area</span></span><br><span class="line">    iou = interArea / float(boxAArea + boxBArea - interArea)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return the intersection over union value</span></span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>检测物体轮廓不一定非得是方框，也可以是沿着物体的边线，在实际的任务中，根据不同的任务要求来写不同具体实现的检测方法，但说白了其实都是IoU或者IU。 </p>
 <p>另外 mean IU 指的是不同类别识别准确度的平均值，比如一幅图中要识别三个物体，mean IU 就是三个物体分别准确度加起来的平均值。</p>
 </blockquote>
-<br>
-
+<p><br></p>
 <h2 id="mAP-Mean-Average-Precision"><a href="#mAP-Mean-Average-Precision" class="headerlink" title="mAP (Mean Average Precision)"></a>mAP (Mean Average Precision)</h2><ol>
 <li>对于某个<strong>类别C</strong>，在某一张图片上首先计算C在一张图片上的 \(Precision=\frac {在一张图片上类别C识别正确的个数（也就是IoU&gt;0.5）}{一张图片上类别C的总个数}\) </li>
 </ol>
-<p>$$Precision_C\ =\ \frac {N(TruePositives)_C}{N(TotalObjects)_C}$$</p>
-<ol start="2">
+<script type="math/tex; mode=display">Precision\_C\ =\ \frac {N\(TruePositives\)\_C}{N\(TotalObjects\)\_C}</script><ol>
 <li>依然对于某个类别C，可能在多张图片上有该类别，下面计算类别C的AP指数： \(AP\ =\ \frac {每张图片上的Precision求和}{含有类别C的图片数目}\)</li>
 </ol>
-<p>$$AveragePrecision_C\ =\ \frac {\sum Precision_C}{N(TotalImages)_C}$$ </p>
-<ol start="3">
+<script type="math/tex; mode=display">AveragePrecision\_C\ =\ \frac {\sum Precision\_C}{N\(TotalImages\)\_C}</script><ol>
 <li>对于整个数据集，存在多个类别C1、C2、C3： \(mAP\ =\ \frac {上一步计算的所有类别的AP和}{总的类别数目相当于所有类别的AP的平均值}\) </li>
 </ol>
-<p>$$MeanAveragePrecision\ =\ \frac {\sum AveragePrecision_C}{N(Classes)}$$</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<script type="math/tex; mode=display">MeanAveragePrecision\ =\ \frac {\sum AveragePrecision\_C}{N(Classes)}</script><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://link.zhihu.com/?target=http%3A//tarangshah.com/blog/2018-01-27/what-is-map-understanding-the-statistic-of-choice-for-comparing-object-detection-models/" target="_blank" rel="noopener">What is mAP ? Understanding the statistic of choice for comparing Object Detection models</a></li>
 <li><a href="https://www.zhihu.com/question/53405779" target="_blank" rel="noopener">目标检测中的mAP是什么含义?</a></li>
 <li><a href="https://blog.csdn.net/iamoldpan/article/details/78799857" target="_blank" rel="noopener">深度学习中IU、IoU(Intersection over Union)的概念理解以及python程序实现</a></li>
@@ -216,8 +209,8 @@
       </a>
     
     
-      <a class="next" href="/2018/04/28/PerceptualLosses/">
-        <span class="next-text nav-default">Perceptual Loss 感知损失 图像超分辨重建（二）</span>
+      <a class="next" href="/2018/04/28/opencv/">
+        <span class="next-text nav-default">python-opencv 方法总结</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

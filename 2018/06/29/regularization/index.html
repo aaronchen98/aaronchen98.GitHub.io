@@ -35,18 +35,18 @@
 <link rel="canonical" href="https://hhyz.me/2018/06/29/regularization/">
 
 
-<meta name="description" content="范数  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$     \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则">
+<meta name="description" content="范数  $$\Vert x \Vert\_p:=\left(\sum^n\_{i=1}\vert x\_i \vert^p\right)^{\frac {1}{p}}$$       \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="L0 L1 L2 正则化">
 <meta property="og:url" content="https://hhyz.me/2018/06/29/regularization/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="范数  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$     \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则">
+<meta property="og:description" content="范数  $$\Vert x \Vert\_p:=\left(\sum^n\_{i=1}\vert x\_i \vert^p\right)^{\frac {1}{p}}$$       \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="L0 L1 L2 正则化">
-<meta name="twitter:description" content="范数  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$     \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则">
+<meta name="twitter:description" content="范数  $$\Vert x \Vert\_p:=\left(\sum^n\_{i=1}\vert x\_i \vert^p\right)^{\frac {1}{p}}$$       \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -151,14 +151,15 @@
 
     
             <div class="post-content">
-            <h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><p><font size="+1">  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$<br>   </font></p>
+            <h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><font size="+1">  $$\Vert x \Vert\_p:=\left(\sum^n\_{i=1}\vert x\_i \vert^p\right)^{\frac {1}{p}}$$
+   </font>
+
 <ul>
 <li>\(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\) </li>
 <li>\(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)    </li>
 </ul>
 <p>对于线性回归模型，使用 L1 正则化的模型建叫做 <strong>Lasso 回归</strong>，使用 L2 正则化的模型叫做 <strong>Ridge 回归（岭回归）</strong>。</p>
-<h2 id="L1"><a href="#L1" class="headerlink" title="L1"></a>L1</h2><p>$$ \mathop{argmin} \limits_{w}{\frac{1}{2n_{samples}}} \Vert X_w - y\Vert^2_2+\alpha\Vert w \Vert_1$$</p>
-<p><strong>作用</strong></p>
+<h2 id="L1"><a href="#L1" class="headerlink" title="L1"></a>L1</h2><script type="math/tex; mode=display">\mathop{argmin} \limits_{w}{\frac{1}{2n\_{samples}}} \Vert X\_w - y\Vert^2\_2+\alpha\Vert w \Vert\_1</script><p><strong>作用</strong></p>
 <p>L1 正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择，一定程度上，L1也可以防止过拟合。</p>
 <p>通常越大的 \(\lambda\) 可以让代价函数在参数为0时取到最小值</p>
 <blockquote>
@@ -166,9 +167,7 @@
 <p> 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。<br>在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
 </blockquote>
 <h2 id="L2"><a href="#L2" class="headerlink" title="L2"></a>L2</h2><p><strong>岭回归计算公式</strong></p>
-<p>$$ \mathop{argmin} \limits_{w}{\frac{1}{2n_{samples}}} \Vert X_w - y\Vert^2_2+\alpha\Vert w \Vert_2^2$$</p>
-<p>$$J(\theta) = {\frac{1}{2m}}\left[\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda\sum^{n}_{j=1}\theta^2_j\right]$$</p>
-<p>如果发生过拟合， 参数 \(\theta\) 一般是比较大的值， 加入惩罚项后， 只要控制 \(\lambda\) 的大小，当 \(\lambda\) 很大时， \(\theta_1\) 到 \(\theta_n\) 就会很小，即达到了约束数量庞大的特征的目的。</p>
+<script type="math/tex; mode=display">\mathop{argmin} \limits_{w}{\frac{1}{2n\_{samples}}} \Vert X\_w - y\Vert^2\_2+\alpha\Vert w \Vert\_2^2</script><script type="math/tex; mode=display">J(\theta) = {\frac{1}{2m}}\left[\sum^m\_{i=1}(h\_\theta(x^{(i)})-y^{(i)})^2+\lambda\sum^{n}\_{j=1}\theta^2\_j\right]</script><p>如果发生过拟合， 参数 \(\theta\) 一般是比较大的值， 加入惩罚项后， 只要控制 \(\lambda\) 的大小，当 \(\lambda\) 很大时， \(\theta_1\) 到 \(\theta_n\) 就会很小，即达到了约束数量庞大的特征的目的。</p>
 <p><strong>作用</strong></p>
 <p>L2正则化可以防止模型过拟合（overfitting）</p>
 <blockquote>

@@ -35,18 +35,18 @@
 <link rel="canonical" href="https://hhyz.me/2018/06/25/tqdm/">
 
 
-<meta name="description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01)  方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char  方式 312for i in trange(100">
+<meta name="description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01) 方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char 方式 312for i in trange(100):">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 进度条包 tqdm 的使用">
 <meta property="og:url" content="https://hhyz.me/2018/06/25/tqdm/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01)  方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char  方式 312for i in trange(100">
+<meta property="og:description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01) 方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char 方式 312for i in trange(100):">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 进度条包 tqdm 的使用">
-<meta name="twitter:description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01)  方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char  方式 312for i in trange(100">
+<meta name="twitter:description" content="方式 112345from tqdm import tqdmfrom time import sleepfor i in tqdm(range(1000)):    sleep(0.01) 方式 2123text = &quot;&quot;for char in tqdm([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]):    text = text + char 方式 312for i in trange(100):">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -152,13 +152,9 @@
     
             <div class="post-content">
             <h3 id="方式-1"><a href="#方式-1" class="headerlink" title="方式 1"></a>方式 1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(range(<span class="number">1000</span>)):</span><br><span class="line">    sleep(<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
-
 <h3 id="方式-2"><a href="#方式-2" class="headerlink" title="方式 2"></a>方式 2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> tqdm([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]):</span><br><span class="line">    text = text + char</span><br></pre></td></tr></table></figure>
-
 <h3 id="方式-3"><a href="#方式-3" class="headerlink" title="方式 3"></a>方式 3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> trange(<span class="number">100</span>): </span><br><span class="line">   print(i)</span><br></pre></td></tr></table></figure>
-
 <h3 id="方式-4"><a href="#方式-4" class="headerlink" title="方式 4"></a>方式 4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pbar = tqdm([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>])</span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> pbar:</span><br><span class="line">    pbar.set_description(<span class="string">"Processing %s"</span> % char)</span><br></pre></td></tr></table></figure>
-
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'epoch'</span>, epoch)</span><br><span class="line">training_steps = tqdm(</span><br><span class="line">    range(<span class="number">1</span>, FLAGS.steps_per_epoch),</span><br><span class="line">    initial=<span class="number">1</span>, total=FLAGS.steps_per_epoch</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># main training loop</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> training_steps:</span><br><span class="line"></span><br><span class="line">    _, batch_loss, batch_accuracy = sess.run([</span><br><span class="line">        ops[<span class="string">'optimize'</span>], ops[<span class="string">'log_loss'</span>], ops[<span class="string">'accuracy'</span>]</span><br><span class="line">    ])</span><br><span class="line">    running_loss += batch_loss</span><br><span class="line">    running_accuracy += batch_accuracy</span><br></pre></td></tr></table></figure>
             </div>
           

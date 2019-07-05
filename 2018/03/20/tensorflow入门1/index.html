@@ -17,7 +17,7 @@
 
 
 
-  <meta name="keywords" content="深度学习,TensorFlow,">
+  <meta name="keywords" content="TensorFlow,深度学习,">
 
 
 
@@ -36,7 +36,7 @@
 
 
 <meta name="description" content="计算 f=x^2-2xy+3y^2=2x-2y 最小时x与y的值12345678910111213141516171819202122import tensorflow as tfx = tf.Variable(tf.constant(1.0))y = tf.Variable(tf.constant(2.0))loss = tf.square(x) - tf.multiply(tf.multipl">
-<meta name="keywords" content="深度学习,TensorFlow">
+<meta name="keywords" content="TensorFlow,深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow 入门（1）">
 <meta property="og:url" content="https://hhyz.me/2018/03/20/tensorflow入门1/index.html">
@@ -152,11 +152,8 @@
     
             <div class="post-content">
             <h2 id="计算-f-x-2-2xy-3y-2-2x-2y-最小时x与y的值"><a href="#计算-f-x-2-2xy-3y-2-2x-2y-最小时x与y的值" class="headerlink" title="计算 f=x^2-2xy+3y^2=2x-2y 最小时x与y的值"></a>计算 <code>f=x^2-2xy+3y^2=2x-2y</code> 最小时x与y的值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">x = tf.Variable(tf.constant(<span class="number">1.0</span>))</span><br><span class="line">y = tf.Variable(tf.constant(<span class="number">2.0</span>))</span><br><span class="line">loss = tf.square(x) - tf.multiply(tf.multiply(x, y), <span class="number">2.0</span>) + tf.multiply(<span class="number">3.0</span>, tf.square(y)) + tf.multiply(<span class="number">2.0</span>, x) - tf.multiply(<span class="number">2.0</span>, y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(<span class="number">0.05</span>)</span><br><span class="line">train = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化变量</span></span><br><span class="line">init = tf.initialize_all_variables()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动图 (graph)</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(init)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">201</span>):</span><br><span class="line">    sess.run(train)</span><br><span class="line">    <span class="keyword">if</span> step % <span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">        print( step, sess.run(x), sess.run(y))</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">1.0</span> <span class="number">1.6</span></span><br><span class="line"><span class="symbol">20 </span>-<span class="number">0.320484</span> <span class="number">0.281646</span></span><br><span class="line"><span class="symbol">40 </span>-<span class="number">0.796801</span> <span class="number">0.0841678</span></span><br><span class="line"><span class="symbol">60 </span>-<span class="number">0.939242</span> <span class="number">0.0251667</span></span><br><span class="line"><span class="symbol">80 </span>-<span class="number">0.981833</span> <span class="number">0.00752503</span></span><br><span class="line"><span class="symbol">100 </span>-<span class="number">0.994568</span> <span class="number">0.00225003</span></span><br><span class="line"><span class="symbol">120 </span>-<span class="number">0.998376</span> <span class="number">0.000672782</span></span><br><span class="line"><span class="symbol">140 </span>-<span class="number">0.999514</span> <span class="number">0.000201154</span></span><br><span class="line"><span class="symbol">160 </span>-<span class="number">0.999855</span> <span class="number">6.01531e</span>-<span class="number">05</span></span><br><span class="line"><span class="symbol">180 </span>-<span class="number">0.999956</span> <span class="number">1.80066e</span>-<span class="number">05</span></span><br><span class="line"><span class="symbol">200 </span>-<span class="number">0.999987</span> <span class="number">5.38831e</span>-<span class="number">06</span></span><br><span class="line"><span class="symbol">220 </span>-<span class="number">0.999996</span> <span class="number">1.60342e</span>-<span class="number">06</span></span><br><span class="line"><span class="symbol">240 </span>-<span class="number">0.999999</span> <span class="number">4.94772e</span>-<span class="number">07</span></span><br><span class="line"><span class="symbol">260 </span>-<span class="number">1.0</span> <span class="number">1.60986e</span>-<span class="number">07</span></span><br><span class="line"><span class="symbol">280 </span>-<span class="number">1.0</span> <span class="number">1.43105e</span>-<span class="number">07</span></span><br><span class="line"><span class="symbol">300 </span>-<span class="number">1.0</span> <span class="number">1.43105e</span>-<span class="number">07</span></span><br></pre></td></tr></table></figure>
-
 <p>当 <code>f=x^2-2xy+3y^2=2x-2y</code> 最小时 <code>x = -1</code>  <code>y = 0</code></p>
 
             </div>
@@ -166,9 +163,9 @@
       <footer class="post-footer">
         <div class="post-tags">
           
-            <a href="/tags/深度学习/">深度学习</a>
-          
             <a href="/tags/TensorFlow/">TensorFlow</a>
+          
+            <a href="/tags/深度学习/">深度学习</a>
           
         </div>
 

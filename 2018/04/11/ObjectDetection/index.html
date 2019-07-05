@@ -48,14 +48,6 @@
 <meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-3.jpg">
 <meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-6.jpg">
 <meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-7.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-9.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-10.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-11.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-12.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-13.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-14.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-15.jpg">
-<meta property="og:image" content="https://hhyz.me/img/2018-04-11-ObjectDetection-16.jpg">
 <meta property="og:updated_time" content="2019-07-02T17:05:20.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="综述|基于深度学习的目标检测">
@@ -173,11 +165,9 @@
 <p> 首先产生<strong>候选区域（region proposals）</strong><br> 然后<strong>对候选区域分类</strong>（一般还需要对位置精修） </p>
 <p> 这类算法的典型代表是基于 region proposal 的 R-CNN 系算法，如 R-CNN，Fast R-CNN，Faster R-CNN 等；</p>
 </li>
-<li><p><strong>one-stage检测算法</strong>，其不需要 region proposal 阶段，直接产生物体的类别概率和位置坐标值，比较典型的算法如YOLO和SSD。</p>
-</li>
+<li><strong>one-stage检测算法</strong>，其不需要 region proposal 阶段，直接产生物体的类别概率和位置坐标值，比较典型的算法如YOLO和SSD。</li>
 </ol>
 <a id="more"></a>
-
 <p>目标检测模型的主要性能指标是<strong>检测准确度</strong>和<strong>速度</strong>，对于准确度，目标检测要考虑物体的定位准确性，而不单单是分类准确度。<br>一般情况下，<strong>two-stage</strong>算法在<strong>准确度</strong>上有优势，而<strong>one-stage</strong>算法在<strong>速度</strong>上有优势。不过，随着研究的发展，两类算法都在两个方面做改进。  </p>
 <p>Google在2017年开源了<u>TensorFlow Object Detection API</u>，并对主流的 <strong>Faster R-CNN</strong>，<strong>R-FCN</strong> 及 <strong>SSD</strong> 三个算法在MS COCO数据集上的性能做了细致对比（见Huang et al. 2017），如下图所示：</p>
 <p><img src="/img/2018-04-11-ObjectDetection-2.jpg" alt></p>
@@ -201,8 +191,7 @@
 </div>
 
 
-<br> 
-
+<p><br> </p>
 <h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><p>目标检测问题<strong>同时是一个回归和分类问题</strong>。首先，为了评估定位精度，需要计算 <code>IoU (Intersection over Union)</code>，介于0到1之间，其表示<strong>预测框与真实框（ground-truth box）之间的重叠程度</strong>。IoU越高，预测框的位置越准确。因而，在评估预测框时，通常会设置一个<strong>IoU阈值</strong>（如0.5），只有当预测框与真实框的IoU值大于这个阈值时，该预测框才被认定为真阳性<code>(True Positive, TP)</code>，反之就是假阳性<code>(False Positive，FP)</code>。</p>
 <p>对于二分类，<code>AP (Average Precision)</code>是一个重要的指标，这是<strong>信息检索</strong>中的一个概念，基于precision-recall曲线计算出来，详情见<a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/w/index.php%3Ftitle%3DInformation_retrieval%26oldid%3D793358396%23Average_precision" target="_blank" rel="noopener">这里</a>。对于目标检测，首先要单独<strong>计算各个类别的AP值</strong>，这是评估检测效果的重要指标。取<strong>各个类别的AP的平均值</strong>，就得到一个综合指标 <code>mAP (Mean Average Precision)</code>，<u>mAP指标可以避免某些类别比较极端化而弱化其它类别的性能这个问题。</u></p>
 <p>对于目标检测，mAP一般在某个固定的IoU上计算，但是不同的IoU值会改变TP和FP的比例，从而造成mAP的差异。COCO数据集提供了<a href="https://link.zhihu.com/?target=https%3A//github.com/cocodataset/cocoapi" target="_blank" rel="noopener">官方的评估指标</a>，它的AP是计算一系列IoU下（0.5:0.05:0.9，见<a href="https://link.zhihu.com/?target=http%3A//cocodataset.org/%23detection-eval" target="_blank" rel="noopener">说明</a>）AP的平均值，这样可以消除IoU导致的AP波动。其实对于PASCAL VOC数据集也是这样，Facebook的Detectron上的有比较清晰的<a href="https://link.zhihu.com/?target=https%3A//github.com/facebookresearch/Detectron/blob/05d04d3a024f0991339de45872d02f2f50669b3d/lib/datasets/voc_eval.py%23L54" target="_blank" rel="noopener">实现</a>。</p>
@@ -213,12 +202,21 @@
 <center>Selective Search方法：上面是分割结果，下面是候选框. 来源: J.R.R. Uijlings and al. (2012)</center>
 <br> 
 
-<p>对于一张图片，R-CNN基于selective search方法大约生成2000个候选区域，然后每个候选区域被 <strong>resize</strong> 成固定大小（ \(227\times227\) ）并<strong>送入一个CNN模型</strong>中，最后得到一个<strong>4096-d的特征向量</strong>。然后这个特征向量被送入一个<strong>多类别SVM分类器</strong>中，预测出候选区域中所含物体的属于每个类的概率值。<strong>每个类别训练一个SVM分类器</strong>，从特征向量中推断其属于该类别的概率大小。为了提升定位准确性，R-CNN最后又训练了一个<strong>边界框回归模型</strong>。训练样本为（\(P,G\)），其中 \(P=\left(P_{x},P_{y},P_{w},P_{h}\right)\) 为候选区域，而 \(G=\left(G_{x},G_{y},G_{w},G_{h}\right)\) 为真实框，\(G\) 是与 \(P\) 的IoU最大的真实框（只使用IoU大于0.6的样本），回归器的目标值定义为：</p>
-<p>$$t_{x} = (G_{x} - P_x) / P_w, t_y = (G_y - P_y) / P_h$$</p>
-<p>$$t_w = \log(\frac{G_w}{P_w}), t_h = \log(\frac{G_h}{P_h})$$</p>
-<p>在做预测时，利用上述公式可以<strong>反求出预测框的修正位置</strong>。R-CNN<strong>对每个类别都训练了单独的回归器</strong>，采用<strong>最小均方差损失函数</strong>进行训练。</p>
-<p>R-CNN模型的训练是<strong>多管道</strong>的，CNN模型首先使用 2012 ImageNet 中的图像分类竞赛数据集进行预训练。然后在检测数据集上对CNN模型进行 finetuning（微调），其中那些与真实框的IoU大于0.5的候选区域作为<strong>正样本</strong>，剩余的候选区域是<strong>负样本</strong>（背景）。共训练两个版本，第一版本使用 2012 PASCAL VOC 数据集，第二个版本使用 2013 ImageNet 中的目标检测数据集。最后，<strong>对数据集中的各个类别训练SVM分类器</strong>（注意SVM训练样本与CNN模型的funetuning不太一样，只有IoU小于0.3的才被看成负样本）。</p>
-<p>总体来看，R-CNN是非常直观的，就是把检测问题转化为了分类问题，并且采用了CNN模型进行分类，但是效果却很好。最好的R-CNN模型在2012 PASCAL VOC数据集的mAP为62.4%（比第二名高出了22个百分点），在2013 ImageNet上的mAP为31.4%（比第二名高出7.1个百分点）。</p>
+对于一张图片，R-CNN基于selective search方法大约生成2000个候选区域，然后每个候选区域被 **resize** 成固定大小（ \\(227\times227\\) ）并**送入一个CNN模型**中，最后得到一个**4096-d的特征向量**。然后这个特征向量被送入一个**多类别SVM分类器**中，预测出候选区域中所含物体的属于每个类的概率值。**每个类别训练一个SVM分类器**，从特征向量中推断其属于该类别的概率大小。为了提升定位准确性，R-CNN最后又训练了一个**边界框回归模型**。训练样本为（\\(P,G\\)），其中 \\(P=\left(P_{x},P_{y},P_{w},P_{h}\right)\\) 为候选区域，而 \\(G=\left(G_{x},G_{y},G_{w},G_{h}\right)\\) 为真实框，\\(G\\) 是与 \\(P\\) 的IoU最大的真实框（只使用IoU大于0.6的样本），回归器的目标值定义为：
+
+$$t_{x} = (G_{x} - P_x) / P_w, t_y = (G_y - P_y) / P_h$$
+
+$$t_w = \log(\frac{G_w}{P_w}), t_h = \log(\frac{G_h}{P_h})$$
+
+在做预测时，利用上述公式可以**反求出预测框的修正位置**。R-CNN**对每个类别都训练了单独的回归器**，采用**最小均方差损失函数**进行训练。
+
+
+R-CNN模型的训练是**多管道**的，CNN模型首先使用 2012 ImageNet 中的图像分类竞赛数据集进行预训练。然后在检测数据集上对CNN模型进行 finetuning（微调），其中那些与真实框的IoU大于0.5的候选区域作为**正样本**，剩余的候选区域是**负样本**（背景）。共训练两个版本，第一版本使用 2012 PASCAL VOC 数据集，第二个版本使用 2013 ImageNet 中的目标检测数据集。最后，**对数据集中的各个类别训练SVM分类器**（注意SVM训练样本与CNN模型的funetuning不太一样，只有IoU小于0.3的才被看成负样本）。
+
+总体来看，R-CNN是非常直观的，就是把检测问题转化为了分类问题，并且采用了CNN模型进行分类，但是效果却很好。最好的R-CNN模型在2012 PASCAL VOC数据集的mAP为62.4%（比第二名高出了22个百分点），在2013 ImageNet上的mAP为31.4%（比第二名高出7.1个百分点）。
+
+
+
 <div align="center">
 ![](/img/2018-04-11-ObjectDetection-8.jpg)
 <center><small><font color="gray"> R-CNN模型结构图   </font></small></center>
@@ -226,34 +224,46 @@
 
 <br> 
 
-<h3 id="SPP-net"><a href="#SPP-net" class="headerlink" title="SPP-net"></a>SPP-net</h3><p>SPP-net（<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1406.4729.pdf" target="_blank" rel="noopener">Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition, He et al. 2014</a>）提出的起因是<strong>解决图像分类中要求输入图片固定大小的问题</strong>，但是SPP-net中所提出的<strong>空间金字塔池化层</strong> <code>Spatial Pyramid Pooling Layer, SPP</code> 可以和R-CNN结合在一起并提升其性能。采用深度学习模型解决图像分类问题时，往往需要图像的大小固定（比如 \(224\times224\)），这并不是CNN层的硬性要求，主要原因在于CNN层提取的特征图最后要送入全连接层（如softmax层），对于变大小图片，CNN层得到的特征图大小也是变化的，但是全连接层需要固定大小的输入，所以必须要将图片通过 <strong>resize</strong>, <strong>crop(剪切)</strong> 或 <strong>wrap(扭曲)</strong> 等方式固定大小（训练和测试时都需要）。但是实际上真实的图片的大小是各种各样的，一旦固定大小可能会造成图像损失，从而影响识别精度。为了解决这个问题，SSP-net在<strong>CNN层与全连接层之间插入了空间金字塔池化层</strong>来解决这个矛盾。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-9.jpg" alt></p>
+### SPP-net
+
+SPP-net（[Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition, He et al. 2014](https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1406.4729.pdf)）提出的起因是**解决图像分类中要求输入图片固定大小的问题**，但是SPP-net中所提出的**空间金字塔池化层** `Spatial Pyramid Pooling Layer, SPP` 可以和R-CNN结合在一起并提升其性能。采用深度学习模型解决图像分类问题时，往往需要图像的大小固定（比如 \\(224\times224\\)），这并不是CNN层的硬性要求，主要原因在于CNN层提取的特征图最后要送入全连接层（如softmax层），对于变大小图片，CNN层得到的特征图大小也是变化的，但是全连接层需要固定大小的输入，所以必须要将图片通过 **resize**, **crop(剪切)** 或 **wrap(扭曲)** 等方式固定大小（训练和测试时都需要）。但是实际上真实的图片的大小是各种各样的，一旦固定大小可能会造成图像损失，从而影响识别精度。为了解决这个问题，SSP-net在**CNN层与全连接层之间插入了空间金字塔池化层**来解决这个矛盾。
+
+![](/img/2018-04-11-ObjectDetection-9.jpg)
 <center>SPP-net与普通网络的结构对比</center>
 <br> 
 
-<p>SPP 层原理如下所所示，假定 CNN 层得到的特征图大小为 \(a\times{a}\)（比如 \(13\times{13}\)，随输入图片大小而变化），设定的金字塔尺度为 \(n\times{n}\) bins（对于不同大小图片是固定的），那么 SPP 层采用一种滑动窗口池化，窗口大小 \(win\_size = [a / n]\) ，步为 \(stride = [a/n]\) ，采用 max pooling，本质上将特征图均分为 \(n\times{n}\) 个子区域，然后对各个子区域 max pooling，这样不论输入图片大小，经过SPP层之后得到是固定大小的特征。<strong>一般设置多个金字塔级别</strong>，文中使用了 \(4\times{4}\), \(2\times{2}\) 和 \(1\times{1}\) 三个尺度。每个金字塔都得一个特征，<strong>将它们连接在一起送入后面的全连接层即可</strong>，这样就解决了变大小图片输入的问题了。SPP-net 在 ImageNet ILSVRC 2014 图像分类大赛中夺得了第三名。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-10.jpg" alt></p>
+SPP 层原理如下所所示，假定 CNN 层得到的特征图大小为 \\(a\times{a}\\)（比如 \\(13\times{13}\\)，随输入图片大小而变化），设定的金字塔尺度为 \\(n\times{n}\\) bins（对于不同大小图片是固定的），那么 SPP 层采用一种滑动窗口池化，窗口大小 \\(win\\_size = [a / n]\\) ，步为 \\(stride = [a/n]\\) ，采用 max pooling，本质上将特征图均分为 \\(n\times{n}\\) 个子区域，然后对各个子区域 max pooling，这样不论输入图片大小，经过SPP层之后得到是固定大小的特征。**一般设置多个金字塔级别**，文中使用了 \\(4\times{4}\\), \\(2\times{2}\\) 和 \\(1\times{1}\\) 三个尺度。每个金字塔都得一个特征，**将它们连接在一起送入后面的全连接层即可**，这样就解决了变大小图片输入的问题了。SPP-net 在 ImageNet ILSVRC 2014 图像分类大赛中夺得了第三名。
+
+![](/img/2018-04-11-ObjectDetection-10.jpg)
 <center>SPP-net中的空间金字塔池化层</center>
 <br> 
 
-<p>那么 SPP-net 和 R-CNN 有什么关系呢？在 R-CNN 中，由于每个候选区域大小是不同，所以需要先 resize 成固定大小才能送入 CNN 网络，SPP-net 正好可以解决这个问题。继续上前一步，就是 R-CNN 每次都要挨个使用CNN模型计算各个候选区域的特征，这是极其费时的，<strong>不如直接将整张图片送入CNN网络，然后抽取候选区域的对应的特征区域</strong>，采用 SPP 层，这样可以大大减少计算量，并提升速度。基于 SPP 层的 R-CNN 模型在准确度上提升不是很大，但是速度却比原始 R-CNN 模型快24-102倍。这也正是接下来 Fast R-CNN 所改进的方向。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-11.jpg" alt></p>
+那么 SPP-net 和 R-CNN 有什么关系呢？在 R-CNN 中，由于每个候选区域大小是不同，所以需要先 resize 成固定大小才能送入 CNN 网络，SPP-net 正好可以解决这个问题。继续上前一步，就是 R-CNN 每次都要挨个使用CNN模型计算各个候选区域的特征，这是极其费时的，**不如直接将整张图片送入CNN网络，然后抽取候选区域的对应的特征区域**，采用 SPP 层，这样可以大大减少计算量，并提升速度。基于 SPP 层的 R-CNN 模型在准确度上提升不是很大，但是速度却比原始 R-CNN 模型快24-102倍。这也正是接下来 Fast R-CNN 所改进的方向。
+
+![](/img/2018-04-11-ObjectDetection-11.jpg)
 <center>SPP层用于R-CNN模型</center>
 <br> 
 
-<h3 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a>Fast R-CNN</h3><p>Fast R-CNN（<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1504.08083.pdf" target="_blank" rel="noopener">Fast Region-based Convolutional Network, R. Girshick 2015</a>）的提出主要是为了减少候选区域使用 CNN 模型提取特征向量所消耗的时间，其主要借鉴了SPP-net的思想。在 R-CNN 中，每个候选区域都要单独送入 CNN 模型计算特征向量，这是非常费时的，而对于 Fast R-CNN，其 CNN 模型的输入是整张图片，然后结合 <code>RoIs（Region of Interests）pooling</code> 和 <code>Selective Search</code> 方法从 CNN 得到的特征图中提取各个候选区域的所对应的特征。对于每个候选区域，使用 <code>RoI pooling</code> 层来从 CNN 特征图中得到一个固定长和宽的特征图（长和宽是超参数，文中选用 \(7\times7\) ），RoI pooling 的原理很简单，其根据候选区域按比例从 CNN 特征图中找到对应的特征区域，然后将其分割成几个子区域（根据要输出的特征图的大小），然后在每个子区域应用 max pooling，从而得到固定大小的特征图，这个过程是可导的（见RoI pooling层的<a href="https://link.zhihu.com/?target=https%3A//github.com/rbgirshick/caffe-fast-rcnn/blob/bcd9b4eadc7d8fbc433aeefd564e82ec63aaf69c/src/caffe/layers/roi_pooling_layer.cpp" target="_blank" rel="noopener">Caffe官方实现</a>，RoI pooling层在大部分深度学习框架中是没有官方实现的，需要自己扩展，Tensorflow上的开源实现可以参考<a href="https://link.zhihu.com/?target=https%3A//github.com/deepsense-ai/roi-pooling" target="_blank" rel="noopener">deepsense-ai/roi-pooling</a>，但是在TensorFlow中可以基于一种 crop+resize+pooling 的方式来简化实现，可以参考一下<a href="https://link.zhihu.com/?target=https%3A//github.com/tryolabs/luminoth/blob/master/luminoth/models/fasterrcnn/roi_pool.py" target="_blank" rel="noopener">Luminoth上的实现</a>），RoI pooling 层相比 SPP 层看起来主要是只使用一个金字塔级别。然后 RoI pooling 层得到的特征图送入几个全连接层中，并产生新的特征向量，这些特征向量分别用于一个 <strong>softmax 分类器</strong>（<strong>预测类别</strong>）和一个<strong>线性回归器</strong>上（<strong>用于调整边界框位置</strong>）来进行检测。在实现上是使用两个不同的全连接层，第一个全连接层有 \(N + 1\) 个输出（是 \(N\) 类别总数， \(1\) 是背景），表示各个类别的概率值；第二个全连接层有 \(4N\) 个输出，表示坐标回归值 \((t_{x},t_{y},t_{w},t_{h})\) ，这个与R-CNN是一样的，每个类别都预测4个位置坐标值。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-12.jpg" alt></p>
+### Fast R-CNN
+
+Fast R-CNN（[Fast Region-based Convolutional Network, R. Girshick 2015](https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1504.08083.pdf)）的提出主要是为了减少候选区域使用 CNN 模型提取特征向量所消耗的时间，其主要借鉴了SPP-net的思想。在 R-CNN 中，每个候选区域都要单独送入 CNN 模型计算特征向量，这是非常费时的，而对于 Fast R-CNN，其 CNN 模型的输入是整张图片，然后结合 `RoIs（Region of Interests）pooling` 和 `Selective Search` 方法从 CNN 得到的特征图中提取各个候选区域的所对应的特征。对于每个候选区域，使用 `RoI pooling` 层来从 CNN 特征图中得到一个固定长和宽的特征图（长和宽是超参数，文中选用 \\(7\times7\\) ），RoI pooling 的原理很简单，其根据候选区域按比例从 CNN 特征图中找到对应的特征区域，然后将其分割成几个子区域（根据要输出的特征图的大小），然后在每个子区域应用 max pooling，从而得到固定大小的特征图，这个过程是可导的（见RoI pooling层的[Caffe官方实现](https://link.zhihu.com/?target=https%3A//github.com/rbgirshick/caffe-fast-rcnn/blob/bcd9b4eadc7d8fbc433aeefd564e82ec63aaf69c/src/caffe/layers/roi_pooling_layer.cpp)，RoI pooling层在大部分深度学习框架中是没有官方实现的，需要自己扩展，Tensorflow上的开源实现可以参考[deepsense-ai/roi-pooling](https://link.zhihu.com/?target=https%3A//github.com/deepsense-ai/roi-pooling)，但是在TensorFlow中可以基于一种 crop+resize+pooling 的方式来简化实现，可以参考一下[Luminoth上的实现](https://link.zhihu.com/?target=https%3A//github.com/tryolabs/luminoth/blob/master/luminoth/models/fasterrcnn/roi_pool.py)），RoI pooling 层相比 SPP 层看起来主要是只使用一个金字塔级别。然后 RoI pooling 层得到的特征图送入几个全连接层中，并产生新的特征向量，这些特征向量分别用于一个 **softmax 分类器**（**预测类别**）和一个**线性回归器**上（**用于调整边界框位置**）来进行检测。在实现上是使用两个不同的全连接层，第一个全连接层有 \\(N + 1\\) 个输出（是 \\(N\\) 类别总数， \\(1\\) 是背景），表示各个类别的概率值；第二个全连接层有 \\(4N\\) 个输出，表示坐标回归值 \\((t_{x},t_{y},t_{w},t_{h})\\) ，这个与R-CNN是一样的，每个类别都预测4个位置坐标值。
+
+![](/img/2018-04-11-ObjectDetection-12.jpg)
 <center>Fast R-CNN的分类与回归预测. 来源：https://tryolabs.com/blog/</center>
 <br> 
 
-<p><img src="/img/2018-04-11-ObjectDetection-13.jpg" alt></p>
+![](/img/2018-04-11-ObjectDetection-13.jpg)
 <center>RoI pooling 原理图，特征图大小为8x8，候选区域为5x7，输出2x2. 来源：https://blog.deepsense.ai/region-of-interest-pooling-explained/</center>
 <br> 
 
-<p>Fast R-CNN 与 R-CNN 的另外的一个主要区别点是采用了 softmax 分类器而不是SVM分类器，而且训练过程是单管道的，因为 Fast R-CNN 将分类误差和定位误差合并在一起训练，定位误差采用 smooth L1 而不是 R-CNN 中的 L2。这里说点题外话，就是 R-CNN 训练是多管道的，除了对 CNN 模型预训练，R-CNN 还先对 CNN 模型 funetuning，使用的是 softmax 分类器，但是最后却又训练 SVM 分类器（原因可以见原论文），直觉上感觉有点多此一举，所以现在 Fast R-CNN 直接采用 softmax 分类器了。Fast R-CNN 训练采用mini-batch sampling，每个 mini-batch 大小为 \(128\) ，从 \(N = 2\) 个图片中构建，其中 25% 来自正样本（IoU&gt;=0.5）,75%从负样本中抽样得到（背景，IoU \(\in [0.1,0.5)\) ），这里的 IoU 阈值属于超参数。在图像分类中，当我们说 batch_size=32 时，是指的是32个图片，在 Fast R-CNN 中并不是这样，因为一个图片含有很多 RoIs，每个 batch 使用的图片非常少（内存限制），所以有时候你会看到 Fast R-CNN 训练时直接从一个图片中构建 batch，这实现起来更容易一些。</p>
-<p>$$L(p,u,t^u,v) = L_{cls}(p,u) + \lambda [u &gt; 0]L_{loc}(t^u,v)$$</p>
-<p>最好的 Fast R-CNN 模型在 2007 PASCAL VOC 测试集上的 mAp 为70%，在 2010 PASCAL VOC 测试集上的 mAP 为68.8%，而在 2012 PASCAL VOC 测试集上的 mAP 为68.4%，准确度相比 R-CNN 略有提升，其实主要是速度更快。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-14.jpg" alt></p>
+Fast R-CNN 与 R-CNN 的另外的一个主要区别点是采用了 softmax 分类器而不是SVM分类器，而且训练过程是单管道的，因为 Fast R-CNN 将分类误差和定位误差合并在一起训练，定位误差采用 smooth L1 而不是 R-CNN 中的 L2。这里说点题外话，就是 R-CNN 训练是多管道的，除了对 CNN 模型预训练，R-CNN 还先对 CNN 模型 funetuning，使用的是 softmax 分类器，但是最后却又训练 SVM 分类器（原因可以见原论文），直觉上感觉有点多此一举，所以现在 Fast R-CNN 直接采用 softmax 分类器了。Fast R-CNN 训练采用mini-batch sampling，每个 mini-batch 大小为 \\(128\\) ，从 \\(N = 2\\) 个图片中构建，其中 25% 来自正样本（IoU>=0.5）,75%从负样本中抽样得到（背景，IoU \\(\in [0.1,0.5)\\) ），这里的 IoU 阈值属于超参数。在图像分类中，当我们说 batch_size=32 时，是指的是32个图片，在 Fast R-CNN 中并不是这样，因为一个图片含有很多 RoIs，每个 batch 使用的图片非常少（内存限制），所以有时候你会看到 Fast R-CNN 训练时直接从一个图片中构建 batch，这实现起来更容易一些。
+
+
+$$L(p,u,t^u,v) = L_{cls}(p,u) + \lambda [u > 0]L_{loc}(t^u,v)$$
+
+最好的 Fast R-CNN 模型在 2007 PASCAL VOC 测试集上的 mAp 为70%，在 2010 PASCAL VOC 测试集上的 mAP 为68.8%，而在 2012 PASCAL VOC 测试集上的 mAP 为68.4%，准确度相比 R-CNN 略有提升，其实主要是速度更快。
+
+![](/img/2018-04-11-ObjectDetection-14.jpg)
 <center>Fast R-CNN模型结构图</center>
 <br> 
 
@@ -261,16 +271,28 @@
 
 
 
-<h3 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h3><p>对于 Fast R-CNN，其仍然需要 selective search 方法来生产候选区域，这是非常费时的。为了解决这个问题，Faster R-CNN模型引入了 <code>RPN (Region Proposal Network)</code> 直接产生候选区域。Faster R-CNN 可以看成是 RPN 和 Fast R-CNN 模型的组合体，即 <code>Faster R-CNN = RPN + Fast R-CNN</code>。</p>
-<p>对于 RPN 网络，先采用一个 CNN 模型（一般称为特征提取器）接收整张图片并提取特征图。然后在这个特征图上采用一个 \(N\times N\) （文中是 \(3\times 3\) ）的滑动窗口，对于每个滑窗位置都映射一个低维度的特征（如 256-d）。然后这个特征分别送入两个全连接层，一个用于分类预测，另外一个用于回归。对于每个窗口位置一般设置 \(k\) 个不同大小或比例的先验框（anchors, default bounding boxes），这意味着每个位置预测 \(k\) 个候选区域（region proposals）。对于分类层，其输出大小是 \(2k\) ，表示各个候选区域包含物体或者是背景的概率值，而回归层输出 \(4k\) 个坐标值，表示各个候选区域的位置（相对各个先验框）。对于每个滑窗位置，这两个全连接层是共享的。因此，RPN可以采用卷积层来实现：首先是一个 \(n\times n\) 卷积得到低维特征，然后是两个 \(1\times 1\) 的卷积，分别用于分类与回归。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-15.jpg" alt></p>
+### Faster R-CNN
+
+对于 Fast R-CNN，其仍然需要 selective search 方法来生产候选区域，这是非常费时的。为了解决这个问题，Faster R-CNN模型引入了 `RPN (Region Proposal Network)` 直接产生候选区域。Faster R-CNN 可以看成是 RPN 和 Fast R-CNN 模型的组合体，即 `Faster R-CNN = RPN + Fast R-CNN`。
+
+
+
+对于 RPN 网络，先采用一个 CNN 模型（一般称为特征提取器）接收整张图片并提取特征图。然后在这个特征图上采用一个 \\(N\times N\\) （文中是 \\(3\times 3\\) ）的滑动窗口，对于每个滑窗位置都映射一个低维度的特征（如 256-d）。然后这个特征分别送入两个全连接层，一个用于分类预测，另外一个用于回归。对于每个窗口位置一般设置 \\(k\\) 个不同大小或比例的先验框（anchors, default bounding boxes），这意味着每个位置预测 \\(k\\) 个候选区域（region proposals）。对于分类层，其输出大小是 \\(2k\\) ，表示各个候选区域包含物体或者是背景的概率值，而回归层输出 \\(4k\\) 个坐标值，表示各个候选区域的位置（相对各个先验框）。对于每个滑窗位置，这两个全连接层是共享的。因此，RPN可以采用卷积层来实现：首先是一个 \\(n\times n\\) 卷积得到低维特征，然后是两个 \\(1\times 1\\) 的卷积，分别用于分类与回归。
+
+
+![](/img/2018-04-11-ObjectDetection-15.jpg)
 <center>RPN架构图</center>
 <br>
 
-<p>可以看到 RPN 采用的是二分类，仅区分背景与物体，但是不预测物体的类别，即 class-agnostic。由于要同时预测坐标值，在训练时，要先将先验框与 ground-truth box 进行匹配，原则为：（1）与某个 ground-truth box 的 IoU 最高的先验框；（2）与某个 ground-truth box 的 IoU 值大于0.7的先验框，只要满足一个，先验框就可以匹配一个 ground-truth，这样该先验框就是正样本（属于物体），并以这个 ground-truth 为回归目标。对于那些与任何一个 ground-truth box 的 IoU 值都低于0.3的先验框，其认为是负样本。RPN 网络是可以单独训练的，并且单独训练出来的 RPN 模型给出很多 region proposals。由于先验框数量庞大，RPN 预测的候选区域很多是重叠的，要先进行 NMS(non-maximum suppression，IoU 阈值设为0.7）操作来减少候选区域的数量，然后按照置信度降序排列，选择 top-N 个 region proposals 来用于训练 Fast R-CNN 模型。RPN的作用就是代替了 Selective search 的作用，但是速度更快，因此 Faster R-CNN 无论是训练还是预测都可以加速。</p>
-<p>Faster R-CNN 模型采用一种4步迭代的训练策略：（1）首先在ImageNet上预训练 RPN，并在 PASCAL VOC 数据集上finetuning；（2）使用训练的PRN产生的 region proposals 单独训练一个 Fast R-CNN 模型，这个模型也先在 ImageNet 上预训练；（3）用 Fast R-CNN 的 CNN 模型部分（特征提取器）初始化RPN，然后对 RPN 中剩余层进行 finetuning，此时 Fast R-CNN 与 RPN 的特征提取器是共享的；（4）固定特征提取器，对 Fast R-CNN 剩余层进行 finetuning。这样经过多次迭代，Fast R-CNN 可以与 RPN 有机融合在一起，形成一个统一的网络。其实还有另外一中近似联合训练策略，将 RPN 的2个 loss 和 Fast R-CNN 的2个 loss 结合在一起，然后共同训练。注意这个过程，Fast R-CNN的 loss 不对 RPN 产生的 region proposals 反向传播，所以这是一种近似（如果考虑这个反向传播，那就是非近似联合训练）。应该来说，联合训练速度更快，并且可以训练出同样的性能。</p>
-<p>最好的 Faster R-CNN 模型在 2007 PASCAL VOC 测试集上的 mAP 为78.8% ，而在 2012 PASCAL VOC 测试集上的 mAP 为75.9%。论文中还在 COCO 数据集上进行了测试。Faster R-CNN 中的某个模型可以比采用 selective search 方法的 Fast R-CNN 模型快34倍。可以看到，采用了 RPN 之后，无论是准确度还是速度，Faster R-CNN 模型均有很大的提升。Faster R-CNN 采用RPN代替启发式 region proposal 的方法，这是一个重大变革，后面的 two-stage 方法的研究基本上都采用这种基本框架，而且和后面算法相比，Faster R-CNN 在准确度仍然占据上风。</p>
-<p><img src="/img/2018-04-11-ObjectDetection-16.jpg" alt></p>
+可以看到 RPN 采用的是二分类，仅区分背景与物体，但是不预测物体的类别，即 class-agnostic。由于要同时预测坐标值，在训练时，要先将先验框与 ground-truth box 进行匹配，原则为：（1）与某个 ground-truth box 的 IoU 最高的先验框；（2）与某个 ground-truth box 的 IoU 值大于0.7的先验框，只要满足一个，先验框就可以匹配一个 ground-truth，这样该先验框就是正样本（属于物体），并以这个 ground-truth 为回归目标。对于那些与任何一个 ground-truth box 的 IoU 值都低于0.3的先验框，其认为是负样本。RPN 网络是可以单独训练的，并且单独训练出来的 RPN 模型给出很多 region proposals。由于先验框数量庞大，RPN 预测的候选区域很多是重叠的，要先进行 NMS(non-maximum suppression，IoU 阈值设为0.7）操作来减少候选区域的数量，然后按照置信度降序排列，选择 top-N 个 region proposals 来用于训练 Fast R-CNN 模型。RPN的作用就是代替了 Selective search 的作用，但是速度更快，因此 Faster R-CNN 无论是训练还是预测都可以加速。
+
+
+
+Faster R-CNN 模型采用一种4步迭代的训练策略：（1）首先在ImageNet上预训练 RPN，并在 PASCAL VOC 数据集上finetuning；（2）使用训练的PRN产生的 region proposals 单独训练一个 Fast R-CNN 模型，这个模型也先在 ImageNet 上预训练；（3）用 Fast R-CNN 的 CNN 模型部分（特征提取器）初始化RPN，然后对 RPN 中剩余层进行 finetuning，此时 Fast R-CNN 与 RPN 的特征提取器是共享的；（4）固定特征提取器，对 Fast R-CNN 剩余层进行 finetuning。这样经过多次迭代，Fast R-CNN 可以与 RPN 有机融合在一起，形成一个统一的网络。其实还有另外一中近似联合训练策略，将 RPN 的2个 loss 和 Fast R-CNN 的2个 loss 结合在一起，然后共同训练。注意这个过程，Fast R-CNN的 loss 不对 RPN 产生的 region proposals 反向传播，所以这是一种近似（如果考虑这个反向传播，那就是非近似联合训练）。应该来说，联合训练速度更快，并且可以训练出同样的性能。
+
+最好的 Faster R-CNN 模型在 2007 PASCAL VOC 测试集上的 mAP 为78.8% ，而在 2012 PASCAL VOC 测试集上的 mAP 为75.9%。论文中还在 COCO 数据集上进行了测试。Faster R-CNN 中的某个模型可以比采用 selective search 方法的 Fast R-CNN 模型快34倍。可以看到，采用了 RPN 之后，无论是准确度还是速度，Faster R-CNN 模型均有很大的提升。Faster R-CNN 采用RPN代替启发式 region proposal 的方法，这是一个重大变革，后面的 two-stage 方法的研究基本上都采用这种基本框架，而且和后面算法相比，Faster R-CNN 在准确度仍然占据上风。
+
+![](/img/2018-04-11-ObjectDetection-16.jpg)
 <center>Faster R-CNN模型结构图</center>
 
 <p>转载自<br><a href="https://zhuanlan.zhihu.com/p/34325398/" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34325398/</a></p>
@@ -300,8 +322,8 @@
       </a>
     
     
-      <a class="next" href="/2018/04/11/RCNN/">
-        <span class="next-text nav-default">R-CNN 目标检测（一）</span>
+      <a class="next" href="/2018/04/11/SPPNet/">
+        <span class="next-text nav-default">SPP-Net 目标检测（二）</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -331,7 +353,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集和性能指标"><span class="nav-text">数据集和性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能指标"><span class="nav-text">性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测算法"><span class="nav-text">检测算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R-CNN"><span class="nav-text">R-CNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPP-net"><span class="nav-text">SPP-net</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-text">Fast R-CNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-text">Faster R-CNN</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集和性能指标"><span class="nav-text">数据集和性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能指标"><span class="nav-text">性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测算法"><span class="nav-text">检测算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R-CNN"><span class="nav-text">R-CNN</span></a></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
