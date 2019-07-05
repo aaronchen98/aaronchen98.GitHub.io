@@ -1,9 +1,10 @@
 .post-toc {
-  position: fixed;
+  position: absolute;
   font-size: 0.9em;
   font-size: 13px;
   margin-left: 740px;
-  padding-right: 25px; }
+  padding-right: 25px;
+  padding-top: 15px; }
 
 #primary {
   float: left;
