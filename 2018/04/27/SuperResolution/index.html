@@ -20,6 +20,24 @@
   <meta name="keywords" content="图像超分辨重建,">
 
 
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
 
 
 
@@ -255,9 +273,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/04/28/PerceptualLosses/">
+      <a class="prev" href="/2018/04/28/tensorflow/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Perceptual Loss 感知损失 图像超分辨重建（二）</span>
+        <span class="prev-text nav-default">TensorFlow 函数总结</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
@@ -286,7 +304,7 @@
 
         
       <!--noindex-->
-          <div class="post-toc">
+          <div class="post-toc" id="toc-test">
 
             
               

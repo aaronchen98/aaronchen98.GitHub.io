@@ -20,6 +20,24 @@
   <meta name="keywords" content="数据库,mysql,">
 
 
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
 
 
 
@@ -175,15 +193,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/04/04/mysql_1/">
+      <a class="prev" href="/2018/04/05/base64/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">mysql 基础操作（一）</span>
+        <span class="prev-text nav-default">计算机编码：base64</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2018/03/28/BatchNormalization/">
-        <span class="next-text nav-default">Batch Normalization 学习笔记（转载）</span>
+      <a class="next" href="/2018/04/04/mysql_1/">
+        <span class="next-text nav-default">mysql 基础操作（一）</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -206,7 +224,7 @@
 
         
       <!--noindex-->
-          <div class="post-toc">
+          <div class="post-toc" id="toc-test">
 
             
               

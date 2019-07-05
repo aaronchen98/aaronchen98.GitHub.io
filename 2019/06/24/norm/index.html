@@ -20,6 +20,24 @@
   <meta name="keywords" content="深度学习,">
 
 
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
 
 
 
@@ -259,7 +277,7 @@
 
         
       <!--noindex-->
-          <div class="post-toc">
+          <div class="post-toc" id="toc-test">
 
             
               

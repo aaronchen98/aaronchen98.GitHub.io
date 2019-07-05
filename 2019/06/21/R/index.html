@@ -20,6 +20,24 @@
   <meta name="keywords" content="R 语言,">
 
 
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
 
 
 
@@ -163,7 +181,7 @@
 <p>得到：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">6</span>    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span>   <span class="number">10</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#矩阵索引</span></span><br><span class="line">mymat[<span class="number">2</span>,]   <span class="comment"># 取第二行</span></span><br><span class="line">mymat[,<span class="number">2</span>]   <span class="comment"># 取第二列</span></span><br><span class="line">mymat[<span class="number">1</span>,<span class="number">5</span>]  <span class="comment"># 第一行第五列的元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#矩阵索引</span></span><br><span class="line">mymat[<span class="number">2</span>,]   <span class="meta"># 取第二行</span></span><br><span class="line">mymat[,<span class="number">2</span>]   <span class="meta"># 取第二列</span></span><br><span class="line">mymat[<span class="number">1</span>,<span class="number">5</span>]  <span class="meta"># 第一行第五列的元素</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nrow(mymat)  <span class="comment"># 获取行数</span></span><br><span class="line">ncol(mymat)  <span class="comment"># 获取列数</span></span><br></pre></td></tr></table></figure>
 
@@ -263,7 +281,7 @@
 
         
       <!--noindex-->
-          <div class="post-toc">
+          <div class="post-toc" id="toc-test">
 
             
               

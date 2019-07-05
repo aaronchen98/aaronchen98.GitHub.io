@@ -20,6 +20,24 @@
   <meta name="keywords" content="python,">
 
 
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
 
 
 
@@ -192,7 +210,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
 
 <p>两种杂质，一种是以 <code>/</code> 开头，一种是 <code>[xx]</code> 形式，我们用两种正则表达式找出并转换为集合去掉重复元素 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = re.findall(<span class="string">r'/.&#123;2,3&#125;'</span>, strf)</span><br><span class="line">list2 = re.findall(<span class="string">r'\[.+?\]'</span>, strf)</span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = re.findall(<span class="string">r'/.&#123;2,3&#125;'</span>, strf)</span><br><span class="line">list2 = re.findall(<span class="string">r'\[.+?\]'</span>, strf)</span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br></pre></td></tr></table></figure>
 
 <p>我们可以看到：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnm9fsfrwvj302i05v749.jpg" alt="image"></p>
@@ -294,7 +312,7 @@
 
         
       <!--noindex-->
-          <div class="post-toc">
+          <div class="post-toc" id="toc-test">
 
             
               
