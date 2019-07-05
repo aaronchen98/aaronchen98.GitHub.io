@@ -13,7 +13,10 @@
 
 @media screen and (max-width: 1000px) {
   .post-toc {
-    display: none; } }
+    display: none; }
+  #primary {
+    display: block !important;
+    float: none !important; } }
 
 #content {
   overflow: hidden; }
