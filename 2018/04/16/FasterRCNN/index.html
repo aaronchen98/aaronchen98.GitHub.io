@@ -178,7 +178,9 @@
 
     
             <div class="post-content">
-            <h2 id="1-Faster-R-CNN-简介"><a href="#1-Faster-R-CNN-简介" class="headerlink" title="1 Faster R-CNN 简介"></a>1 Faster R-CNN 简介</h2><p>经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较大提高，在检测速度方面尤为明显。<br><a id="more"></a><br><strong>示意图1：</strong></p>
+            <h2 id="1-Faster-R-CNN-简介"><a href="#1-Faster-R-CNN-简介" class="headerlink" title="1 Faster R-CNN 简介"></a>1 Faster R-CNN 简介</h2><p>经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较大提高，在检测速度方面尤为明显。</p>
+<a id="more"></a>
+<p><strong>示意图1：</strong></p>
 <p><img src="/img/2018-04-16-FasterRCNN-1.jpg" alt></p>
 <p><strong>示意图2：</strong></p>
 <p><img src="/img/2018-04-16-FasterRCNN-2.jpg" alt></p>
@@ -210,7 +212,8 @@
 <p>RPN的核心思想是使用CNN卷积神经网络直接产生Region Proposal，使用的方法本质上就是滑动窗口（只需在最后的卷积层上滑动一遍）。</p>
 <p>RPN的<strong>输入是任意大小的图像，输出是一组打过分的候选框（object proposals）</strong>。在卷积的最后一层feature map上使用固定大小的窗口（注意sliding window<strong>只是选择位置</strong>，除此之外没有其它作用，和后面的3*3的卷积区分）滑动，每个窗口会输出固定大小维度的特征（图中256)，每一个窗口对候选的9个box进行回归坐标和分类（这里的分类表示box中是不是一个object，而不是具体的类别）。</p>
 <p><img src="/img/2018-04-16-FasterRCNN-5.jpg" alt></p>
-<p><br></p>
+<br>
+
 <p>下图展示了RPN网络的具体结构。可以看到RPN网络实际分为2条线，</p>
 <ol>
 <li>上面一条<strong>通过softmax分类anchors获得foreground和background</strong>（检测目标是foreground）</li>
@@ -222,6 +225,7 @@
 <p><img src="/img/2018-04-16-FasterRCNN-7.jpg" alt></p>
 <p>所谓anchors，实际上就是一组由rpn/generate_anchors.py生成的矩形。直接运行作者demo中的generate_anchors.py可以得到以下输出：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[[ <span class="number">-84.</span>  <span class="number">-40.</span>   <span class="number">99.</span>   <span class="number">55.</span>]  </span><br><span class="line"> [<span class="number">-176.</span>  <span class="number">-88.</span>  <span class="number">191.</span>  <span class="number">103.</span>]  </span><br><span class="line"> [<span class="number">-360.</span> <span class="number">-184.</span>  <span class="number">375.</span>  <span class="number">199.</span>]  </span><br><span class="line"> [ <span class="number">-56.</span>  <span class="number">-56.</span>   <span class="number">71.</span>   <span class="number">71.</span>]  </span><br><span class="line"> [<span class="number">-120.</span> <span class="number">-120.</span>  <span class="number">135.</span>  <span class="number">135.</span>]  </span><br><span class="line"> [<span class="number">-248.</span> <span class="number">-248.</span>  <span class="number">263.</span>  <span class="number">263.</span>]  </span><br><span class="line"> [ <span class="number">-36.</span>  <span class="number">-80.</span>   <span class="number">51.</span>   <span class="number">95.</span>]  </span><br><span class="line"> [ <span class="number">-80.</span> <span class="number">-168.</span>   <span class="number">95.</span>  <span class="number">183.</span>]  </span><br><span class="line"> [<span class="number">-168.</span> <span class="number">-344.</span>  <span class="number">183.</span>  <span class="number">359.</span>]]</span><br></pre></td></tr></table></figure>
+
 <p>其中每行的4个值 \([x1,y1,x2,y2]\) 代表矩形左上和右下角点坐标。9个矩形共有3种形状，长宽比为大约为：\(width:height = [1:1, 1:2, 2:1]\) 三种，实际上通过anchors就引入了检测中常用到的<strong>多尺度方法</strong>。</p>
 <p><strong>注：</strong>关于上面的anchors size，其实是根据检测图像设置的。在python demo中，会把任意大小的输入图像reshape成800x600（即第二张图中的M=800，N=600）。再回头来看anchors的大小，anchors中长宽1:2中最大为352x704，长宽2:1中最大736x384，基本是cover了800x600的各个尺度和形状。</p>
 <p>那么这9个anchors是做什么的呢？如下图，遍历Conv layers计算获得的<strong>feature maps，为每一个点都配备这9种anchors作为初始的检测框</strong>。这样做获得检测框很不准确，不用担心，后面还有2次bounding box regression可以修正检测框位置。</p>
@@ -249,19 +253,20 @@
 <h3 id="3-2-bounding-box-regression-原理"><a href="#3-2-bounding-box-regression-原理" class="headerlink" title="3.2 bounding box regression 原理"></a>3.2 bounding box regression 原理</h3><p>介绍bounding box regression数学模型及原理。如图9所示绿色框为飞机的Ground Truth(GT)，红色为提取的foreground anchors，那么即便红色的框被分类器识别为飞机，但是由于红色的框定位不准，这张图相当于没有正确的检测出飞机。所以我们希望采用一种方法对红色的框进行微调，使得foreground anchors和GT更加接近。</p>
 <p><img src="/img/2018-04-16-FasterRCNN-11.jpg" alt></p>
 <p>对于窗口一般使用四维向量 \((x, y, w, h)\) 表示，分别表示窗口的中心点坐标和宽高。对于下图，红色的框A代表原始的Foreground Anchors，绿色的框G代表目标的GT，我们的目标是寻找一种关系，使得输入原始的anchor A经过映射得到一个跟真实窗口G更接近的回归窗口G’，即：给定 \(A=(A_x, A_y, A_w, A_h)\)，寻找一种映射 \(f\)，使得 </p>
-<script type="math/tex; mode=display">f(A_x, A_y, A_w, A_h)=(G'x, G'y, G'w, G'h)≈(Gx, Gy, Gw, Gh)</script><p><img src="/img/2018-04-16-FasterRCNN-12.jpg" alt></p>
+<p>$$f(A_x, A_y, A_w, A_h)=(G’x, G’y, G’w, G’h)≈(Gx, Gy, Gw, Gh)$$</p>
+<p><img src="/img/2018-04-16-FasterRCNN-12.jpg" alt></p>
 <p>那么经过何种变换才能从A变为G’呢？ 比较简单的思路就是:</p>
 <ol>
 <li>先做平移 \((\Delta x, \Delta y)\)，\(\Delta x = A_w d_x(A), \Delta y = A_h d_y(A)\)</li>
 </ol>
 <p><img src="/img/2018-04-16-FasterRCNN-13.jpg" alt></p>
-<ol>
+<ol start="2">
 <li>再做缩放 \((S_w, S_h)\)，\(S_w = exp(d_w(A)), S_h = exp(d_h(A))\)</li>
 </ol>
 <p><img src="/img/2018-04-16-FasterRCNN-14.jpg" alt></p>
-<p>观察上面4个公式发现，需要学习的是 \(d_{x}(A)，d_{y}(A)，d_{w}(A)，d_{h}(A)\) 这四个变换。当输入的anchor与GT相差较小时，可以认为这种变换是一种线性变换， 那么就可以用线性回归来建模对窗口进行微调（<strong>注意，只有当anchors和GT比较接近时，才能使用线性回归模型，否则就是复杂的非线性问题了</strong>）。对应于Faster RCNN原文，平移量 \((t<em>{x}, t</em>{y})\) 与尺度因子 \((t<em>{w}, t</em>{h})\) 如下：</p>
+<p>观察上面4个公式发现，需要学习的是 \(d_{x}(A)，d_{y}(A)，d_{w}(A)，d_{h}(A)\) 这四个变换。当输入的anchor与GT相差较小时，可以认为这种变换是一种线性变换， 那么就可以用线性回归来建模对窗口进行微调（<strong>注意，只有当anchors和GT比较接近时，才能使用线性回归模型，否则就是复杂的非线性问题了</strong>）。对应于Faster RCNN原文，平移量 \((t_{x}, t_{y})\) 与尺度因子 \((t_{w}, t_{h})\) 如下：</p>
 <p><img src="/img/2018-04-16-FasterRCNN-15.jpg" alt></p>
-<p>接下来的问题就是如何通过线性回归获得 \(d_{x}(A)，d_{y}(A)，d<em>{w}(A)，d\</em>{h}(A)\) 了。线性回归就是给定输入的特征向量 \(X\), 学习一组参数 \(W\), 使得经过线性回归后的值跟真实值Y（即GT）非常接近，即 \(Y=WX\)。对于该问题，输入 \(X\) 是一张经过num_output=1的 \(1\times 1\) 卷积获得的feature map，定义为 \(Φ\)；同时还有训练传入的GT，即 \((tx, ty, tw, th)\)。输出是 \(dx(A)，dy(A)，dw(A)，dh(A)\) 四个变换。那么目标函数可以表示为：</p>
+<p>接下来的问题就是如何通过线性回归获得 \(d_{x}(A)，d_{y}(A)，d_{w}(A)，d_{h}(A)\) 了。线性回归就是给定输入的特征向量 \(X\), 学习一组参数 \(W\), 使得经过线性回归后的值跟真实值Y（即GT）非常接近，即 \(Y=WX\)。对于该问题，输入 \(X\) 是一张经过num_output=1的 \(1\times 1\) 卷积获得的feature map，定义为 \(Φ\)；同时还有训练传入的GT，即 \((tx, ty, tw, th)\)。输出是 \(dx(A)，dy(A)，dw(A)，dh(A)\) 四个变换。那么目标函数可以表示为：</p>
 <p><img src="/img/2018-04-16-FasterRCNN-16.jpg" alt></p>
 <p>其中 \(Φ(A)\) 是对应anchor的feature map组成的特征向量，\(w\) 是需要学习的参数，\(d(A)\) 是得到的预测值（\(*\)表示 \(x，y，w，h\)，也就是每一个变换对应一个上述目标函数）。为了让预测值 \((tx, ty, tw, th)\) 与真实值最小，得到损失函数：</p>
 <p><img src="/img/2018-04-16-FasterRCNN-17.jpg" alt></p>
@@ -271,14 +276,12 @@
 <p>说完原理，对应于Faster RCNN原文，foreground anchor与ground truth之间的平移量 \((t_x, t_y)\) 与尺度因子 \((t_w, t_h)\) 如下：</p>
 <p><img src="/img/2018-04-16-FasterRCNN-19.jpg" alt></p>
 <p>其中：</p>
-<script type="math/tex; mode=display">x,y,w,h\ 为\ box\ 的中心坐标，宽，高</script><script type="math/tex; mode=display">\begin{cases}
-x: predicted\ box\ (就是Proposal)\\\\
-x_{a}: anchor\ box\ (N\times M \times k 个)\\\\
-x^{*}: Ground\ Truth\ (正确标定的GT)\\
-\end{cases}</script><p><img src="/img/2018-04-16-FasterRCNN-20.jpg" alt></p>
+<p>$$x,y,w,h\ 为\ box\ 的中心坐标，宽，高$$</p>
+<p>$$\begin{cases}<br>x: predicted\ box\ (就是Proposal)\\<br>x_{a}: anchor\ box\ (N\times M \times k 个)\\<br>x^{*}: Ground\ Truth\ (正确标定的GT)\<br>\end{cases}<br>$$</p>
+<p><img src="/img/2018-04-16-FasterRCNN-20.jpg" alt></p>
 <p>对于训练bouding box regression网络回归分支，输入是cnn feature \(Φ\)，监督信号是Anchor与GT的差距 \((t_x, t_y, t_w, t_h)\)，即训练目标是：输入 Φ的情况下使网络输出与监督信号尽可能接近。</p>
 <p>那么当bouding box regression工作时，再输入Φ时，回归网络分支的输出就是每个Anchor的平移量和变换尺度 \((t_x, t_y, t_w, t_h)\)，显然即可用来修正Anchor位置了。</p>
-<h3 id="3-3-Proposal-Layer"><a href="#3-3-Proposal-Layer" class="headerlink" title="3.3 Proposal Layer"></a>3.3 Proposal Layer</h3><p>Proposal Layer负责综合所有 \([d<em>{x}(A)，d</em>{y}(A)，d<em>{w}(A)，d</em>{h}(A)]\) 变换量和foreground anchors，计算出精准的proposal，送入后续RoI Pooling Layer。</p>
+<h3 id="3-3-Proposal-Layer"><a href="#3-3-Proposal-Layer" class="headerlink" title="3.3 Proposal Layer"></a>3.3 Proposal Layer</h3><p>Proposal Layer负责综合所有 \([d_{x}(A)，d_{y}(A)，d_{w}(A)，d_{h}(A)]\) 变换量和foreground anchors，计算出精准的proposal，送入后续RoI Pooling Layer。</p>
 <p>Proposal Layer有3个输入：fg/bg anchors分类器结果rpn_cls_prob_reshape，对应的bbox reg的[dx(A)，dy(A)，dw(A)，dh(A)]变换量rpn_bbox_pred，以及im_info；另外还有参数feat_stride=16，这和图4是对应的。</p>
 <p>首先解释<strong>im_info</strong>。对于一副任意大小PxQ图像，传入Faster RCNN前首先reshape到固定 \(M\times N\)，\(im\_info=[M, N, scale\_factor]\)则保存了此次缩放的所有信息。然后经过Conv Layers，经过4次pooling变为 \(W\times H=(M/16)\times (N/16)\) 大小，其中feature_stride=16则保存了该信息。所有这些数值都是为了将proposal映射回原图而设置的，如下图，毕竟检测就是为了在原图上画一个框而已。</p>
 <p><img src="/img/2018-04-16-FasterRCNN-21.jpg" alt></p>
@@ -334,7 +337,8 @@ x^{*}: Ground\ Truth\ (正确标定的GT)\\
 <p>RPN通过<strong>反向传播</strong>（BP，back-propagation）和<strong>随机梯度下降</strong>（SGD，stochastic gradient descent）进行<strong>端到端</strong>（end-to-end）训练。</p>
 <p>每一个mini-batch包含从一张图像中随机提取的256个anchor（注意，不是所有的anchor都用来训练），训练的过程对正负样本进行抽样，前景样本和背景样本均取128个，<strong>保证正负比例为1:1</strong>。如果一个图像中的正样本数小于128，则多用一些负样本以满足有256个Proposal可以用于训练。</p>
 <p>整体损失函数具体为：</p>
-<script type="math/tex; mode=display">L(\{p\_{i}\},\{t\_{i}\})={\frac {1} {N\_{cls}}}\sum\_{i} L\_{cls}(p\_{i},p\_{i}^{\*}) + \lambda {\frac {1}{N\_{reg}}} \sum\_{i}p\_{i}^{\*} L\_{reg}(t\_i,t\_i^{\*})</script><p><strong>其中i是mini-batch中anchor的索引</strong></p>
+<p>$$L({p_{i}},{t_{i}})={\frac {1} {N_{cls}}}\sum_{i} L_{cls}(p_{i},p_{i}^{*}) + \lambda {\frac {1}{N_{reg}}} \sum_{i}p_{i}^{*} L_{reg}(t_i,t_i^{*})$$</p>
+<p><strong>其中i是mini-batch中anchor的索引</strong></p>
 <p>\(p_i\) 为 anchor 预测为目标的概率（foreground softmax predict概率）；</p>
 <p>\(p_i^{*}\)代表对应的GT predict概率：</p>
 <ul>
@@ -342,23 +346,21 @@ x^{*}: Ground\ Truth\ (正确标定的GT)\\
 <li>反之 \(IoU&lt;0.3\) 时，认为是该anchor是background，\(p_i^{*}=0\)；     </li>
 <li>至于那些 \(0.3&lt;IoU&lt;0.7\) 的anchor则不参与训练。</li>
 </ul>
-<script type="math/tex; mode=display">p_i^*=\begin{cases}
-0\ \ negative\ label\\\\
-1\ \ positive\ label\\
-\end{cases}</script><p>\(L_{cls}(p_i,p_i^*)\) 是两个类别（目标 vs. 非目标）的对数损失：</p>
-<script type="math/tex; mode=display">L\_{cls}(p\_i,p\_i^{\*})=-\log [p\_{i}^{\*}p\_i+(1-p\_i^{\*})(1-p\_i)]</script><p><br></p>
+<p>$$p_i^*=\begin{cases}<br>0\ \ negative\ label\\<br>1\ \ positive\ label\<br>\end{cases}<br>$$</p>
+<p>\(L_{cls}(p_i,p_i^*)\) 是两个类别（目标 vs. 非目标）的对数损失：</p>
+<p>$$ L_{cls}(p_i,p_i^{*})=-\log [p_{i}^{*}p_i+(1-p_i^{*})(1-p_i)]$$</p>
+<br>
+
 <p>\(t_i=\{t_x,t_y,t_w,t_h\}\) 是一个向量，表示预测的 bounding box 包围盒的4个参数化坐标；</p>
 <p>\(t_i^*\) 是与 positive anchor 对应的 ground truth （GT box）包围盒的坐标向量；</p>
 <p>\(L_{reg}(t_i,t_i^*)\) 是回归损失，用 \(L_{reg}(t_i,t_i^*)=R(t_i-t_i^*)\) 来计算，\(R\) 是 \(smooth L1\) 函数：</p>
-<script type="math/tex; mode=display">L\_{reg}(t\_i,t\_i^\*)={\sum\_{i \in \{x,y,w,h\}} smooth\_{L1}(t\_i-t\_i^\*)}</script><script type="math/tex; mode=display">
-smooth\_{L\_{1}}(x) =
-\begin{cases}
-0.5x^2, & \text{if |x| < 1}\\\\
-|x|-0.5, & \text{otherwise}
-\end{cases}</script><p>smooth L1 函数图像为：</p>
+<p>$$L_{reg}(t_i,t_i^*)={\sum_{i \in {x,y,w,h}} smooth_{L1}(t_i-t_i^*)}$$</p>
+<p>$$<br>smooth_{L_{1}}(x) =<br>\begin{cases}<br>0.5x^2, &amp; \text{if |x| &lt; 1}\\<br>|x|-0.5, &amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<p>smooth L1 函数图像为：</p>
 <p><img src="/img/2018-04-16-FasterRCNN-26.jpg" alt></p>
 <p><strong>注意：</strong>在该loss中乘了 \(pi^*\)，相当于只关心foreground anchors的回归，因为负样本时 \(p_i^*=0\) 该项被消去（其实在回归中也完全没必要去关心background）。</p>
-<p><br></p>
+<br>
+
 <p>可以看到，整个Loss分为2部分：</p>
 <ol>
 <li><strong>cls loss</strong>，即rpn_cls_loss层计算的softmax loss，用于分类anchors为forground与background的网络训练</li>

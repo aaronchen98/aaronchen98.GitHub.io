@@ -164,6 +164,8 @@
 </ul>
 <p>因此，分辨率是一幅图像、一段视频的核心。</p>
 <a id="more"></a>
+
+
 <blockquote>
 <p><strong>应用场景举例：</strong><br>图片压缩与传输，即以较低的码率进行图像编码，在传输过程中可极大节省转发服务器的流量带宽，在客户端解码得到相对低清晰度的图片，最后通过超分辨重建技术处理获得高清晰度图片</p>
 </blockquote>
@@ -199,7 +201,8 @@
 <p><img src="/img/2018-04-27-SuperResolution-1.jpg" alt></p>
 <p><strong>SRCNN的流程为：</strong></p>
 <ol>
-<li>先将低分辨率图像使用双三次差值放大至目标尺寸（如放大至2倍、3倍、4倍），此时仍然称放大至目标尺寸后的图像为低分辨率图像(Low-resolution image)，即图中的输入(input)；</li>
+<li><p>先将低分辨率图像使用双三次差值放大至目标尺寸（如放大至2倍、3倍、4倍），此时仍然称放大至目标尺寸后的图像为低分辨率图像(Low-resolution image)，即图中的输入(input)；</p>
+</li>
 <li><p>将低分辨率图像输入三层卷积神经网络，</p>
 <blockquote>
 <p>举例：在论文中的其中一实验相关设置，对YCrCb颜色空间中的Y通道进行重建，网络形式为 </p>
@@ -234,7 +237,7 @@
 </ol>
 <h2 id="参考以及转载"><a href="#参考以及转载" class="headerlink" title="参考以及转载"></a>参考以及转载</h2><ol>
 <li><a href="https://zhuanlan.zhihu.com/p/34979257" target="_blank" rel="noopener">深度学习之图像超分辨重建技术</a></li>
-<li><a href="http://i.dataguru.cn/mportal.php?aid=10906&amp;mod=view" target="_blank" rel="noopener">深度学习在图像超分辨率重建中的应用</a></li>
+<li><a href="http://i.dataguru.cn/mportal.php?aid=10906&mod=view" target="_blank" rel="noopener">深度学习在图像超分辨率重建中的应用</a></li>
 <li><a href="https://blog.csdn.net/Autism_/article/details/79401798" target="_blank" rel="noopener">图像超分辨率重建之SRCNN</a></li>
 </ol>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
@@ -253,9 +256,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/04/28/PerceptualLosses/">
+      <a class="prev" href="/2018/04/28/tensorflow/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Perceptual Loss 感知损失 图像超分辨重建（二）</span>
+        <span class="prev-text nav-default">TensorFlow 函数总结</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     

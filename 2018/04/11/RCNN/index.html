@@ -164,6 +164,7 @@
 <li>边界框修正回归模型（Bounding box）</li>
 </ol>
 <a id="more"></a>
+
 <p>简单来说，RCNN使用以下四步实现目标检测： </p>
 <ol>
 <li>在图像中确定约1000-2000个候选框 </li>
@@ -207,7 +208,11 @@
 <h3 id="2-训练SVM"><a href="#2-训练SVM" class="headerlink" title="2. 训练SVM"></a>2. 训练SVM</h3><p>之前提到了，SVM的输入特征是AlexNet fc7的输出，然后SVM做二分类，一个有20个SVM模型。那么对于其中某一个分类器来说，它的正样本是所有Ground-truth区域经过AlexNet后输出的特征，负样本是与Ground-truth区域重合IoU小于0.3的区域经过AlexNet后输出的特征，特征和标签确定了，就可以训练SVM了。</p>
 <h3 id="3-训练Bounding-box回归模型"><a href="#3-训练Bounding-box回归模型" class="headerlink" title="3. 训练Bounding box回归模型"></a>3. 训练Bounding box回归模型</h3><p>Bounding box回归模型也是20个，还是拿其中一个来说，它的输入是AlexNet conv5的特征，注意这里的20指的是类的个数，但是对一个Bounding box来说，它有4套参数，因为一个Bounding box回归模型分别对4个数做回归，这4个数是表征边界框的四个值，模型的损失函数如下：<br><img src="/img/2018-04-11-RCNN-3.jpg" alt></p>
 <p>其中i是样本个数，*就是4个数，他们分别是x，y，w，h，其中（x，y）是中心位置，（w，h）是宽和高；P是ss给出来的区域，它由Px，Py，Pw，Ph四个数决定，这个区域经过AlexNet后再第五层输出特征，然后在特征每一个维度前都训练一个参数w，一组特征就有一组w，随4组做回归就有4组w；最后一个数就是t，它同样有4个数tx，ty，tw，th，是这样计算出来的： </p>
-<script type="math/tex; mode=display">t_{x} = (G_{x} - P_x) / P_w</script><script type="math/tex; mode=display">t_y = (G_y - P_y) / P_h</script><script type="math/tex; mode=display">t_w = \log(\frac{G_w}{P_w})</script><script type="math/tex; mode=display">t_h = \log(\frac{G_h}{P_h})</script><p>而G就是经过修正后的边界框，它还是4个数Gx，Gy，Gw，Gh。通过上面的公式可以看到，t是边界框的偏差。 最后就是到底什么样的ss区域能够作为输入，在这里是IoU大于0.6的。 用一句话总结Bounding box回归模型就是：对于某一个类的回归模型而言，用IoU&gt;0.6的ss区域经过卷积后作为输入特征，用同一组特征分别训练4组权值与之对应，对边界框四个属性值分别做回归。</p>
+<p>$$t_{x} = (G_{x} - P_x) / P_w$$   </p>
+<p>$$t_y = (G_y - P_y) / P_h$$</p>
+<p>$$t_w = \log(\frac{G_w}{P_w})$$</p>
+<p>$$t_h = \log(\frac{G_h}{P_h})$$</p>
+<p>而G就是经过修正后的边界框，它还是4个数Gx，Gy，Gw，Gh。通过上面的公式可以看到，t是边界框的偏差。 最后就是到底什么样的ss区域能够作为输入，在这里是IoU大于0.6的。 用一句话总结Bounding box回归模型就是：对于某一个类的回归模型而言，用IoU&gt;0.6的ss区域经过卷积后作为输入特征，用同一组特征分别训练4组权值与之对应，对边界框四个属性值分别做回归。</p>
 <p>经过上面三个独立的部分，R-CNN的训练就完成了，可以看到，确实是非常麻烦，这不仅仅体现在速度慢上，过程也及其繁琐，因为每一步都需要重新构建样本。</p>
 <h3 id="R-CNN的测试"><a href="#R-CNN的测试" class="headerlink" title="R-CNN的测试"></a>R-CNN的测试</h3><ol>
 <li>ss算法提取1000-2000个区域； </li>
@@ -220,6 +225,7 @@
 <li>结束</li>
 </ol>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">转载自：    </span><br><span class="line"><span class="symbol">http:</span><span class="comment">//mp.weixin.qq.com/s?__biz=MzUyMjE2MTE0Mw==&amp;mid=2247484206&amp;idx=1&amp;sn=f9084165a4673affd8e23ac97f707eb8&amp;chksm=f9d15db6cea6d4a04a777d45ae3e3f1a3ef6f657352c98db9664084fe4b4f802273dde7ac943&amp;scene=21#wechat_redirect   </span></span><br><span class="line">参考</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//blog.csdn.net/shenxiaolu1984/article/details/51066975</span></span><br></pre></td></tr></table></figure>
+
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
             </div>
           
@@ -238,15 +244,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/04/11/SPPNet/">
+      <a class="prev" href="/2018/04/11/ObjectDetection/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">SPP-Net 目标检测（二）</span>
+        <span class="prev-text nav-default">综述|基于深度学习的目标检测</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2018/04/06/tensorflow模型保存与读取/">
-        <span class="next-text nav-default">TesnsorFlow 模型的保存于读取</span>
+      <a class="next" href="/2018/04/11/SPPNet/">
+        <span class="next-text nav-default">SPP-Net 目标检测（二）</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

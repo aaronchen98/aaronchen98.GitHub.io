@@ -153,8 +153,11 @@
             <div class="post-content">
             <h3 id="添加图例"><a href="#添加图例" class="headerlink" title="添加图例"></a>添加图例</h3><p>使用 <code>hold on</code> </p>
 <figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="keyword">plot</span>(x,y);</span><br><span class="line">&gt;&gt; hold on</span><br><span class="line">&gt;&gt; <span class="keyword">plot</span>(x,y2);</span><br><span class="line">&gt;&gt; <span class="keyword">plot</span>(x,y3);</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
+
 <h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Y</span> = normpdf(X,mu,sigma)   %pdf mu 均值 sigma 方差</span><br><span class="line"><span class="attr">p</span> = normcdf(x,mu,sigma)   %cdf</span><br></pre></td></tr></table></figure>
+
 <h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">R</span> = poissrnd(LAMBDA,m,n)  % 产生以Lambda为平均值的m行n列Poisson 随机数</span><br><span class="line"></span><br><span class="line"><span class="attr">Y</span> = poisspdf(X,lambda)   % 由x产生mean是lambda的泊松分布的pdf</span><br><span class="line"></span><br><span class="line"><span class="attr">Y</span> = poisscdf(X,lambda)   % 由x产生mean是lambda的泊松分布的cdf</span><br></pre></td></tr></table></figure>
             </div>
           

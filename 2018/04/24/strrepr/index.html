@@ -153,7 +153,10 @@
             <div class="post-content">
             <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>Python 定义了 <code>__str__()</code> 和 <code>__repr__()</code> 两种方法，<code>__str__()</code> 用于显示给用户，而 <code>__repr__()</code> 用于显示给开发人员。</p>
 <a id="more"></a>
-<p><br></p>
+
+<br>
+
+
 <p>Python中这个 <code>_repr_</code> 函数，对应 <code>repr(object)</code> 这个函数，返回一个可以用来表示对象的可打印字符串：</p>
 <ol>
 <li><p>尝试生成这样一个字符串，将其传给 <code>eval()</code> 可重新生成同样的对象 ；</p>
@@ -163,34 +166,42 @@
 <li><p>一个类(class)可以通过 <code>__repr__()</code> 成员来控制repr()函数作用在其实例上时的行为。</p>
 </li>
 </ol>
-<p><br></p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol>
+<br>
+## 例子
+
+<ol>
 <li>当一个类没有定义 <code>__str__()</code> 和 <code>__repr__()</code> 时，直接在命令行中输入这个类的示例以及打印示例，生成用尖括号包住的字符串，包含类型名和额外的信息(比如地址)：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">pass</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = A()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">&lt;__main__.A object at <span class="number">0x108b59320</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(a)</span><br><span class="line">&lt;__main__.A object at <span class="number">0x108b59320</span>&gt;</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>当一个类定义了 <code>__str__()</code> ，没有定义 <code>__repr__()</code> 时，直接在命令行中输入这个类的示例以及打印示例：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> <span class="string">'B'</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = B()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">&lt;__main__.B object at <span class="number">0x108b59358</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(b)</span><br><span class="line">B</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="3">
 <li>当一个类定义了 <code>__repr__()</code> ，没有定义 <code>__str__()</code> 时，直接在命令行中输入这个类的示例以及打印示例：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> <span class="string">'c'</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = C()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">c</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(c)</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>虽然没有定义 <code>__str__()</code>， 但是两种方法都能打印出 <code>c</code></p>
 </blockquote>
-<ol>
+<ol start="4">
 <li>同时定义了两者：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> <span class="string">'__str__ d'</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> <span class="string">'__repr__ d'</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = D():</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span></span><br><span class="line">    d = D():</span><br><span class="line">           ^</span><br><span class="line">SyntaxError: invalid syntax</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = D()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d</span><br><span class="line">__repr__ d</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(d)</span><br><span class="line">__str__ d</span><br></pre></td></tr></table></figure>
+
 <h2 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h2><ol>
 <li>有一个偷懒的定义<strong>repr</strong>的方法：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> <span class="string">'Person'</span></span><br><span class="line"><span class="meta">... </span>    __repr__ = __str__</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p = Person()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p</span><br><span class="line">Person</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(p)</span><br><span class="line">Person</span><br></pre></td></tr></table></figure>
-<ol>
+
+<ol start="2">
 <li>另一种方式：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">ListStack</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> <span class="string">'ListStack'</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> str(self)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = ListStack()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">ListStack</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(l)</span><br><span class="line">ListStack</span><br></pre></td></tr></table></figure>
+
 <p>但若是没有定义 <code>__str__()</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">E</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> str(self)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e = E()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">3</span>, <span class="keyword">in</span> __repr__</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">3</span>, <span class="keyword">in</span> __repr__</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">3</span>, <span class="keyword">in</span> __repr__</span><br><span class="line">  [Previous line repeated <span class="number">196</span> more times]</span><br><span class="line">RecursionError: maximum recursion depth exceeded <span class="keyword">while</span> calling a Python object</span><br></pre></td></tr></table></figure>
             </div>
@@ -246,7 +257,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#综述"><span class="nav-text">综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-text">例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义方法"><span class="nav-text">定义方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#综述"><span class="nav-text">综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义方法"><span class="nav-text">定义方法</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
