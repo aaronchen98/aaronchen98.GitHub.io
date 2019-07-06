@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="论文写作参考汇总">
+
+
+
+
+  <meta name="keywords" content="论文,">
+
+
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="https://hhyz.me/2019/07/06/img/">
+
+
+<meta name="description" content="Figure/Table Ablation Study ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks  Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks    To investigate the beha">
+<meta name="keywords" content="论文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文写作参考汇总">
+<meta property="og:url" content="https://hhyz.me/2019/07/06/img/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="Figure/Table Ablation Study ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks  Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks    To investigate the beha">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-06-img-1.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-06-img-2.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-06-img-3.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-06-img-4.png">
+<meta property="og:updated_time" content="2019-07-06T08:10:20.320Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文写作参考汇总">
+<meta name="twitter:description" content="Figure/Table Ablation Study ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks  Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks    To investigate the beha">
+<meta name="twitter:image" content="https://hhyz.me/img/2019-07-06-img-1.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+    <title> 论文写作参考汇总 - 浩瀚宇宙·AaronChen </title>
+
+
+    <script>
+(function(u, c) {
+  var d = document, t = 'script', o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+  o.src = u;
+  if (c) { o.addEventListener('load', function(e) { c(e); }); }
+  s.parentNode.insertBefore(o, s);
+})('//cdn.bootcss.com/pangu/3.3.0/pangu.min.js', function() {
+  pangu.spacingPage();
+});
+</script>
+
+
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="https://www.hhyz.me">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          论文写作参考汇总
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 6 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="Figure-Table"><a href="#Figure-Table" class="headerlink" title="Figure/Table"></a>Figure/Table</h2><p><img src="/img/2019-07-06-img-1.png" alt><br><img src="/img/2019-07-06-img-2.png" alt><br><img src="/img/2019-07-06-img-3.png" alt><br><img src="/img/2019-07-06-img-4.png" alt></p>
+<h2 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h2><ul>
+<li><p><a href="http://openaccess.thecvf.com/content_ECCVW_2018/papers/11133/Wang_ESRGAN_Enhanced_Super-Resolution_Generative_Adversarial_Networks_ECCVW_2018_paper.pdf" target="_blank" rel="noopener">ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks</a></p>
+</li>
+<li><p><a href="https://arxiv.org/pdf/1506.01497.pdf" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>To investigate the behavior of RPNs as a proposal method, we conducted<br>several ablation studies.</strong> <strong>First, we show the effect of</strong><br>sharing convolutional layers between the RPN and<br>Fast R-CNN detection network. <strong>To do this,</strong> we stop<br>after the second step in the 4-step training process.<br>Using separate networks reduces the result slightly to<br>58.7% (RPN+ZF, unshared, Table 2).** We observe that**<br>this is because in the third step when the detectortuned features are used to fine-tune the RPN, the<br>proposal quality is improved.<br><strong>Next, we</strong> disentangle the RPN’s influence on training the Fast R-CNN detection network. <strong>For this purpose,</strong> we train a Fast R-CNN model by using the<br>2000 SS proposals and ZF net. We fix this detector<br>and evaluate the detection mAP by changing the<br>proposal regions used at test-time. <strong>In these ablation<br>experiments,</strong> the RPN does not share features with<br>the detector<br>…</p>
+</blockquote>
+<h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><h3 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h3><ul>
+<li>complicated 复杂的</li>
+</ul>
+<h3 id="句式"><a href="#句式" class="headerlink" title="句式"></a>句式</h3><ul>
+<li>For some cases, a slight improvement can be observed from the 2nd and 3rd columns in Fig. 8       </li>
+<li>We can further observe that …</li>
+<li>We observe that this is because …</li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/论文/">论文</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/06/24/norm/">
+        <span class="next-text nav-default">Normalization</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+
+      <div class="post-toc-warp">
+        
+      <!--noindex-->
+          <div class="post-toc" id="toc-test">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure-Table"><span class="nav-text">Figure/Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ablation-Study"><span class="nav-text">Ablation Study</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作"><span class="nav-text">写作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词"><span class="nav-text">单词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#句式"><span class="nav-text">句式</span></a></li></ol></li></ol></div>
+            
+
+            <div class="back-to-top" id="back-to-top">
+              <i class="iconfont icon-up"></i>
+            </div>
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+
+
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
