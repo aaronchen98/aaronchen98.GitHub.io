@@ -20,6 +20,9 @@
   <meta name="keywords" content="matplotlib,">
 
 
+
+
+
 <script type="text/javascript">
 window.onload=
 function(){
@@ -38,6 +41,13 @@ function(){
     }
 }
 </script>
+
+
+
+
+
+
+
 
 
 
@@ -81,7 +91,7 @@ function(){
 <meta property="og:image" content="https://hhyz.me/img/2018-04-05-matplotlib-18.png">
 <meta property="og:image" content="https://hhyz.me/img/2018-04-05-matplotlib-19.png">
 <meta property="og:image" content="https://hhyz.me/img/2018-04-05-matplotlib-20.png">
-<meta property="og:updated_time" content="2019-07-05T19:06:27.700Z">
+<meta property="og:updated_time" content="2019-07-06T09:06:50.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="matplotlib 绘图与显示图像">
 <meta name="twitter:description" content="绘图导入需要的模块1234import numpy as npimport matplotlib.pyplot as pltimport seaborn as snsimport scipy.stats as stats  画基本图形折线图 plot123456y=np.random.randn(100) plt.plot(y,&apos;b-&apos;) plt.xlabel(&apos;x&apos;) plt.ylabel(&apos;y">
@@ -287,6 +297,8 @@ function(){
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ax.set_xticks([])</span><br><span class="line">ax.set_yticks([])</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ax.spines[<span class="string">'top'</span>].set_visible(<span class="literal">False</span>)  <span class="comment"># 去掉上边框</span></span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_visible(<span class="literal">False</span>)  <span class="comment"># 去掉右边框</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>全部坐标轴（上下左右）不显示</li>
 </ul>
@@ -372,8 +384,8 @@ function(){
       </a>
     
     
-      <a class="next" href="/2018/04/04/pysql/">
-        <span class="next-text nav-default">pymysql 基础操作（用 python 操作数据库）</span>
+      <a class="next" href="/2018/04/04/mysql_1/">
+        <span class="next-text nav-default">mysql 基础操作（一）</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
