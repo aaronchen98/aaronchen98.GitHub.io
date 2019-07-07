@@ -2,7 +2,7 @@
   position: absolute;
   font-size: 0.9em;
   font-size: 13px;
-  margin-left: 740px;
+  margin-left: 760px;
   padding-right: 25px;
   padding-top: 15px; }
 
@@ -67,9 +67,10 @@ pre {
   font-family: monospace, monospace, Courier, "Monaco" !important; }
 
 #secondary {
-  position: fixed;
-  right: 12%;
-  top: 60px; }
+  position: absolute;
+  right: 10%;
+  top: 70px;
+  padding-top: 30px !important; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
