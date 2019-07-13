@@ -73,7 +73,7 @@ function(){
 <meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-2.jpg">
 <meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-3.jpg">
 <meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-4.jpg">
-<meta property="og:updated_time" content="2019-07-13T08:54:19.676Z">
+<meta property="og:updated_time" content="2019-07-13T08:55:16.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAN">
 <meta name="twitter:description" content="概述 论文地址：Generative Adversarial Nets  GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。 生成对抗网络主要由两个部分组成，  生成器 \(G\) (Generator) 判别器 \(D\) (discriminator)  生成器G的作用：尽量去拟合 (cover) 真实数据分布，生成以假乱真的图片。它的输入参数是一个随机噪声 \(z">
@@ -221,7 +221,8 @@ function(){
 <p><strong>GAN 模型的目标函数：</strong></p>
 <p>$$\min_{G} \max_D V(G,D)=E_{x\sim P_{data}}[logD(x)] + E_{x\sim P_G}[log(1-D(x))]$$</p>
 <p>或者我们可以直接理解：<br>G网络的loss是 \(log(1-D(G(z))\) ，<br>而D的loss是 \(-(log(D(x)) + log(1-D(G(z)))\) </p>
-<h3 id="怎么训练"><a href="#怎么训练" class="headerlink" title="怎么训练"></a>怎么训练</h3><h4 id="交替训练"><a href="#交替训练" class="headerlink" title="交替训练"></a>交替训练</h4><ol>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p><strong>交替训练</strong></p>
+<ol>
 <li>固定G时，训练D；<br>$$\max {E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } $$（公式1）<br>转化成最小形式：<br>$$\min -[{E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } ]$$       </li>
 <li>固定D时，训练G。<br>可以设置超参数k, 表示训练k次D，再训练一次G.<br>$$min Loss_G =E_{x\sim P_G}[log(1-D(x))] $$（公式2）</li>
 </ol>
@@ -290,7 +291,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么训练"><span class="nav-text">怎么训练</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交替训练"><span class="nav-text">交替训练</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-text">训练</span></a></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
