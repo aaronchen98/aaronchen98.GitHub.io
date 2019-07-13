@@ -69,15 +69,15 @@ function(){
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="概述 论文地址：Generative Adversarial Nets  GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。 生成对抗网络主要由两个部分组成，  生成器 \(G\) (Generator) 判别器 \(D\) (discriminator)  生成器G的作用：尽量去拟合 (cover) 真实数据分布，生成以假乱真的图片。它的输入参数是一个随机噪声 \(z">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fvf33sz4l9j30hs0by74y.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf4nrc9mfj31980g6wh5.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fvf3xw32xtj31f20xuah2.jpg">
-<meta property="og:updated_time" content="2019-07-13T08:50:33.366Z">
+<meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-1.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-2.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-3.jpg">
+<meta property="og:image" content="https://hhyz.me/img/2018-09-19-gan-4.jpg">
+<meta property="og:updated_time" content="2019-07-13T08:54:19.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAN">
 <meta name="twitter:description" content="概述 论文地址：Generative Adversarial Nets  GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。 生成对抗网络主要由两个部分组成，  生成器 \(G\) (Generator) 判别器 \(D\) (discriminator)  生成器G的作用：尽量去拟合 (cover) 真实数据分布，生成以假乱真的图片。它的输入参数是一个随机噪声 \(z">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg">
+<meta name="twitter:image" content="https://hhyz.me/img/2018-09-19-gan-1.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -204,11 +204,11 @@ function(){
 <blockquote>
 <p>一个很有意思例子：生成器G可以被比作假币制造者团队，试图生产出无法检测出真伪的假币；判别器D可以被比作警察，试图区分出真币和假币。在比拼竞争的过程中，双方都不断提升自己的方法，最终导致假币与真品无法区分。说明我们得到了一个效果非常好的生成器G</p>
 </blockquote>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg" alt><br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fvf33sz4l9j30hs0by74y.jpg" alt></p>
+<p><img src="/img/2018-09-19-gan-1.jpg" alt><br><img src="/img/2018-09-19-gan-2.jpg" alt></p>
 <center><small><font color="gray">  这里的G网络的输入是一个符合简单分布如高斯分布或者均匀分布的随机噪声  </font></small></center>
 
 
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf4nrc9mfj31980g6wh5.jpg" alt></p>
+<p><img src="/img/2018-09-19-gan-3.jpg" alt></p>
 <center><small><font color="gray">  黑色的线表示数据x的实际分布，绿色的线表示数据的生成分布，蓝色的线表示生成的数据对应在判别器中的分布效果  </font></small></center>
 
 
@@ -221,13 +221,13 @@ function(){
 <p><strong>GAN 模型的目标函数：</strong></p>
 <p>$$\min_{G} \max_D V(G,D)=E_{x\sim P_{data}}[logD(x)] + E_{x\sim P_G}[log(1-D(x))]$$</p>
 <p>或者我们可以直接理解：<br>G网络的loss是 \(log(1-D(G(z))\) ，<br>而D的loss是 \(-(log(D(x)) + log(1-D(G(z)))\) </p>
-<h3 id="怎么训练"><a href="#怎么训练" class="headerlink" title="怎么训练"></a>怎么训练</h3><h4 id="交替训练。"><a href="#交替训练。" class="headerlink" title="交替训练。"></a>交替训练。</h4><ol>
+<h3 id="怎么训练"><a href="#怎么训练" class="headerlink" title="怎么训练"></a>怎么训练</h3><h4 id="交替训练"><a href="#交替训练" class="headerlink" title="交替训练"></a>交替训练</h4><ol>
 <li>固定G时，训练D；<br>$$\max {E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } $$（公式1）<br>转化成最小形式：<br>$$\min -[{E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } ]$$       </li>
 <li>固定D时，训练G。<br>可以设置超参数k, 表示训练k次D，再训练一次G.<br>$$min Loss_G =E_{x\sim P_G}[log(1-D(x))] $$（公式2）</li>
 </ol>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvf3xw32xtj31f20xuah2.jpg" alt></p>
+<p><img src="/img/2018-09-19-gan-4.jpg" alt></p>
 <p>全局最优  \( p_g=p_{data}\)</p>
- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML" async></script>
 
 
 
@@ -290,7 +290,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么训练"><span class="nav-text">怎么训练</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交替训练。"><span class="nav-text">交替训练。</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么训练"><span class="nav-text">怎么训练</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交替训练"><span class="nav-text">交替训练</span></a></li></ol></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
