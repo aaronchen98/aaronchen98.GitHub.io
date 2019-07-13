@@ -17,7 +17,7 @@
 
 
 
-  <meta name="keywords" content=",">
+  <meta name="keywords" content="GAN,">
 
 
 
@@ -58,21 +58,26 @@ function(){
 
 
 
-<link rel="canonical" href="https://hhyz.me/准备/2018-09-19-gan.html">
+<link rel="canonical" href="https://hhyz.me/2018/09/19/gan/">
 
 
 <meta name="description" content="概述 论文地址：Generative Adversarial Nets  GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。 生成对抗网络主要由两个部分组成，  生成器 \(G\) (Generator) 判别器 \(D\) (discriminator)  生成器G的作用：尽量去拟合 (cover) 真实数据分布，生成以假乱真的图片。它的输入参数是一个随机噪声 \(z">
 <meta name="keywords" content="GAN">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="GAN">
-<meta property="og:url" content="https://hhyz.me/准备/2018-09-19-gan.html">
+<meta property="og:url" content="https://hhyz.me/2018/09/19/gan/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="概述 论文地址：Generative Adversarial Nets  GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。 生成对抗网络主要由两个部分组成，  生成器 \(G\) (Generator) 判别器 \(D\) (discriminator)  生成器G的作用：尽量去拟合 (cover) 真实数据分布，生成以假乱真的图片。它的输入参数是一个随机噪声 \(z">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-07-02T17:09:45.483Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fvf33sz4l9j30hs0by74y.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf4nrc9mfj31980g6wh5.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fvf3xw32xtj31f20xuah2.jpg">
+<meta property="og:updated_time" content="2019-07-13T08:42:16.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAN">
 <meta name="twitter:description" content="概述 论文地址：Generative Adversarial Nets  GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。 生成对抗网络主要由两个部分组成，  生成器 \(G\) (Generator) 判别器 \(D\) (discriminator)  生成器G的作用：尽量去拟合 (cover) 真实数据分布，生成以假乱真的图片。它的输入参数是一个随机噪声 \(z">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -158,14 +163,25 @@ function(){
       <div id="content">
         
     <div id="primary">
-        <article class="post">
-            <header class="post-header">
-                <h1 class="post-title">
-                    GAN
-                </h1>
-            </header>
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          GAN
+        
+      </h1>
+
+      <time class="post-time">
+          Sep 19 2018
+      </time>
+    </header>
+
+
+
+    
             <div class="post-content">
-                <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
 <p>论文地址：<a href="https://arxiv.org/pdf/1406.2661v1.pdf" target="_blank" rel="noopener">Generative Adversarial Nets</a></p>
 </blockquote>
 <p>GAN是Ian Goodfellow提出的使用对抗过程来获得生成模型的新框架。</p>
@@ -188,16 +204,13 @@ function(){
 <blockquote>
 <p>一个很有意思例子：生成器G可以被比作假币制造者团队，试图生产出无法检测出真伪的假币；判别器D可以被比作警察，试图区分出真币和假币。在比拼竞争的过程中，双方都不断提升自己的方法，最终导致假币与真品无法区分。说明我们得到了一个效果非常好的生成器G</p>
 </blockquote>
-<br>
-<div align="center">
-![](https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg)
-![](https://ws4.sinaimg.cn/large/006tNbRwgy1fvf33sz4l9j30hs0by74y.jpg)
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf1vsgjyrj30mt09uaaa.jpg" alt><br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fvf33sz4l9j30hs0by74y.jpg" alt></p>
 <center><small><font color="gray">  这里的G网络的输入是一个符合简单分布如高斯分布或者均匀分布的随机噪声  </font></small></center>
-</div>
-<div align="center">
-![](https://ws3.sinaimg.cn/large/006tNbRwgy1fvf4nrc9mfj31980g6wh5.jpg)
+
+
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fvf4nrc9mfj31980g6wh5.jpg" alt></p>
 <center><small><font color="gray">  黑色的线表示数据x的实际分布，绿色的线表示数据的生成分布，蓝色的线表示生成的数据对应在判别器中的分布效果  </font></small></center>
-</div>
+
 
 <ul>
 <li>对于图a，D还刚开始训练，本身分类的能力还很有限，有波动，但是初步区分实际数据和生成数据还是可以的。     </li>
@@ -212,15 +225,58 @@ function(){
 <li>固定G时，训练D；<br>$$\max {E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } $$（公式1）<br>转化成最小形式：<br>$$\min -[{E_{x\sim p(r)} log(D(x)) + E_{x\sim p(g)} log(1-D(x)) } ]$$       </li>
 <li>固定D时，训练G。<br>可以设置超参数k, 表示训练k次D，再训练一次G.<br>$$min Loss_G =E_{x\sim P_G}[log(1-D(x))] $$（公式2）</li>
 </ol>
-<br>
-<div align="center">
-![](https://ws1.sinaimg.cn/large/006tNbRwgy1fvf3xw32xtj31f20xuah2.jpg)<center><small><font color="gray">    </font></small></center>
-</div>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvf3xw32xtj31f20xuah2.jpg" alt></p>
+<p>全局最优  \( p_g=p_{data}\)</p>
+ <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
-<p>全局最优  \( p_g=p_{data}\)<br> <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+
 
             </div>
-        </article>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/GAN/">GAN</a>
+          
+        </div>
+
+        <div class="post-tags">
+          
+            <a href="/categories/GAN/">GAN</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/01/22/make/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">make/cmake/qmake</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/08/13/RL2/">
+        <span class="next-text nav-default">强化学习（二）</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
     </div>
 
 
