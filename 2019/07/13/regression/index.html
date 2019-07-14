@@ -61,18 +61,20 @@ function(){
 <link rel="canonical" href="https://hhyz.me/2019/07/13/regression/">
 
 
-<meta name="description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$  \( \beta_{0} \) 被称为 intercept \( \beta_{1} \) 被称为 slope  给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{">
+<meta name="description" content="basicHypothesis testing null hypothesis (原假设)：假设 X 和 Y 并没有关系 alternative hypothesis (备选假设)：假设 X 和 Y 是有关系的  统计量 t 值： $$t=\frac{\overline{x}-\mu_{0}}{s / \sqrt{n}}$$ Residual Standard ErrorResidual Stan">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Regression">
 <meta property="og:url" content="https://hhyz.me/2019/07/13/regression/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$  \( \beta_{0} \) 被称为 intercept \( \beta_{1} \) 被称为 slope  给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{">
+<meta property="og:description" content="basicHypothesis testing null hypothesis (原假设)：假设 X 和 Y 并没有关系 alternative hypothesis (备选假设)：假设 X 和 Y 是有关系的  统计量 t 值： $$t=\frac{\overline{x}-\mu_{0}}{s / \sqrt{n}}$$ Residual Standard ErrorResidual Stan">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-07-14T07:53:47.298Z">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-13-regression-1.png">
+<meta property="og:updated_time" content="2019-07-14T13:24:48.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Regression">
-<meta name="twitter:description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$  \( \beta_{0} \) 被称为 intercept \( \beta_{1} \) 被称为 slope  给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{">
+<meta name="twitter:description" content="basicHypothesis testing null hypothesis (原假设)：假设 X 和 Y 并没有关系 alternative hypothesis (备选假设)：假设 X 和 Y 是有关系的  统计量 t 值： $$t=\frac{\overline{x}-\mu_{0}}{s / \sqrt{n}}$$ Residual Standard ErrorResidual Stan">
+<meta name="twitter:image" content="https://hhyz.me/img/2019-07-13-regression-1.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -176,7 +178,25 @@ function(){
 
     
             <div class="post-content">
-            <h1 id="linear-regression"><a href="#linear-regression" class="headerlink" title="linear regression"></a>linear regression</h1><h2 id="single-predictor"><a href="#single-predictor" class="headerlink" title="single predictor"></a>single predictor</h2><p>假设模型为：</p>
+            <h1 id="basic"><a href="#basic" class="headerlink" title="basic"></a>basic</h1><h2 id="Hypothesis-testing"><a href="#Hypothesis-testing" class="headerlink" title="Hypothesis testing"></a>Hypothesis testing</h2><ul>
+<li>null hypothesis (原假设)：假设 X 和 Y 并没有关系</li>
+<li>alternative hypothesis (备选假设)：假设 X 和 Y 是有关系的</li>
+</ul>
+<p>统计量 t 值：</p>
+<p>$$<br>t=\frac{\overline{x}-\mu_{0}}{s / \sqrt{n}}<br>$$</p>
+<h2 id="Residual-Standard-Error"><a href="#Residual-Standard-Error" class="headerlink" title="Residual Standard Error"></a>Residual Standard Error</h2><p><strong>Residual Standard Error</strong></p>
+<p>$$<br>\operatorname{RSE}=\sqrt{\frac{1}{n-2} \operatorname{RSS}}=\sqrt{\frac{1}{n-2} \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}}<br>$$</p>
+<p><strong>residual sum-of-squares</strong></p>
+<p>$$<br>R S S=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}<br>$$</p>
+<p><strong>R-squared</strong></p>
+<p>$$<br>R^{2}=\frac{\mathrm{TSS}-\mathrm{RSS}}{\mathrm{TSS}}=1-\frac{\mathrm{RSS}}{\mathrm{TSS}}<br>$$</p>
+<p><strong>total sum of squares</strong></p>
+<p>$$<br>\mathrm{TSS}=\sum_{i=1}^{n}\left(y_{i}-\overline{y}\right)^{2}<br>$$</p>
+<p>在简单线性回归中：</p>
+<p>$$<br>R^{2}=r^{2}<br>$$</p>
+<p>其中 \( r \) 是\( X \) 和\( Y \)的相关系数</p>
+<p>$$<br>r=\frac{\sum_{i=1}^{n}\left(x_{i}-\overline{x}\right)\left(y_{i}-\overline{y}\right)}{\sqrt{\sum_{i=1}^{n}\left(x_{i}-\overline{x}\right)^{2}} \sqrt{\sum_{i=1}^{n}\left(y_{i}-\overline{y}\right)^{2}}}<br>$$</p>
+<h1 id="linear-regression"><a href="#linear-regression" class="headerlink" title="linear regression"></a>linear regression</h1><h2 id="single-predictor"><a href="#single-predictor" class="headerlink" title="single predictor"></a>single predictor</h2><p>假设模型为：</p>
 <p>$$<br>Y=\beta_{0}+\beta_{1} X+\epsilon<br>$$</p>
 <ul>
 <li>\( \beta_{0} \) 被称为 intercept</li>
@@ -203,7 +223,7 @@ function(){
 <p>$$<br>\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x_{1}+\hat{\beta}_{2} x_{2}+\cdots+\hat{\beta}_{p} x_{p}<br>$$</p>
 <p>$$<br>\begin{aligned} \mathrm{RSS} &amp;=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2} \ &amp;=\sum_{i=1}^{n}\left(y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{i 1}-\hat{\beta}_{2} x_{i 2}-\cdots-\hat{\beta}_{p} x_{i p}\right)^{2} \end{aligned}<br>$$</p>
 <p>最小化 RSS 的 \( \hat{\beta}_{0}, \hat{\beta}_{1}, \ldots \hat{\beta}_{p} \) 就是 multiple least squares regression coefficient estimates。</p>
-<h1 id="Hypothesis-testing"><a href="#Hypothesis-testing" class="headerlink" title="Hypothesis testing"></a>Hypothesis testing</h1><h1 id="Model-selection"><a href="#Model-selection" class="headerlink" title="Model selection"></a>Model selection</h1><h2 id="Forward-selection"><a href="#Forward-selection" class="headerlink" title="Forward selection"></a>Forward selection</h2><ol>
+<h1 id="Model-selection"><a href="#Model-selection" class="headerlink" title="Model selection"></a>Model selection</h1><h2 id="Forward-selection"><a href="#Forward-selection" class="headerlink" title="Forward selection"></a>Forward selection</h2><ol>
 <li>从一个 null model 开始（一个只有 intercept 没有 predictors 的模型）</li>
 </ol>
 <h2 id="Backward-selection"><a href="#Backward-selection" class="headerlink" title="Backward selection"></a>Backward selection</h2><ol>
@@ -214,8 +234,16 @@ function(){
 </ol>
 <h1 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h1><p>$$<br>p(X)=\frac{e^{\beta_{0}+\beta_{1} X}}{1+e^{\beta_{0}+\beta_{1} X}}<br>$$</p>
 <p>可以看出不论参数如何变化， \( p(X) \)的值始终在 0 和 1 内</p>
+<p><img src="/img/2019-07-13-regression-1.png" alt></p>
 <p>如果进行一点转变，被称为 log odds 或者 logit transformation of \( p(X) \)，则有：</p>
 <p>$$<br>\log \left(\frac{p(X)}{1-p(X)}\right)=\beta_{0}+\beta_{1} X<br>$$</p>
+<p>我们使用极大似然来进行参数估计：</p>
+<p>$$<br>\ell\left(\beta_{0}, \beta\right)=\prod_{i : y_{i}=1} p\left(x_{i}\right) \prod_{i : y_{i}=0}\left(1-p\left(x_{i}\right)\right)<br>$$</p>
+<p>对于多个变量：</p>
+<p>$$<br>\log \left(\frac{p(X)}{1-p(X)}\right)=\beta_{0}+\beta_{1} X_{1}+\cdots+\beta_{p} X_{p}<br>$$</p>
+<p>$$<br>p(X)=\frac{e^{\beta_{0}+\beta_{1} X_{1}+\cdots+\beta_{p} X_{p}}}{1+e^{\beta_{0}+\beta_{1} X_{1}+\cdots+\beta_{p} X_{p}}}<br>$$</p>
+<p>对于多于两个类：</p>
+<p>$$<br>\operatorname{Pr}(Y=k | X)=\frac{e^{\beta_{0 k}+\beta_{1 k} X_{1}+\ldots+\beta_{p k} X_{p}}}{\sum_{\ell=1}^{K} e^{\beta_{0 \ell}+\beta_{1 \ell} X_{1}+\ldots+\beta_{p \ell} X_{p}}}<br>$$</p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML" async></script>
             </div>
           
@@ -270,7 +298,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-regression"><span class="nav-text">linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-predictor"><span class="nav-text">single predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Linear-Regression"><span class="nav-text">Multiple Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hypothesis-testing"><span class="nav-text">Hypothesis testing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-selection"><span class="nav-text">Model selection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Forward-selection"><span class="nav-text">Forward selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backward-selection"><span class="nav-text">Backward selection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression"><span class="nav-text">Logistic Regression</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic"><span class="nav-text">basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hypothesis-testing"><span class="nav-text">Hypothesis testing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Residual-Standard-Error"><span class="nav-text">Residual Standard Error</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-regression"><span class="nav-text">linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-predictor"><span class="nav-text">single predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Linear-Regression"><span class="nav-text">Multiple Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-selection"><span class="nav-text">Model selection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Forward-selection"><span class="nav-text">Forward selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backward-selection"><span class="nav-text">Backward selection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression"><span class="nav-text">Logistic Regression</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
