@@ -61,18 +61,18 @@ function(){
 <link rel="canonical" href="https://hhyz.me/2019/07/13/regression/">
 
 
-<meta name="description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$ 给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x$$  hat 符号代表是估计值  使 re">
+<meta name="description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$  \( \beta_{0} \) 被称为 intercept \( \beta_{1} \) 被称为 slope  给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Regression">
 <meta property="og:url" content="https://hhyz.me/2019/07/13/regression/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$ 给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x$$  hat 符号代表是估计值  使 re">
+<meta property="og:description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$  \( \beta_{0} \) 被称为 intercept \( \beta_{1} \) 被称为 slope  给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-07-13T11:47:46.314Z">
+<meta property="og:updated_time" content="2019-07-14T07:53:47.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Regression">
-<meta name="twitter:description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$ 给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x$$  hat 符号代表是估计值  使 re">
+<meta name="twitter:description" content="linear regressionsingle predictor假设模型为： $$Y=\beta_{0}+\beta_{1} X+\epsilon$$  \( \beta_{0} \) 被称为 intercept \( \beta_{1} \) 被称为 slope  给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测： $$\hat{">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -178,6 +178,10 @@ function(){
             <div class="post-content">
             <h1 id="linear-regression"><a href="#linear-regression" class="headerlink" title="linear regression"></a>linear regression</h1><h2 id="single-predictor"><a href="#single-predictor" class="headerlink" title="single predictor"></a>single predictor</h2><p>假设模型为：</p>
 <p>$$<br>Y=\beta_{0}+\beta_{1} X+\epsilon<br>$$</p>
+<ul>
+<li>\( \beta_{0} \) 被称为 intercept</li>
+<li>\( \beta_{1} \) 被称为 slope</li>
+</ul>
 <p>给出估计值 \( \hat{\beta}_{0} \) 和 \( \hat{\beta}_{1} \)，我们预测：</p>
 <p>$$<br>\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x<br>$$</p>
 <ul>
@@ -198,6 +202,20 @@ function(){
 <p>给出估计值 \( \hat{\beta}_{0}, \hat{\beta}_{1}, \ldots \hat{\beta}_{p} \) 我们预测：</p>
 <p>$$<br>\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x_{1}+\hat{\beta}_{2} x_{2}+\cdots+\hat{\beta}_{p} x_{p}<br>$$</p>
 <p>$$<br>\begin{aligned} \mathrm{RSS} &amp;=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2} \ &amp;=\sum_{i=1}^{n}\left(y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{i 1}-\hat{\beta}_{2} x_{i 2}-\cdots-\hat{\beta}_{p} x_{i p}\right)^{2} \end{aligned}<br>$$</p>
+<p>最小化 RSS 的 \( \hat{\beta}_{0}, \hat{\beta}_{1}, \ldots \hat{\beta}_{p} \) 就是 multiple least squares regression coefficient estimates。</p>
+<h1 id="Hypothesis-testing"><a href="#Hypothesis-testing" class="headerlink" title="Hypothesis testing"></a>Hypothesis testing</h1><h1 id="Model-selection"><a href="#Model-selection" class="headerlink" title="Model selection"></a>Model selection</h1><h2 id="Forward-selection"><a href="#Forward-selection" class="headerlink" title="Forward selection"></a>Forward selection</h2><ol>
+<li>从一个 null model 开始（一个只有 intercept 没有 predictors 的模型）</li>
+</ol>
+<h2 id="Backward-selection"><a href="#Backward-selection" class="headerlink" title="Backward selection"></a>Backward selection</h2><ol>
+<li>从包含所有变量的模型开始</li>
+<li>移除最大 p 值的变量，也就是最小显著性的变量</li>
+<li>拟合新的 (p-1) 变量的模型，再次移除最大 p 值的变量</li>
+<li>重复直到满足阈值条件</li>
+</ol>
+<h1 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h1><p>$$<br>p(X)=\frac{e^{\beta_{0}+\beta_{1} X}}{1+e^{\beta_{0}+\beta_{1} X}}<br>$$</p>
+<p>可以看出不论参数如何变化， \( p(X) \)的值始终在 0 和 1 内</p>
+<p>如果进行一点转变，被称为 log odds 或者 logit transformation of \( p(X) \)，则有：</p>
+<p>$$<br>\log \left(\frac{p(X)}{1-p(X)}\right)=\beta_{0}+\beta_{1} X<br>$$</p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML" async></script>
             </div>
           
@@ -252,7 +270,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-regression"><span class="nav-text">linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-predictor"><span class="nav-text">single predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Linear-Regression"><span class="nav-text">Multiple Linear Regression</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-regression"><span class="nav-text">linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-predictor"><span class="nav-text">single predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Linear-Regression"><span class="nav-text">Multiple Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hypothesis-testing"><span class="nav-text">Hypothesis testing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-selection"><span class="nav-text">Model selection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Forward-selection"><span class="nav-text">Forward selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backward-selection"><span class="nav-text">Backward selection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression"><span class="nav-text">Logistic Regression</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
