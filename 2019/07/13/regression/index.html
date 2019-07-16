@@ -46,7 +46,8 @@
 <meta property="og:description" content="basic null hypothesis (原假设)：假设 X 和 Y 并没有关系 alternative hypothesis (备选假设)：假设 X 和 Y 是有关系的  统计量 t 值： $$t=\frac{\overline{x}-\mu_{0}}{s / \sqrt{n}}$$ 回归评价指标Residual Standard Error $$\operatorname{RSE}=\sq">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://hhyz.me/img/2019-07-13-regression-1.png">
-<meta property="og:updated_time" content="2019-07-14T14:17:03.348Z">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-13-regression-2.png">
+<meta property="og:updated_time" content="2019-07-16T03:12:01.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Regression">
 <meta name="twitter:description" content="basic null hypothesis (原假设)：假设 X 和 Y 并没有关系 alternative hypothesis (备选假设)：假设 X 和 Y 是有关系的  统计量 t 值： $$t=\frac{\overline{x}-\mu_{0}}{s / \sqrt{n}}$$ 回归评价指标Residual Standard Error $$\operatorname{RSE}=\sq">
@@ -250,7 +251,7 @@ function(){
 <p>$$<br>Y=\beta_{0}+\beta_{1} X_{1}+\beta_{2} X_{2}+\cdots+\beta_{p} X_{p}+\epsilon<br>$$</p>
 <p>给出估计值 \( \hat{\beta}_{0}, \hat{\beta}_{1}, \ldots \hat{\beta}_{p} \) 我们预测：</p>
 <p>$$<br>\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x_{1}+\hat{\beta}_{2} x_{2}+\cdots+\hat{\beta}_{p} x_{p}<br>$$</p>
-<p>$$<br>\begin{aligned} \mathrm{RSS} &amp;=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2} \ &amp;=\sum_{i=1}^{n}\left(y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{i 1}-\hat{\beta}_{2} x_{i 2}-\cdots-\hat{\beta}_{p} x_{i p}\right)^{2} \end{aligned}<br>$$</p>
+<p>$$<br>\mathrm{RSS}=\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}<br>$$<br>$$<br>=\sum_{i=1}^{n}\left(y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{i 1}-\hat{\beta}_{2} x_{i 2}-\cdots-\hat{\beta}_{p} x_{i p}\right)^{2}<br>$$</p>
 <p>最小化 RSS 的 \( \hat{\beta}_{0}, \hat{\beta}_{1}, \ldots \hat{\beta}_{p} \) 就是 multiple least squares regression coefficient estimates。</p>
 <h1 id="Model-selection"><a href="#Model-selection" class="headerlink" title="Model selection"></a>Model selection</h1><h2 id="Forward-selection"><a href="#Forward-selection" class="headerlink" title="Forward selection"></a>Forward selection</h2><ol>
 <li>从一个 null model 开始（一个只有 intercept 没有 predictors 的模型）</li>
@@ -273,6 +274,21 @@ function(){
 <p>$$<br>p(X)=\frac{e^{\beta_{0}+\beta_{1} X_{1}+\cdots+\beta_{p} X_{p}}}{1+e^{\beta_{0}+\beta_{1} X_{1}+\cdots+\beta_{p} X_{p}}}<br>$$</p>
 <p>对于多于两个类：</p>
 <p>$$<br>\operatorname{Pr}(Y=k | X)=\frac{e^{\beta_{0 k}+\beta_{1 k} X_{1}+\ldots+\beta_{p k} X_{p}}}{\sum_{\ell=1}^{K} e^{\beta_{0 \ell}+\beta_{1 \ell} X_{1}+\ldots+\beta_{p \ell} X_{p}}}<br>$$</p>
+<h2 id="Discriminant-Analysis"><a href="#Discriminant-Analysis" class="headerlink" title="Discriminant Analysis"></a>Discriminant Analysis</h2><p><strong>用于分类的贝叶斯法则</strong></p>
+<p>$$<br>\operatorname{Pr}(Y=k | X=x)=\frac{\operatorname{Pr}(X=x | Y=k) \cdot \operatorname{Pr}(Y=k)}{\operatorname{Pr}(X=x)}<br>$$</p>
+<p>稍微改变一下用于 discriminant analysis</p>
+<p>$$<br>\operatorname{Pr}(Y=k | X=x)=\frac{\pi_{k} f_{k}(x)}{\sum_{l=1}^{K} \pi_{l} f_{l}(x)}<br>$$</p>
+<ul>
+<li>\( f_{k}(x)=\operatorname{Pr}(X=x | Y=k) \) 是\( X \)在分类 \( k \)中的 density</li>
+<li>\( \pi_{k}=\operatorname{Pr}(Y=k) \) 是分类\( k \)的marginal 或 prior probability</li>
+</ul>
+<p><img src="/img/2019-07-13-regression-2.png" alt></p>
+<p>哪一个分类的 density 最高就为哪一个分类</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ul>
+<li>Logistic regression is very popular for classification, especially when \( K = 2 \). </li>
+<li>LDA is useful when \( n \) is small, or the classes are well separated, and Gaussian assumptions are reasonable. Also when \( K &gt; 2 \). </li>
+<li>Naive Bayes is useful when \( p \) is very large. </li>
+</ul>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML" async></script>
             </div>
           
@@ -327,7 +343,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic"><span class="nav-text">basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回归评价指标"><span class="nav-text">回归评价指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-regression"><span class="nav-text">linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-predictor"><span class="nav-text">single predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Linear-Regression"><span class="nav-text">Multiple Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-selection"><span class="nav-text">Model selection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Forward-selection"><span class="nav-text">Forward selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backward-selection"><span class="nav-text">Backward selection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression"><span class="nav-text">Logistic Regression</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic"><span class="nav-text">basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回归评价指标"><span class="nav-text">回归评价指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-regression"><span class="nav-text">linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-predictor"><span class="nav-text">single predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Linear-Regression"><span class="nav-text">Multiple Linear Regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-selection"><span class="nav-text">Model selection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Forward-selection"><span class="nav-text">Forward selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backward-selection"><span class="nav-text">Backward selection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression"><span class="nav-text">Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Discriminant-Analysis"><span class="nav-text">Discriminant Analysis</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
