@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="细粒度图像分析综述">
+
+
+
+
+  <meta name="keywords" content="深度学习,">
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="https://hhyz.me/2019/07/21/细粒度综述/">
+
+
+<meta name="description" content="基于强监督信息的细粒度图像分类模型所谓“强监督细粒度图像分类模型”是指：在模型训练时，为了获得更好的分类精度，除了图像的类别标签外，还使用了物体标注框（Object Bounding Box）和部位标注点（Part Annotation）等额外的人工标注信息，如下图所示。  基于弱监督信息的细粒度图像分类模型Two Level Attention Model The Application of">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="细粒度图像分析综述">
+<meta property="og:url" content="https://hhyz.me/2019/07/21/细粒度综述/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="基于强监督信息的细粒度图像分类模型所谓“强监督细粒度图像分类模型”是指：在模型训练时，为了获得更好的分类精度，除了图像的类别标签外，还使用了物体标注框（Object Bounding Box）和部位标注点（Part Annotation）等额外的人工标注信息，如下图所示。  基于弱监督信息的细粒度图像分类模型Two Level Attention Model The Application of">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://hhyz.me/img/2019-07-21-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%BB%BC%E8%BF%B0-1.png">
+<meta property="og:updated_time" content="2019-07-20T16:56:20.583Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="细粒度图像分析综述">
+<meta name="twitter:description" content="基于强监督信息的细粒度图像分类模型所谓“强监督细粒度图像分类模型”是指：在模型训练时，为了获得更好的分类精度，除了图像的类别标签外，还使用了物体标注框（Object Bounding Box）和部位标注点（Part Annotation）等额外的人工标注信息，如下图所示。  基于弱监督信息的细粒度图像分类模型Two Level Attention Model The Application of">
+<meta name="twitter:image" content="https://hhyz.me/img/2019-07-21-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%BB%BC%E8%BF%B0-1.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3cbfa43ed54bb06d8da192dc667bed80";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-139198240-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+
+
+  
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9937341197542093",
+        enable_page_level_ads: true
+      });
+    </script>
+
+
+
+    <title> 细粒度图像分析综述 - 浩瀚宇宙·AaronChen </title>
+
+
+    <script>
+(function(u, c) {
+  var d = document, t = 'script', o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+  o.src = u;
+  if (c) { o.addEventListener('load', function(e) { c(e); }); }
+  s.parentNode.insertBefore(o, s);
+})('//cdn.bootcss.com/pangu/3.3.0/pangu.min.js', function() {
+  pangu.spacingPage();
+});
+</script>
+
+
+
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="https://www.hhyz.me">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          细粒度图像分析综述
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 21 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="基于强监督信息的细粒度图像分类模型"><a href="#基于强监督信息的细粒度图像分类模型" class="headerlink" title="基于强监督信息的细粒度图像分类模型"></a>基于强监督信息的细粒度图像分类模型</h1><p>所谓“强监督细粒度图像分类模型”是指：在模型训练时，为了获得更好的分类精度，除了图像的类别标签外，还使用了物体标注框（Object Bounding Box）和部位标注点（Part Annotation）等额外的人工标注信息，如下图所示。</p>
+<p><img src="/img/2019-07-21-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%BB%BC%E8%BF%B0-1.png" alt></p>
+<h1 id="基于弱监督信息的细粒度图像分类模型"><a href="#基于弱监督信息的细粒度图像分类模型" class="headerlink" title="基于弱监督信息的细粒度图像分类模型"></a>基于弱监督信息的细粒度图像分类模型</h1><h2 id="Two-Level-Attention-Model"><a href="#Two-Level-Attention-Model" class="headerlink" title="Two Level Attention Model"></a>Two Level Attention Model</h2><blockquote>
+<p><a href="https://ieeexplore.ieee.org/Xplore/cookiedetectresponse.jsp" target="_blank" rel="noopener">The Application of Two-level Attention Models in Deep Convolutional Neural Network for Fine-grained Image Classification</a></p>
+<p><strong>主要思路：</strong></p>
+<p>主要就是利用region proposal，寻找对于最后分类结果有积极影响的proposal，去掉那些无用的噪声。论文提到了两个filter proposal的方法。第一个 利用image-level训练好的model，和设定的阈值，直接对selective search产生的proposal，进行第一次去燥，主要目的得到高查全率，准确率可以不高。第二次filter，就是利用第一次filter之后的数据重新训练网络，提取网络第四层卷积的特征，对其聚类，根据这个从第一次filter之后的proposal里面选择3个对于分类最有影响力的part-level proposal，最后利用SVM分类。</p>
+<p>感觉整个过程就是想方设法，找到对结果最有影响力proposal，然后训练分类器，结果就不错。文章想法很不错，进行聚类。最值得表扬的是，不仅思路新，而且文章有理有据，把整个过程说的很明白，这点很欣赏。希望自己以后也能写出正常人都能看懂的paper。</p>
+</blockquote>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/">深度学习</a>
+          
+        </div>
+
+        <div class="post-tags">
+          
+            <a href="/categories/深度学习/">深度学习</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/07/13/regression/">
+        <span class="next-text nav-default">Regression</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+
+      <div class="post-toc-warp">
+        
+      <!--noindex-->
+          <div class="post-toc" id="toc-test">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基于强监督信息的细粒度图像分类模型"><span class="nav-text">基于强监督信息的细粒度图像分类模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于弱监督信息的细粒度图像分类模型"><span class="nav-text">基于弱监督信息的细粒度图像分类模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Level-Attention-Model"><span class="nav-text">Two Level Attention Model</span></a></li></ol></li></ol></div>
+            
+
+            <div class="back-to-top" id="back-to-top">
+              <i class="iconfont icon-up"></i>
+            </div>
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+
+
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
