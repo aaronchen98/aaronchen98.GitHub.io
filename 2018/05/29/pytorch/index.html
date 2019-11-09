@@ -46,7 +46,7 @@
 <meta property="og:description" content="PyTorch Cookbook（常用代码段整理合集） PyTorch 大批量数据在单个或多个 GPU 训练指南  PyTorch中在反向传播前为什么要手动将梯度清零？  基础Numpy to Torth python、PyTorch 图像读取与 numpy 转换  Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://hhyz.me/img/2018-05-29-pytorch-101.jpg">
-<meta property="og:updated_time" content="2019-07-23T03:27:43.352Z">
+<meta property="og:updated_time" content="2019-07-25T05:05:27.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch 入门">
 <meta name="twitter:description" content="PyTorch Cookbook（常用代码段整理合集） PyTorch 大批量数据在单个或多个 GPU 训练指南  PyTorch中在反向传播前为什么要手动将梯度清零？  基础Numpy to Torth python、PyTorch 图像读取与 numpy 转换  Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合">
@@ -288,6 +288,9 @@ function(){
 <p><strong>加上 transforms</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision.datasets <span class="keyword">import</span> ImageFolder</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms</span><br><span class="line"></span><br><span class="line"><span class="comment">#加上transforms</span></span><br><span class="line">normalize=transforms.Normalize(mean=[<span class="number">.5</span>,<span class="number">.5</span>,<span class="number">.5</span>],std=[<span class="number">.5</span>,<span class="number">.5</span>,<span class="number">.5</span>])</span><br><span class="line">transform=transforms.Compose([</span><br><span class="line">    transforms.RandomReSizedCrop(<span class="number">224</span>),</span><br><span class="line">    transforms.RandomHorizontalFlip(),</span><br><span class="line">    transforms.ToTensor(), <span class="comment">#将图片转换为Tensor,归一化至[0,1]</span></span><br><span class="line">    normalize</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">dataset=ImageFolder(<span class="string">'data/dogcat_2/'</span>,transform=transform)</span><br><span class="line">print(dataset[<span class="number">0</span>][<span class="number">0</span>].size())    <span class="comment"># n输出第 0 张图片的大小</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># torch.Size([3, 224, 224])</span></span><br></pre></td></tr></table></figure>
 
+<p>最后使用时仍需 <code>DataLoader</code> 包装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataloader = torch.utils.data.DataLoader(dataset, batch_size=opt.batchSize, shuffle=<span class="literal">True</span>, num_workers=opt.workers)</span><br></pre></td></tr></table></figure>
+
 <h2 id="图像处理"><a href="#图像处理" class="headerlink" title="图像处理"></a>图像处理</h2><blockquote>
 <p><a href="https://blog.csdn.net/u011995719/article/details/85107009" target="_blank" rel="noopener">transforms的二十二个方法</a></p>
 </blockquote>
@@ -485,15 +488,15 @@ function(){
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/22/cv2/">
+      <a class="prev" href="/2018/05/29/leetcode/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">计算机视觉基础</span>
+        <span class="prev-text nav-default">LeetCode 算法题</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2018/05/29/leetcode/">
-        <span class="next-text nav-default">LeetCode 算法题</span>
+      <a class="next" href="/2018/05/28/IoUmAP/">
+        <span class="next-text nav-default">目标检测中的 IoU 与 mAP</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
