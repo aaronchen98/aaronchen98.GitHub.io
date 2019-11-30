@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="算法与数据结构">
+
+
+
+
+  <meta name="keywords" content="算法,">
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="浩瀚宇宙·AaronChen">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/img/1.jpg?v=1.1">
+
+
+
+<link rel="canonical" href="https://hhyz.me/2019/11/30/Datastructure2/">
+
+
+<meta name="description" content="图算法最短路径Dijkstra 算法 Dijkstra算法到底是讲什么的 - 知乎  Bellman-Ford 算法 APP: 算法动画图解  最小生成树数据结构-图及相关算法 Prim 算法 K 算法">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法与数据结构">
+<meta property="og:url" content="https://hhyz.me/2019/11/30/Datastructure2/index.html">
+<meta property="og:site_name" content="浩瀚宇宙·AaronChen">
+<meta property="og:description" content="图算法最短路径Dijkstra 算法 Dijkstra算法到底是讲什么的 - 知乎  Bellman-Ford 算法 APP: 算法动画图解  最小生成树数据结构-图及相关算法 Prim 算法 K 算法">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
+<meta property="og:updated_time" content="2019-11-30T10:17:42.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法与数据结构">
+<meta name="twitter:description" content="图算法最短路径Dijkstra 算法 Dijkstra算法到底是讲什么的 - 知乎  Bellman-Ford 算法 APP: 算法动画图解  最小生成树数据结构-图及相关算法 Prim 算法 K 算法">
+<meta name="twitter:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3cbfa43ed54bb06d8da192dc667bed80";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-139198240-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+
+
+  
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9937341197542093",
+        enable_page_level_ads: true
+      });
+    </script>
+
+
+
+    <title> 算法与数据结构 - 浩瀚宇宙·AaronChen </title>
+
+
+    <script>
+(function(u, c) {
+  var d = document, t = 'script', o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+  o.src = u;
+  if (c) { o.addEventListener('load', function(e) { c(e); }); }
+  s.parentNode.insertBefore(o, s);
+})('//cdn.bootcss.com/pangu/3.3.0/pangu.min.js', function() {
+  pangu.spacingPage();
+});
+</script>
+
+
+
+<script type="text/javascript">
+window.onload=
+function(){
+    var oDiv = document.getElementById("toc-test"),
+    H = 0,
+    Y = oDiv
+    while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop
+        if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        } else {
+            oDiv.style = ""
+        }
+    }
+}
+</script>
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">浩瀚宇宙·AaronChen</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="https://www.hhyz.me">
+                            
+                            
+                                Gallery
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          算法与数据结构
+        
+      </h1>
+
+      <time class="post-time">
+          Nov 30 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="图算法"><a href="#图算法" class="headerlink" title="图算法"></a>图算法</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
+<li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
+</ul>
+<h3 id="Bellman-Ford-算法"><a href="#Bellman-Ford-算法" class="headerlink" title="Bellman-Ford 算法"></a>Bellman-Ford 算法</h3><ul>
+<li>APP: 算法动画图解</li>
+</ul>
+<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><p><a href="http://ddrv.cn/a/102959" target="_blank" rel="noopener">数据结构-图及相关算法</a></p>
+<h3 id="Prim-算法"><a href="#Prim-算法" class="headerlink" title="Prim 算法"></a>Prim 算法</h3><p><img src="/img/2019-11-30-Datastructure2-2.png" alt></p>
+<h3 id="K-算法"><a href="#K-算法" class="headerlink" title="K 算法"></a>K 算法</h3><p><img src="/img/2019-11-30-Datastructure2-1.png" alt></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/算法/">算法</a>
+          
+        </div>
+
+        <div class="post-tags">
+          
+            <a href="/categories/算法/">算法</a>
+          
+        </div>
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/07/13/regression/">
+        <span class="next-text nav-default">Regression</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+
+      <div class="post-toc-warp">
+        
+      <!--noindex-->
+          <div class="post-toc" id="toc-test">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图算法"><span class="nav-text">图算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#K-算法"><span class="nav-text">K 算法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+            <div class="back-to-top" id="back-to-top">
+              <i class="iconfont icon-up"></i>
+            </div>
+
+          </div>
+      <!--/noindex-->
+      
+      </div>
+
+
+      </div>
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2019
+    <span class="footer-author">haoyu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
+    </span>
+</span>
+
+      </footer>
+
+
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
