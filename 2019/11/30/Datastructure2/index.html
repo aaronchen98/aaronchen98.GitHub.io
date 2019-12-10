@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-6.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T15:24:26.881Z">
+<meta property="og:updated_time" content="2019-12-10T15:32:33.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -243,31 +243,31 @@ function(){
 </thead>
 <tbody><tr>
 <td align="center">SEARCH</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 <tr>
 <td align="center">PREDECESSOR</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 <tr>
 <td align="center">SUCCESOR</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 <tr>
 <td align="center">MINIMUM</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 <tr>
 <td align="center">MAXIMUM</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 <tr>
 <td align="center">INSERT</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 <tr>
 <td align="center">DELETE</td>
-<td align="center">O(logn)</td>
+<td align="center">O(h)</td>
 </tr>
 </tbody></table>
 <p><code>h</code> 是树的高度，因此，树越高，操作时间越长；树越矮，操作时间越短。</p>
@@ -290,6 +290,7 @@ function(){
 <li>从根到叶子的最长路径不会超过最短路径的 2 倍</li>
 </ul>
 <p><img src="/img/2019-11-30-Datastructure2-3.png" alt></p>
+<p><strong>操作时间复杂度</strong></p>
 <table>
 <thead>
 <tr>
@@ -299,33 +300,34 @@ function(){
 </thead>
 <tbody><tr>
 <td align="center">SEARCH</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 <tr>
 <td align="center">PREDECESSOR</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 <tr>
 <td align="center">SUCCESOR</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 <tr>
 <td align="center">MINIMUM</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 <tr>
 <td align="center">MAXIMUM</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 <tr>
 <td align="center">INSERT</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 <tr>
 <td align="center">DELETE</td>
-<td align="center">O(h)</td>
+<td align="center">O(logn)</td>
 </tr>
 </tbody></table>
+<p><strong>左旋与右旋</strong></p>
 <p><img src="/img/2019-11-30-Datastructure2-4.gif" alt></p>
 <p><img src="/img/2019-11-30-Datastructure2-5.gif" alt></p>
 <h2 id="AVL-树"><a href="#AVL-树" class="headerlink" title="AVL 树"></a>AVL 树</h2><p>属性：</p>
