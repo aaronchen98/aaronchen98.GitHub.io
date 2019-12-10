@@ -48,9 +48,10 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-3.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-4.gif">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-5.gif">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-6.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T14:43:20.556Z">
+<meta property="og:updated_time" content="2019-12-10T15:24:26.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -282,8 +283,8 @@ function(){
 <p>性质：</p>
 <ul>
 <li>n 个 node 的红黑树的高度最大为 <code>2log(n + 1)</code><ul>
-<li>任何 node x 的高度 h(x) 有：bh(x) ≥ h(x)/2</li>
-<li>以 x 为 root 的子树包含至少 2^(bh(x)) - 1 个内部 node </li>
+<li>任何 node x 的高度 h(x) 有：<code>bh(x) ≥ h(x)/2</code></li>
+<li>以 x 为 root 的子树包含至少 <code>2^(bh(x)) - 1</code> 个内部 node </li>
 </ul>
 </li>
 <li>从根到叶子的最长路径不会超过最短路径的 2 倍</li>
@@ -327,6 +328,18 @@ function(){
 </tbody></table>
 <p><img src="/img/2019-11-30-Datastructure2-4.gif" alt></p>
 <p><img src="/img/2019-11-30-Datastructure2-5.gif" alt></p>
+<h2 id="AVL-树"><a href="#AVL-树" class="headerlink" title="AVL 树"></a>AVL 树</h2><p>属性：</p>
+<ol>
+<li>（是二叉搜索树）</li>
+<li>每个节点的左子树和右子树的高度差最多为 1 </li>
+</ol>
+<p><strong>红黑树 Vs AVL树</strong></p>
+<p><img src="/img/2019-11-30-Datastructure2-6.png" alt></p>
+<ul>
+<li>AVL 树中的查找通常更快，但这是以插入和删除速度慢为代价的，因为需要更多的旋转操作。因此，如果您希望查找的重要性大于的更新的重要性，则使用AVL树。</li>
+<li>在大多数语言库中都使用红黑树，如 C++ 中的 map、MultIAP、MultiSet 等，而 AVL 树则用于数据库中，因为需要更快的检索。</li>
+<li>大数据的情况，因为在插入之前需要查找特定节点。AVL 树和 RB 树在最坏的情况下仍然只需要固定的旋转次数。因此，瓶颈是查找该特定节。</li>
+</ul>
 <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
 <li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
 </ul>
@@ -390,7 +403,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
