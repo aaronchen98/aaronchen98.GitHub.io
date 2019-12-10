@@ -51,10 +51,10 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-6.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-7.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-8.png">
-<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-9.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T16:59:40.309Z">
+<meta property="og:updated_time" content="2019-12-10T17:05:55.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -369,12 +369,13 @@ function(){
 <p><strong>规则：</strong></p>
 <ol>
 <li>排序方式：所有节点关键字是按递增次序排列，并遵循左小右大原则；</li>
-<li>子节点数：非叶节点（除了 root）的子节点数 x，<code>ceil(m/2) &lt;= x &lt;= M</code>，且 <code>M &gt;= 2</code>，空树除外；</li>
-<li>关键字数：除了 root 所有 node 的关键字数量为 <code>[ceil(m/2) - 1, M-1]</code> </li>
+<li>非叶节点的 key 数比它的子树的数量小 1；</li>
+<li>子节点数：非叶节点（除了 root）的子节点数 x，<code>ceil(m/2) &lt;= x &lt;= M</code>，且 <code>M &gt;= 2</code>；root 要么是一个叶节点，要么有 <code>[2, m]</code> 个子节点；</li>
+<li>key 数：除了 root 所有 node 的 key 数量为 <code>[ceil(m/2) - 1, M-1]</code> </li>
 <li>所有叶子节点均在同一层，叶节点包含不超过 <code>m - 1</code> 个关键字。（叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为 null）</li>
 </ol>
 <p><strong>B-tree of order 4：</strong></p>
-<p><img src="/img/2019-11-30-Datastructure2-2.png" alt></p>
+<p><img src="/img/2019-11-30-Datastructure2-9.png" alt></p>
 <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
 <li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
 </ul>
