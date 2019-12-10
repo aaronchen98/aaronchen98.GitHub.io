@@ -37,20 +37,20 @@
 <link rel="canonical" href="https://hhyz.me/2019/11/30/Datastructure2/">
 
 
-<meta name="description" content="图算法最短路径Dijkstra 算法 Dijkstra算法到底是讲什么的 - 知乎  Bellman-Ford 算法 APP: 算法动画图解  最小生成树数据结构-图及相关算法 Prim 算法 Kruskal 算法">
+<meta name="description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法与数据结构">
 <meta property="og:url" content="https://hhyz.me/2019/11/30/Datastructure2/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="图算法最短路径Dijkstra 算法 Dijkstra算法到底是讲什么的 - 知乎  Bellman-Ford 算法 APP: 算法动画图解  最小生成树数据结构-图及相关算法 Prim 算法 Kruskal 算法">
+<meta property="og:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-11-30T14:36:59.827Z">
+<meta property="og:updated_time" content="2019-12-10T12:51:17.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
-<meta name="twitter:description" content="图算法最短路径Dijkstra 算法 Dijkstra算法到底是讲什么的 - 知乎  Bellman-Ford 算法 APP: 算法动画图解  最小生成树数据结构-图及相关算法 Prim 算法 Kruskal 算法">
+<meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
 <meta name="twitter:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 
 
@@ -208,7 +208,66 @@ function(){
 
     
             <div class="post-content">
-            <h1 id="图算法"><a href="#图算法" class="headerlink" title="图算法"></a>图算法</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
+            <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="二叉树-Binary-tree"><a href="#二叉树-Binary-tree" class="headerlink" title="二叉树 Binary tree"></a>二叉树 Binary tree</h2><ul>
+<li>严格二叉树 Strictly binary tree</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">       <span class="number">18</span></span><br><span class="line">     /     \   </span><br><span class="line">   <span class="number">15</span>       <span class="number">30</span>    </span><br><span class="line">  /  \          </span><br><span class="line"><span class="number">40</span>    <span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完整二叉树 Complete (full) binary tree </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        <span class="number">18</span></span><br><span class="line">     /      \   </span><br><span class="line">   <span class="number">15</span>       <span class="number">30</span>    </span><br><span class="line">  /  \     /   \   </span><br><span class="line"><span class="number">40</span>    <span class="number">50</span>  <span class="number">100</span>  <span class="number">40</span></span><br></pre></td></tr></table></figure>
+
+<p>二叉树遍历：</p>
+<ul>
+<li>前序遍历 preorder：先访问根节点 —— 前序遍历左子树 —— 前序遍历右子树</li>
+<li>中序遍历 inorder：先访问左子树 —— 根节点 —— 右子树</li>
+<li>后序遍历 postorder：先访问树的左子树 —— 右子树 —— 根节点</li>
+</ul>
+<p><a href="https://www.cnblogs.com/fly-me/p/wei-ti-jiaoer-cha-shu-de-si-zhong-bian-li-fang-fa.html" target="_blank" rel="noopener">二叉树的四种遍历方法笔记</a></p>
+<blockquote>
+<p>同样的遍历序列可能对应多棵不同的树</p>
+</blockquote>
+<h2 id="二叉搜索树-Binary-Search-Tree-BST"><a href="#二叉搜索树-Binary-Search-Tree-BST" class="headerlink" title="二叉搜索树 Binary Search Tree (BST)"></a>二叉搜索树 Binary Search Tree (BST)</h2><p>搜索平均时间: <code>Θ(logn)</code>：The expected height of the tree is logn</p>
+<p>最坏情况: <code>Θ(n)</code>：The tree is a linear chain of n nodes</p>
+<table>
+<thead>
+<tr>
+<th align="center">Operations</th>
+<th align="center">Time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SEARCH</td>
+<td align="center">O(h)</td>
+</tr>
+<tr>
+<td align="center">PREDECESSOR</td>
+<td align="center">O(h)</td>
+</tr>
+<tr>
+<td align="center">SUCCESOR</td>
+<td align="center">O(h)</td>
+</tr>
+<tr>
+<td align="center">MINIMUM</td>
+<td align="center">O(h)</td>
+</tr>
+<tr>
+<td align="center">MAXIMUM</td>
+<td align="center">O(h)</td>
+</tr>
+<tr>
+<td align="center">INSERT</td>
+<td align="center">O(h)</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="center">O(h)</td>
+</tr>
+</tbody></table>
+<p><code>h</code> 是树的高度，因此，树越高，操作时间越长；树越矮，操作时间越短。</p>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
 <li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
 </ul>
 <h3 id="Bellman-Ford-算法"><a href="#Bellman-Ford-算法" class="headerlink" title="Bellman-Ford 算法"></a>Bellman-Ford 算法</h3><ul>
@@ -271,7 +330,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图算法"><span class="nav-text">图算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
