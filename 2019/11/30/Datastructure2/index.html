@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-9.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T17:05:55.343Z">
+<meta property="og:updated_time" content="2019-12-10T17:11:16.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -368,11 +368,11 @@ function(){
 </blockquote>
 <p><strong>规则：</strong></p>
 <ol>
-<li>排序方式：所有节点关键字是按递增次序排列，并遵循左小右大原则；</li>
+<li><strong>排序方式：</strong>所有节点关键字是按递增次序排列，并遵循左小右大原则；</li>
 <li>非叶节点的 key 数比它的子树的数量小 1；</li>
-<li>子节点数：非叶节点（除了 root）的子节点数 x，<code>ceil(m/2) &lt;= x &lt;= M</code>，且 <code>M &gt;= 2</code>；root 要么是一个叶节点，要么有 <code>[2, m]</code> 个子节点；</li>
-<li>key 数：除了 root 所有 node 的 key 数量为 <code>[ceil(m/2) - 1, M-1]</code> </li>
-<li>所有叶子节点均在同一层，叶节点包含不超过 <code>m - 1</code> 个关键字。（叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为 null）</li>
+<li><strong>子节点数：</strong>非叶节点（除了 root）的子节点数为，<code>[ceil(M/2), M]</code>；root 要么是一个叶节点，要么有 <code>[2, m]</code> 个子节点；</li>
+<li><strong>key 数：</strong>除了 root 所有 node 的 key 数量为 <code>[ceil(M/2) - 1, M-1]</code>；</li>
+<li>所有叶子节点均在同一层，叶节点包含不超过 <code>M - 1</code> 个 key。（叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为 null）</li>
 </ol>
 <p><strong>B-tree of order 4：</strong></p>
 <p><img src="/img/2019-11-30-Datastructure2-9.png" alt></p>
