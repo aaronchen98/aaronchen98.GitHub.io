@@ -49,9 +49,11 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-4.gif">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-5.gif">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-6.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-7.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-8.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T15:32:33.542Z">
+<meta property="og:updated_time" content="2019-12-10T16:08:55.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -342,6 +344,26 @@ function(){
 <li>在大多数语言库中都使用红黑树，如 C++ 中的 map、MultIAP、MultiSet 等，而 AVL 树则用于数据库中，因为需要更快的检索。</li>
 <li>大数据的情况，因为在插入之前需要查找特定节点。AVL 树和 RB 树在最坏的情况下仍然只需要固定的旋转次数。因此，瓶颈是查找该特定节。</li>
 </ul>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B 树"></a>B 树</h2><blockquote>
+<p><a href="http://m.elecfans.com/article/662237.html" target="_blank" rel="noopener">为什么需要 B 树？</a></p>
+</blockquote>
+<p><strong>磁盘IO与预读</strong></p>
+<p>磁盘读取依靠的是机械运动，分为寻道时间、旋转延迟、传输时间三个部分，这三个部分耗时相加就是一次磁盘IO的时间，大概9ms左右。这个成本是访问内存的十万倍左右；正是由于磁盘IO是非常昂贵的操作，所以计算机操作系统对此做了优化：预读；每一次IO时，不仅仅把当前磁盘地址的数据加载到内存，同时也把相邻数据也加载到内存缓冲区中。因为局部预读原理说明：当访问一个地址数据的时候，与其相邻的数据很快也会被访问到。每次磁盘IO读取的数据我们称之为一页（page）。一页的大小与操作系统有关，一般为4k或者8k。这也就意味着读取一页内数据的时候，实际上发生了一次磁盘IO。</p>
+<p><strong>B-Tree与二叉查找树的对比</strong></p>
+<p>我们知道二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少，既然性能已经如此优秀，但为什么实现索引是使用B-Tree而不是二叉查找树，关键因素是磁盘IO的次数。</p>
+<p>数据库索引是存储在磁盘上，当表中的数据量比较大时，索引的大小也跟着增长，达到几个G甚至更多。当我们利用索引进行查询的时候，不可能把索引全部加载到内存中，只能逐一加载每个磁盘页，这里的磁盘页就对应索引树的节点。</p>
+<p><strong>二叉树</strong></p>
+<p><img src="/img/2019-11-30-Datastructure2-7.png" alt></p>
+<p>从二叉树的查找过程了来看，树的高度和磁盘IO的次数都是4，所以最坏的情况下磁盘IO的次数由树的高度来决定。</p>
+<p>从前面分析情况来看，减少磁盘IO的次数就必须要压缩树的高度，让瘦高的树尽量变成矮胖的树，所以B-Tree就在这样伟大的时代背景下诞生了。</p>
+<p><strong>B-Tree</strong></p>
+<p><img src="/img/2019-11-30-Datastructure2-8.png" alt></p>
+<p>从查找过程中发现，B树的比对次数和磁盘IO的次数与二叉树相差不了多少，所以这样看来并没有什么优势。</p>
+<p>但是仔细一看会发现，比对是在内存中完成中，不涉及到磁盘IO，耗时可以忽略不计。另外B树种一个节点中可以存放很多的key（个数由树阶决定）。</p>
+<p>相同数量的key在B树中生成的节点要远远少于二叉树中的节点，相差的节点数量就等同于磁盘IO的次数。这样到达一定数量后，性能的差异就显现出来了。</p>
+<blockquote>
+<p>B树主要应用于文件系统以及部分数据库索引，如MongoDB，大部分关系型数据库索引则是使用B+树实现。</p>
+</blockquote>
 <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
 <li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
 </ul>
@@ -405,7 +427,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
