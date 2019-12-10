@@ -53,7 +53,7 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-8.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T16:08:55.921Z">
+<meta property="og:updated_time" content="2019-12-10T16:45:14.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -348,7 +348,8 @@ function(){
 <p><a href="http://m.elecfans.com/article/662237.html" target="_blank" rel="noopener">为什么需要 B 树？</a></p>
 </blockquote>
 <p><strong>磁盘IO与预读</strong></p>
-<p>磁盘读取依靠的是机械运动，分为寻道时间、旋转延迟、传输时间三个部分，这三个部分耗时相加就是一次磁盘IO的时间，大概9ms左右。这个成本是访问内存的十万倍左右；正是由于磁盘IO是非常昂贵的操作，所以计算机操作系统对此做了优化：预读；每一次IO时，不仅仅把当前磁盘地址的数据加载到内存，同时也把相邻数据也加载到内存缓冲区中。因为局部预读原理说明：当访问一个地址数据的时候，与其相邻的数据很快也会被访问到。每次磁盘IO读取的数据我们称之为一页（page）。一页的大小与操作系统有关，一般为4k或者8k。这也就意味着读取一页内数据的时候，实际上发生了一次磁盘IO。</p>
+<p>磁盘读取依靠的是机械运动，分为寻道时间、旋转延迟、传输时间三个部分，这三个部分耗时相加就是一次磁盘IO的时间，大概9ms左右（<strong>需要等待一个磁盘转完完整的一圈</strong>）。这个成本是访问内存的十万倍左右；正是由于磁盘IO是非常昂贵的操作，所以计算机操作系统对此做了优化：预读；每一次IO时，不仅仅把当前磁盘地址的数据加载到内存，同时也把相邻数据也加载到内存缓冲区中。因为局部预读原理说明：当访问一个地址数据的时候，与其相邻的数据很快也会被访问到。每次磁盘IO读取的数据我们称之为一页（page）。一页的大小与操作系统有关，一般为4k或者8k。这也就意味着读取一页内数据的时候，实际上发生了一次磁盘IO。</p>
+<p>当搜索表保存在磁盘上时，每次磁盘传输的成本很高，<strong>但并不很大程度上取决于传输的数据量</strong>，特别是如果传输的是连续的项目。</p>
 <p><strong>B-Tree与二叉查找树的对比</strong></p>
 <p>我们知道二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少，既然性能已经如此优秀，但为什么实现索引是使用B-Tree而不是二叉查找树，关键因素是磁盘IO的次数。</p>
 <p>数据库索引是存储在磁盘上，当表中的数据量比较大时，索引的大小也跟着增长，达到几个G甚至更多。当我们利用索引进行查询的时候，不可能把索引全部加载到内存中，只能逐一加载每个磁盘页，这里的磁盘页就对应索引树的节点。</p>
@@ -359,11 +360,18 @@ function(){
 <p><strong>B-Tree</strong></p>
 <p><img src="/img/2019-11-30-Datastructure2-8.png" alt></p>
 <p>从查找过程中发现，B树的比对次数和磁盘IO的次数与二叉树相差不了多少，所以这样看来并没有什么优势。</p>
-<p>但是仔细一看会发现，比对是在内存中完成中，不涉及到磁盘IO，耗时可以忽略不计。另外B树种一个节点中可以存放很多的key（个数由树阶决定）。</p>
+<p>但是仔细一看会发现，比对是在内存中完成中，<strong>不涉及到磁盘IO，耗时可以忽略不计</strong>。另外B树种一个节点中可以存放很多的key（个数由树阶决定）。</p>
 <p>相同数量的key在B树中生成的节点要远远少于二叉树中的节点，相差的节点数量就等同于磁盘IO的次数。这样到达一定数量后，性能的差异就显现出来了。</p>
 <blockquote>
 <p>B树主要应用于文件系统以及部分数据库索引，如MongoDB，大部分关系型数据库索引则是使用B+树实现。</p>
 </blockquote>
+<p><strong>规则：</strong></p>
+<ol>
+<li>排序方式：所有节点关键字是按递增次序排列，并遵循左小右大原则；</li>
+<li>子节点数：非叶节点的子节点数x，<code>1 &lt; x &lt;= M</code>，且 <code>M &gt;= 2</code>，空树除外；</li>
+<li>关键字数：非叶节点的关键字数量大于等于 <code>ceil(m/2) - 1</code> 个且小于等于 <code>M-1</code> 个；叶节点包含不超过 <code>m - 1</code> 个关键字</li>
+<li>所有叶子节点均在同一层、叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为 null</li>
+</ol>
 <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
 <li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
 </ul>
