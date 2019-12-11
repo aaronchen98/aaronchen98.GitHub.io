@@ -52,9 +52,11 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-7.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-8.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-9.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-10.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-11.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-10T17:11:31.482Z">
+<meta property="og:updated_time" content="2019-12-11T15:07:44.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -376,7 +378,47 @@ function(){
 </ol>
 <p><strong>B-tree of order 4：</strong></p>
 <p><img src="/img/2019-11-30-Datastructure2-9.png" alt></p>
-<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p>入度 in-degree：进入该节点的边的条数<br>出度 out-degree：从该节点出发的边的条数</p>
+<p><strong>连通图</strong></p>
+<p><img src="/img/2019-11-30-Datastructure2-10.png" alt></p>
+<blockquote>
+<p>A tree is a connected, acyclic “undirected” graph</p>
+</blockquote>
+<p><img src="/img/2019-11-30-Datastructure2-11.png" alt></p>
+<h2 id="拓扑排序-Topological-sort"><a href="#拓扑排序-Topological-sort" class="headerlink" title="拓扑排序 Topological sort"></a>拓扑排序 Topological sort</h2><p>有向无环图（DAG）至少有一种拓扑排序，非 DAG 图没有拓扑排序。 </p>
+<p>当有向无环图满足以下条件时：</p>
+<ol>
+<li>每一个顶点出现且只出现一次</li>
+<li>若A在序列中排在B的前面，则在图中不存在从B到A的路径。</li>
+</ol>
+<p>我们称这样的图，是一个拓扑排序的图。<br>与之前的树结构对比不难发现，树结构其实可以转化为拓扑排序，而拓扑排序 不一定能够转化为树。</p>
+<p><strong>算法：</strong></p>
+<ol>
+<li>根据邻接矩阵或邻接表计算入度数组 </li>
+<li>取入度为 0 的 vertex </li>
+<li>打印该 vertex，并移除它，和它的 edge</li>
+<li>判断减小后是否有新的入度为 0 的 vertex，继续进行第2步 </li>
+<li>直到所有 vertex 入度为 0、得到拓扑排序序列，或返回失败</li>
+</ol>
+<blockquote>
+<p>Running time is <code>O(|V|^2)</code>.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">topsort</span> <span class="params">()</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> counter=<span class="number">0</span>; counter&lt;numVertex; counter++) &#123;</span><br><span class="line">		Vertex v = FindNewVertexOfInDegreeZero (); <span class="comment">//check all vertices</span></span><br><span class="line">		<span class="keyword">if</span> (v == <span class="keyword">null</span>) &#123;</span><br><span class="line">			Error(“Cycle Found”); <span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		v.topNum = counter;</span><br><span class="line">		<span class="keyword">for</span> each Vertex w adjacent to v</span><br><span class="line">			w.indegree--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>改进版本：</strong></p>
+<ol>
+<li>将indegree 0的所有未分配顶点保留在队列中。</li>
+<li>当队列不为空：<ol start="3">
+<li>在队列中删除一个顶点。</li>
+<li>减小所有相邻顶点的度数。</li>
+<li>如果相邻顶点的度数变为0，则使该顶点入队。</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>运行时间为 <code>O(| E | + | V |)</code>。</p>
+</blockquote>
+<h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h3><ul>
 <li><a href="https://www.zhihu.com/question/20972566/answer/290944499" target="_blank" rel="noopener">Dijkstra算法到底是讲什么的 - 知乎</a></li>
 </ul>
 <h3 id="Bellman-Ford-算法"><a href="#Bellman-Ford-算法" class="headerlink" title="Bellman-Ford 算法"></a>Bellman-Ford 算法</h3><ul>
@@ -439,7 +481,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑排序-Topological-sort"><span class="nav-text">拓扑排序 Topological sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
