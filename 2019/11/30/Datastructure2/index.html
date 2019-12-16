@@ -57,7 +57,7 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-12.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-11T15:38:27.403Z">
+<meta property="og:updated_time" content="2019-12-16T14:12:48.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary tree 严格二叉树 Strictly binary tree  12345       18     /     \      15       30      /  \          40    50   完整二叉树 Complete (full) binary tree   12345        18     /      \      15       30">
@@ -429,7 +429,28 @@ function(){
 <h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><p><a href="http://ddrv.cn/a/102959" target="_blank" rel="noopener">数据结构-图及相关算法</a></p>
 <h3 id="Prim-算法"><a href="#Prim-算法" class="headerlink" title="Prim 算法"></a>Prim 算法</h3><p><img src="/img/2019-11-30-Datastructure2-2.png" alt></p>
 <h3 id="Kruskal-算法"><a href="#Kruskal-算法" class="headerlink" title="Kruskal 算法"></a>Kruskal 算法</h3><p><img src="/img/2019-11-30-Datastructure2-1.png" alt></p>
-<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><blockquote>
+<p>采用动态规划时，并不需要去一 一 计算那些重叠了的子问题。或者说：用了动态规划之后，有些子问题 是通过 “查表“ 直接得到的，而不是重新又计算一遍得到的。</p>
+</blockquote>
+<ol>
+<li><p><strong>最优子结构</strong></p>
+<p> 问题的最优解包含子问题的最优解<br> 从子问题的最优解自下而上建立整个问题的最优解</p>
+</li>
+<li><p><strong>重叠子问题</strong></p>
+<p> 如果递归算法一遍又一遍地重新访问相同的子问题，则该问题具有重叠的子问题</p>
+</li>
+</ol>
+<p><strong>DP算法的运行时间取决于两个因素：</strong></p>
+<ul>
+<li>子问题总数</li>
+<li>每个子问题有多少选择</li>
+</ul>
+<blockquote>
+<p>Θ(n) 个子问题<br>每个子问题有 2 个选择<br>————&gt; Θ(n)</p>
+<p>Θ(n^2) 个子问题<br>约有 n-1 个选择<br>————&gt; Θ(n^3)</p>
+</blockquote>
+<h2 id="最长公共子序列-LCS"><a href="#最长公共子序列-LCS" class="headerlink" title="最长公共子序列 LCS"></a>最长公共子序列 LCS</h2><p><a href="https://www.cnblogs.com/wkfvawl/p/9362287.html" target="_blank" rel="noopener">算法设计与分析/动态规划——最长公共子序列LCS及模板</a></p>
+
             </div>
           
 
@@ -483,7 +504,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑排序-Topological-sort"><span class="nav-text">拓扑排序 Topological sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-text">动态规划</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑排序-Topological-sort"><span class="nav-text">拓扑排序 Topological sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子序列-LCS"><span class="nav-text">最长公共子序列 LCS</span></a></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
