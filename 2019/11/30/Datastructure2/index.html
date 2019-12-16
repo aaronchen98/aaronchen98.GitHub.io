@@ -57,7 +57,7 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-12.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-16T23:11:35.253Z">
+<meta property="og:updated_time" content="2019-12-16T23:46:32.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary treeIf every non-leaf node in a binary tree has nonempty left and right subtrees, the tree is termed a strictly binary tree. Or, to put it another way, all of the nodes in a strictly binar">
@@ -240,7 +240,10 @@ function(){
 <blockquote>
 <p>同样的遍历序列可能对应多棵不同的树</p>
 </blockquote>
-<h2 id="二叉搜索树-Binary-Search-Tree-BST"><a href="#二叉搜索树-Binary-Search-Tree-BST" class="headerlink" title="二叉搜索树 Binary Search Tree (BST)"></a>二叉搜索树 Binary Search Tree (BST)</h2><p>搜索平均时间: <code>Θ(logn)</code>：The expected height of the tree is logn</p>
+<h2 id="二叉搜索树-Binary-Search-Tree-BST"><a href="#二叉搜索树-Binary-Search-Tree-BST" class="headerlink" title="二叉搜索树 Binary Search Tree (BST)"></a>二叉搜索树 Binary Search Tree (BST)</h2><blockquote>
+<p>若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为二叉排序树。</p>
+</blockquote>
+<p>搜索平均时间: <code>Θ(logn)</code>：The expected height of the tree is logn</p>
 <p>最坏情况: <code>Θ(n)</code>：The tree is a linear chain of n nodes</p>
 <table>
 <thead>
@@ -279,7 +282,7 @@ function(){
 </tr>
 </tbody></table>
 <p><code>h</code> 是树的高度，因此，树越高，操作时间越长；树越矮，操作时间越短。</p>
-<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>属性：</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p><strong>属性：</strong></p>
 <ol>
 <li>节点是红色或黑色。</li>
 <li>根节点是黑色。</li>
@@ -288,7 +291,7 @@ function(){
 <li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</li>
 <li>(是二叉搜索树)</li>
 </ol>
-<p>性质：</p>
+<p><strong>性质：</strong></p>
 <ul>
 <li>n 个 node 的红黑树的高度最大为 <code>2log(n + 1)</code><ul>
 <li>任何 node x 的高度 h(x) 有：<code>bh(x) ≥ h(x)/2</code></li>
