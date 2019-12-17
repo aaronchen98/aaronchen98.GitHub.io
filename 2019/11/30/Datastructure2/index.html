@@ -54,10 +54,12 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-9.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-10.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-11.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-13.png">
+<meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-14.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-12.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-17T00:03:29.068Z">
+<meta property="og:updated_time" content="2019-12-17T00:16:33.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary treeIf every non-leaf node in a binary tree has nonempty left and right subtrees, the tree is termed a strictly binary tree. Or, to put it another way, all of the nodes in a strictly binar">
@@ -391,6 +393,8 @@ function(){
 <p>A tree is a connected, acyclic “undirected” graph</p>
 </blockquote>
 <p><img src="/img/2019-11-30-Datastructure2-11.png" alt></p>
+<h2 id="邻接表与邻接矩阵"><a href="#邻接表与邻接矩阵" class="headerlink" title="邻接表与邻接矩阵"></a>邻接表与邻接矩阵</h2><p><img src="/img/2019-11-30-Datastructure2-13.png" alt></p>
+<p><img src="/img/2019-11-30-Datastructure2-14.png" alt></p>
 <h2 id="拓扑排序-Topological-sort"><a href="#拓扑排序-Topological-sort" class="headerlink" title="拓扑排序 Topological sort"></a>拓扑排序 Topological sort</h2><p>有向无环图（DAG）至少有一种拓扑排序，非 DAG 图没有拓扑排序。 </p>
 <p>当有向无环图满足以下条件时：</p>
 <ol>
@@ -446,8 +450,10 @@ function(){
 <li>MST 没有 cycle</li>
 <li>MST 的 edge 的数量：<code>|V| - 1</code></li>
 </ul>
-<h3 id="Prim-算法"><a href="#Prim-算法" class="headerlink" title="Prim 算法"></a>Prim 算法</h3><p><img src="/img/2019-11-30-Datastructure2-2.png" alt></p>
-<h3 id="Kruskal-算法"><a href="#Kruskal-算法" class="headerlink" title="Kruskal 算法"></a>Kruskal 算法</h3><p><img src="/img/2019-11-30-Datastructure2-1.png" alt></p>
+<h3 id="Prim-算法"><a href="#Prim-算法" class="headerlink" title="Prim 算法"></a>Prim 算法</h3><p>首先以一个结点作为最小生成树的初始结点，然后以迭代的方式找出与最小生成树中各结点权重最小边，并加入到最小生成树中。加入之后如果产生回路则跳过这条边，选择下一个结点。当所有结点都加入到最小生成树中之后，就找出了连通图中的最小生成树了。</p>
+<p><img src="/img/2019-11-30-Datastructure2-2.png" alt></p>
+<h3 id="Kruskal-算法"><a href="#Kruskal-算法" class="headerlink" title="Kruskal 算法"></a>Kruskal 算法</h3><p>Kruskal算法与Prim算法的不同之处在于，Kruskal在找最小生成树结点之前，需要对所有权重边做从小到大排序。将排序好的权重边依次加入到最小生成树中，如果加入时产生回路就跳过这条边，加入下一条边。当所有结点都加入到最小生成树中之后，就找出了最小生成树。</p>
+<p><img src="/img/2019-11-30-Datastructure2-1.png" alt></p>
 <p><strong>Prim Vs Kruskal</strong></p>
 <ul>
 <li>两者都可以处理负权重</li>
@@ -459,6 +465,11 @@ function(){
 </ul>
 </li>
 </ul>
+<p>prim: 该算法的时间复杂度为O(n2)。与图中边数无关，该算法适合于稠密图。</p>
+<p>kruskal: 需要对图的边进行访问，所以克鲁斯卡尔算法的时间复杂度只和边又关系，可以证明其时间复杂度为O（eloge）。适合稀疏图。</p>
+<p>无疑，Kruskal算法在效率上要比Prim算法快，因为Kruskal只需要对权重边做一次排序，而Prim算法则需要做多次排序。尽管Prim算法每次做的算法涉及的权重边不一定会涵盖连通图中的所有边，但是随着所使用的排序算法的效率的提高，Kruskal算法和Prim算法之间的差异将会清晰的显性出来。</p>
+<p>时间上：Prim适合稠密图，复杂度为O(n * n)，因此通常使用邻接矩阵储存，复杂度为O(e * loge)，而Kruskal多用邻接表。<br>稠密图 Prim &gt; Kruskal，稀疏图 Kruskal &gt; Prim。</p>
+<p>空间上： Prim适合点少边多，Kruskal适合边多点少。</p>
 <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><blockquote>
 <p>采用动态规划时，并不需要去一一计算那些重叠了的子问题。<br>或者说：用了动态规划之后，有些子问题 是通过 “查表” 直接得到的，而不是重新又计算一遍得到的。</p>
 </blockquote>
@@ -540,7 +551,7 @@ function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑排序-Topological-sort"><span class="nav-text">拓扑排序 Topological sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子序列-LCS"><span class="nav-text">最长公共子序列 LCS</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-Binary-tree"><span class="nav-text">二叉树 Binary tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树-Binary-Search-Tree-BST"><span class="nav-text">二叉搜索树 Binary Search Tree (BST)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL-树"><span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-text">B 树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#邻接表与邻接矩阵"><span class="nav-text">邻接表与邻接矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑排序-Topological-sort"><span class="nav-text">拓扑排序 Topological sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径"><span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-text">Bellman-Ford 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树"><span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim-算法"><span class="nav-text">Prim 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal-算法"><span class="nav-text">Kruskal 算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子序列-LCS"><span class="nav-text">最长公共子序列 LCS</span></a></li></ol></li></ol></div>
             
 
             <div class="back-to-top" id="back-to-top">
