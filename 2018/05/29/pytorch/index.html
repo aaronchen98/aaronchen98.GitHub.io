@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="PyTorch 入门">
+  <meta name="description" content="PyTorch 总结">
 
 
 
@@ -40,15 +40,15 @@
 <meta name="description" content="PyTorch Cookbook（常用代码段整理合集） PyTorch 大批量数据在单个或多个 GPU 训练指南  PyTorch中在反向传播前为什么要手动将梯度清零？  基础Numpy to Torth python、PyTorch 图像读取与 numpy 转换  Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合">
 <meta name="keywords" content="PyTorch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PyTorch 入门">
+<meta property="og:title" content="PyTorch 总结">
 <meta property="og:url" content="https://hhyz.me/2018/05/29/pytorch/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
 <meta property="og:description" content="PyTorch Cookbook（常用代码段整理合集） PyTorch 大批量数据在单个或多个 GPU 训练指南  PyTorch中在反向传播前为什么要手动将梯度清零？  基础Numpy to Torth python、PyTorch 图像读取与 numpy 转换  Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://hhyz.me/img/2018-05-29-pytorch-101.jpg">
-<meta property="og:updated_time" content="2019-07-25T05:05:27.517Z">
+<meta property="og:updated_time" content="2020-01-09T10:37:21.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyTorch 入门">
+<meta name="twitter:title" content="PyTorch 总结">
 <meta name="twitter:description" content="PyTorch Cookbook（常用代码段整理合集） PyTorch 大批量数据在单个或多个 GPU 训练指南  PyTorch中在反向传播前为什么要手动将梯度清零？  基础Numpy to Torth python、PyTorch 图像读取与 numpy 转换  Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合">
 <meta name="twitter:image" content="https://hhyz.me/img/2018-05-29-pytorch-101.jpg">
 
@@ -108,7 +108,7 @@
 
 
 
-    <title> PyTorch 入门 - 浩瀚宇宙·AaronChen </title>
+    <title> PyTorch 总结 - 浩瀚宇宙·AaronChen </title>
 
 
     <script>
@@ -194,7 +194,7 @@ function(){
     <header class="post-header">
       <h1 class="post-title">
         
-          PyTorch 入门
+          PyTorch 总结
         
       </h1>
 
@@ -432,6 +432,16 @@ function(){
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">device = get_default_device()</span><br><span class="line"></span><br><span class="line">print(device)   <span class="comment"># device(type='cuda')</span></span><br></pre></td></tr></table></figure>
 
+<p><strong>CUDA memory error</strong></p>
+<ol>
+<li>lower resolution, though hurt performance</li>
+<li>use gradient accumulation to get a larger batch size</li>
+<li>duly use <code>empty_cache</code> or use other methods to manage memory finely</li>
+<li>use pytorch checkpoint to run partial model at once</li>
+</ol>
+<p><strong>多 GPU 训练</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">model=nn.DataParallel(model,device_ids=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]) <span class="comment"># multi-GPU</span></span><br><span class="line">model=nn.DataParallel(model) <span class="comment"># multi-GPU</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="维度调整"><a href="#维度调整" class="headerlink" title="维度调整"></a>维度调整</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">a = np.arange(<span class="number">24</span>).reshape(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">b = a[:,<span class="number">-1</span>,:]</span><br><span class="line">print(b.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># (2, 4)</span></span><br><span class="line"></span><br><span class="line">x = torch.from_numpy(a)</span><br><span class="line">y = x[:,<span class="number">-1</span>,:].unsqueeze(<span class="number">1</span>)</span><br><span class="line">print(y.size())     <span class="comment"># torch.Size([2, 1, 4])</span></span><br><span class="line">z = y.expand(<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>)</span><br><span class="line">print(z.size())     <span class="comment"># torch.Size([2, 4, 4])</span></span><br></pre></td></tr></table></figure>
 
 <p><code>expand</code></p>
@@ -466,6 +476,15 @@ function(){
 <figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AttributeError: Can<span class="symbol">'t</span> get <span class="keyword">attribute</span> <span class="symbol">'Net</span>' <span class="keyword">on</span> &lt;module '__main__'&gt;</span><br></pre></td></tr></table></figure>
 
 <p>在导入模型的时候没有把类的定义添加或者 import 到加载模型的这个 py 文件中</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expected more than <span class="number">1</span> value per channel when training, got input size torch.Size([<span class="number">1</span>, <span class="number">512</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>可能是输入批次只有一个数据点，而由于BatchNorm操作需要多于一个数据计算平均值，因此造成该错误。</p>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li>改变（增大） batchsize</li>
+<li>在获取数据集时，将DataLoader中drop_last设置为True。</li>
+<li>把不够一个批次的数据丢弃。</li>
+</ol>
 
             </div>
           
@@ -546,7 +565,7 @@ function(){
     
         2017 -
     
-    2019
+    2020
     <span class="footer-author">haoyu.</span>
     <span class="power-by">
         Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>

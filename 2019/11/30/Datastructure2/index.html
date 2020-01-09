@@ -59,7 +59,7 @@
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-12.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-2.png">
 <meta property="og:image" content="https://hhyz.me/img/2019-11-30-Datastructure2-1.png">
-<meta property="og:updated_time" content="2019-12-17T00:16:33.578Z">
+<meta property="og:updated_time" content="2019-12-17T04:25:40.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构">
 <meta name="twitter:description" content="树二叉树 Binary treeIf every non-leaf node in a binary tree has nonempty left and right subtrees, the tree is termed a strictly binary tree. Or, to put it another way, all of the nodes in a strictly binar">
@@ -234,9 +234,9 @@ function(){
 
 <p>二叉树遍历：</p>
 <ul>
-<li>前序遍历 preorder：先访问根节点 —— 前序遍历左子树 —— 前序遍历右子树</li>
-<li>中序遍历 inorder：先访问左子树 —— 根节点 —— 右子树</li>
-<li>后序遍历 postorder：先访问树的左子树 —— 右子树 —— 根节点</li>
+<li>前序遍历 preorder：先访问根节点 —— 前序遍历左子树 —— 前序遍历右子树 （中左右）</li>
+<li>中序遍历 inorder：先访问左子树 —— 根节点 —— 右子树（左中右）</li>
+<li>后序遍历 postorder：先访问树的左子树 —— 右子树 —— 根节点（左右中）</li>
 </ul>
 <p><a href="https://www.cnblogs.com/fly-me/p/wei-ti-jiaoer-cha-shu-de-si-zhong-bian-li-fang-fa.html" target="_blank" rel="noopener">二叉树的四种遍历方法笔记</a></p>
 <blockquote>
@@ -392,8 +392,8 @@ function(){
 <blockquote>
 <p>A tree is a connected, acyclic “undirected” graph</p>
 </blockquote>
-<p><img src="/img/2019-11-30-Datastructure2-11.png" alt></p>
-<h2 id="邻接表与邻接矩阵"><a href="#邻接表与邻接矩阵" class="headerlink" title="邻接表与邻接矩阵"></a>邻接表与邻接矩阵</h2><p><img src="/img/2019-11-30-Datastructure2-13.png" alt></p>
+<h2 id="邻接表与邻接矩阵"><a href="#邻接表与邻接矩阵" class="headerlink" title="邻接表与邻接矩阵"></a>邻接表与邻接矩阵</h2><p><img src="/img/2019-11-30-Datastructure2-11.png" alt></p>
+<p><img src="/img/2019-11-30-Datastructure2-13.png" alt></p>
 <p><img src="/img/2019-11-30-Datastructure2-14.png" alt></p>
 <h2 id="拓扑排序-Topological-sort"><a href="#拓扑排序-Topological-sort" class="headerlink" title="拓扑排序 Topological sort"></a>拓扑排序 Topological sort</h2><p>有向无环图（DAG）至少有一种拓扑排序，非 DAG 图没有拓扑排序。 </p>
 <p>当有向无环图满足以下条件时：</p>
@@ -519,6 +519,12 @@ function(){
         
   <nav class="post-nav">
     
+      <a class="prev" href="/2020/01/09/pytorch2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">PyTorch 进阶</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
     
       <a class="next" href="/2019/07/13/regression/">
         <span class="next-text nav-default">Regression</span>
@@ -571,7 +577,7 @@ function(){
     
         2017 -
     
-    2019
+    2020
     <span class="footer-author">haoyu.</span>
     <span class="power-by">
         Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple">Polar Bear Simple</a>
