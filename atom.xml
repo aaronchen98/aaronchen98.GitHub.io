@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hhyz.me/"/>
-  <updated>2020-01-09T11:28:31.796Z</updated>
+  <updated>2020-01-09T12:06:30.642Z</updated>
   <id>https://hhyz.me/</id>
   
   <author>
@@ -15,31 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>loss</title>
-    <link href="https://hhyz.me/2020/01/09/loss/"/>
-    <id>https://hhyz.me/2020/01/09/loss/</id>
-    <published>2020-01-08T16:00:00.000Z</published>
-    <updated>2020-01-09T11:28:31.796Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="BCELoss-BCEWithLogitsLoss"><a href="#BCELoss-BCEWithLogitsLoss" class="headerlink" title="BCELoss/BCEWithLogitsLoss"></a>BCELoss/BCEWithLogitsLoss</h2><p>$$<br>-\frac{1}{n} \sum\left(y_{n} \times \ln x_{n}+\left(1-y_{n}\right) \times \ln \left(1-x_{n}\right)\right)<br>$$</p><p>BCEWithLogitsLoss = Sigmoid+BCELoss，当网络最后一层使用nn.Sigmoid时，就用BCELoss，当网络最后一层不使用nn.Sigmoid时，就用BCEWithLogitsLoss。<br>(BCELoss)BCEWithLogitsLoss用于单标签二分类或者多标签二分类，输出和目标的维度是(batch,C)，batch是样本数量，C是类别数量，对于每一个batch的C个值，对每个值求sigmoid到0-1之间，所以每个batch的C个值之间是没有关系的,相互独立的，所以之和不一定为1。每个C值代表属于一类标签的概率。如果是单标签二分类，那输出和目标的维度是(batch,1)即可。<br>CrossEntropyLoss用于多类别分类，输出和目标的维度是(batch,C)，batch是样本数量，C是类别数量，每一个C之间是互斥的，相互关联的，对于每一个batch的C个值，一起求每个C的softmax，所以每个batch的所有C个值之和是1，哪个值大，代表其属于哪一类。如果用于二分类，那输出和目标的维度是(batch,2)。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;BCELoss-BCEWithLogitsLoss&quot;&gt;&lt;a href=&quot;#BCELoss-BCEWithLogitsLoss&quot; class=&quot;headerlink&quot; title=&quot;BCELoss/BCEWithLogitsLoss&quot;&gt;&lt;/a&gt;BCELoss/BCE
-      
-    
-    </summary>
-    
-      <category term="深度学习" scheme="https://hhyz.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="PyTorch" scheme="https://hhyz.me/tags/PyTorch/"/>
-    
-  </entry>
   
   <entry>
     <title>PyTorch 进阶</title>
@@ -55,6 +30,31 @@
       
       
         &lt;h2 id=&quot;参数个数&quot;&gt;&lt;a href=&quot;#参数个数&quot; class=&quot;headerlink&quot; title=&quot;参数个数&quot;&gt;&lt;/a&gt;参数个数&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;p
+      
+    
+    </summary>
+    
+      <category term="深度学习" scheme="https://hhyz.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="PyTorch" scheme="https://hhyz.me/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>loss</title>
+    <link href="https://hhyz.me/2020/01/09/loss/"/>
+    <id>https://hhyz.me/2020/01/09/loss/</id>
+    <published>2020-01-08T16:00:00.000Z</published>
+    <updated>2020-01-09T11:28:31.796Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="BCELoss-BCEWithLogitsLoss"><a href="#BCELoss-BCEWithLogitsLoss" class="headerlink" title="BCELoss/BCEWithLogitsLoss"></a>BCELoss/BCEWithLogitsLoss</h2><p>$$<br>-\frac{1}{n} \sum\left(y_{n} \times \ln x_{n}+\left(1-y_{n}\right) \times \ln \left(1-x_{n}\right)\right)<br>$$</p><p>BCEWithLogitsLoss = Sigmoid+BCELoss，当网络最后一层使用nn.Sigmoid时，就用BCELoss，当网络最后一层不使用nn.Sigmoid时，就用BCEWithLogitsLoss。<br>(BCELoss)BCEWithLogitsLoss用于单标签二分类或者多标签二分类，输出和目标的维度是(batch,C)，batch是样本数量，C是类别数量，对于每一个batch的C个值，对每个值求sigmoid到0-1之间，所以每个batch的C个值之间是没有关系的,相互独立的，所以之和不一定为1。每个C值代表属于一类标签的概率。如果是单标签二分类，那输出和目标的维度是(batch,1)即可。<br>CrossEntropyLoss用于多类别分类，输出和目标的维度是(batch,C)，batch是样本数量，C是类别数量，每一个C之间是互斥的，相互关联的，对于每一个batch的C个值，一起求每个C的softmax，所以每个batch的所有C个值之和是1，哪个值大，代表其属于哪一类。如果用于二分类，那输出和目标的维度是(batch,2)。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;BCELoss-BCEWithLogitsLoss&quot;&gt;&lt;a href=&quot;#BCELoss-BCEWithLogitsLoss&quot; class=&quot;headerlink&quot; title=&quot;BCELoss/BCEWithLogitsLoss&quot;&gt;&lt;/a&gt;BCELoss/BCE
       
     
     </summary>

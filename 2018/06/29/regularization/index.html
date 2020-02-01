@@ -37,18 +37,18 @@
 <link rel="canonical" href="https://hhyz.me/2018/06/29/regularization/">
 
 
-<meta name="description" content="范数  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$     \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则">
+<meta name="description" content="范数 $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$  \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则化的模型">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="L0 L1 L2 正则化">
 <meta property="og:url" content="https://hhyz.me/2018/06/29/regularization/index.html">
 <meta property="og:site_name" content="浩瀚宇宙·AaronChen">
-<meta property="og:description" content="范数  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$     \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则">
+<meta property="og:description" content="范数 $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$  \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则化的模型">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-07-02T17:05:20.654Z">
+<meta property="og:updated_time" content="2020-02-01T14:36:47.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="L0 L1 L2 正则化">
-<meta name="twitter:description" content="范数  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$     \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则">
+<meta name="twitter:description" content="范数 $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$  \(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\)  \(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)      对于线性回归模型，使用 L1 正则化的模型">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
@@ -205,7 +205,7 @@ function(){
 
     
             <div class="post-content">
-            <h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><p><font size="+1">  $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$<br>   </font></p>
+            <h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><p> $$\Vert x \Vert_p:=\left(\sum^n_{i=1}\vert x_i \vert^p\right)^{\frac {1}{p}}$$</p>
 <ul>
 <li>\(L1\ 范数：当\ p=1\ 时，表示某个向量中所有元素绝对值之和\) </li>
 <li>\(L2\ 范数：当\ p=2\ 时，表示某个向量中所有元素平方和再开根， 也就是欧几里得距离公式\)    </li>
@@ -234,7 +234,7 @@ function(){
 <blockquote>
 <p>通常使参数稀疏都是用 L1 范数实现，L1 范数也有个美称叫“稀疏规则算子”（Lasso regularization）。既然 L0 可以实现稀疏，为什么不用 L0，而要用 L1 呢？个人理解一是因为 L0 范数很难优化求解（NP难问题），二是 L1 范数是 L0 范数的最优凸近似，而且它比L0范数要容易优化求解。</p>
 </blockquote>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML" async></script>
 
 
             </div>
